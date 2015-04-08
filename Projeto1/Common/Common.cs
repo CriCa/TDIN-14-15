@@ -1,6 +1,21 @@
 ﻿using System;
 
 [Serializable]
+public class UserEntity // user entity identifier
+{
+    public UserEntity(string name, string nick)
+    {
+        Name = name;
+        Nick = nick;
+    }
+
+    public string Name { get; set; }
+
+    public string Nick { get; set; }
+}
+
+/*
+[Serializable]
 public class Diginote
 {
     static int nextSerial = 0;
@@ -24,7 +39,7 @@ public class Diginote
         get { return nextSerial; }
         set { nextSerial = value; }
     }
-}
+}*/
 
 public enum OrderType { Buy, Sell }; // orders types
 
@@ -45,10 +60,14 @@ public class Order
     }
 }
 
-//public delegate void ChangeDelegate(Operation op, Item item);
+public enum QuotationChangeType { Up, Down };
+
+public delegate void QuotationDelegate(QuotationChangeType type , double value);
 
 public interface IDiginoteManager
 {
+    event QuotationDelegate QuotationChange;
+
     double GetQuotation(); // get current quotation
 
     void AddBuyOrder(Order newOrder); // add a buy order
