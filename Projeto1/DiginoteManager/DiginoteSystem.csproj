@@ -35,7 +35,10 @@
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Diginote.cs" />
+    <Compile Include="DiginoteDatabase.cs" />
     <Compile Include="DiginoteSystem.cs" />
+    <Compile Include="Logger.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

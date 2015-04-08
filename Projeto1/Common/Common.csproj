@@ -35,7 +35,10 @@
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Common.cs" />
+    <Compile Include="EventRepeater.cs" />
+    <Compile Include="Order.cs" />
+    <Compile Include="UserEntity.cs" />
+    <Compile Include="IDiginoteTradingSystem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
