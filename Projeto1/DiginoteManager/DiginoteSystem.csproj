@@ -7,8 +7,8 @@
     <ProjectGuid>{FBAA4A58-8A67-4CE1-8510-B546B7769E20}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DiginoteManager</RootNamespace>
-    <AssemblyName>DiginoteManager</AssemblyName>
+    <RootNamespace>DiginoteSystem</RootNamespace>
+    <AssemblyName>DiginoteSystem</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -35,7 +35,7 @@
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DiginoteManager.cs" />
+    <Compile Include="DiginoteSystem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

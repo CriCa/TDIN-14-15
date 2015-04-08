@@ -48,9 +48,9 @@
       <Project>{ceb0a4e6-196d-4394-bdd7-48b31dbdbf52}</Project>
       <Name>Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\DiginoteManager\DiginoteManager.csproj">
+    <ProjectReference Include="..\DiginoteManager\DiginoteSystem.csproj">
       <Project>{fbaa4a58-8a67-4ce1-8510-b546b7769e20}</Project>
-      <Name>DiginoteManager</Name>
+      <Name>DiginoteSystem</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

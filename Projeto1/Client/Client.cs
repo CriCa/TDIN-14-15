@@ -4,10 +4,14 @@ using System.Runtime.Remoting;
 
 class Client
 {
+    private int quotation; // current quotation
+    ArrayList mySellOrders; // my sell orders
+    ArrayList myBuyOrders; // my buy orders
+
     static void Main(string[] args)
     {
         RemotingConfiguration.Configure("Client.exe.config", false);
-        IDiginoteManager diginoteSystem = (IDiginoteManager)RemoteNew.New(typeof(IDiginoteManager));
+        IDiginoteTradingSystem diginoteSystem = (IDiginoteTradingSystem)RemoteNew.New(typeof(IDiginoteTradingSystem));
 
         diginoteSystem.AddBuyOrder(new Order(OrderType.Buy, 25, "user"));
 

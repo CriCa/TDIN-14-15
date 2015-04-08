@@ -2,7 +2,49 @@
 using System.IO;
 using System.Collections;
 
-public class DiginoteManager : MarshalByRefObject, IDiginoteManager
+// diginote class
+public class Diginote
+{
+    static int nextSerial = 0;
+
+    public Diginote()
+    {
+        Id = nextSerial++;
+        Value = 1.0;
+    }
+
+    public Diginote(int id)
+    {
+        Id = id;
+    }
+
+    public int Id { get; set; }
+
+    public double Value { get; set; }
+
+    public static int NextSerial
+    {
+        get { return nextSerial; }
+        set { nextSerial = value; }
+    }
+}
+
+class DiginoteDatabase
+{
+    private Hashtable diginotesOwners;
+
+    public DiginoteDatabase()
+    {
+        diginotesOwners = new Hashtable();
+    }
+
+    public void AddDiginote(Diginote dig, string user)
+    {
+        diginotesOwners.Add(dig, user);
+    }
+}
+
+public class DiginoteTradingSystem : MarshalByRefObject, IDiginoteTradingSystem
 {
     private double quotation; // current quotation of diginotes
     
@@ -14,7 +56,9 @@ public class DiginoteManager : MarshalByRefObject, IDiginoteManager
     public event QuotationDelegate QuotationChange; // event to warn clients 
                                                     // when quotation changes
 
-    public DiginoteManager()
+    private DiginoteDatabase diginoteDB; // diginote db
+
+    public DiginoteTradingSystem()
     {
         // TODO check for log and load state
 
@@ -27,6 +71,8 @@ public class DiginoteManager : MarshalByRefObject, IDiginoteManager
 
         // create logger
         logger = new Logger(this);
+
+        diginoteDB = new DiginoteDatabase();
     }
 
     public override object InitializeLifetimeService()
@@ -47,7 +93,6 @@ public class DiginoteManager : MarshalByRefObject, IDiginoteManager
             QuotationChange(QuotationChangeType.Up, value);
         }
         else {
-            QuotationChangeType type;
             Console.WriteLine("[Server]: Quotation value went down to: " + value);
             QuotationChange(QuotationChangeType.Down, value);
         }
@@ -71,17 +116,17 @@ public class DiginoteManager : MarshalByRefObject, IDiginoteManager
 }
 
 // class that creates the log file writes system changes
-public class Logger 
+class Logger 
 {
     public const string LOG_FILENAME = "log.txt";
     private StreamWriter file;
 
-    public Logger(DiginoteManager ds)
+    public Logger(DiginoteTradingSystem ds)
     {
         // creating the file WARNING: for now this is creating a new file
         // later on we need to change to append mode
         file = new StreamWriter(LOG_FILENAME);
-        Log(DateTime.Now + "|Created log file");
+        Log("Created log file");
 
         // subscribe events
         ds.QuotationChange += QuotationChangeHandler;
@@ -90,7 +135,7 @@ public class Logger
     public void Log(string msg)
     {
         // write msg to file
-        file.WriteLine(msg);
+        file.WriteLine(DateTime.Now + "|" + msg);
         file.Flush();
 
         // show on console

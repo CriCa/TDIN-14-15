@@ -15,7 +15,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Client", "Client\Client.csp
 		{CEB0A4E6-196D-4394-BDD7-48B31DBDBF52} = {CEB0A4E6-196D-4394-BDD7-48B31DBDBF52}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiginoteManager", "DiginoteManager\DiginoteManager.csproj", "{FBAA4A58-8A67-4CE1-8510-B546B7769E20}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiginoteSystem", "DiginoteManager\DiginoteSystem.csproj", "{FBAA4A58-8A67-4CE1-8510-B546B7769E20}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

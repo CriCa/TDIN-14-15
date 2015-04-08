@@ -14,33 +14,6 @@ public class UserEntity // user entity identifier
     public string Nick { get; set; }
 }
 
-/*
-[Serializable]
-public class Diginote
-{
-    static int nextSerial = 0;
-
-    public Diginote() {
-        Id = nextSerial++;
-        Value = 1.0;
-    }
-
-    public Diginote(int id)
-    {
-        Id = id;
-    }
-
-    public int Id { get; set; }
-
-    public double Value { get; set; }
-
-    public static int NextSerial
-    {
-        get { return nextSerial; }
-        set { nextSerial = value; }
-    }
-}*/
-
 public enum OrderType { Buy, Sell }; // orders types
 
 [Serializable]
@@ -64,7 +37,7 @@ public enum QuotationChangeType { Up, Down };
 
 public delegate void QuotationDelegate(QuotationChangeType type , double value);
 
-public interface IDiginoteManager
+public interface IDiginoteTradingSystem
 {
     event QuotationDelegate QuotationChange;
 
