@@ -15,4 +15,3 @@ public class DiginoteDatabase
         diginotesOwners.Add(dig, user);
     }
 }
-
