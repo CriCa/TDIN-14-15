@@ -6,7 +6,7 @@ public class Logger
     public const string LOG_FILENAME = "log.txt";
     private StreamWriter file;
 
-    public Logger(DiginoteTradingSystem ds)
+    public Logger(ChangeDelegate cDelegate)
     {
         // creating the file WARNING: for now this is creating a new file
         // later on we need to change to append mode
@@ -14,7 +14,7 @@ public class Logger
         Log("Created log file");
 
         // subscribe events
-        ds.QuotationChange += QuotationChangeHandler;
+        cDelegate += QuotationChangeHandler; // this has to be unsubcribed somewhere
     }
 
     public void Log(string msg)
@@ -27,12 +27,12 @@ public class Logger
         Console.WriteLine("[Logger]: " + msg);
     }
 
-    public void QuotationChangeHandler(QuotationChangeType type, double value)
+    public void QuotationChangeHandler(ChangeArgs args)
     {
         // log the new quotation value
-        if (type == QuotationChangeType.Up)
-            Log("[Server]: Quotation value went up to: " + value);
-        else
-            Log("[Server]: Quotation value went down to: " + value);
+        if (args.Type == ChangeType.QuotationUp)
+            Log("[Server]: Quotation value went up to: " + args.QuotationValue);
+        else if (args.Type == ChangeType.QuotationDown)
+            Log("[Server]: Quotation value went down to: " + args.QuotationValue);
     }
 }

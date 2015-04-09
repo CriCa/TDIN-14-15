@@ -10,7 +10,7 @@ public class DiginoteTradingSystem : MarshalByRefObject, IDiginoteTradingSystem
 
     private Logger logger; // log system
 
-    public event QuotationDelegate QuotationChange; // event to warn clients 
+    public event ChangeDelegate ChangeEvent; // event to warn clients 
                                                     // when quotation changes
 
     private DiginoteDatabase diginoteDB; // diginote db
@@ -27,7 +27,7 @@ public class DiginoteTradingSystem : MarshalByRefObject, IDiginoteTradingSystem
         sellOrders = new ArrayList();
 
         // create logger
-        logger = new Logger(this);
+        logger = new Logger(ChangeEvent);
 
         diginoteDB = new DiginoteDatabase();
     }
@@ -43,15 +43,15 @@ public class DiginoteTradingSystem : MarshalByRefObject, IDiginoteTradingSystem
         return quotation;
     }
 
-    private void setNewQuotation(double value)
+    private void SetNewQuotation(double value)
     {
         if(value > quotation) {
             Console.WriteLine("[Server]: Quotation value went up to: " + value);
-            QuotationChange(QuotationChangeType.Up, value);
+            ChangeEvent(new ChangeArgs(ChangeType.QuotationUp, value));
         }
         else {
             Console.WriteLine("[Server]: Quotation value went down to: " + value);
-            QuotationChange(QuotationChangeType.Down, value);
+            ChangeEvent(new ChangeArgs(ChangeType.QuotationDown, value));
         }
 
         // update quotation

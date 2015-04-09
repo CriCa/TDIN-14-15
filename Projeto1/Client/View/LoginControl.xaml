@@ -1,0 +1,21 @@
+﻿<UserControl x:Class="Client.View.LoginControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:ViewModel="clr-namespace:Client.ViewModel"
+             mc:Ignorable="d" 
+             d:DesignHeight="400" d:DesignWidth="250">
+    <Grid>
+        <Label Content="Login" Margin="10,20,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Foreground="White" FontWeight="Bold" FontSize="20" Width="230"/>
+        <TextBlock HorizontalAlignment="Left" Margin="16,70,0,0" TextWrapping="Wrap" Text="Username" VerticalAlignment="Top" Foreground="White"/>
+        <TextBox Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="23" Margin="16,91,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="224"/>
+        <TextBlock HorizontalAlignment="Left" Margin="16,130,0,0" TextWrapping="Wrap" Text="Password" VerticalAlignment="Top" Foreground="White"/>
+        <PasswordBox x:Name="passwordBox" HorizontalAlignment="Left" Margin="16,151,0,0" VerticalAlignment="Top" Width="224" Height="23"/>
+        <Button Content="Login" HorizontalAlignment="Left" Margin="130,210,0,0" VerticalAlignment="Top" Width="110" Foreground="#FF0B637E" ToolTip="Click to login"/>
+        <Grid.InputBindings>
+            <KeyBinding Key="Enter" />
+        </Grid.InputBindings>
+        
+    </Grid>
+</UserControl>

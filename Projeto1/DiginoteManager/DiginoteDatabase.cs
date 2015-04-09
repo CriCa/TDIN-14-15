@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 
+// not really necessary, can be done in diginotesystem class
 public class DiginoteDatabase
 {
     private Hashtable diginotesOwners;

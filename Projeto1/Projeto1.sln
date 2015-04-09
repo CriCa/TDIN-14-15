@@ -10,12 +10,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Server", "Server\Server.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csproj", "{CEB0A4E6-196D-4394-BDD7-48B31DBDBF52}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Client", "Client\Client.csproj", "{600EC95A-8646-49B5-A919-040793E26235}"
-	ProjectSection(ProjectDependencies) = postProject
-		{CEB0A4E6-196D-4394-BDD7-48B31DBDBF52} = {CEB0A4E6-196D-4394-BDD7-48B31DBDBF52}
-	EndProjectSection
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiginoteSystem", "DiginoteManager\DiginoteSystem.csproj", "{FBAA4A58-8A67-4CE1-8510-B546B7769E20}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Client", "Client\Client.csproj", "{DA990FAC-E72E-43D0-8025-D3FC5F7581BA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -31,14 +28,14 @@ Global
 		{CEB0A4E6-196D-4394-BDD7-48B31DBDBF52}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CEB0A4E6-196D-4394-BDD7-48B31DBDBF52}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CEB0A4E6-196D-4394-BDD7-48B31DBDBF52}.Release|Any CPU.Build.0 = Release|Any CPU
-		{600EC95A-8646-49B5-A919-040793E26235}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{600EC95A-8646-49B5-A919-040793E26235}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{600EC95A-8646-49B5-A919-040793E26235}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{600EC95A-8646-49B5-A919-040793E26235}.Release|Any CPU.Build.0 = Release|Any CPU
 		{FBAA4A58-8A67-4CE1-8510-B546B7769E20}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{FBAA4A58-8A67-4CE1-8510-B546B7769E20}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FBAA4A58-8A67-4CE1-8510-B546B7769E20}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FBAA4A58-8A67-4CE1-8510-B546B7769E20}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DA990FAC-E72E-43D0-8025-D3FC5F7581BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DA990FAC-E72E-43D0-8025-D3FC5F7581BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DA990FAC-E72E-43D0-8025-D3FC5F7581BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DA990FAC-E72E-43D0-8025-D3FC5F7581BA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

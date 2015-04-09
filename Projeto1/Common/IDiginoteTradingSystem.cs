@@ -1,12 +1,10 @@
 ﻿using System;
 
-public enum QuotationChangeType { Up, Down };
-
-public delegate void QuotationDelegate(QuotationChangeType type , double value);
+public delegate void ChangeDelegate(ChangeArgs args);
 
 public interface IDiginoteTradingSystem
 {
-    event QuotationDelegate QuotationChange;
+    event ChangeDelegate ChangeEvent;
 
     double GetQuotation(); // get current quotation
 
