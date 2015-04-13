@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 
 public class DiginoteTradingSystem : MarshalByRefObject, IDiginoteTradingSystem
 {
     private double quotation; // current quotation of diginotes
     
-    private ArrayList usersList;
-    private ArrayList loggedUsers;
+    private List<User> usersList;
+    private List<User> loggedUsers;
 
     private ArrayList sellOrders; // list of sell orders
     private ArrayList buyOrders; // list of buy orders
@@ -28,10 +29,12 @@ public class DiginoteTradingSystem : MarshalByRefObject, IDiginoteTradingSystem
         // create order lists
         buyOrders = new ArrayList();
         sellOrders = new ArrayList();
+        usersList = new List<User>();
+        loggedUsers = new List<User>();
 
         // create logger
         logger = new Logger(ChangeEvent);
-
+        Console.WriteLine("[DiginoteSystem] sup");
         diginoteDB = new DiginoteDatabase();
     }
 
@@ -76,17 +79,16 @@ public class DiginoteTradingSystem : MarshalByRefObject, IDiginoteTradingSystem
 
 
     public bool userExists(User newUser){
-        foreach(User user in usersList){
-            if (user.Username.Equals(newUser.Username))
-                return true;
-        }
-        return false;
+        return usersList.Exists(user => user.Username == newUser.Username);
     }
 
-    public bool registerUser(User newUser)
+    public bool RegisterUser(User newUser)
     {
         if (userExists(newUser))
+        {
+            Console.WriteLine("[DiginoteSystem] register failed: {0}", newUser.Username);
             return false;
+        }
 
         usersList.Add(newUser);
         Console.WriteLine("[DiginoteSystem] user registered: {0}", newUser.Username);
@@ -96,15 +98,19 @@ public class DiginoteTradingSystem : MarshalByRefObject, IDiginoteTradingSystem
         return true;
     }
 
-    public bool checkLogin(User user)
+    public bool checkLogin(User loguser)
     {
-        return usersList.Contains(user);
+        return usersList.Exists(user => user.Username == loguser.Username);
     }
 
     public bool Login(User user) //DIFFERENT RETURNS NEEDED?
     {
         if (!checkLogin(user))
+        {
+            Console.WriteLine("[DiginoteSystem] login failed in: {0}", user.Username);
             return false;
+        }
+            
 
         loggedUsers.Add(new User(user.Name, user.Username, user.Password));
         Console.WriteLine("[DiginoteSystem] user logged in: {0}", user.Username);
@@ -112,9 +118,14 @@ public class DiginoteTradingSystem : MarshalByRefObject, IDiginoteTradingSystem
         return true;
     }
 
-    public void Logout(User user)
+    public List<User> getLoggedUsers()
     {
-        loggedUsers.Remove(user);
-        Console.WriteLine("[DiginoteSystem] user logged out: {0}", user.Username);
+        return loggedUsers;
+    }
+
+    public void Logout(User loguser)
+    {
+        loggedUsers.Remove(loggedUsers.Find(user => user.Username == loguser.Username));
+        Console.WriteLine("[DiginoteSystem] user logged out: {0}", loguser.Username);
     }
 }
