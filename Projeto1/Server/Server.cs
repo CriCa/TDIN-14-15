@@ -9,5 +9,6 @@ class Server
         RemotingConfiguration.Configure("Server.exe.config", false);
         Console.WriteLine("[Server]: Server started! Press return to exit!\n");
         Console.ReadLine();
+
     }
 }

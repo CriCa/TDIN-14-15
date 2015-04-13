@@ -5,6 +5,9 @@ public class DiginoteTradingSystem : MarshalByRefObject, IDiginoteTradingSystem
 {
     private double quotation; // current quotation of diginotes
     
+    private ArrayList usersList;
+    private ArrayList loggedUsers;
+
     private ArrayList sellOrders; // list of sell orders
     private ArrayList buyOrders; // list of buy orders
 
@@ -69,5 +72,49 @@ public class DiginoteTradingSystem : MarshalByRefObject, IDiginoteTradingSystem
     {
         Console.WriteLine("[Server]: Added sell order from user " + newOrder.User);
         sellOrders.Add(newOrder);
+    }
+
+
+    public bool userExists(User newUser){
+        foreach(User user in usersList){
+            if (user.Username.Equals(newUser.Username))
+                return true;
+        }
+        return false;
+    }
+
+    public bool registerUser(User newUser)
+    {
+        if (userExists(newUser))
+            return false;
+
+        usersList.Add(newUser);
+        Console.WriteLine("[DiginoteSystem] user registered: {0}", newUser.Username);
+
+       //SAVE STATE
+
+        return true;
+    }
+
+    public bool checkLogin(User user)
+    {
+        return usersList.Contains(user);
+    }
+
+    public bool Login(User user) //DIFFERENT RETURNS NEEDED?
+    {
+        if (!checkLogin(user))
+            return false;
+
+        loggedUsers.Add(new User(user.Name, user.Username, user.Password));
+        Console.WriteLine("[DiginoteSystem] user logged in: {0}", user.Username);
+
+        return true;
+    }
+
+    public void Logout(User user)
+    {
+        loggedUsers.Remove(user);
+        Console.WriteLine("[DiginoteSystem] user logged out: {0}", user.Username);
     }
 }
