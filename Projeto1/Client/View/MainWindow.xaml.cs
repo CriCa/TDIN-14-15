@@ -11,6 +11,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using GalaSoft.MvvmLight.Messaging;
+using Client.Helpers;
 
 namespace Client.View
 {
@@ -22,6 +24,21 @@ namespace Client.View
         public MainWindow()
         {
             InitializeComponent();
+
+            Messenger.Default.Register<NotificationMessage<NotificationType>>(this, NotificationMessageHandler);
+        }
+
+        private void NotificationMessageHandler(NotificationMessage<NotificationType> msg)
+        {
+            /*if (msg.Content.Type == NotifType.LOGIN)
+            {
+                // open main window
+                MainWindow main = new MainWindow();
+                main.Show();
+
+                // close current
+                Close();
+            }*/
         }
     }
 }
