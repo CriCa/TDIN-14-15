@@ -2,6 +2,8 @@
 
 public enum OrderType { Buy, Sell }; // orders types
 
+public enum OrderState { Active, Pending };
+
 [Serializable]
 public class Order
 {
@@ -11,10 +13,13 @@ public class Order
 
     public string User { get; set; } // user that created the order
 
+    public OrderState State { get; set; }
+
     public Order(OrderType t, int q, string u)
     {
         Type = t;
         Quantity = q;
         User = u;
+        State = OrderState.Active;
     }
 }

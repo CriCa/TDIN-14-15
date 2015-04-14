@@ -33,11 +33,13 @@ namespace Client.View
             if (msg.Content.Type == NotifType.LOGIN)
             {
                 // open main window
-                MainWindow main = new MainWindow();
-                main.Show();
-                
+                new MainWindow().Show();
+
+                // unregister
+                Messenger.Default.Unregister<NotificationMessage<NotificationType>>(this);
+
                 // close current
-                Close();
+                this.Close();
             }
         }
     }

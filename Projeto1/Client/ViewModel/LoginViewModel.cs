@@ -57,6 +57,8 @@ namespace Client.ViewModel
         {
             if (msg.Content.Type == NotifType.NOSERVER)
                 noserver = true;
+            else if(msg.Content.Type == NotifType.LOGIN)
+                Messenger.Default.Unregister<NotificationMessage<NotificationType>>(this);
         }
 
         private string Encrypt(string password)

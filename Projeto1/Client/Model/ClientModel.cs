@@ -14,7 +14,7 @@ namespace Client.Model
 
         private ChangeEventRepeater evRepeater;
 
-        private User user;
+        public User user { get; set; }
 
         private double Quotation { get; set; } // current quotation
 

@@ -3,14 +3,14 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:ViewModel="clr-namespace:Client.ViewModel"
         xmlns:View="clr-namespace:Client.View"
-        Title="Diginote Exchange System - Main Window" Height="500 " Width="600" Icon="/Client;component/Resources/favicon.ico" Background="#FF1085BB" ResizeMode="CanMinimize" ToolTip="Diginote Exchange System" WindowStartupLocation="CenterScreen">
-    
-    <!--<Window.DataContext>
+        Title="Diginote Exchange System - Main Window" Height="547" Width="800" Icon="/Client;component/Resources/favicon.ico" Background="#FF1085BB" ResizeMode="CanMinimize" ToolTip="Diginote Exchange System" WindowStartupLocation="CenterScreen">
+
+    <Window.DataContext>
         <ViewModel:MainViewModel/>
-    </Window.DataContext>-->
-    
+    </Window.DataContext>
+
     <Grid>
-        
+        <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="519" Margin="206,0,0,0" VerticalAlignment="Top" Width="588"/>
         <View:MainControl/>
     </Grid>
 </Window>

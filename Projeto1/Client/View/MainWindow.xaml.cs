@@ -30,15 +30,17 @@ namespace Client.View
 
         private void NotificationMessageHandler(NotificationMessage<NotificationType> msg)
         {
-            /*if (msg.Content.Type == NotifType.LOGIN)
+            if (msg.Content.Type == NotifType.LOGOUT)
             {
-                // open main window
-                MainWindow main = new MainWindow();
-                main.Show();
+                // open login window
+                new LoginWindow().Show();
+
+                // unregister
+                Messenger.Default.Unregister<NotificationMessage<NotificationType>>(this);
 
                 // close current
-                Close();
-            }*/
+                this.Close();
+            }
         }
     }
 }

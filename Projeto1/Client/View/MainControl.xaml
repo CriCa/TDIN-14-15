@@ -3,9 +3,58 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:tl="http://schemas.xceed.com/wpf/xaml/toolkit"
+             xmlns:plot="http://oxyplot.org/wpf"
+             xmlns:ViewModel="clr-namespace:Client.ViewModel"
              mc:Ignorable="d" 
-             d:DesignHeight="500" d:DesignWidth="600">
+             d:DesignHeight="500" d:DesignWidth="800">
     <Grid>
-            
+        <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Logged as " VerticalAlignment="Top" Margin="10,449,0,0" Foreground="White"/>
+        <TextBlock Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="68,449,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Foreground="White" FontWeight="Bold"/>
+        <Button Command="{Binding LogoutCommand}"  HorizontalAlignment="Left" Margin="117,468,0,0" VerticalAlignment="Top" Width="75" Foreground="#FF0B637E">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                    <GradientStop Color="#FFF3F3F3" Offset="0"/>
+                    <GradientStop Color="#FFEBEBEB" Offset="0.5"/>
+                    <GradientStop Color="#FFDDDDDD" Offset="0.5"/>
+                    <GradientStop Color="#FFCDCDCD" Offset="1"/>
+                </LinearGradientBrush>
+            </Button.Background>
+            <StackPanel Orientation="Horizontal">
+                <Image Source="/Client;component/Resources/logout.png" HorizontalAlignment="Center" Width="15" VerticalAlignment="Center" Height="15"/>
+                <TextBlock Text="LogOut" HorizontalAlignment="Center" Margin="5,0,0,0" VerticalAlignment="Center"/>
+            </StackPanel>
+        </Button>
+
+        <TextBlock HorizontalAlignment="Left" Margin="10,26,0,0" TextWrapping="Wrap" Text="Quotation: " VerticalAlignment="Top" FontSize="20" FontWeight="Bold" Foreground="White"/>
+        <TextBlock Text="0.0" HorizontalAlignment="Left" Margin="117,26,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="20" FontWeight="Bold" Foreground="White"/>
+        <TextBlock HorizontalAlignment="Left" Margin="150,26,0,0" TextWrapping="Wrap" Text="$" VerticalAlignment="Top" FontSize="20" FontWeight="Bold" Foreground="White"/>
+        <TextBlock HorizontalAlignment="Left" Margin="10,90,0,0" TextWrapping="Wrap" Text="Diginotes: " VerticalAlignment="Top" Foreground="White"/>
+        <TextBlock HorizontalAlignment="Left" Margin="213,13,0,0" TextWrapping="Wrap" Text="Place order" VerticalAlignment="Top" Foreground="#FF1085BB" FontWeight="Bold"/>
+
+        <tl:IntegerUpDown Margin="293,6,447,472" Cursor="" Value="0" Height="22" Maximum="9999" Minimum="0"/>
+        <Button Content="Sell" HorizontalAlignment="Left" Margin="342,10,0,0" VerticalAlignment="Top" Width="50" Foreground="#FF0B637E"/>
+
+        <tl:IntegerUpDown Margin="423,6,317,472" Cursor="" Value="0" Height="22" Maximum="9999" Minimum="0"/>
+        <Button Content="Buy" HorizontalAlignment="Left" Margin="474,10,0,0" VerticalAlignment="Top" Width="50" Foreground="#FF0B637E"/>
+        <TextBlock HorizontalAlignment="Left" Margin="65,90,0,0" TextWrapping="Wrap" Text="205" VerticalAlignment="Top" Foreground="White"/>
+        <Button Content="View" HorizontalAlignment="Left" Margin="99,87,0,0" VerticalAlignment="Top" Width="40" Foreground="#FF0B637E"/>
+        <TextBlock HorizontalAlignment="Left" Margin="213,58,0,0" TextWrapping="Wrap" Text="Your orders" VerticalAlignment="Top" Foreground="#FF1085BB" FontWeight="Bold"/>
+        <ListView HorizontalAlignment="Left" Height="171" Margin="213,79,0,0" VerticalAlignment="Top" Width="544" Background="#FFB6E3F7" BorderBrush="#FF1085BB">
+
+        </ListView>
+
+        <TextBlock HorizontalAlignment="Left" Margin="213,273,0,0" TextWrapping="Wrap" Text="Statistics" VerticalAlignment="Top" Foreground="#FF1085BB" FontWeight="Bold"/>
+        <TabControl HorizontalAlignment="Left" Height="196" Margin="213,294,0,0" VerticalAlignment="Top" Width="544" Background="#FFB6E3F7" BorderBrush="#FF1085BB">
+            <TabItem Header="Quotation" Foreground="#FF0B637E" BorderBrush="#FF1085BB">
+                <Grid Background="#FFB6E3F7"/>
+            </TabItem>
+            <TabItem Header="Sales" Foreground="#FF0B637E" BorderBrush="#FF1085BB">
+                <Grid Background="#FFB6E3F7"/>
+            </TabItem>
+        </TabControl>
+        <Button Content="Dig! Test!" HorizontalAlignment="Left" Margin="10,355,0,0" VerticalAlignment="Top" Width="75"/>
+
+
     </Grid>
 </UserControl>
