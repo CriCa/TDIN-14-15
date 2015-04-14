@@ -11,8 +11,20 @@ public class DiginoteDatabase
         diginotesOwners = new Hashtable();
     }
 
-    public void AddDiginote(Diginote dig, string user)
+    public void AddDiginote(Diginote dig, string username)
     {
-        diginotesOwners.Add(dig, user);
+        diginotesOwners.Add(dig, username);
     }
+
+    public void ChangeDiginoteOwner(Diginote dig, string username)
+    {
+        if (diginotesOwners.Contains(dig))
+        {
+            diginotesOwners.Remove(dig);
+            diginotesOwners.Add(dig, username);
+        }
+            
+       
+    }
+
 }
