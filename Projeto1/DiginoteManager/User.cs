@@ -9,20 +9,15 @@ public class User
 
     public string Password { get; set; }
 
+    private int Balance;
+
     public User(string name, string username, string password)
     {
         Name = name;
         Username = username;
         Password = password;
-    }
-    /*public int CompareTo(object obj) {
-        if (obj == null) return 1;
+        Balance = 100;
 
-        Console.WriteLine("asdasd");
-        User otherUser = obj as User;
-        if (otherUser != null) 
-            return this.Username.CompareTo(otherUser.Username) & this.Password.CompareTo(otherUser.Password);
-        else 
-           throw new ArgumentException("Object is not a User");
-    }*/
+    }
+    
 }

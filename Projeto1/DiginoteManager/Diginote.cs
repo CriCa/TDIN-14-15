@@ -1,7 +1,8 @@
 ﻿using System;
 
+
 // diginote class
-public class Diginote
+public class Diginote 
 {
     static int nextSerial = 0;
 
@@ -24,5 +25,27 @@ public class Diginote
     {
         get { return nextSerial; }
         set { nextSerial = value; }
+    }
+
+    public static bool operator ==(Diginote b, Diginote c)
+    {
+        if (b.Id == c.Id)
+            return true;
+        return false;
+    }
+
+    public static bool operator !=(Diginote b, Diginote c)
+    {
+        if (b.Id != c.Id)
+            return true;
+        return false;
+    }
+
+    //public static bool Equals(Diginote b)
+    public override bool Equals(System.Object obj)
+    {
+        if (((Diginote)obj).Id == this.Id)
+            return true;
+        return false;
     }
 }

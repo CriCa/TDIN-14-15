@@ -36,6 +36,18 @@ public class DiginoteTradingSystem : MarshalByRefObject, IDiginoteTradingSystem
         logger = new Logger(ChangeEvent);
         Console.WriteLine("[DiginoteSystem] sup");
         diginoteDB = new DiginoteDatabase();
+
+        // create brand new diginotes associated with a fictional user and sell them
+        RegisterUser(new User("System", "System", "Password"));
+        Diginote dig = new Diginote();
+        for (int i = 0; i < 49; i++) {
+            dig = new Diginote();
+            diginoteDB.AddDiginote(dig, "System");
+        }
+        logger.Log("Diginotes Created.");
+        AddSellOrder(new Order(OrderType.Sell, 50, "System"));
+
+
     }
 
     public override object InitializeLifetimeService()
