@@ -128,4 +128,27 @@ public class DiginoteTradingSystem : MarshalByRefObject, IDiginoteTradingSystem
         loggedUsers.Remove(loggedUsers.Find(user => user.Username == loguser.Username));
         Console.WriteLine("[DiginoteSystem] user logged out: {0}", loguser.Username);
     }
+
+    // this function must be called to when something occurs
+    //  and we need to call event, the thread is needed to
+    //  prevent dead locks on server and client!
+    private void safeInvoke(ChangeArgs args)
+    {
+        if (ChangeEvent != null)
+        {
+            Delegate[] invocationList = ChangeEvent.GetInvocationList();
+
+            foreach (ChangeDelegate changeDelegate in invocationList)
+            {
+                try
+                {
+                    changeDelegate.BeginInvoke(args, null, null);
+                }
+                catch (Exception)
+                {
+                    ChangeEvent -= changeDelegate;
+                }
+            }
+        }
+    }
 }

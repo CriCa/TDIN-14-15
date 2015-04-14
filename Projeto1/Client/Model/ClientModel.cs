@@ -3,6 +3,7 @@ using System.Collections;
 using System.Threading.Tasks;
 using GalaSoft.MvvmLight.Messaging;
 using System.Runtime.Remoting;
+using Client.Helpers;
 
 namespace Client.Model
 {
@@ -12,6 +13,8 @@ namespace Client.Model
         private IDiginoteTradingSystem diginoteSystem;
 
         private ChangeEventRepeater evRepeater;
+
+        private User user;
 
         private double Quotation { get; set; } // current quotation
 
@@ -49,6 +52,8 @@ namespace Client.Model
 
             evRepeater = new ChangeEventRepeater();
 
+            user = null;
+
             // this should be done only after login
             evRepeater.ChangeEvent += new ChangeDelegate(ChangeHandler);
             diginoteSystem.ChangeEvent += new ChangeDelegate(evRepeater.Repeater);
@@ -57,6 +62,18 @@ namespace Client.Model
         private void ChangeHandler(ChangeArgs args)
         {
             Console.WriteLine("Changer ocurred!!!");
+        }
+
+        public bool Login(string user, string password)
+        {
+            Console.WriteLine("Loging in: " + user + "-" + password);
+            return true;
+        }
+
+        public bool Register(string name, string user, string password)
+        {
+            Console.WriteLine("Registering: " + name + "-" + user + "-" + password);
+            return true;
         }
 
         // function that sets the lifetime service to infinite

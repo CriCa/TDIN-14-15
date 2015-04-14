@@ -5,14 +5,15 @@ using GalaSoft.MvvmLight.Messaging;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Controls;
+using Client.Helpers;
 
 namespace Client.ViewModel
 {
     class LoginViewModel : BaseViewModel
     {
-        private string username;
-        private string usernameReg;
-        private string nameReg;        
+        private string username = "";
+        private string usernameReg = "";
+        private string nameReg = "";
 
         public string Username
         {
@@ -63,17 +64,31 @@ namespace Client.ViewModel
         {
             PasswordBox pBox = parameter as PasswordBox;
             string password = pBox.Password;
-
+            
             if (Username.Length == 0 || password.Length == 0)
-                MessageBox.Show("blank");
-            else if (true/*client.Login(Username, password)*/)
-            {
-                // notify to change interface
-            }
+                MessageBox.Show("Provide username and password in order to login!", "Missing fields", MessageBoxButton.OK, MessageBoxImage.Error);
+            else if (client.Login(Username, Encrypt(password)))
+                NotificationMessenger.sendNotification(this, new NotificationType(NotifType.LOGIN, null), "DEFAULT");
             else
-            {
-                MessageBox.Show("wrong");
-            }
+                MessageBox.Show("Wrong user/password information. Please try again!", "Wrong login", MessageBoxButton.OK, MessageBoxImage.Error);
+        }
+
+        public ICommand RegisterCommand { get { return new RelayCommand(Register); } }
+
+        private void Register(object parameter)
+        {
+            Tuple<PasswordBox, PasswordBox> param = parameter as Tuple<PasswordBox, PasswordBox>;
+            string password = ((PasswordBox)param.Item1).Password;
+            string passwordConfirm = ((PasswordBox)param.Item2).Password;
+
+            if (UsernameRegister == "" || NameRegister == "" || password == "" || passwordConfirm == "")
+                MessageBox.Show("Please provide all fields in order to register!", "Missing fields", MessageBoxButton.OK, MessageBoxImage.Error);
+            else if(password != passwordConfirm)
+                MessageBox.Show("Passwords don't match! Please make to confirm your password!", "Wrong passwords", MessageBoxButton.OK, MessageBoxImage.Error);
+            else if (client.Register(NameRegister, UsernameRegister, Encrypt(password)))
+                NotificationMessenger.sendNotification(this, new NotificationType(NotifType.LOGIN, null), "DEFAULT");
+            else
+                MessageBox.Show("Username already taken! Please choose another username!", "Username taken", MessageBoxButton.OK, MessageBoxImage.Error);
         }
     }
 }

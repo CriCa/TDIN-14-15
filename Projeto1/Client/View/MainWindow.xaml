@@ -1,7 +1,8 @@
 ﻿<Window x:Class="Client.View.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="MainWindow" Height="300" Width="300" Icon="/Client;component/Resources/favicon.ico">
+        Title="Diginote Exchange System - Main Window" Height="500 " Width="600" Icon="/Client;component/Resources/favicon.ico" Background="#FF1085BB" ResizeMode="CanMinimize" ToolTip="Diginote Exchange System" WindowStartupLocation="CenterScreen">
+    
     <Grid>
         
     </Grid>

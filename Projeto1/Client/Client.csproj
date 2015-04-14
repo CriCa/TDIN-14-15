@@ -68,6 +68,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Helpers\NotificationMessenger.cs" />
+    <Compile Include="Helpers\PasswordTuple.cs" />
     <Compile Include="Model\ClientModel.cs" />
     <Compile Include="Model\RemoteNew.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
@@ -140,9 +142,7 @@
       <Name>Common</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Helpers\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Resource Include="Resources\favicon.ico" />
   </ItemGroup>

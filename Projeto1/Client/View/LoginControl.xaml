@@ -12,9 +12,9 @@
         <TextBox Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="23" Margin="16,91,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="224"/>
         <TextBlock HorizontalAlignment="Left" Margin="16,130,0,0" TextWrapping="Wrap" Text="Password" VerticalAlignment="Top" Foreground="White"/>
         <PasswordBox x:Name="passwordBox" HorizontalAlignment="Left" Margin="16,151,0,0" VerticalAlignment="Top" Width="224" Height="23"/>
-        <Button Content="Login" HorizontalAlignment="Left" Margin="130,210,0,0" VerticalAlignment="Top" Width="110" Foreground="#FF0B637E" ToolTip="Click to login"/>
+        <Button Content="Login" Command="{Binding LoginCommand}" CommandParameter="{Binding ElementName=passwordBox}" HorizontalAlignment="Left" Margin="130,210,0,0" VerticalAlignment="Top" Width="110" Foreground="#FF0B637E" ToolTip="Click to login"/>
         <Grid.InputBindings>
-            <KeyBinding Key="Enter" />
+            <KeyBinding Key="Enter" Command="{Binding LoginCommand}" CommandParameter="{Binding ElementName=passwordBox}" />
         </Grid.InputBindings>
         
     </Grid>

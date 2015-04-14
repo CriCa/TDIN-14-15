@@ -3,19 +3,41 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:conv="clr-namespace:Client.Helpers"
              mc:Ignorable="d" 
              d:DesignHeight="500" d:DesignWidth="250">
+
+    <UserControl.Resources>
+        <conv:PasswordTuple x:Key="PasswordTupleConverter"/>
+    </UserControl.Resources>
+
     <Grid Background="White">
         <Label Content="Register" HorizontalAlignment="Left" Margin="10,20,0,0" VerticalAlignment="Top" Foreground="#FF1085BB" Width="230" FontSize="20" FontWeight="Bold"/>
         <TextBlock HorizontalAlignment="Left" Margin="16,70,0,0" TextWrapping="Wrap" Text="Name" VerticalAlignment="Top" Foreground="#FF1085BB"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="16,91,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="224" Background="#FFB6E3F7"/>
+        <TextBox Text="{Binding NameRegister, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="23" Margin="16,91,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="224" Background="#FFB6E3F7"/>
         <TextBlock HorizontalAlignment="Left" Margin="16,130,0,0" TextWrapping="Wrap" Text="Username" VerticalAlignment="Top" Foreground="#FF1085BB"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="16,151,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="224" Background="#FFB6E3F7"/>
+        <TextBox Text="{Binding UsernameRegister, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="23" Margin="16,151,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="224" Background="#FFB6E3F7"/>
         <TextBlock HorizontalAlignment="Left" Margin="19,190,0,0" TextWrapping="Wrap" Text="Password" VerticalAlignment="Top" Foreground="#FF1085BB"/>
-        <PasswordBox HorizontalAlignment="Left" Margin="19,211,0,0" VerticalAlignment="Top" Height="23" Width="221" Background="#FFB6E3F7"/>
+        <PasswordBox x:Name="passwordRegister" HorizontalAlignment="Left" Margin="19,211,0,0" VerticalAlignment="Top" Height="23" Width="221" Background="#FFB6E3F7"/>
         <TextBlock HorizontalAlignment="Left" Margin="19,250,0,0" TextWrapping="Wrap" Text="Confirm Password" VerticalAlignment="Top" Foreground="#FF1085BB"/>
-        <PasswordBox HorizontalAlignment="Left" Margin="19,271,0,0" VerticalAlignment="Top" Width="221" Height="23" Background="#FFB6E3F7"/>
-        <Button Content="Register" HorizontalAlignment="Left" Margin="130,330,0,0" VerticalAlignment="Top" Width="110" Foreground="#FF0B637E"/>
-
+        <PasswordBox x:Name="passwordConfirmRegister" HorizontalAlignment="Left" Margin="19,271,0,0" VerticalAlignment="Top" Width="221" Height="23" Background="#FFB6E3F7"/>
+        <Button Content="Register" Command="{Binding RegisterCommand}" HorizontalAlignment="Left" Margin="130,330,0,0" VerticalAlignment="Top" Width="110" Foreground="#FF0B637E">
+            <Button.CommandParameter>
+               <MultiBinding Converter="{StaticResource PasswordTupleConverter}">
+                    <Binding ElementName="passwordRegister"/>
+                    <Binding ElementName="passwordConfirmRegister"/>
+                </MultiBinding>
+            </Button.CommandParameter>
+        </Button>
+        <Grid.InputBindings>
+            <KeyBinding Key="Enter" Command="{Binding RegisterCommand}">
+                <KeyBinding.CommandParameter>
+                    <MultiBinding Converter="{StaticResource PasswordTupleConverter}">
+                        <Binding ElementName="passwordRegister"/>
+                        <Binding ElementName="passwordConfirmRegister"/>
+                    </MultiBinding>
+                </KeyBinding.CommandParameter>
+            </KeyBinding>
+        </Grid.InputBindings>
     </Grid>
 </UserControl>
