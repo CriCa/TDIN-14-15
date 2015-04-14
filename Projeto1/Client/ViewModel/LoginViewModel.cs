@@ -15,6 +15,8 @@ namespace Client.ViewModel
         private string usernameReg = "";
         private string nameReg = "";
 
+        private bool noserver;
+
         public string Username
         {
             get { return username; }
@@ -45,6 +47,18 @@ namespace Client.ViewModel
             }
         }
 
+        public LoginViewModel()
+        {
+            noserver = false;
+            Messenger.Default.Register<NotificationMessage<NotificationType>>(this, NotificationMessageHandler);
+        }
+
+        private void NotificationMessageHandler(NotificationMessage<NotificationType> msg)
+        {
+            if (msg.Content.Type == NotifType.NOSERVER)
+                noserver = true;
+        }
+
         private string Encrypt(string password)
         {
             StringBuilder builder = new StringBuilder();
@@ -57,20 +71,28 @@ namespace Client.ViewModel
 
             return builder.ToString();
         }
-        
+
         public ICommand LoginCommand { get { return new RelayCommand(Login); } }
 
         private void Login(object parameter)
         {
             PasswordBox pBox = parameter as PasswordBox;
             string password = pBox.Password;
-            
+
             if (Username.Length == 0 || password.Length == 0)
                 MessageBox.Show("Provide username and password in order to login!", "Missing fields", MessageBoxButton.OK, MessageBoxImage.Error);
             else if (client.Login(Username, Encrypt(password)))
                 NotificationMessenger.sendNotification(this, new NotificationType(NotifType.LOGIN, null), "DEFAULT");
             else
-                MessageBox.Show("Wrong user/password information. Please try again!", "Wrong login", MessageBoxButton.OK, MessageBoxImage.Error);
+            {
+                if (!noserver)
+                    MessageBox.Show("Wrong user/password information. Please try again!", "Wrong login", MessageBoxButton.OK, MessageBoxImage.Error);
+                else
+                {
+                    MessageBox.Show("Can't reach server! Exiting Application!", "No server", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                    Environment.Exit(-1);
+                }
+            }
         }
 
         public ICommand RegisterCommand { get { return new RelayCommand(Register); } }
@@ -83,12 +105,20 @@ namespace Client.ViewModel
 
             if (UsernameRegister == "" || NameRegister == "" || password == "" || passwordConfirm == "")
                 MessageBox.Show("Please provide all fields in order to register!", "Missing fields", MessageBoxButton.OK, MessageBoxImage.Error);
-            else if(password != passwordConfirm)
+            else if (password != passwordConfirm)
                 MessageBox.Show("Passwords don't match! Please make to confirm your password!", "Wrong passwords", MessageBoxButton.OK, MessageBoxImage.Error);
             else if (client.Register(NameRegister, UsernameRegister, Encrypt(password)))
                 NotificationMessenger.sendNotification(this, new NotificationType(NotifType.LOGIN, null), "DEFAULT");
             else
-                MessageBox.Show("Username already taken! Please choose another username!", "Username taken", MessageBoxButton.OK, MessageBoxImage.Error);
+            {
+                if (!noserver)
+                    MessageBox.Show("Username already taken! Please choose another username!", "Username taken", MessageBoxButton.OK, MessageBoxImage.Error);
+                else
+                {
+                    MessageBox.Show("Can't reach server! Exiting Application!", "No server", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                    Environment.Exit(-1);
+                }
+            }
         }
     }
 }

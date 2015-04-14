@@ -1,7 +1,7 @@
 ﻿using System;
-// basic class to store users
-using System.Collections;
-public class User
+
+[Serializable]
+public class User // basic class to store users
 {
     public string Name { get; set; }
 
@@ -17,7 +17,5 @@ public class User
         Username = username;
         Password = password;
         Balance = 100;
-
     }
-    
 }

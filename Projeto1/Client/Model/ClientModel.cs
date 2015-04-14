@@ -20,8 +20,8 @@ namespace Client.Model
 
         // private ArrayList mySellOrders; // my sell orders
         // private ArrayList myBuyOrders; // my buy orders
-        
-        
+
+
 
         // constructor
         public ClientModel()
@@ -33,7 +33,7 @@ namespace Client.Model
             Initialize();
 
             // tests
-            try
+            /*try
             {
                 Quotation = diginoteSystem.GetQuotation();
             }
@@ -41,7 +41,7 @@ namespace Client.Model
             {
                 System.Windows.MessageBox.Show("Can't reach server");
                 Console.WriteLine("ERROR: " + e.Message);
-            }
+            }*/
         }
 
         // initialize variables
@@ -53,10 +53,6 @@ namespace Client.Model
             evRepeater = new ChangeEventRepeater();
 
             user = null;
-
-            // this should be done only after login
-            evRepeater.ChangeEvent += new ChangeDelegate(ChangeHandler);
-            diginoteSystem.ChangeEvent += new ChangeDelegate(evRepeater.Repeater);
         }
 
         private void ChangeHandler(ChangeArgs args)
@@ -66,14 +62,42 @@ namespace Client.Model
 
         public bool Login(string user, string password)
         {
-            Console.WriteLine("Loging in: " + user + "-" + password);
-            return true;
+            try
+            {
+                Pair<bool, User> result = diginoteSystem.Login(user, password);
+
+                if (result.first)
+                {
+                    this.user = result.second;
+                    evRepeater.ChangeEvent += new ChangeDelegate(ChangeHandler);
+                    diginoteSystem.ChangeEvent += new ChangeDelegate(evRepeater.Repeater);
+                    return true;
+                }
+            }
+            catch
+            {
+                NotificationMessenger.sendNotification(this, new NotificationType(NotifType.NOSERVER, null), "DEFAULT");
+            }
+
+            return false;
         }
 
         public bool Register(string name, string user, string password)
         {
-            Console.WriteLine("Registering: " + name + "-" + user + "-" + password);
-            return true;
+            try
+            {
+                if (diginoteSystem.RegisterUser(name, user, password))
+                {
+                    Login(user, password);
+                    return true;
+                }
+            }
+            catch
+            {
+                NotificationMessenger.sendNotification(this, new NotificationType(NotifType.NOSERVER, null), "DEFAULT");
+            }
+
+            return false;
         }
 
         // function that sets the lifetime service to infinite

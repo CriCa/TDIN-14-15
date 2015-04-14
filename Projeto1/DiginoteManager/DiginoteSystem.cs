@@ -38,7 +38,7 @@ public class DiginoteTradingSystem : MarshalByRefObject, IDiginoteTradingSystem
         diginoteDB = new DiginoteDatabase();
 
         // create brand new diginotes associated with a fictional user and sell them
-        RegisterUser(new User("System", "System", "Password"));
+        RegisterUser("System", "System", "Password");
         Diginote dig = new Diginote();
         for (int i = 0; i < 49; i++) {
             dig = new Diginote();
@@ -90,12 +90,15 @@ public class DiginoteTradingSystem : MarshalByRefObject, IDiginoteTradingSystem
     }
 
 
-    public bool userExists(User newUser){
+    private bool userExists(User newUser)
+    {
         return usersList.Exists(user => user.Username == newUser.Username);
     }
 
-    public bool RegisterUser(User newUser)
+    public bool RegisterUser(string name, string username, string password)
     {
+        User newUser = new User(name, username, password);
+
         if (userExists(newUser))
         {
             Console.WriteLine("[DiginoteSystem] register failed: {0}", newUser.Username);
@@ -105,29 +108,30 @@ public class DiginoteTradingSystem : MarshalByRefObject, IDiginoteTradingSystem
         usersList.Add(newUser);
         Console.WriteLine("[DiginoteSystem] user registered: {0}", newUser.Username);
 
-       //SAVE STATE
+        // SAVE STATE
 
         return true;
     }
 
-    public bool checkLogin(User loguser)
+    private bool checkLogin(string username, string password)
     {
-        return usersList.Exists(user => user.Username == loguser.Username);
+        return usersList.Exists(user => user.Username == username && user.Password == password);
     }
 
-    public bool Login(User user) //DIFFERENT RETURNS NEEDED?
+    public Pair<bool, User> Login(string username, string password) // return is equivalent to pair
     {
-        if (!checkLogin(user))
+        if (!checkLogin(username, password))
         {
-            Console.WriteLine("[DiginoteSystem] login failed in: {0}", user.Username);
-            return false;
+            Console.WriteLine("[DiginoteSystem] login failed in: {0}", username);
+            return new Pair<bool, User>(false, null);
         }
-            
 
-        loggedUsers.Add(new User(user.Name, user.Username, user.Password));
+        User user = usersList.Find(tUser => tUser.Username == username);
+
+        loggedUsers.Add(user);
         Console.WriteLine("[DiginoteSystem] user logged in: {0}", user.Username);
 
-        return true;
+        return new Pair<bool, User>(true, user);
     }
 
     public List<User> getLoggedUsers()

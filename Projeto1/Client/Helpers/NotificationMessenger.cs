@@ -16,7 +16,7 @@ namespace Client.Helpers
 
     public enum NotifType
     {
-       LOGIN, LOGOUT
+       NOSERVER, LOGIN, LOGOUT
     };
 
     public class NotificationType

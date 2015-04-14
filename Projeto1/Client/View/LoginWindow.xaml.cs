@@ -32,9 +32,12 @@ namespace Client.View
         {
             if (msg.Content.Type == NotifType.LOGIN)
             {
-                var vm = new MainWindow();
-                vm.Show();
-                this.Close();
+                // open main window
+                MainWindow main = new MainWindow();
+                main.Show();
+                
+                // close current
+                Close();
             }
         }
     }
