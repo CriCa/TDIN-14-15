@@ -8,16 +8,8 @@ public class Logger
 
     public Logger()
     {
-        // if file exists append info
-        //if (File.Exists(LOG_FILENAME))
-        
         // if file doesn't exist creates it
         if (!File.Exists(LOG_FILENAME))
-        /*{
-            file = new StreamWriter(LOG_FILENAME, true);
-            file.Close();
-        }
-        else // else create file*/
         {
             file = new StreamWriter(LOG_FILENAME);
             Log("Created log file!");
@@ -34,7 +26,8 @@ public class Logger
         file.Flush();
         file.Close();
         file.Dispose();
+
         // show on console
-        Console.WriteLine("[Log]: " + msg);
+        // Console.WriteLine("[Log]: " + msg);
     }
 }

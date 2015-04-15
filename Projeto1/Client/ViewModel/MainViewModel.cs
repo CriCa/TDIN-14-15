@@ -6,6 +6,10 @@ using System.Windows.Controls;
 using Xceed.Wpf.Toolkit;
 using System.Collections.ObjectModel;
 using System.Windows;
+using System.Collections.Generic;
+using OxyPlot;
+using OxyPlot.Axes;
+using OxyPlot.Series;
 
 namespace Client.ViewModel
 {
@@ -131,6 +135,10 @@ namespace Client.ViewModel
 
         public ObservableCollection<DiginoteInfo> Diginotes { get { return diginotes; } }
 
+        public ObservableCollection<DataPoint> QuotationEvolution { get; private set; }
+
+        public ObservableCollection<DataPoint> Transactions { get; private set; }
+
         public MainViewModel()
         {
             Username = client.user.Name;
@@ -140,6 +148,8 @@ namespace Client.ViewModel
             this.orders = client.orders;
             CanSell = CanBuy = true;
             CanLower = CanRise = false;
+            QuotationEvolution = new ObservableCollection<DataPoint>();
+            Transactions = new ObservableCollection<DataPoint>();
 
             Messenger.Default.Register<NotificationMessage<NotificationType>>(this, NotificationMessageHandler);
         }
@@ -155,9 +165,8 @@ namespace Client.ViewModel
                 DiginotesNumber = client.DiginotesNumber;
                 diginotes = client.Diginotes;
             }
-            else if (msg.Content.Type == NotifType.SETNEWQUOTATION) {
+            else if (msg.Content.Type == NotifType.SETNEWQUOTATION)
                 client.SetNewQuotation(Double.Parse((string)msg.Notification));
-            }
         }
 
         private void Logout(object parameter)
@@ -169,8 +178,10 @@ namespace Client.ViewModel
         private void Dig(object parameter)
         {
             client.SetNewQuotation(2.3);
-            //client.orders.Add(new Order(OrderType.Buy, 2, "userdig"));
+            client.orders.Add(new Order(OrderType.Buy, 2, client.user));
             client.Diginotes.Add(new DiginoteInfo(6, 2.0, DateTime.Now.ToString()));
+            QuotationEvolution.Add(new DataPoint(DateTimeAxis.ToDouble(DateTime.Now), 1.1));
+            Transactions.Add(new DataPoint(new Random().NextDouble() * 2.0, (int) (new Random().NextDouble() * 10)));
             Console.WriteLine("Dig");
         }
 

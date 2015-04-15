@@ -23,11 +23,7 @@ namespace Client.Model
         public int DiginotesNumber { get { return Diginotes.Count; } } // number of diginotes that the user owns
         public ObservableCollection<DiginoteInfo> Diginotes { get; set; }
 
-        // private ArrayList mySellOrders; // my sell orders
-        // private ArrayList myBuyOrders; // my buy orders
-
         public ObservableCollection<Order> orders;
-
 
         // constructor
         public ClientModel()
@@ -37,17 +33,6 @@ namespace Client.Model
 
             // initialize
             Initialize();
-
-            // tests
-            /*try
-            {
-                Quotation = diginoteSystem.GetQuotation();
-            }
-            catch (Exception e)
-            {
-                System.Windows.MessageBox.Show("Can't reach server");
-                Console.WriteLine("ERROR: " + e.Message);
-            }*/
         }
 
         // initialize variables
@@ -63,16 +48,13 @@ namespace Client.Model
             Diginotes = new ObservableCollection<DiginoteInfo>();
 
             orders = new ObservableCollection<Order>();
-           // orders.Add(new Order(OrderType.Buy, 25, "usertempp"));
-            //orders.Add(new Order(OrderType.Sell, 2, "usertempp"));
-
         }
 
         private void ChangeHandler(ChangeArgs args)
         {
             if (args.Type == ChangeType.QuotationUp || args.Type == ChangeType.QuotationDown)
             {
-                Quotation = diginoteSystem.GetQuotation();
+                Quotation = args.QuotationValue;
                 NotificationMessenger.sendNotification(this, new NotificationType(NotifType.QUOTATION, null), "");
             }
             else if(args.Type == ChangeType.Transaction) 
@@ -154,12 +136,14 @@ namespace Client.Model
 
         public void SellDiginotes(int quantity)
         {
-
+            //currentOrder = diginoteSystem.AddSellOrder(user, quantity, OrderType.Sell);
+            Console.WriteLine("[client] sell");
         }
 
         public void BuyDiginotes(int quantity)
         {
-
+            //currentOrder = diginoteSystem.AddSellOrder(user, quantity, OrderType.Buy);
+            Console.WriteLine("[client] buy");
         }
 
         // function that sets the lifetime service to infinite

@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:ViewModel="clr-namespace:Client.ViewModel"
         xmlns:View="clr-namespace:Client.View"
-        Title="Diginote Exgange System - Login Window" Height="430" Width="516" Icon="/Client;component/Resources/favicon.ico" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize" ToolTip="Diginote Exgange System - Login Window" Background="#FF1085BB">
+        Title="Diginote Exchange System - Login Window" Height="430" Width="516" Icon="/Client;component/Resources/favicon.ico" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize" ToolTip="Diginote Exgange System - Login Window" Background="#FF1085BB">
 
     <Window.DataContext>
         <ViewModel:LoginViewModel/>

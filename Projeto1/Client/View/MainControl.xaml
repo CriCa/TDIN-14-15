@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:tl="http://schemas.xceed.com/wpf/xaml/toolkit"
-             xmlns:plot="http://oxyplot.org/wpf"
+             xmlns:oxy="http://oxyplot.org/wpf"
              xmlns:ViewModel="clr-namespace:Client.ViewModel"
              mc:Ignorable="d" 
              d:DesignHeight="500" d:DesignWidth="800">
@@ -29,8 +29,6 @@
             <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="$" VerticalAlignment="Top" FontSize="20" FontWeight="Bold" Foreground="White"/>
         </StackPanel>
         
-        
-
         <StackPanel Margin="10,87,623,393" Orientation="Horizontal">
             <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Your diginotes (" VerticalAlignment="Top" Foreground="White" FontWeight="Bold"/>
             <TextBlock Text="{Binding DiginotesNumber, UpdateSourceTrigger=PropertyChanged}" TextWrapping="Wrap" Foreground="White" Height="16" Margin="0" HorizontalAlignment="Left" VerticalAlignment="Top"/>
@@ -93,11 +91,27 @@
 
         <TextBlock HorizontalAlignment="Left" Margin="213,273,0,0" TextWrapping="Wrap" Text="Statistics" VerticalAlignment="Top" Foreground="#FF1085BB" FontWeight="Bold"/>
         <TabControl HorizontalAlignment="Left" Height="196" Margin="213,294,0,0" VerticalAlignment="Top" Width="544" Background="#FFB6E3F7" BorderBrush="#FF1085BB">
-            <TabItem Header="Quotation" Foreground="#FF0B637E" BorderBrush="#FF1085BB">
-                <Grid Background="#FFB6E3F7"/>
+            <TabItem Header="Quotation Evolution" Foreground="#FF0B637E" BorderBrush="#FF1085BB">
+                <Grid Background="#FFB6E3F7">
+                    <oxy:Plot>
+                        <oxy:Plot.Series>
+                            <oxy:LineSeries ItemsSource="{Binding QuotationEvolution}"/>
+                        </oxy:Plot.Series>
+                        <oxy:Plot.Axes>
+                            <oxy:DateTimeAxis Position="Bottom" StringFormat="dd/MM/yyyy" />
+                            <oxy:LinearAxis Position="Left" />
+                        </oxy:Plot.Axes>
+                    </oxy:Plot>
+                </Grid>
             </TabItem>
-            <TabItem Header="Sales" Foreground="#FF0B637E" BorderBrush="#FF1085BB">
-                <Grid Background="#FFB6E3F7"/>
+            <TabItem Header="Transactions" Foreground="#FF0B637E" BorderBrush="#FF1085BB">
+                <Grid Background="#FFB6E3F7">
+                    <oxy:Plot>
+                        <oxy:Plot.Series>
+                            <oxy:LineSeries ItemsSource="{Binding Transactions}"/>
+                        </oxy:Plot.Series>
+                    </oxy:Plot>
+                </Grid>
             </TabItem>
         </TabControl>
 

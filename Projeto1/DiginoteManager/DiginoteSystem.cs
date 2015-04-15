@@ -7,7 +7,6 @@ using System.Runtime.Serialization.Formatters.Binary;
 public class DiginoteTradingSystem : MarshalByRefObject, IDiginoteTradingSystem
 {
     private static string SAVE_FILENAME = "DiginoteServer.state";
-    private StreamWriter saveFile = null;
 
     private Logger logger; // log system
 
@@ -16,7 +15,6 @@ public class DiginoteTradingSystem : MarshalByRefObject, IDiginoteTradingSystem
     
     private List<User> usersList; // users
     private List<User> loggedUsers; // à partida não é necessário
-
 
     private double quotation; // current quotation of diginotes
 
@@ -78,6 +76,8 @@ public class DiginoteTradingSystem : MarshalByRefObject, IDiginoteTradingSystem
 
         // update quotation
         quotation = value;
+
+        saveState();
         
     }
 
@@ -262,7 +262,8 @@ public class DiginoteTradingSystem : MarshalByRefObject, IDiginoteTradingSystem
         {
             Stream stream = File.Open(SAVE_FILENAME, FileMode.Open);
             BinaryFormatter formatter = new BinaryFormatter();
-            Tuple<List<User>, double, List<Diginote>, List<Order>, List<Order>> state = (Tuple<List<User>, double, List<Diginote>, List<Order>, List<Order>>)formatter.Deserialize(stream);
+            Tuple<List<User>, double, List<Diginote>, List<Order>, List<Order>> state = 
+                (Tuple<List<User>, double, List<Diginote>, List<Order>, List<Order>>)formatter.Deserialize(stream);
             usersList = state.Item1;
             quotation = state.Item2;
             diginoteDB = state.Item3;
@@ -286,10 +287,9 @@ public class DiginoteTradingSystem : MarshalByRefObject, IDiginoteTradingSystem
         {
             Stream stream = File.Open(SAVE_FILENAME, FileMode.Create);
             BinaryFormatter formatter = new BinaryFormatter();
-            
 
-            Tuple<List<User>, double, List<Diginote>, List<Order>, List<Order>> state = new Tuple<List<User>, double, List<Diginote>, List<Order>, List<Order>>(usersList, quotation, diginoteDB, sellOrders, buyOrders);
-
+            Tuple<List<User>, double, List<Diginote>, List<Order>, List<Order>> state = 
+                new Tuple<List<User>, double, List<Diginote>, List<Order>, List<Order>>(usersList, quotation, diginoteDB, sellOrders, buyOrders);
 
             formatter.Serialize(stream, state);
             Log("State saved.");
