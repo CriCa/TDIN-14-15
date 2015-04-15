@@ -25,6 +25,7 @@ public class DiginoteTradingSystem : MarshalByRefObject, IDiginoteTradingSystem
     private ArrayList sellOrders; // list of sell orders
     private ArrayList buyOrders; // list of buy orders
 
+    
     public DiginoteTradingSystem()
     {
         Initialize();
@@ -32,20 +33,6 @@ public class DiginoteTradingSystem : MarshalByRefObject, IDiginoteTradingSystem
         // if save file exists then load state
         if (File.Exists(SAVE_FILENAME))
             loadState();
-
-        else { 
-            // create brand new diginotes associated with a fictional user and sell them
-            RegisterUser("System", "System", "Password");
-            Diginote dig = new Diginote();
-            for (int i = 0; i < 49; i++) {
-                dig = new Diginote();
-                diginoteDB.AddDiginote(dig, "System");
-            }
-            logger.Log("Diginotes Created.");
-            AddSellOrder(new Order(OrderType.Sell, 50, "System"));
-        }
-
-
     }
 
     private void Initialize()
@@ -122,7 +109,14 @@ public class DiginoteTradingSystem : MarshalByRefObject, IDiginoteTradingSystem
         usersList.Add(newUser);
         Log("New user registered: " + newUser.Username);
 
-        // SAVE STATE
+        Diginote dig;
+        for (int i = 0; i < 4; i++) {
+            dig = new Diginote();
+            diginoteDB.AddDiginote(dig, newUser.Username);
+        }
+
+
+        saveState();
 
         return true;
     }
@@ -203,13 +197,15 @@ public class DiginoteTradingSystem : MarshalByRefObject, IDiginoteTradingSystem
         Console.WriteLine("[Server]: " + msg);
     }
 
-    public void loadState() 
+    private void loadState() 
     {
         try
         {
             Stream stream = File.Open(SAVE_FILENAME, FileMode.Open);
             BinaryFormatter formatter = new BinaryFormatter();
-            usersList = (List<User>) formatter.Deserialize(stream);
+            Pair<List<User>, DiginoteDatabase> state = (Pair<List<User>,DiginoteDatabase>)formatter.Deserialize(stream);
+            usersList = state.first;
+            diginoteDB = state.second;
             Log("State loaded.");
             stream.Close();
         }
@@ -219,13 +215,15 @@ public class DiginoteTradingSystem : MarshalByRefObject, IDiginoteTradingSystem
         }
     }
 
-    public void saveState() 
+    private void saveState() 
     {
         try
         {
             Stream stream = File.Open(SAVE_FILENAME, FileMode.Create);
             BinaryFormatter formatter = new BinaryFormatter();
-            formatter.Serialize(stream, usersList);
+            Pair<List<User>, DiginoteDatabase> state = new Pair<List<User>, DiginoteDatabase>(usersList, diginoteDB);
+
+            formatter.Serialize(stream, state);
             Log("State saved.");
             stream.Close();
         }
