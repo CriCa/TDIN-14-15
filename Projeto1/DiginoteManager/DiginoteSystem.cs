@@ -84,11 +84,11 @@ public class DiginoteTradingSystem : MarshalByRefObject, IDiginoteTradingSystem
         buyOrders.Add(newOrder);
     }
 
-    public void AddSellOrder(Order newOrder)
+    public Order AddSellOrder(Order newOrder)
     {
         Log("[Server]: Added sell order from user " + newOrder.User);
         sellOrders.Add(newOrder);
-        
+        return null;
     }
 
 
