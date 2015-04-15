@@ -23,8 +23,8 @@ public class DiginoteDatabase
             diginotesOwners.Remove(dig);
             diginotesOwners.Add(dig, username);
         }
-            
-       
+
+
     }
 
 }

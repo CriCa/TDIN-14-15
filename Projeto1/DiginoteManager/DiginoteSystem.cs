@@ -1,39 +1,39 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 
 public class DiginoteTradingSystem : MarshalByRefObject, IDiginoteTradingSystem
 {
-    private double quotation; // current quotation of diginotes
+    private static string SAVE_FILENAME = "DiginoteServer.state";
+    private StreamWriter saveFile = null;
+
+    private Logger logger; // log system
+
+    public event ChangeDelegate ChangeEvent;    // event to warn clients 
+                                                // when quotation changes
     
-    private List<User> usersList;
-    private List<User> loggedUsers;
+    private List<User> usersList; // users
+    private List<User> loggedUsers; // à partida não é necessário
+
+
+    private double quotation; // current quotation of diginotes
+
+    private DiginoteDatabase diginoteDB; // diginote db
 
     private ArrayList sellOrders; // list of sell orders
     private ArrayList buyOrders; // list of buy orders
 
-    private Logger logger; // log system
-
-    public event ChangeDelegate ChangeEvent; // event to warn clients 
-                                                    // when quotation changes
-
-    private DiginoteDatabase diginoteDB; // diginote db
-
     public DiginoteTradingSystem()
     {
-        // TODO check for log and load state
+        Initialize();
+        
+        // if save file exists then load state
+        if (File.Exists(SAVE_FILENAME))
+            loadState();
+        
 
-        // set initial quotation
-        quotation = 1.0;
-
-        // create order lists
-        buyOrders = new ArrayList();
-        sellOrders = new ArrayList();
-        usersList = new List<User>();
-        loggedUsers = new List<User>();
-
-        // create logger
-        logger = new Logger(ChangeEvent);
+        // 
         Console.WriteLine("[DiginoteSystem] sup");
         diginoteDB = new DiginoteDatabase();
 
@@ -50,10 +50,20 @@ public class DiginoteTradingSystem : MarshalByRefObject, IDiginoteTradingSystem
 
     }
 
-    public override object InitializeLifetimeService()
+    private void Initialize()
     {
-        Console.WriteLine("[Server]: Initialized Lifetime Service");
-        return null;
+        // set initial quotation
+        quotation = 2.3;
+
+        // create order lists
+        buyOrders = new ArrayList();
+        sellOrders = new ArrayList();
+        usersList = new List<User>();
+        loggedUsers = new List<User>();
+
+        // create logger
+        logger = new Logger();
+
     }
 
     public double GetQuotation()
@@ -64,17 +74,22 @@ public class DiginoteTradingSystem : MarshalByRefObject, IDiginoteTradingSystem
     private void SetNewQuotation(double value)
     {
         if(value > quotation) {
-            Console.WriteLine("[Server]: Quotation value went up to: " + value);
-            ChangeEvent(new ChangeArgs(ChangeType.QuotationUp, value));
+            Log("Quotation value went up to: " + value);
+            SafeInvoke(new ChangeArgs(ChangeType.QuotationUp, value));
         }
         else {
-            Console.WriteLine("[Server]: Quotation value went down to: " + value);
-            ChangeEvent(new ChangeArgs(ChangeType.QuotationDown, value));
+            Log("Quotation value went down to: " + value);
+            SafeInvoke(new ChangeArgs(ChangeType.QuotationDown, value));
         }
 
         // update quotation
         quotation = value;
         
+    }
+
+    public void SuggestNewQuotation(double value)
+    {
+        SetNewQuotation(value);
     }
 
     public void AddBuyOrder(Order newOrder)
@@ -101,12 +116,12 @@ public class DiginoteTradingSystem : MarshalByRefObject, IDiginoteTradingSystem
 
         if (userExists(newUser))
         {
-            Console.WriteLine("[DiginoteSystem] register failed: {0}", newUser.Username);
+            Log("Register attempt failed from: " + newUser.Username);
             return false;
         }
 
         usersList.Add(newUser);
-        Console.WriteLine("[DiginoteSystem] user registered: {0}", newUser.Username);
+        Log("New user registered: " + newUser.Username);
 
         // SAVE STATE
 
@@ -122,14 +137,14 @@ public class DiginoteTradingSystem : MarshalByRefObject, IDiginoteTradingSystem
     {
         if (!checkLogin(username, password))
         {
-            Console.WriteLine("[DiginoteSystem] login failed in: {0}", username);
+            Log("Login attempt failed from: " + username);
             return new Pair<bool, User>(false, null);
         }
 
         User user = usersList.Find(tUser => tUser.Username == username);
 
         loggedUsers.Add(user);
-        Console.WriteLine("[DiginoteSystem] user logged in: {0}", user.Username);
+        Log("User logged in: " + user.Username);
 
         return new Pair<bool, User>(true, user);
     }
@@ -142,13 +157,22 @@ public class DiginoteTradingSystem : MarshalByRefObject, IDiginoteTradingSystem
     public void Logout(User loguser)
     {
         loggedUsers.Remove(loggedUsers.Find(user => user.Username == loguser.Username));
-        Console.WriteLine("[DiginoteSystem] user logged out: {0}", loguser.Username);
+        Log("User logged out: " + loguser.Username);
     }
+
+    public int DiginotesFromUser(User user)
+    {
+        // return the number of diginotes that this user owns
+        return 3;
+    }
+
+
+
 
     // this function must be called to when something occurs
     //  and we need to call event, the thread is needed to
     //  prevent dead locks on server and client!
-    private void safeInvoke(ChangeArgs args)
+    private void SafeInvoke(ChangeArgs args)
     {
         if (ChangeEvent != null)
         {
@@ -166,5 +190,35 @@ public class DiginoteTradingSystem : MarshalByRefObject, IDiginoteTradingSystem
                 }
             }
         }
+    }
+
+    private void Log(string msg)
+    {
+        logger.Log(msg);
+        Console.WriteLine("[Server]: " + msg);
+    }
+
+    private void loadState() 
+    {
+        StreamReader reader = new StreamReader(SAVE_FILENAME);
+
+        // load
+        Console.WriteLine("[Server]: Loading server state");
+
+        reader.Close();
+    }
+
+    private void saveState() 
+    {
+        if(saveFile == null)
+            saveFile = new StreamWriter(SAVE_FILENAME);
+
+        // save
+    }
+
+    public override object InitializeLifetimeService()
+    {
+        Console.WriteLine("[Server]: Initialized Lifetime Service");
+        return null;
     }
 }

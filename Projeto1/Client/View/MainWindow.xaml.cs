@@ -41,6 +41,11 @@ namespace Client.View
                 // close current
                 this.Close();
             }
+            else if (msg.Content.Type == NotifType.SUGGESTQUOTATION)
+            {
+                ChangeQuotationDialog dialog = new ChangeQuotationDialog(this);
+                dialog.ShowDialog();
+            }
         }
     }
 }

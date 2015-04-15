@@ -27,22 +27,27 @@
         </Button>
 
         <TextBlock HorizontalAlignment="Left" Margin="10,26,0,0" TextWrapping="Wrap" Text="Quotation: " VerticalAlignment="Top" FontSize="20" FontWeight="Bold" Foreground="White"/>
-        <TextBlock Text="0.0" HorizontalAlignment="Left" Margin="117,26,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="20" FontWeight="Bold" Foreground="White"/>
+        <TextBlock Text="{Binding Quotation, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="117,26,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="20" FontWeight="Bold" Foreground="White"/>
         <TextBlock HorizontalAlignment="Left" Margin="150,26,0,0" TextWrapping="Wrap" Text="$" VerticalAlignment="Top" FontSize="20" FontWeight="Bold" Foreground="White"/>
-        <TextBlock HorizontalAlignment="Left" Margin="10,90,0,0" TextWrapping="Wrap" Text="Diginotes: " VerticalAlignment="Top" Foreground="White"/>
+
+        <TextBlock HorizontalAlignment="Left" Margin="10,90,0,0" TextWrapping="Wrap" Text="Your diginotes" VerticalAlignment="Top" Foreground="White" FontWeight="Bold"/>
+        <TextBlock Text="{Binding DiginotesNumber}" HorizontalAlignment="Left" Margin="162,90,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Foreground="White"/>
+
         <TextBlock HorizontalAlignment="Left" Margin="213,13,0,0" TextWrapping="Wrap" Text="Place order" VerticalAlignment="Top" Foreground="#FF1085BB" FontWeight="Bold"/>
 
-        <tl:IntegerUpDown Margin="293,6,447,472" Cursor="" Value="0" Height="22" Maximum="9999" Minimum="0"/>
-        <Button Content="Sell" HorizontalAlignment="Left" Margin="342,10,0,0" VerticalAlignment="Top" Width="50" Foreground="#FF0B637E"/>
+        <tl:IntegerUpDown x:Name="sellQuantity" Margin="293,6,447,472" Cursor="" Value="0" Height="22" Maximum="{Binding DiginotesNumber}" Minimum="0"/>
+        <Button Content="Sell" Command="{Binding SellCommand}" CommandParameter="{Binding ElementName=sellQuantity}" HorizontalAlignment="Left" Margin="342,10,0,0" VerticalAlignment="Top" Width="50" Foreground="#FF0B637E"/>
 
-        <tl:IntegerUpDown Margin="423,6,317,472" Cursor="" Value="0" Height="22" Maximum="9999" Minimum="0"/>
-        <Button Content="Buy" HorizontalAlignment="Left" Margin="474,10,0,0" VerticalAlignment="Top" Width="50" Foreground="#FF0B637E"/>
-        <TextBlock HorizontalAlignment="Left" Margin="65,90,0,0" TextWrapping="Wrap" Text="205" VerticalAlignment="Top" Foreground="White"/>
-        <Button Content="View" HorizontalAlignment="Left" Margin="99,87,0,0" VerticalAlignment="Top" Width="40" Foreground="#FF0B637E"/>
+        <tl:IntegerUpDown x:Name="buyQuantity" Margin="423,6,317,472" Cursor="" Value="0" Height="22" Maximum="9999" Minimum="0"/>
+        <Button Content="Buy" Command="{Binding BuyCommand}" CommandParameter="{Binding ElementName=buyQuantity}" HorizontalAlignment="Left" Margin="474,10,0,0" VerticalAlignment="Top" Width="50" Foreground="#FF0B637E"/>
+
         <TextBlock HorizontalAlignment="Left" Margin="213,58,0,0" TextWrapping="Wrap" Text="Your orders" VerticalAlignment="Top" Foreground="#FF1085BB" FontWeight="Bold"/>
-        <ListView HorizontalAlignment="Left" Height="171" Margin="213,79,0,0" VerticalAlignment="Top" Width="544" Background="#FFB6E3F7" BorderBrush="#FF1085BB">
+        <ListView ItemsSource="{Binding Orders}" HorizontalAlignment="Left" Height="171" Margin="213,79,0,0" VerticalAlignment="Top" Width="544" Background="#FFB6E3F7" BorderBrush="#FF1085BB">
 
         </ListView>
+
+
+
 
         <TextBlock HorizontalAlignment="Left" Margin="213,273,0,0" TextWrapping="Wrap" Text="Statistics" VerticalAlignment="Top" Foreground="#FF1085BB" FontWeight="Bold"/>
         <TabControl HorizontalAlignment="Left" Height="196" Margin="213,294,0,0" VerticalAlignment="Top" Width="544" Background="#FFB6E3F7" BorderBrush="#FF1085BB">
@@ -53,7 +58,25 @@
                 <Grid Background="#FFB6E3F7"/>
             </TabItem>
         </TabControl>
-        <Button Content="Dig! Test!" HorizontalAlignment="Left" Margin="10,355,0,0" VerticalAlignment="Top" Width="75"/>
+
+        <Button Content="Dig! Test!" Command="{Binding DigCommand}" HorizontalAlignment="Left" Margin="10,397,0,0" VerticalAlignment="Top" Width="75"/>
+
+        <Button Content="Suggest" Command="{Binding ChangeQuotationCommand}" HorizontalAlignment="Left" Margin="682,10,0,0" VerticalAlignment="Top" Width="75" Foreground="#FF0B637E"/>
+        <ListView HorizontalAlignment="Left" Height="127" Margin="10,123,0,0" VerticalAlignment="Top" Width="162">
+            
+        </ListView>
+        <TextBlock HorizontalAlignment="Left" Margin="10,107,0,0" TextWrapping="Wrap" Text="Id" VerticalAlignment="Top" Foreground="White"/>
+        <TextBlock HorizontalAlignment="Left" Margin="50,107,0,0" TextWrapping="Wrap" Text="Value" VerticalAlignment="Top" Foreground="White"/>
+        <TextBlock HorizontalAlignment="Left" Margin="95,107,0,0" TextWrapping="Wrap" Text="Aquired on" VerticalAlignment="Top" Foreground="White"/>
+        <TextBlock HorizontalAlignment="Left" Margin="10,294,0,0" TextWrapping="Wrap" Text="Diginotes in System: " VerticalAlignment="Top" Foreground="White"/>
+        <TextBlock HorizontalAlignment="Left" Margin="126,294,0,0" TextWrapping="Wrap" Text="2" VerticalAlignment="Top" Foreground="White"/>
+        <TextBlock HorizontalAlignment="Left" Margin="10,315,0,0" TextWrapping="Wrap" Text="Diginotes selling: " VerticalAlignment="Top" Foreground="White"/>
+        <TextBlock HorizontalAlignment="Left" Margin="104,315,0,0" TextWrapping="Wrap" Text="1" VerticalAlignment="Top" Foreground="White"/>
+        <TextBlock HorizontalAlignment="Left" Margin="10,336,0,0" TextWrapping="Wrap" Text="Diginotes buying: " VerticalAlignment="Top" Foreground="White"/>
+        <TextBlock HorizontalAlignment="Left" Margin="111,336,0,0" TextWrapping="Wrap" Text="1" VerticalAlignment="Top" Foreground="White"/>
+
+        <!-- test -->
+
 
 
     </Grid>
