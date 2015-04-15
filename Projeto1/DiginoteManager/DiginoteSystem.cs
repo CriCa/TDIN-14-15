@@ -102,6 +102,7 @@ public class DiginoteTradingSystem : MarshalByRefObject, IDiginoteTradingSystem
     {
         Console.WriteLine("[Server]: Added sell order from user " + newOrder.User);
         sellOrders.Add(newOrder);
+        
     }
 
 

@@ -13,7 +13,7 @@ public interface IDiginoteTradingSystem
 
     void AddBuyOrder(Order newOrder); // add a buy order
 
-    void AddSellOrder(Order newOrder); // add a sell order
+    Order AddSellOrder(Order newOrder); // add a sell order
 
     bool RegisterUser(string name, string username, string password); // register a new user
 
@@ -22,4 +22,6 @@ public interface IDiginoteTradingSystem
     void Logout(User user);
 
     List<DiginoteInfo> DiginotesFromUser(User user);
+
+
 }

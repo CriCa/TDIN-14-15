@@ -2,7 +2,7 @@
 
 public enum OrderType { Buy, Sell }; // orders types
 
-public enum OrderState { Active, Pending };
+public enum OrderState { Active, Pending, Over };
 
 [Serializable]
 public class Order

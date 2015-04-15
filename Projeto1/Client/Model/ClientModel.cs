@@ -75,6 +75,11 @@ namespace Client.Model
                 Quotation = diginoteSystem.GetQuotation();
                 NotificationMessenger.sendNotification(this, new NotificationType(NotifType.QUOTATION, null), "");
             }
+            else if(args.Type == ChangeType.Transaction) 
+            {
+
+            }
+
         }
 
         public bool Login(string user, string password)
@@ -121,8 +126,11 @@ namespace Client.Model
 
         public void Logout()
         {
-            diginoteSystem.Logout(user);
-            user = null;
+            if (this.user != null)
+            {
+                diginoteSystem.Logout(user);
+                user = null;
+            }
         }
 
         public void GetDiginotesNumber()
