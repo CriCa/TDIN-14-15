@@ -63,8 +63,8 @@ namespace Client.Model
             Diginotes = new ObservableCollection<DiginoteInfo>();
 
             orders = new ObservableCollection<Order>();
-            orders.Add(new Order(OrderType.Buy, 25, "usertempp"));
-            orders.Add(new Order(OrderType.Sell, 2, "usertempp"));
+           // orders.Add(new Order(OrderType.Buy, 25, "usertempp"));
+            //orders.Add(new Order(OrderType.Sell, 2, "usertempp"));
 
         }
 

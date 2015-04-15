@@ -2,22 +2,34 @@
 
 
 // diginote class
+[Serializable]
 public class Diginote 
 {
     static int nextSerial = 0;
+    private User user;
 
-    public Diginote()
+    public Diginote(User user)
     {
+        this.user = user;
         Id = nextSerial++;
         Value = 1.0;
     }
 
-    public Diginote(int id)
-    {
-        Id = id;
-    }
-
+  
     public int Id { get; set; }
+
+    public User Owner
+    {
+        get
+        {
+            return user;
+        }
+        set
+        {
+            user = value;
+            LastAquiredOn = DateTime.Now.ToString();
+        }
+    }
 
     public double Value { get; set; }
 
@@ -29,25 +41,4 @@ public class Diginote
 
     public string LastAquiredOn { get; set; }
 
-    public static bool operator ==(Diginote b, Diginote c)
-    {
-        if (b.Id == c.Id)
-            return true;
-        return false;
-    }
-
-    public static bool operator !=(Diginote b, Diginote c)
-    {
-        if (b.Id != c.Id)
-            return true;
-        return false;
-    }
-
-    //public static bool Equals(Diginote b)
-    public override bool Equals(System.Object obj)
-    {
-        if (((Diginote)obj).Id == this.Id)
-            return true;
-        return false;
-    }
 }

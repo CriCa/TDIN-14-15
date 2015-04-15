@@ -169,7 +169,7 @@ namespace Client.ViewModel
         private void Dig(object parameter)
         {
             client.SetNewQuotation(2.3);
-            client.orders.Add(new Order(OrderType.Buy, 2, "userdig"));
+            //client.orders.Add(new Order(OrderType.Buy, 2, "userdig"));
             client.Diginotes.Add(new DiginoteInfo(6, 2.0, DateTime.Now.ToString()));
             Console.WriteLine("Dig");
         }

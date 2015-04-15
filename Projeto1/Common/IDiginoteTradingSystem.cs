@@ -11,9 +11,11 @@ public interface IDiginoteTradingSystem
 
     void SuggestNewQuotation(double value);
 
-    void AddBuyOrder(Order newOrder); // add a buy order
+    void ReceiveApproval(User user, bool appr, OrderType orderType);
 
-    Order AddSellOrder(Order newOrder); // add a sell order
+    Order AddBuyOrder(User user, int quantity, OrderType orderType); // add a buy order
+
+    Order AddSellOrder(User user, int quantity, OrderType orderType); // add a sell order
 
     bool RegisterUser(string name, string username, string password); // register a new user
 
