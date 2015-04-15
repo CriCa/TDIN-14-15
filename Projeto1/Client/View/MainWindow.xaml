@@ -15,7 +15,7 @@
             <i:InvokeCommandAction Command="{Binding CloseCommand}"/>
         </i:EventTrigger>
     </i:Interaction.Triggers>
-    
+
     <Grid>
         <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="519" Margin="206,0,0,0" VerticalAlignment="Top" Width="588"/>
         <View:MainControl/>

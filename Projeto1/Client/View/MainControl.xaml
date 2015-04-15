@@ -8,6 +8,11 @@
              xmlns:ViewModel="clr-namespace:Client.ViewModel"
              mc:Ignorable="d" 
              d:DesignHeight="500" d:DesignWidth="800">
+    <Control.Resources>
+        <Style x:Key="{x:Type ListViewItem}" TargetType="{x:Type ListViewItem}">
+            <Setter Property="Focusable" Value="False" />
+        </Style>
+    </Control.Resources>
     <Grid>
         <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Logged as " VerticalAlignment="Top" Margin="10,449,0,0" Foreground="White"/>
         <TextBlock Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="68,449,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Foreground="White" FontWeight="Bold"/>
@@ -34,7 +39,7 @@
         <TextBlock HorizontalAlignment="Left" Margin="10,107,0,0" TextWrapping="Wrap" Text="Id" VerticalAlignment="Top" Foreground="White"/>
         <TextBlock HorizontalAlignment="Left" Margin="43,107,0,0" TextWrapping="Wrap" Text="Value" VerticalAlignment="Top" Foreground="White"/>
         <TextBlock HorizontalAlignment="Left" Margin="78,107,0,0" TextWrapping="Wrap" Text="Aquired on" VerticalAlignment="Top" Foreground="White"/>
-        <ListView ItemsSource="{Binding Diginotes}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" HorizontalAlignment="Left" Height="127" Margin="10,123,0,0" VerticalAlignment="Top" Width="182">
+        <ListView ItemsSource="{Binding Diginotes}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" HorizontalAlignment="Left" Height="127" Margin="10,123,0,0" VerticalAlignment="Top" Width="182" IsHitTestVisible="True">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Grid>
@@ -74,7 +79,7 @@
         <Button Content="Rise Price" Command="{Binding ChangeQuotationCommand}" CommandParameter="Rise" HorizontalAlignment="Left" Margin="530,37,0,0" VerticalAlignment="Top" Width="75" Foreground="#FF0B637E" IsEnabled="{Binding CanRise, UpdateSourceTrigger=PropertyChanged}"/>
 
         <TextBlock HorizontalAlignment="Left" Margin="213,77,0,0" TextWrapping="Wrap" Text="Your orders" VerticalAlignment="Top" Foreground="#FF1085BB" FontWeight="Bold"/>
-        <ListView ItemsSource="{Binding Orders}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Padding="5" HorizontalAlignment="Left" Height="152" Margin="213,109,0,0" VerticalAlignment="Top" Width="544" Background="#FFB6E3F7" BorderBrush="#FF1085BB">
+        <ListView ItemsSource="{Binding Orders}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Padding="5" HorizontalAlignment="Left" Height="152" Margin="213,109,0,0" VerticalAlignment="Top" Width="544" Background="#FFB6E3F7" BorderBrush="#FF1085BB" IsHitTestVisible="True">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Grid Height="25" Background="#00FF0000" Width="{Binding ActualWidth, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListView}}}">
