@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 
 public class DiginoteTradingSystem : MarshalByRefObject, IDiginoteTradingSystem
 {
@@ -24,6 +25,7 @@ public class DiginoteTradingSystem : MarshalByRefObject, IDiginoteTradingSystem
     private ArrayList sellOrders; // list of sell orders
     private ArrayList buyOrders; // list of buy orders
 
+    
     public DiginoteTradingSystem()
     {
         Initialize();
@@ -31,23 +33,6 @@ public class DiginoteTradingSystem : MarshalByRefObject, IDiginoteTradingSystem
         // if save file exists then load state
         if (File.Exists(SAVE_FILENAME))
             loadState();
-        
-
-        // 
-        Console.WriteLine("[DiginoteSystem] sup");
-        diginoteDB = new DiginoteDatabase();
-
-        // create brand new diginotes associated with a fictional user and sell them
-        RegisterUser("System", "System", "Password");
-        Diginote dig = new Diginote();
-        for (int i = 0; i < 49; i++) {
-            dig = new Diginote();
-            diginoteDB.AddDiginote(dig, "System");
-        }
-        logger.Log("Diginotes Created.");
-        AddSellOrder(new Order(OrderType.Sell, 50, "System"));
-
-
     }
 
     private void Initialize()
@@ -64,6 +49,7 @@ public class DiginoteTradingSystem : MarshalByRefObject, IDiginoteTradingSystem
         // create logger
         logger = new Logger();
 
+        diginoteDB = new DiginoteDatabase();
     }
 
     public double GetQuotation()
@@ -94,13 +80,13 @@ public class DiginoteTradingSystem : MarshalByRefObject, IDiginoteTradingSystem
 
     public void AddBuyOrder(Order newOrder)
     {
-        Console.WriteLine("[Server]: Added buy order from user " + newOrder.User);
+        Log("[Server]: Added buy order from user " + newOrder.User);
         buyOrders.Add(newOrder);
     }
 
     public void AddSellOrder(Order newOrder)
     {
-        Console.WriteLine("[Server]: Added sell order from user " + newOrder.User);
+        Log("[Server]: Added sell order from user " + newOrder.User);
         sellOrders.Add(newOrder);
         
     }
@@ -124,7 +110,14 @@ public class DiginoteTradingSystem : MarshalByRefObject, IDiginoteTradingSystem
         usersList.Add(newUser);
         Log("New user registered: " + newUser.Username);
 
-        // SAVE STATE
+        Diginote dig;
+        for (int i = 0; i < 4; i++) {
+            dig = new Diginote();
+            diginoteDB.AddDiginote(dig, newUser.Username);
+        }
+
+
+        saveState();
 
         return true;
     }
@@ -207,20 +200,38 @@ public class DiginoteTradingSystem : MarshalByRefObject, IDiginoteTradingSystem
 
     private void loadState() 
     {
-        StreamReader reader = new StreamReader(SAVE_FILENAME);
-
-        // load
-        Console.WriteLine("[Server]: Loading server state");
-
-        reader.Close();
+        try
+        {
+            Stream stream = File.Open(SAVE_FILENAME, FileMode.Open);
+            BinaryFormatter formatter = new BinaryFormatter();
+            Pair<List<User>, DiginoteDatabase> state = (Pair<List<User>,DiginoteDatabase>)formatter.Deserialize(stream);
+            usersList = state.first;
+            diginoteDB = state.second;
+            Log("State loaded.");
+            stream.Close();
+        }
+        catch (Exception)
+        {
+            Log("Error loading state");
+        }
     }
 
     private void saveState() 
     {
-        if(saveFile == null)
-            saveFile = new StreamWriter(SAVE_FILENAME);
+        try
+        {
+            Stream stream = File.Open(SAVE_FILENAME, FileMode.Create);
+            BinaryFormatter formatter = new BinaryFormatter();
+            Pair<List<User>, DiginoteDatabase> state = new Pair<List<User>, DiginoteDatabase>(usersList, diginoteDB);
 
-        // save
+            formatter.Serialize(stream, state);
+            Log("State saved.");
+            stream.Close();
+        }
+        catch (Exception)
+        {
+            Log("Error saving state.");
+        }
     }
 
     public override object InitializeLifetimeService()
