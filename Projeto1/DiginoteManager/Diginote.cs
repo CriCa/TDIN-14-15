@@ -27,6 +27,8 @@ public class Diginote
         set { nextSerial = value; }
     }
 
+    public string LastAquiredOn { get; set; }
+
     public static bool operator ==(Diginote b, Diginote c)
     {
         if (b.Id == c.Id)

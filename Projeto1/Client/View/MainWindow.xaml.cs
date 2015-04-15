@@ -41,10 +41,13 @@ namespace Client.View
                 // close current
                 this.Close();
             }
-            else if (msg.Content.Type == NotifType.SUGGESTQUOTATION)
+            else if (msg.Content.Type == NotifType.QUERYNEWQUOTATION)
             {
-                ChangeQuotationDialog dialog = new ChangeQuotationDialog(this);
-                dialog.ShowDialog();
+                double quot = Double.Parse(msg.Notification);
+                ChangeQuotationDialog dialog = new ChangeQuotationDialog(this, Math.Abs(quot), quot >= 0);
+
+                if (dialog.ShowDialog() == true)
+                    NotificationMessenger.sendNotification(this, new NotificationType(NotifType.SETNEWQUOTATION, null), dialog.NewQuotation.ToString());
             }
         }
     }

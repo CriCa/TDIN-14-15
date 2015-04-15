@@ -1,14 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Client.Helpers;
 using GalaSoft.MvvmLight.Messaging;
 using System.Windows.Input;
 using System.Windows.Controls;
 using Xceed.Wpf.Toolkit;
 using System.Collections.ObjectModel;
+using System.Windows;
 
 namespace Client.ViewModel
 {
@@ -17,7 +14,12 @@ namespace Client.ViewModel
         private string username = "";
         private double quotation;
         private int diginotesNumber;
-        private ObservableCollection<string> orders;
+        private ObservableCollection<DiginoteInfo> diginotes;
+        private ObservableCollection<Order> orders;
+        private bool canSell;
+        private bool canBuy;
+        private bool canLower;
+        private bool canRise;
 
         public ICommand LogoutCommand { get { return new RelayCommand(Logout); } }
 
@@ -72,14 +74,72 @@ namespace Client.ViewModel
             }
         }
 
-        public ObservableCollection<string> Orders { get { return orders; } }
+        public bool CanSell
+        {
+            get
+            {
+                return canSell;
+            }
+            set
+            {
+                canSell = value;
+                RaisePropertyChangedEvent("CanSell");
+            }
+        }
+
+        public bool CanBuy
+        {
+            get
+            {
+                return canBuy;
+            }
+            set
+            {
+                canBuy = value;
+                RaisePropertyChangedEvent("CanBuy");
+            }
+        }
+
+        public bool CanLower
+        {
+            get
+            {
+                return canLower;
+            }
+            set
+            {
+                canLower = value;
+                RaisePropertyChangedEvent("CanLower");
+            }
+        }
+
+        public bool CanRise
+        {
+            get
+            {
+                return canRise;
+            }
+            set
+            {
+                canRise = value;
+                RaisePropertyChangedEvent("CanRise");
+            }
+        }
+
+
+        public ObservableCollection<Order> Orders { get { return orders; } }
+
+        public ObservableCollection<DiginoteInfo> Diginotes { get { return diginotes; } }
 
         public MainViewModel()
         {
             Username = client.user.Name;
             Quotation = client.Quotation;
             DiginotesNumber = client.DiginotesNumber;
+            diginotes = client.Diginotes;
             this.orders = client.orders;
+            CanSell = CanBuy = true;
+            CanLower = CanRise = false;
 
             Messenger.Default.Register<NotificationMessage<NotificationType>>(this, NotificationMessageHandler);
         }
@@ -90,8 +150,14 @@ namespace Client.ViewModel
                 Messenger.Default.Unregister<NotificationMessage<NotificationType>>(this);
             else if (msg.Content.Type == NotifType.QUOTATION)
                 Quotation = client.Quotation;
-            else if (msg.Content.Type == NotifType.DIGINOTESNUMBER)
+            else if (msg.Content.Type == NotifType.DIGINOTES)
+            {
                 DiginotesNumber = client.DiginotesNumber;
+                diginotes = client.Diginotes;
+            }
+            else if (msg.Content.Type == NotifType.SETNEWQUOTATION) {
+                client.SetNewQuotation(Double.Parse((string)msg.Notification));
+            }
         }
 
         private void Logout(object parameter)
@@ -103,7 +169,8 @@ namespace Client.ViewModel
         private void Dig(object parameter)
         {
             client.SetNewQuotation(2.3);
-            client.orders.Add("test");
+            client.orders.Add(new Order(OrderType.Buy, 2, "userdig"));
+            client.Diginotes.Add(new DiginoteInfo(6, 2.0, DateTime.Now.ToString()));
             Console.WriteLine("Dig");
         }
 
@@ -112,7 +179,13 @@ namespace Client.ViewModel
             IntegerUpDown quantityBox = parameter as IntegerUpDown;
             int quantity = (int)quantityBox.Value;
 
-            Console.WriteLine("Sell " + quantity);
+            if(quantity > 0) {
+                CanSell = CanBuy = CanRise = false;
+                CanLower = true;
+                Console.WriteLine("Sell " + quantity);
+            }
+            else
+                System.Windows.MessageBox.Show("Provide a quantity greater than zero!", "Zero quantity", MessageBoxButton.OK, MessageBoxImage.Error);
         }
 
         private void Buy(object parameter)
@@ -120,7 +193,14 @@ namespace Client.ViewModel
             IntegerUpDown quantityBox = parameter as IntegerUpDown;
             int quantity = (int)quantityBox.Value;
 
-            Console.WriteLine("Buy " + quantity);
+            if (quantity > 0)
+            {
+                CanBuy = CanSell = CanLower = false;
+                CanRise = true;
+                Console.WriteLine("Buy " + quantity);
+            }
+            else
+                System.Windows.MessageBox.Show("Provide a quantity greater than zero!", "Zero quantity", MessageBoxButton.OK, MessageBoxImage.Error);
         }
 
         private void View(object parameter)
@@ -130,7 +210,13 @@ namespace Client.ViewModel
 
         private void ChangeQuotation(object parameter)
         {
-            NotificationMessenger.sendNotification(this, new NotificationType(NotifType.SUGGESTQUOTATION, null), "");
+            string operation = parameter as string;
+            if (operation == "Lower")
+                NotificationMessenger.sendNotification(this, new NotificationType(NotifType.QUERYNEWQUOTATION, null), "-" + Quotation);
+            else
+                NotificationMessenger.sendNotification(this, new NotificationType(NotifType.QUERYNEWQUOTATION, null), "+" + Quotation);
+
+            
         }
 
         private void Close(object parameter)

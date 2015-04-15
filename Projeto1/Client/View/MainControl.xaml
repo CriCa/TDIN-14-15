@@ -12,42 +12,79 @@
         <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Logged as " VerticalAlignment="Top" Margin="10,449,0,0" Foreground="White"/>
         <TextBlock Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="68,449,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Foreground="White" FontWeight="Bold"/>
         <Button Command="{Binding LogoutCommand}"  HorizontalAlignment="Left" Margin="117,468,0,0" VerticalAlignment="Top" Width="75" Foreground="#FF0B637E">
-            <Button.Background>
-                <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
-                    <GradientStop Color="#FFF3F3F3" Offset="0"/>
-                    <GradientStop Color="#FFEBEBEB" Offset="0.5"/>
-                    <GradientStop Color="#FFDDDDDD" Offset="0.5"/>
-                    <GradientStop Color="#FFCDCDCD" Offset="1"/>
-                </LinearGradientBrush>
-            </Button.Background>
             <StackPanel Orientation="Horizontal">
                 <Image Source="/Client;component/Resources/logout.png" HorizontalAlignment="Center" Width="15" VerticalAlignment="Center" Height="15"/>
                 <TextBlock Text="LogOut" HorizontalAlignment="Center" Margin="5,0,0,0" VerticalAlignment="Center"/>
             </StackPanel>
         </Button>
 
-        <TextBlock HorizontalAlignment="Left" Margin="10,26,0,0" TextWrapping="Wrap" Text="Quotation: " VerticalAlignment="Top" FontSize="20" FontWeight="Bold" Foreground="White"/>
-        <TextBlock Text="{Binding Quotation, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="117,26,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="20" FontWeight="Bold" Foreground="White"/>
-        <TextBlock HorizontalAlignment="Left" Margin="150,26,0,0" TextWrapping="Wrap" Text="$" VerticalAlignment="Top" FontSize="20" FontWeight="Bold" Foreground="White"/>
+        <StackPanel Margin="10,26,599,447" Orientation="Horizontal">
+            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Quotation: " VerticalAlignment="Top" FontSize="20" FontWeight="Bold" Foreground="White"/>
+            <TextBlock Text="{Binding Quotation, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="20" FontWeight="Bold" Foreground="White"/>
+            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="$" VerticalAlignment="Top" FontSize="20" FontWeight="Bold" Foreground="White"/>
+        </StackPanel>
+        
+        
 
-        <TextBlock HorizontalAlignment="Left" Margin="10,90,0,0" TextWrapping="Wrap" Text="Your diginotes" VerticalAlignment="Top" Foreground="White" FontWeight="Bold"/>
-        <TextBlock Text="{Binding DiginotesNumber}" HorizontalAlignment="Left" Margin="162,90,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Foreground="White"/>
-
-        <TextBlock HorizontalAlignment="Left" Margin="213,13,0,0" TextWrapping="Wrap" Text="Place order" VerticalAlignment="Top" Foreground="#FF1085BB" FontWeight="Bold"/>
-
-        <tl:IntegerUpDown x:Name="sellQuantity" Margin="293,6,447,472" Cursor="" Value="0" Height="22" Maximum="{Binding DiginotesNumber}" Minimum="0"/>
-        <Button Content="Sell" Command="{Binding SellCommand}" CommandParameter="{Binding ElementName=sellQuantity}" HorizontalAlignment="Left" Margin="342,10,0,0" VerticalAlignment="Top" Width="50" Foreground="#FF0B637E"/>
-
-        <tl:IntegerUpDown x:Name="buyQuantity" Margin="423,6,317,472" Cursor="" Value="0" Height="22" Maximum="9999" Minimum="0"/>
-        <Button Content="Buy" Command="{Binding BuyCommand}" CommandParameter="{Binding ElementName=buyQuantity}" HorizontalAlignment="Left" Margin="474,10,0,0" VerticalAlignment="Top" Width="50" Foreground="#FF0B637E"/>
-
-        <TextBlock HorizontalAlignment="Left" Margin="213,58,0,0" TextWrapping="Wrap" Text="Your orders" VerticalAlignment="Top" Foreground="#FF1085BB" FontWeight="Bold"/>
-        <ListView ItemsSource="{Binding Orders}" HorizontalAlignment="Left" Height="171" Margin="213,79,0,0" VerticalAlignment="Top" Width="544" Background="#FFB6E3F7" BorderBrush="#FF1085BB">
-
+        <StackPanel Margin="10,87,623,393" Orientation="Horizontal">
+            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Your diginotes (" VerticalAlignment="Top" Foreground="White" FontWeight="Bold"/>
+            <TextBlock Text="{Binding DiginotesNumber, UpdateSourceTrigger=PropertyChanged}" TextWrapping="Wrap" Foreground="White" Height="16" Margin="0" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text=")" VerticalAlignment="Top" Foreground="White" FontWeight="Bold"/>
+        </StackPanel>
+        <TextBlock HorizontalAlignment="Left" Margin="10,107,0,0" TextWrapping="Wrap" Text="Id" VerticalAlignment="Top" Foreground="White"/>
+        <TextBlock HorizontalAlignment="Left" Margin="43,107,0,0" TextWrapping="Wrap" Text="Value" VerticalAlignment="Top" Foreground="White"/>
+        <TextBlock HorizontalAlignment="Left" Margin="78,107,0,0" TextWrapping="Wrap" Text="Aquired on" VerticalAlignment="Top" Foreground="White"/>
+        <ListView ItemsSource="{Binding Diginotes}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" HorizontalAlignment="Left" Height="127" Margin="10,123,0,0" VerticalAlignment="Top" Width="182">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <TextBlock Text="{Binding Serial}" Margin="0,0,0,0"/>
+                        <TextBlock Text="{Binding Value}" Margin="30,0,0,0"/>
+                        <TextBlock Text="{Binding AquiredOn}" Margin="63,0,0,0"/>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
         </ListView>
 
+        <TextBlock HorizontalAlignment="Left" Margin="10,294,0,0" TextWrapping="Wrap" Text="Diginotes in System:" VerticalAlignment="Top" Foreground="White"/>
+        <TextBlock HorizontalAlignment="Left" Margin="122,294,0,0" TextWrapping="Wrap" Text="2" VerticalAlignment="Top" Foreground="White"/>
+        <TextBlock HorizontalAlignment="Left" Margin="10,315,0,0" TextWrapping="Wrap" Text="Diginotes offer:" VerticalAlignment="Top" Foreground="White"/>
+        <TextBlock HorizontalAlignment="Left" Margin="96,315,0,0" TextWrapping="Wrap" Text="1" VerticalAlignment="Top" Foreground="White"/>
+        <TextBlock HorizontalAlignment="Left" Margin="10,336,0,0" TextWrapping="Wrap" Text="Diginotes demand:" VerticalAlignment="Top" Foreground="White"/>
+        <TextBlock HorizontalAlignment="Left" Margin="115,336,0,0" TextWrapping="Wrap" Text="1" VerticalAlignment="Top" Foreground="White"/>
 
+        <TextBlock HorizontalAlignment="Left" Margin="213,13,0,0" TextWrapping="Wrap" Text="New orders" VerticalAlignment="Top" Foreground="#FF1085BB" FontWeight="Bold"/>
 
+        <tl:IntegerUpDown x:Name="sellQuantity" Margin="215,33,525,445" Cursor="" Value="0" Height="22" Maximum="{Binding DiginotesNumber, UpdateSourceTrigger=PropertyChanged}" Minimum="0" IsEnabled="{Binding CanSell, UpdateSourceTrigger=PropertyChanged}"/>
+        <Button Command="{Binding SellCommand}" CommandParameter="{Binding ElementName=sellQuantity}" HorizontalAlignment="Left" Margin="264,37,0,0" VerticalAlignment="Top" Width="50" Foreground="#FF0B637E" IsEnabled="{Binding CanSell, UpdateSourceTrigger=PropertyChanged}">
+            <StackPanel Orientation="Horizontal">
+                <Image Source="/Client;component/Resources/sell_icon.png" HorizontalAlignment="Center" Width="15" VerticalAlignment="Center" Height="15"/>
+                <TextBlock Text="Sell" HorizontalAlignment="Center" Margin="5,0,0,0" VerticalAlignment="Center"/>
+            </StackPanel>
+        </Button>
+        <Button Content="Lower Price" Command="{Binding ChangeQuotationCommand}" CommandParameter="Lower" HorizontalAlignment="Left" Margin="319,37,0,0" VerticalAlignment="Top" Width="75" Foreground="#FF0B637E" IsEnabled="{Binding CanLower, UpdateSourceTrigger=PropertyChanged}"/>
+
+        <tl:IntegerUpDown x:Name="buyQuantity" Margin="424,33,316,445" Cursor="" Value="0" Height="22" Maximum="9999" Minimum="0" IsEnabled="{Binding CanBuy, UpdateSourceTrigger=PropertyChanged}"/>
+        <Button Command="{Binding BuyCommand}" CommandParameter="{Binding ElementName=buyQuantity}" HorizontalAlignment="Left" Margin="475,37,0,0" VerticalAlignment="Top" Width="50" Foreground="#FF0B637E" IsEnabled="{Binding CanBuy, UpdateSourceTrigger=PropertyChanged}">
+            <StackPanel Orientation="Horizontal">
+                <Image Source="/Client;component/Resources/buy_icon.png" HorizontalAlignment="Center" Width="15" VerticalAlignment="Center" Height="15"/>
+                <TextBlock Text="Buy" HorizontalAlignment="Center" Margin="5,0,0,0" VerticalAlignment="Center"/>
+            </StackPanel>
+        </Button>
+        <Button Content="Rise Price" Command="{Binding ChangeQuotationCommand}" CommandParameter="Rise" HorizontalAlignment="Left" Margin="530,37,0,0" VerticalAlignment="Top" Width="75" Foreground="#FF0B637E" IsEnabled="{Binding CanRise, UpdateSourceTrigger=PropertyChanged}"/>
+
+        <TextBlock HorizontalAlignment="Left" Margin="213,77,0,0" TextWrapping="Wrap" Text="Your orders" VerticalAlignment="Top" Foreground="#FF1085BB" FontWeight="Bold"/>
+        <ListView ItemsSource="{Binding Orders}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Padding="5" HorizontalAlignment="Left" Height="152" Margin="213,109,0,0" VerticalAlignment="Top" Width="544" Background="#FFB6E3F7" BorderBrush="#FF1085BB">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Height="25" Background="#00FF0000" Width="{Binding ActualWidth, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListView}}}">
+                        <Image Source="{Binding Icon}" Margin="0,0,0,0" Width="15" Height="15" HorizontalAlignment="Left" VerticalAlignment="Stretch"  />
+                        <TextBlock Text="{Binding Quantity}" Margin="30,0,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+                        <TextBlock Text="Active" Margin="70,0,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
 
         <TextBlock HorizontalAlignment="Left" Margin="213,273,0,0" TextWrapping="Wrap" Text="Statistics" VerticalAlignment="Top" Foreground="#FF1085BB" FontWeight="Bold"/>
         <TabControl HorizontalAlignment="Left" Height="196" Margin="213,294,0,0" VerticalAlignment="Top" Width="544" Background="#FFB6E3F7" BorderBrush="#FF1085BB">
@@ -60,24 +97,9 @@
         </TabControl>
 
         <Button Content="Dig! Test!" Command="{Binding DigCommand}" HorizontalAlignment="Left" Margin="10,397,0,0" VerticalAlignment="Top" Width="75"/>
-
-        <Button Content="Suggest" Command="{Binding ChangeQuotationCommand}" HorizontalAlignment="Left" Margin="682,10,0,0" VerticalAlignment="Top" Width="75" Foreground="#FF0B637E"/>
-        <ListView HorizontalAlignment="Left" Height="127" Margin="10,123,0,0" VerticalAlignment="Top" Width="162">
-            
-        </ListView>
-        <TextBlock HorizontalAlignment="Left" Margin="10,107,0,0" TextWrapping="Wrap" Text="Id" VerticalAlignment="Top" Foreground="White"/>
-        <TextBlock HorizontalAlignment="Left" Margin="50,107,0,0" TextWrapping="Wrap" Text="Value" VerticalAlignment="Top" Foreground="White"/>
-        <TextBlock HorizontalAlignment="Left" Margin="95,107,0,0" TextWrapping="Wrap" Text="Aquired on" VerticalAlignment="Top" Foreground="White"/>
-        <TextBlock HorizontalAlignment="Left" Margin="10,294,0,0" TextWrapping="Wrap" Text="Diginotes in System: " VerticalAlignment="Top" Foreground="White"/>
-        <TextBlock HorizontalAlignment="Left" Margin="126,294,0,0" TextWrapping="Wrap" Text="2" VerticalAlignment="Top" Foreground="White"/>
-        <TextBlock HorizontalAlignment="Left" Margin="10,315,0,0" TextWrapping="Wrap" Text="Diginotes selling: " VerticalAlignment="Top" Foreground="White"/>
-        <TextBlock HorizontalAlignment="Left" Margin="104,315,0,0" TextWrapping="Wrap" Text="1" VerticalAlignment="Top" Foreground="White"/>
-        <TextBlock HorizontalAlignment="Left" Margin="10,336,0,0" TextWrapping="Wrap" Text="Diginotes buying: " VerticalAlignment="Top" Foreground="White"/>
-        <TextBlock HorizontalAlignment="Left" Margin="111,336,0,0" TextWrapping="Wrap" Text="1" VerticalAlignment="Top" Foreground="White"/>
-
-        <!-- test -->
-
-
+        <TextBlock HorizontalAlignment="Left" Margin="213,93,0,0" TextWrapping="Wrap" Text="Type" VerticalAlignment="Top" Foreground="#FF1085BB"/>
+        <TextBlock HorizontalAlignment="Left" Margin="253,93,0,0" TextWrapping="Wrap" Text="Quantity" VerticalAlignment="Top" Foreground="#FF1085BB"/>
+        <TextBlock HorizontalAlignment="Left" Margin="319,93,0,0" TextWrapping="Wrap" Text="State" VerticalAlignment="Top" Foreground="#FF1085BB"/>
 
     </Grid>
 </UserControl>

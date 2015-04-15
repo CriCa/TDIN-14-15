@@ -160,10 +160,16 @@ public class DiginoteTradingSystem : MarshalByRefObject, IDiginoteTradingSystem
         Log("User logged out: " + loguser.Username);
     }
 
-    public int DiginotesFromUser(User user)
+    public List<DiginoteInfo> DiginotesFromUser(User user)
     {
-        // return the number of diginotes that this user owns
-        return 3;
+        List<DiginoteInfo> digs = new List<DiginoteInfo>();
+        
+        digs.Add(new DiginoteInfo(1, 1.0, DateTime.Now.ToString()));
+        digs.Add(new DiginoteInfo(2, 1.0, DateTime.Now.ToString()));
+        digs.Add(new DiginoteInfo(3, 1.0, DateTime.Now.ToString()));
+        digs.Add(new DiginoteInfo(22, 1.2, DateTime.Now.ToString()));
+        
+        return digs;
     }
 
 

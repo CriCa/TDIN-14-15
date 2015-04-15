@@ -19,12 +19,54 @@ namespace Client.View
     /// </summary>
     public partial class ChangeQuotationDialog : Window
     {
-        public ChangeQuotationDialog(Window own)
+        public ChangeQuotationDialog(Window own, double quotation, bool rise)
         {
             InitializeComponent();
 
             // set parent
             Owner = own;
+
+            NewQuotation = quotation;
+
+            if (rise)
+            {
+                MinQuotation = quotation;
+                MaxQuotation = 9999;
+            }
+            else
+            {
+                MinQuotation = 0.001;
+                MaxQuotation = quotation;
+            }
+
+        }
+
+        public double NewQuotation
+        {
+            get { return (double)NewQuotationBox.Value; }
+            set { NewQuotationBox.Value = value; }
+        }
+
+        public double MinQuotation
+        {
+            get { return (double)NewQuotationBox.Minimum; }
+            set { NewQuotationBox.Minimum = value; }
+        }
+
+        public double MaxQuotation
+        {
+            get { return (double)NewQuotationBox.Maximum; }
+            set { NewQuotationBox.Maximum = value; }
+        }
+
+        private void Ok_Click(object sender, RoutedEventArgs e)
+        {
+            DialogResult = true;
+        }
+
+        private void Cancel_Click(object sender, RoutedEventArgs e)
+        {
+            DialogResult = false;
         }
     }
 }

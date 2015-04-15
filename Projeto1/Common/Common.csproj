@@ -36,6 +36,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ChangeArgs.cs" />
+    <Compile Include="DiginoteInfo.cs" />
     <Compile Include="EventRepeater.cs" />
     <Compile Include="Order.cs" />
     <Compile Include="IDiginoteTradingSystem.cs" />

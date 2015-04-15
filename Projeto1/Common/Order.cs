@@ -15,6 +15,17 @@ public class Order
 
     public OrderState State { get; set; }
 
+    public string Icon
+    {
+        get
+        {
+            if (Type == OrderType.Buy)
+                return "../Resources/buy_icon.png";
+            else
+                return "../Resources/sell_icon.png";
+        }
+    }
+
     public Order(OrderType t, int q, string u)
     {
         Type = t;

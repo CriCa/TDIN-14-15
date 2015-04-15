@@ -18,8 +18,9 @@ namespace Client.Helpers
     {
         NOSERVER, LOGIN, LOGOUT,
         QUOTATION,
-        SUGGESTQUOTATION,
-        DIGINOTESNUMBER
+        QUERYNEWQUOTATION,
+        DIGINOTES,
+        SETNEWQUOTATION
     };
 
     public class NotificationType

@@ -5,6 +5,7 @@ using GalaSoft.MvvmLight.Messaging;
 using System.Runtime.Remoting;
 using Client.Helpers;
 using System.Collections.ObjectModel;
+using System.Collections.Generic;
 
 namespace Client.Model
 {
@@ -19,12 +20,13 @@ namespace Client.Model
 
         public double Quotation { get; set; } // current quotation
 
-        public int DiginotesNumber { get; set; } // number of diginotes that the user owns
+        public int DiginotesNumber { get { return Diginotes.Count; } } // number of diginotes that the user owns
+        public ObservableCollection<DiginoteInfo> Diginotes { get; set; }
 
         // private ArrayList mySellOrders; // my sell orders
         // private ArrayList myBuyOrders; // my buy orders
 
-        public ObservableCollection<string> orders;
+        public ObservableCollection<Order> orders;
 
 
         // constructor
@@ -58,9 +60,12 @@ namespace Client.Model
 
             user = null;
 
-            orders = new ObservableCollection<string>();
-            orders.Add("test order 1");
-            orders.Add("test order 2");
+            Diginotes = new ObservableCollection<DiginoteInfo>();
+
+            orders = new ObservableCollection<Order>();
+            orders.Add(new Order(OrderType.Buy, 25, "usertempp"));
+            orders.Add(new Order(OrderType.Sell, 2, "usertempp"));
+
         }
 
         private void ChangeHandler(ChangeArgs args)
@@ -122,8 +127,11 @@ namespace Client.Model
 
         public void GetDiginotesNumber()
         {
-            DiginotesNumber = diginoteSystem.DiginotesFromUser(user);
-            NotificationMessenger.sendNotification(this, new NotificationType(NotifType.DIGINOTESNUMBER, null), "");
+            List<DiginoteInfo> digs = diginoteSystem.DiginotesFromUser(user);
+            
+            digs.ForEach(Diginotes.Add);
+
+            NotificationMessenger.sendNotification(this, new NotificationType(NotifType.DIGINOTES, null), "");
         }
 
         public void SetNewQuotation(double value)

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 public delegate void ChangeDelegate(ChangeArgs args);
 
@@ -20,5 +21,5 @@ public interface IDiginoteTradingSystem
 
     void Logout(User user);
 
-    int DiginotesFromUser(User user);
+    List<DiginoteInfo> DiginotesFromUser(User user);
 }
