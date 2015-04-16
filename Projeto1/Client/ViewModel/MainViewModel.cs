@@ -130,7 +130,6 @@ namespace Client.ViewModel
             }
         }
 
-
         public ObservableCollection<Order> Orders { get { return orders; } }
 
         public ObservableCollection<DiginoteInfo> Diginotes { get { return diginotes; } }
@@ -143,9 +142,9 @@ namespace Client.ViewModel
         {
             Username = client.user.Name;
             Quotation = client.Quotation;
-            DiginotesNumber = client.DiginotesNumber;
             diginotes = client.Diginotes;
-            this.orders = client.orders;
+            DiginotesNumber = client.DiginotesNumber;
+            orders = client.Orders;
             CanSell = CanBuy = true;
             CanLower = CanRise = false;
             QuotationEvolution = new ObservableCollection<DataPoint>();
@@ -156,7 +155,12 @@ namespace Client.ViewModel
 
         private void NotificationMessageHandler(NotificationMessage<NotificationType> msg)
         {
-            if (msg.Content.Type == NotifType.LOGOUT)
+            if (msg.Content.Type == NotifType.NOSERVER)
+            {
+                System.Windows.MessageBox.Show("Can't reach server! Exiting Application!", "No server", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                Environment.Exit(-1);
+            }
+            else if (msg.Content.Type == NotifType.LOGOUT)
                 Messenger.Default.Unregister<NotificationMessage<NotificationType>>(this);
             else if (msg.Content.Type == NotifType.QUOTATION)
                 Quotation = client.Quotation;
@@ -167,6 +171,29 @@ namespace Client.ViewModel
             }
             else if (msg.Content.Type == NotifType.SETNEWQUOTATION)
                 client.SetNewQuotation(Double.Parse((string)msg.Notification));
+            else if (msg.Content.Type == NotifType.NEWORDER)
+            {
+                Order lastOrder = Orders[Orders.Count - 1];
+                if(lastOrder.State == OrderState.Over)
+                {
+                    CanSell = CanBuy = true;
+                    CanRise = CanLower = false;
+                }
+                else if (lastOrder.State == OrderState.Pending)
+                {
+                    if (lastOrder.Type == OrderType.Buy)
+                    {
+                        CanRise = true;
+                        NotificationMessenger.sendNotification(this, new NotificationType(NotifType.QUERYNEWQUOTATION, null), "+" + Quotation);
+                    }
+                    else
+                    {
+                        CanLower = true;
+                        NotificationMessenger.sendNotification(this, new NotificationType(NotifType.QUERYNEWQUOTATION, null), "-" + Quotation);
+                    }
+                    
+                }
+            }
         }
 
         private void Logout(object parameter)
@@ -178,7 +205,7 @@ namespace Client.ViewModel
         private void Dig(object parameter)
         {
             client.SetNewQuotation(2.3);
-            client.orders.Add(new Order(OrderType.Buy, 2, client.user));
+            client.Orders.Add(new Order(OrderType.Buy, 2, client.user));
             client.Diginotes.Add(new DiginoteInfo(6, 2.0, DateTime.Now.ToString()));
             QuotationEvolution.Add(new DataPoint(DateTimeAxis.ToDouble(DateTime.Now), 1.1));
             Transactions.Add(new DataPoint(new Random().NextDouble() * 2.0, (int) (new Random().NextDouble() * 10)));
@@ -191,9 +218,8 @@ namespace Client.ViewModel
             int quantity = (int)quantityBox.Value;
 
             if(quantity > 0) {
-                CanSell = CanBuy = CanRise = false;
-                CanLower = true;
-                Console.WriteLine("Sell " + quantity);
+                CanSell = CanBuy = CanLower = CanRise = false;
+                client.SellDiginotes(quantity);
             }
             else
                 System.Windows.MessageBox.Show("Provide a quantity greater than zero!", "Zero quantity", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -206,9 +232,8 @@ namespace Client.ViewModel
 
             if (quantity > 0)
             {
-                CanBuy = CanSell = CanLower = false;
-                CanRise = true;
-                Console.WriteLine("Buy " + quantity);
+                CanBuy = CanSell = CanLower = CanRise = false;
+                client.BuyDiginotes(quantity);
             }
             else
                 System.Windows.MessageBox.Show("Provide a quantity greater than zero!", "Zero quantity", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -226,8 +251,6 @@ namespace Client.ViewModel
                 NotificationMessenger.sendNotification(this, new NotificationType(NotifType.QUERYNEWQUOTATION, null), "-" + Quotation);
             else
                 NotificationMessenger.sendNotification(this, new NotificationType(NotifType.QUERYNEWQUOTATION, null), "+" + Quotation);
-
-            
         }
 
         private void Close(object parameter)

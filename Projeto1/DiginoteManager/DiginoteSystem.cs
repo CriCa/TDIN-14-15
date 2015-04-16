@@ -11,8 +11,8 @@ public class DiginoteTradingSystem : MarshalByRefObject, IDiginoteTradingSystem
     private Logger logger; // log system
 
     public event ChangeDelegate ChangeEvent;    // event to warn clients 
-                                                // when quotation changes
-    
+    // when quotation changes
+
     private List<User> usersList; // users
     private List<User> loggedUsers; // à partida não é necessário
 
@@ -23,11 +23,10 @@ public class DiginoteTradingSystem : MarshalByRefObject, IDiginoteTradingSystem
     private List<Order> sellOrders; // list of sell orders
     private List<Order> buyOrders; // list of buy orders
 
-    
     public DiginoteTradingSystem()
     {
         Initialize();
-        
+
         // if save file exists then load state
         if (File.Exists(SAVE_FILENAME))
             loadState();
@@ -36,54 +35,51 @@ public class DiginoteTradingSystem : MarshalByRefObject, IDiginoteTradingSystem
     private void Initialize()
     {
         // set initial quotation
-        quotation = 2.3;
+        quotation = 1.0;
 
         // create order lists
         buyOrders = new List<Order>();
         sellOrders = new List<Order>();
         usersList = new List<User>();
         loggedUsers = new List<User>();
+        diginoteDB = new List<Diginote>();
 
         // create logger
         logger = new Logger();
-
-        diginoteDB = new List<Diginote>();
     }
 
-    public double GetQuotation()
-    {
-        return quotation;
-    }
+    public double GetQuotation() { return quotation; }
 
-    private void SetNewQuotation(double value)
+    public void SuggestNewQuotation(User user, double value) { SetNewQuotation(user, value); }
+
+    private void SetNewQuotation(User user, double value)
     {
-        if(value > quotation) {
+        if (value > quotation)
+        {
             Log("Quotation value went up to: " + value);
+
             SafeInvoke(new ChangeArgs(ChangeType.QuotationUp, value));
+
             foreach (Order order in buyOrders)
-            {
-                order.State = OrderState.WaitApproval;
-            }
+                if (order.User.Username != user.Username)
+                    order.State = OrderState.WaitApproval;
         }
-        else {
+        else
+        {
             Log("Quotation value went down to: " + value);
+
             SafeInvoke(new ChangeArgs(ChangeType.QuotationDown, value));
-            foreach (Order order in buyOrders)
-            {
-                order.State = OrderState.WaitApproval;
-            }
+
+            foreach (Order order in sellOrders)
+                if (order.User.Username != user.Username)
+                    order.State = OrderState.WaitApproval;
         }
 
         // update quotation
         quotation = value;
 
+        // save state
         saveState();
-        
-    }
-
-    public void SuggestNewQuotation(double value)
-    {
-        SetNewQuotation(value);
     }
 
     public void ReceiveApproval(User user, bool appr, OrderType orderType)
@@ -122,9 +118,9 @@ public class DiginoteTradingSystem : MarshalByRefObject, IDiginoteTradingSystem
                 //if(allPending) handle them
             }
 
-            
-//        else change order state to pending
-            
+
+        //        else change order state to pending
+
     }
 
     private void RemoveOrder(User user)
@@ -135,20 +131,24 @@ public class DiginoteTradingSystem : MarshalByRefObject, IDiginoteTradingSystem
     public Order AddBuyOrder(User user, int quantity, OrderType orderType)
     {
         Order newOrder = new Order(orderType, quantity, user);
-        Log("[Server]: Added buy order from user " + newOrder.User);
+        
+        Log("Added buy order from user " + newOrder.User.Username + " of " + newOrder.Quantity + " Diginotes");
+        
         buyOrders.Add(newOrder);
+        
         return newOrder;
     }
 
     public Order AddSellOrder(User user, int quantity, OrderType orderType)
     {
         Order newOrder = new Order(orderType, quantity, user);
-        Log("[Server]: Added sell order from user " + newOrder.User);
-        sellOrders.Add(newOrder);
-        return newOrder;
         
+        Log("Added sell order from user " + newOrder.User.Username + " of " + newOrder.Quantity + " Diginotes");
+        
+        sellOrders.Add(newOrder);
+        
+        return newOrder;
     }
-
 
     private bool userExists(User newUser)
     {
@@ -168,13 +168,10 @@ public class DiginoteTradingSystem : MarshalByRefObject, IDiginoteTradingSystem
         usersList.Add(newUser);
         Log("New user registered: " + newUser.Username);
 
-        Diginote dig;
-        for (int i = 0; i < 4; i++) {
-            dig = new Diginote(newUser);
-            diginoteDB.Add(dig);
-        }
+        for (int i = 0; i < 5; i++)
+            diginoteDB.Add(new Diginote(newUser));
 
-
+        // save state
         saveState();
 
         return true;
@@ -201,11 +198,6 @@ public class DiginoteTradingSystem : MarshalByRefObject, IDiginoteTradingSystem
         return new Pair<bool, User>(true, user);
     }
 
-    public List<User> getLoggedUsers()
-    {
-        return loggedUsers;
-    }
-
     public void Logout(User loguser)
     {
         loggedUsers.Remove(loggedUsers.Find(user => user.Username == loguser.Username));
@@ -215,17 +207,12 @@ public class DiginoteTradingSystem : MarshalByRefObject, IDiginoteTradingSystem
     public List<DiginoteInfo> DiginotesFromUser(User user)
     {
         List<DiginoteInfo> digs = new List<DiginoteInfo>();
-        
-        digs.Add(new DiginoteInfo(1, 1.0, DateTime.Now.ToString()));
-        digs.Add(new DiginoteInfo(2, 1.0, DateTime.Now.ToString()));
-        digs.Add(new DiginoteInfo(3, 1.0, DateTime.Now.ToString()));
-        digs.Add(new DiginoteInfo(22, 1.2, DateTime.Now.ToString()));
-        
+
+        diginoteDB.FindAll(dig => dig.Owner.Username == user.Username)
+            .ForEach(digInf => digs.Add(new DiginoteInfo(digInf.Id, digInf.Value, digInf.LastAquiredOn)));
+
         return digs;
     }
-
-
-
 
     // this function must be called to when something occurs
     //  and we need to call event, the thread is needed to
@@ -256,48 +243,49 @@ public class DiginoteTradingSystem : MarshalByRefObject, IDiginoteTradingSystem
         Console.WriteLine("[Server]: " + msg);
     }
 
-    private void loadState() 
+    private void loadState()
     {
         try
         {
             Stream stream = File.Open(SAVE_FILENAME, FileMode.Open);
             BinaryFormatter formatter = new BinaryFormatter();
-            Tuple<List<User>, double, List<Diginote>, List<Order>, List<Order>> state = 
-                (Tuple<List<User>, double, List<Diginote>, List<Order>, List<Order>>)formatter.Deserialize(stream);
+            Tuple<List<User>, double, List<Diginote>, List<Order>, List<Order>, int> state =
+                (Tuple<List<User>, double, List<Diginote>, List<Order>, List<Order>, int>)formatter.Deserialize(stream);
             usersList = state.Item1;
             quotation = state.Item2;
             diginoteDB = state.Item3;
             sellOrders = state.Item4;
             buyOrders = state.Item5;
+            Diginote.NextSerial = state.Item6;
 
             Log("State loaded.");
             stream.Close();
         }
         catch (Exception e)
         {
-            
+
             Log("Error loading state");
             Log(e.Message);
         }
     }
 
-    private void saveState() 
+    private void saveState()
     {
         try
         {
             Stream stream = File.Open(SAVE_FILENAME, FileMode.Create);
             BinaryFormatter formatter = new BinaryFormatter();
 
-            Tuple<List<User>, double, List<Diginote>, List<Order>, List<Order>> state = 
-                new Tuple<List<User>, double, List<Diginote>, List<Order>, List<Order>>(usersList, quotation, diginoteDB, sellOrders, buyOrders);
+            Tuple<List<User>, double, List<Diginote>, List<Order>, List<Order>, int> state =
+                new Tuple<List<User>, double, List<Diginote>, List<Order>, List<Order>, int>(usersList, quotation, diginoteDB, sellOrders, buyOrders, Diginote.NextSerial);
 
             formatter.Serialize(stream, state);
-            Log("State saved.");
+            Log("State saved");
             stream.Close();
         }
         catch (Exception e)
         {
-            Log("Error saving state.");
+            Log("Error saving state");
             Log(e.Message);
         }
     }

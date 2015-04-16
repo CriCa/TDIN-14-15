@@ -28,7 +28,7 @@
             <TextBlock Text="{Binding Quotation, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="20" FontWeight="Bold" Foreground="White"/>
             <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="$" VerticalAlignment="Top" FontSize="20" FontWeight="Bold" Foreground="White"/>
         </StackPanel>
-        
+
         <StackPanel Margin="10,87,623,393" Orientation="Horizontal">
             <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Your diginotes (" VerticalAlignment="Top" Foreground="White" FontWeight="Bold"/>
             <TextBlock Text="{Binding DiginotesNumber, UpdateSourceTrigger=PropertyChanged}" TextWrapping="Wrap" Foreground="White" Height="16" Margin="0" HorizontalAlignment="Left" VerticalAlignment="Top"/>
@@ -77,23 +77,31 @@
         <Button Content="Rise Price" Command="{Binding ChangeQuotationCommand}" CommandParameter="Rise" HorizontalAlignment="Left" Margin="530,37,0,0" VerticalAlignment="Top" Width="75" Foreground="#FF0B637E" IsEnabled="{Binding CanRise, UpdateSourceTrigger=PropertyChanged}"/>
 
         <TextBlock HorizontalAlignment="Left" Margin="213,77,0,0" TextWrapping="Wrap" Text="Your orders" VerticalAlignment="Top" Foreground="#FF1085BB" FontWeight="Bold"/>
-        <ListView ItemsSource="{Binding Orders}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Padding="5" HorizontalAlignment="Left" Height="152" Margin="213,109,0,0" VerticalAlignment="Top" Width="544" Background="#FFB6E3F7" BorderBrush="#FF1085BB" IsHitTestVisible="True">
+        <TextBlock HorizontalAlignment="Left" Margin="223,93,0,0" TextWrapping="Wrap" Text="Type" VerticalAlignment="Top" Foreground="#FF1085BB"/>
+        <TextBlock HorizontalAlignment="Left" Margin="272,93,0,0" TextWrapping="Wrap" Text="Quantity" VerticalAlignment="Top" Foreground="#FF1085BB"/>
+        <TextBlock HorizontalAlignment="Left" Margin="330,93,0,0" TextWrapping="Wrap" Text="State" VerticalAlignment="Top" Foreground="#FF1085BB"/>
+        <TextBlock HorizontalAlignment="Left" Margin="493,93,0,0" TextWrapping="Wrap" Text="Created on" VerticalAlignment="Top" Foreground="#FF1085BB"/>
+        <TextBlock HorizontalAlignment="Left" Margin="623,93,0,0" TextWrapping="Wrap" Text="Finished on" VerticalAlignment="Top" Foreground="#FF1085BB"/>
+        <ListView ItemsSource="{Binding Orders}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Padding="5" HorizontalAlignment="Left" Height="141" Margin="213,109,0,0" VerticalAlignment="Top" Width="544" Background="#FFB6E3F7" BorderBrush="#FF1085BB" IsHitTestVisible="True">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <Grid Height="25" Background="#00FF0000" Width="{Binding ActualWidth, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListView}}}">
+                    <Grid Height="25" Background="#19000000" Width="{Binding ActualWidth, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListView}}}" Margin="0,2,0,0">
                         <Image Source="{Binding Icon}" Margin="0,0,0,0" Width="15" Height="15" HorizontalAlignment="Left" VerticalAlignment="Stretch"  />
-                        <TextBlock Text="{Binding Quantity}" Margin="30,0,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
-                        <TextBlock Text="Active" Margin="70,0,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+                        <TextBlock Text="{Binding TypeDesc}" Margin="20,0,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+                        <TextBlock Text="{Binding Quantity}" Margin="55,0,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+                        <TextBlock Text="{Binding StateDesc}" Margin="109,0,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+                        <TextBlock Text="{Binding CreatedOn}" Margin="270,0,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+                        <TextBlock Text="{Binding FinishedOn}" Margin="400,0,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
                     </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
 
-        <TextBlock HorizontalAlignment="Left" Margin="213,273,0,0" TextWrapping="Wrap" Text="Statistics" VerticalAlignment="Top" Foreground="#FF1085BB" FontWeight="Bold"/>
-        <TabControl HorizontalAlignment="Left" Height="196" Margin="213,294,0,0" VerticalAlignment="Top" Width="544" Background="#FFB6E3F7" BorderBrush="#FF1085BB">
+        <TextBlock HorizontalAlignment="Left" Margin="213,261,0,0" TextWrapping="Wrap" Text="Statistics" VerticalAlignment="Top" Foreground="#FF1085BB" FontWeight="Bold"/>
+        <TabControl HorizontalAlignment="Left" Height="208" Margin="213,282,0,0" VerticalAlignment="Top" Width="544" Background="#FFB6E3F7" BorderBrush="#FF1085BB">
             <TabItem Header="Quotation Evolution" Foreground="#FF0B637E" BorderBrush="#FF1085BB">
                 <Grid Background="#FFB6E3F7">
-                    <oxy:Plot>
+                    <!--<oxy:Plot>
                         <oxy:Plot.Series>
                             <oxy:LineSeries ItemsSource="{Binding QuotationEvolution}"/>
                         </oxy:Plot.Series>
@@ -101,24 +109,22 @@
                             <oxy:DateTimeAxis Position="Bottom" StringFormat="dd/MM/yyyy" />
                             <oxy:LinearAxis Position="Left" />
                         </oxy:Plot.Axes>
-                    </oxy:Plot>
+                    </oxy:Plot>-->
                 </Grid>
             </TabItem>
             <TabItem Header="Transactions" Foreground="#FF0B637E" BorderBrush="#FF1085BB">
                 <Grid Background="#FFB6E3F7">
-                    <oxy:Plot>
+                    <!--<oxy:Plot>
                         <oxy:Plot.Series>
                             <oxy:LineSeries ItemsSource="{Binding Transactions}"/>
                         </oxy:Plot.Series>
-                    </oxy:Plot>
+                    </oxy:Plot>-->
                 </Grid>
             </TabItem>
         </TabControl>
 
         <Button Content="Dig! Test!" Command="{Binding DigCommand}" HorizontalAlignment="Left" Margin="10,397,0,0" VerticalAlignment="Top" Width="75"/>
-        <TextBlock HorizontalAlignment="Left" Margin="213,93,0,0" TextWrapping="Wrap" Text="Type" VerticalAlignment="Top" Foreground="#FF1085BB"/>
-        <TextBlock HorizontalAlignment="Left" Margin="253,93,0,0" TextWrapping="Wrap" Text="Quantity" VerticalAlignment="Top" Foreground="#FF1085BB"/>
-        <TextBlock HorizontalAlignment="Left" Margin="319,93,0,0" TextWrapping="Wrap" Text="State" VerticalAlignment="Top" Foreground="#FF1085BB"/>
+        
 
     </Grid>
 </UserControl>

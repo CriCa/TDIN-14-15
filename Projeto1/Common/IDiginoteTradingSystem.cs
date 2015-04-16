@@ -9,7 +9,7 @@ public interface IDiginoteTradingSystem
 
     double GetQuotation(); // get current quotation
 
-    void SuggestNewQuotation(double value);
+    void SuggestNewQuotation(User user, double value);
 
     void ReceiveApproval(User user, bool appr, OrderType orderType);
 
@@ -24,6 +24,4 @@ public interface IDiginoteTradingSystem
     void Logout(User user);
 
     List<DiginoteInfo> DiginotesFromUser(User user);
-
-
 }

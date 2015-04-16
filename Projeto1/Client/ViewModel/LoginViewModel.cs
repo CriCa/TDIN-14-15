@@ -107,6 +107,8 @@ namespace Client.ViewModel
 
             if (UsernameRegister == "" || NameRegister == "" || password == "" || passwordConfirm == "")
                 MessageBox.Show("Please provide all fields in order to register!", "Missing fields", MessageBoxButton.OK, MessageBoxImage.Error);
+            else if (UsernameRegister.Length < 3)
+                MessageBox.Show("Your username must at least 3 characters!", "Bad username", MessageBoxButton.OK, MessageBoxImage.Error);
             else if (password != passwordConfirm)
                 MessageBox.Show("Passwords don't match! Please make to confirm your password!", "Wrong passwords", MessageBoxButton.OK, MessageBoxImage.Error);
             else if (client.Register(NameRegister, UsernameRegister, Encrypt(password)))
