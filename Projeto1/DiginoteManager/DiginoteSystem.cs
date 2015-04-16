@@ -65,7 +65,7 @@ public class DiginoteTradingSystem : MarshalByRefObject, IDiginoteTradingSystem
             SafeInvoke(new ChangeArgs(ChangeType.QuotationUp, value, user.Username));
 
             foreach (Order order in buyOrders)
-                if (order.User.Username != user.Username)
+                if (order.User.Username != user.Username && order.State == OrderState.Pending)
                     order.State = OrderState.WaitApproval;
         }
         else
@@ -75,7 +75,7 @@ public class DiginoteTradingSystem : MarshalByRefObject, IDiginoteTradingSystem
             SafeInvoke(new ChangeArgs(ChangeType.QuotationDown, value, user.Username));
 
             foreach (Order order in sellOrders)
-                if (order.User.Username != user.Username)
+                if (order.User.Username != user.Username && order.State == OrderState.Pending)
                     order.State = OrderState.WaitApproval;
         }
 
@@ -166,9 +166,8 @@ public class DiginoteTradingSystem : MarshalByRefObject, IDiginoteTradingSystem
         
         Log("Added buy order from user " + newOrder.User.Username + " of " + newOrder.Quantity + " Diginotes");
         
-        //If can't handle order put it in the list.
-        if(!handleOrder(newOrder,sellOrders,OrderType.Buy))
-            buyOrders.Add(newOrder);
+        handleOrder(newOrder,sellOrders,OrderType.Buy);
+        buyOrders.Add(newOrder);
         
         return newOrder;
     }
@@ -180,9 +179,8 @@ public class DiginoteTradingSystem : MarshalByRefObject, IDiginoteTradingSystem
         
         Log("Added sell order from user " + newOrder.User.Username + " of " + newOrder.Quantity + " Diginotes");
 
-        //If can't handle order put it in the list.
-        if (!handleOrder(newOrder, buyOrders, OrderType.Sell))
-            sellOrders.Add(newOrder);        
+        handleOrder(newOrder, buyOrders, OrderType.Sell);
+        sellOrders.Add(newOrder);        
         
         return newOrder;
     }
@@ -331,6 +329,26 @@ public class DiginoteTradingSystem : MarshalByRefObject, IDiginoteTradingSystem
             .ForEach(digInf => digs.Add(new DiginoteInfo(digInf.Id, digInf.Value, digInf.LastAquiredOn)));
 
         return digs;
+    }
+
+    public List<Order> OrdersFromUser(User user)
+    {
+        List<Order> orders = new List<Order>();
+
+        sellOrders.FindAll(order => order.User.Username == user.Username)
+            .ForEach(orderAux => orders.Add(orderAux));
+
+        buyOrders.FindAll(order => order.User.Username == user.Username)
+            .ForEach(orderAux => orders.Add(orderAux));
+
+        orders.Sort(
+            delegate(Order p1, Order p2)
+            {
+                return DateTime.Parse(p1.CreatedOn).CompareTo(DateTime.Parse(p2.CreatedOn));
+            });
+        
+
+        return orders;
     }
 
     public double GetDigtime()

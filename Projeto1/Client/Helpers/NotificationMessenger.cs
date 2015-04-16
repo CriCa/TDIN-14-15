@@ -24,7 +24,8 @@ namespace Client.Helpers
         NEWORDER,
         MANTAINORDER,
         APPROVECHANGE,
-        SYSTEMINFO
+        SYSTEMINFO,
+        ORDERS
     };
 
     public class NotificationType

@@ -93,7 +93,12 @@ namespace Client.Model
                 }
                 else if (args.Type == ChangeType.Transaction)
                 {
-
+                    GetDiginotes();
+                    NotificationMessenger.sendNotification(this, new NotificationType(NotifType.DIGINOTES, null), "");
+                    GetOrders();
+                   // UpdateOrders();
+                   // GetOrders();
+                    NotificationMessenger.sendNotification(this, new NotificationType(NotifType.ORDERS, null), "");
                 }
                 else if (args.Type == ChangeType.Login)
                 {
@@ -101,6 +106,7 @@ namespace Client.Model
                     NumLoggedUsers = args.NumLoggedUsers;
                     NumSysDiginotes = args.NumSysDiginotes;
                     NotificationMessenger.sendNotification(this, new NotificationType(NotifType.SYSTEMINFO, null), "");
+                    
                 }
                 else if (args.Type == ChangeType.Logout)
                 {
@@ -210,12 +216,16 @@ namespace Client.Model
                 NotificationMessenger.sendNotification(this, new NotificationType(NotifType.NOSERVER, null), "");
             }
         }
-
+        
         public void GetOrders()
         {
             try
             {
                 Orders = new ObservableCollection<Order>();
+
+                diginoteSystem.OrdersFromUser(user).ForEach(Orders.Add);
+
+                NotificationMessenger.sendNotification(this, new NotificationType(NotifType.ORDERS, null), "");
             }
             catch
             {

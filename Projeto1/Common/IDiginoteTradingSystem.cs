@@ -30,4 +30,6 @@ public interface IDiginoteTradingSystem
     double GetDigtime();
 
     DiginoteInfo DigDiginote(User user);
+
+    List<Order> OrdersFromUser(User user);
 }

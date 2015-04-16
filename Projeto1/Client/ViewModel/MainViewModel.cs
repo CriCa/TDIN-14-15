@@ -116,8 +116,31 @@ namespace Client.ViewModel
             diginotes = client.Diginotes;
             orders = client.Orders;
 
+
             CanSell = CanBuy = true;
             CanLower = CanRise = CanRemove = false;
+
+            foreach (Order order in orders)
+            {
+                if (order.State == OrderState.Pending)
+                {
+                    CanSell = CanBuy = false;
+                    if (order.Type == OrderType.Buy)
+                    {
+                        CanRise = true;
+                        CanLower = false;
+                    }
+                    else
+                    {
+                        CanRise = false;
+                        CanLower = true;
+                    }
+                    break;
+                }
+            }
+
+
+
 
             QuotationEvolution = new ObservableCollection<DataPoint>();
             Transactions = new ObservableCollection<DataPoint>();
@@ -142,6 +165,7 @@ namespace Client.ViewModel
             {
                 diginotes = client.Diginotes;
                 RaisePropertyChangedEvent("DiginotesNumber");
+                RaisePropertyChangedEvent("Diginotes");
             }
             else if (msg.Content.Type == NotifType.SETNEWQUOTATION)
                 client.SetNewQuotation(Double.Parse((string)msg.Notification));
@@ -152,6 +176,7 @@ namespace Client.ViewModel
                 {
                     CanSell = CanBuy = true;
                     CanRise = CanLower = false;
+                    
                 }
                 else if (lastOrder.State == OrderState.Pending)
                 {
@@ -185,6 +210,39 @@ namespace Client.ViewModel
                 RaisePropertyChangedEvent("DiginotesOffer");
                 RaisePropertyChangedEvent("DiginotesDemand");
             }
+            else if (msg.Content.Type == NotifType.ORDERS)
+            {
+
+                orders = client.Orders;
+                RaisePropertyChangedEvent("Orders");
+                
+                foreach (Order order in client.Orders)
+               {
+                  if (order.State == OrderState.Pending)
+                   {
+                       CanSell = CanBuy = false;
+                       if (order.Type == OrderType.Buy)
+                       {
+                           CanRise = true;
+                           CanLower = false;
+                       }
+                       else
+                       {
+                           CanRise = false;
+                           CanLower = true;
+                       }
+                       break;
+                   }
+                  else
+                  {
+                      CanSell = CanBuy = true;
+                      CanRise = CanLower = false;
+                  }
+                      
+               }
+               
+            }
+
         }
 
         private void Logout(object parameter)
