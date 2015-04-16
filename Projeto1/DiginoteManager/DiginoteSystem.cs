@@ -189,6 +189,7 @@ public class DiginoteTradingSystem : MarshalByRefObject, IDiginoteTradingSystem
                     {
                         List<DiginoteInfo> diginfo = makeTransaction(order, newOrder, count);
                         SafeInvoke(new ChangeArgs(order.User.Username, newOrder.User.Username, diginfo));
+                        //ENVIAR ORDER QUANDO REMOVIDA?
                         sellOrders.Remove(order);
                         order.State = OrderState.Over;
                         return true;
