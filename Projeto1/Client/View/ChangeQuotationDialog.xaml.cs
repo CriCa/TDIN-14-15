@@ -26,17 +26,15 @@ namespace Client.View
             // set parent
             Owner = own;
 
-            NewQuotation = quotation;
-
             if (rise)
             {
-                MinQuotation = quotation;
+                NewQuotation = MinQuotation = quotation + 0.01;
                 MaxQuotation = 9999;
             }
             else
             {
-                MinQuotation = 0.001;
-                MaxQuotation = quotation;
+                MinQuotation = 0.01;
+                NewQuotation = MaxQuotation = quotation - 0.01;
             }
 
         }

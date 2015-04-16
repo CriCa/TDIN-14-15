@@ -23,11 +23,12 @@ public class ChangeArgs
         Type = t;
     }
 
-    public ChangeArgs(ChangeType t, double quotationValue)
+    public ChangeArgs(ChangeType t, double quotationValue, string author)
     {
         Type = t;
         QuotationValue = quotationValue;
-        User1 = User2 = null;
+        User1 = null;
+        User2 = author;
     }
 
     public ChangeArgs(string u1, string u2, List<DiginoteInfo> digs)

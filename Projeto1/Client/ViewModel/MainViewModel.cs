@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using OxyPlot;
 using OxyPlot.Axes;
 using OxyPlot.Series;
+using System.Windows.Threading;
 
 namespace Client.ViewModel
 {
@@ -157,7 +158,7 @@ namespace Client.ViewModel
         {
             if (msg.Content.Type == NotifType.NOSERVER)
             {
-                System.Windows.MessageBox.Show("Can't reach server! Exiting Application!", "No server", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                System.Windows.MessageBox.Show(Parent, "Can't reach server! Exiting Application!", "No server", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                 Environment.Exit(-1);
             }
             else if (msg.Content.Type == NotifType.LOGOUT)
@@ -174,7 +175,7 @@ namespace Client.ViewModel
             else if (msg.Content.Type == NotifType.NEWORDER)
             {
                 Order lastOrder = Orders[Orders.Count - 1];
-                if(lastOrder.State == OrderState.Over)
+                if (lastOrder.State == OrderState.Over)
                 {
                     CanSell = CanBuy = true;
                     CanRise = CanLower = false;
@@ -191,8 +192,20 @@ namespace Client.ViewModel
                         CanLower = true;
                         NotificationMessenger.sendNotification(this, new NotificationType(NotifType.QUERYNEWQUOTATION, null), "-" + Quotation);
                     }
-                    
                 }
+            }
+            else if (msg.Content.Type == NotifType.MANTAINORDER)
+            {
+                App.Current.Dispatcher.Invoke((System.Action)(() =>
+                {
+                    if (System.Windows.MessageBox.Show(Parent, "The quotation changed! Do you want to keep your order?", "Quotation changed", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+                        client.ChangeQuotationApproval(true);
+                    else {
+                        client.ChangeQuotationApproval(false);
+                        CanSell = CanBuy = true;
+                        CanRise = CanLower = false;
+                    }
+                }));
             }
         }
 
@@ -208,7 +221,7 @@ namespace Client.ViewModel
             client.Orders.Add(new Order(OrderType.Buy, 2, client.user));
             client.Diginotes.Add(new DiginoteInfo(6, 2.0, DateTime.Now.ToString()));
             QuotationEvolution.Add(new DataPoint(DateTimeAxis.ToDouble(DateTime.Now), 1.1));
-            Transactions.Add(new DataPoint(new Random().NextDouble() * 2.0, (int) (new Random().NextDouble() * 10)));
+            Transactions.Add(new DataPoint(new Random().NextDouble() * 2.0, (int)(new Random().NextDouble() * 10)));
             Console.WriteLine("Dig");
         }
 
@@ -217,12 +230,13 @@ namespace Client.ViewModel
             IntegerUpDown quantityBox = parameter as IntegerUpDown;
             int quantity = (int)quantityBox.Value;
 
-            if(quantity > 0) {
+            if (quantity > 0)
+            {
                 CanSell = CanBuy = CanLower = CanRise = false;
                 client.SellDiginotes(quantity);
             }
             else
-                System.Windows.MessageBox.Show("Provide a quantity greater than zero!", "Zero quantity", MessageBoxButton.OK, MessageBoxImage.Error);
+                System.Windows.MessageBox.Show(Parent, "Provide a quantity greater than zero!", "Zero quantity", MessageBoxButton.OK, MessageBoxImage.Error);
         }
 
         private void Buy(object parameter)
@@ -236,7 +250,7 @@ namespace Client.ViewModel
                 client.BuyDiginotes(quantity);
             }
             else
-                System.Windows.MessageBox.Show("Provide a quantity greater than zero!", "Zero quantity", MessageBoxButton.OK, MessageBoxImage.Error);
+                System.Windows.MessageBox.Show(Parent, "Provide a quantity greater than zero!", "Zero quantity", MessageBoxButton.OK, MessageBoxImage.Error);
         }
 
         private void View(object parameter)
@@ -257,5 +271,7 @@ namespace Client.ViewModel
         {
             client.Logout();
         }
+
+        public Window Parent { get; set; }
     }
 }

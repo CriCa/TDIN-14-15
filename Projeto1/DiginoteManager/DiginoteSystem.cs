@@ -58,7 +58,7 @@ public class DiginoteTradingSystem : MarshalByRefObject, IDiginoteTradingSystem
         {
             Log("Quotation value went up to: " + value);
 
-            SafeInvoke(new ChangeArgs(ChangeType.QuotationUp, value));
+            SafeInvoke(new ChangeArgs(ChangeType.QuotationUp, value, user.Username));
 
             foreach (Order order in buyOrders)
                 if (order.User.Username != user.Username)
@@ -68,7 +68,7 @@ public class DiginoteTradingSystem : MarshalByRefObject, IDiginoteTradingSystem
         {
             Log("Quotation value went down to: " + value);
 
-            SafeInvoke(new ChangeArgs(ChangeType.QuotationDown, value));
+            SafeInvoke(new ChangeArgs(ChangeType.QuotationDown, value, user.Username));
 
             foreach (Order order in sellOrders)
                 if (order.User.Username != user.Username)
@@ -125,7 +125,7 @@ public class DiginoteTradingSystem : MarshalByRefObject, IDiginoteTradingSystem
 
     private void RemoveOrder(User user)
     {
-        throw new NotImplementedException();
+        //throw new NotImplementedException();
     }
 
     public Order AddBuyOrder(User user, int quantity, OrderType orderType)
@@ -142,6 +142,7 @@ public class DiginoteTradingSystem : MarshalByRefObject, IDiginoteTradingSystem
     public Order AddSellOrder(User user, int quantity, OrderType orderType)
     {
         Order newOrder = new Order(orderType, quantity, user);
+        newOrder.State = OrderState.Pending;
         
         Log("Added sell order from user " + newOrder.User.Username + " of " + newOrder.Quantity + " Diginotes");
         

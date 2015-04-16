@@ -59,8 +59,25 @@ namespace Client.Model
             {
                 if (args.Type == ChangeType.QuotationUp || args.Type == ChangeType.QuotationDown)
                 {
-                    Quotation = args.QuotationValue;
-                    NotificationMessenger.sendNotification(this, new NotificationType(NotifType.QUOTATION, null), "");
+                    App.Current.Dispatcher.Invoke((System.Action)(() =>
+                    {
+                        Quotation = args.QuotationValue;
+                        NotificationMessenger.sendNotification(this, new NotificationType(NotifType.QUOTATION, null), "");
+
+                        if (Orders.Count > 0 && Orders[Orders.Count - 1].State == OrderState.Pending)
+                        {
+                            if (args.User2 != user.Username &&
+                                ((args.Type == ChangeType.QuotationUp && Orders[Orders.Count - 1].Type == OrderType.Buy)
+                                || (args.Type == ChangeType.QuotationDown && Orders[Orders.Count - 1].Type == OrderType.Sell)))
+                            {
+                                Order lastOrder = Orders[Orders.Count - 1];
+                                Orders.Remove(lastOrder);
+                                lastOrder.State = OrderState.WaitApproval;
+                                Orders.Add(lastOrder);
+                                NotificationMessenger.sendNotification(this, new NotificationType(NotifType.MANTAINORDER, null), "");
+                            }
+                        }
+                    }));
                 }
                 else if (args.Type == ChangeType.Transaction)
                 {
@@ -218,6 +235,27 @@ namespace Client.Model
             {
                 Orders.Add(diginoteSystem.AddSellOrder(user, quantity, OrderType.Buy));
                 NotificationMessenger.sendNotification(this, new NotificationType(NotifType.NEWORDER, null), "");
+            }
+            catch
+            {
+                NotificationMessenger.sendNotification(this, new NotificationType(NotifType.NOSERVER, null), "");
+            }
+        }
+
+        public void ChangeQuotationApproval(bool approve)
+        {
+            try
+            {
+                Order lastOrder = Orders[Orders.Count - 1];
+
+                diginoteSystem.ReceiveApproval(user, approve, lastOrder.Type);
+
+                if (!approve)
+                { // shoudln't be done here to have the server date
+                    Orders.Remove(lastOrder);
+                    lastOrder.State = OrderState.Over;
+                    Orders.Add(lastOrder);
+                }
             }
             catch
             {

@@ -82,16 +82,16 @@ namespace Client.ViewModel
             string password = pBox.Password;
 
             if (Username.Length == 0 || password.Length == 0)
-                MessageBox.Show("Provide username and password in order to login!", "Missing fields", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(Application.Current.MainWindow, "Provide username and password in order to login!", "Missing fields", MessageBoxButton.OK, MessageBoxImage.Error);
             else if (client.Login(Username, Encrypt(password)))
                 NotificationMessenger.sendNotification(this, new NotificationType(NotifType.LOGIN, null), "DEFAULT");
             else
             {
                 if (!noserver)
-                    MessageBox.Show("Wrong user/password information. Please try again!", "Wrong login", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show(Application.Current.MainWindow, "Wrong user/password information. Please try again!", "Wrong login", MessageBoxButton.OK, MessageBoxImage.Error);
                 else
                 {
-                    MessageBox.Show("Can't reach server! Exiting Application!", "No server", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                    MessageBox.Show(Application.Current.MainWindow, "Can't reach server! Exiting Application!", "No server", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                     Environment.Exit(-1);
                 }
             }
@@ -106,20 +106,20 @@ namespace Client.ViewModel
             string passwordConfirm = ((PasswordBox)param.Item2).Password;
 
             if (UsernameRegister == "" || NameRegister == "" || password == "" || passwordConfirm == "")
-                MessageBox.Show("Please provide all fields in order to register!", "Missing fields", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(Application.Current.MainWindow, "Please provide all fields in order to register!", "Missing fields", MessageBoxButton.OK, MessageBoxImage.Error);
             else if (UsernameRegister.Length < 3)
-                MessageBox.Show("Your username must at least 3 characters!", "Bad username", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(Application.Current.MainWindow, "Your username must at least 3 characters!", "Bad username", MessageBoxButton.OK, MessageBoxImage.Error);
             else if (password != passwordConfirm)
-                MessageBox.Show("Passwords don't match! Please make to confirm your password!", "Wrong passwords", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(Application.Current.MainWindow, "Passwords don't match! Please make to confirm your password!", "Wrong passwords", MessageBoxButton.OK, MessageBoxImage.Error);
             else if (client.Register(NameRegister, UsernameRegister, Encrypt(password)))
                 NotificationMessenger.sendNotification(this, new NotificationType(NotifType.LOGIN, null), "DEFAULT");
             else
             {
                 if (!noserver)
-                    MessageBox.Show("Username already taken! Please choose another username!", "Username taken", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show(Application.Current.MainWindow, "Username already taken! Please choose another username!", "Username taken", MessageBoxButton.OK, MessageBoxImage.Error);
                 else
                 {
-                    MessageBox.Show("Can't reach server! Exiting Application!", "No server", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                    MessageBox.Show(Application.Current.MainWindow, "Can't reach server! Exiting Application!", "No server", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                     Environment.Exit(-1);
                 }
             }

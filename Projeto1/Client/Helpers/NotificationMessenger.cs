@@ -21,7 +21,8 @@ namespace Client.Helpers
         QUERYNEWQUOTATION,
         DIGINOTES,
         SETNEWQUOTATION,
-        NEWORDER
+        NEWORDER,
+        MANTAINORDER
     };
 
     public class NotificationType
