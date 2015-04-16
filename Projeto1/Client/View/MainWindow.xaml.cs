@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using GalaSoft.MvvmLight.Messaging;
 using Client.Helpers;
+using Client.ViewModel;
 
 namespace Client.View
 {
@@ -24,6 +25,8 @@ namespace Client.View
         public MainWindow()
         {
             InitializeComponent();
+
+            ((MainViewModel)DataContext).Parent = this;
 
             Messenger.Default.Register<NotificationMessage<NotificationType>>(this, NotificationMessageHandler);
         }
@@ -48,6 +51,13 @@ namespace Client.View
 
                 if (dialog.ShowDialog() == true)
                     NotificationMessenger.sendNotification(this, new NotificationType(NotifType.SETNEWQUOTATION, null), dialog.NewQuotation.ToString());
+            }
+            else if (msg.Content.Type == NotifType.MANTAINORDER)
+            {
+                    if (new ApproveChangeDialog(this, 5d).ShowDialog() == true)
+                        NotificationMessenger.sendNotification(this, new NotificationType(NotifType.APPROVECHANGE, null), "Approve");
+                    else
+                        NotificationMessenger.sendNotification(this, new NotificationType(NotifType.APPROVECHANGE, null), "Disapprove");
             }
         }
     }

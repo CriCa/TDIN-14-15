@@ -6,16 +6,22 @@
 public class Diginote 
 {
     static int nextSerial = 0;
+
+    public static int NextSerial
+    {
+        get { return nextSerial; }
+        set { nextSerial = value; }
+    }
+
     private User user;
 
     public Diginote(User user)
     {
-        this.user = user;
+        Owner = user;
         Id = nextSerial++;
         Value = 1.0;
     }
 
-  
     public int Id { get; set; }
 
     public User Owner
@@ -33,12 +39,5 @@ public class Diginote
 
     public double Value { get; set; }
 
-    public static int NextSerial
-    {
-        get { return nextSerial; }
-        set { nextSerial = value; }
-    }
-
     public string LastAquiredOn { get; set; }
-
 }

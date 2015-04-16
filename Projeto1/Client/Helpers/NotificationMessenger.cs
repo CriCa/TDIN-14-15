@@ -20,7 +20,11 @@ namespace Client.Helpers
         QUOTATION,
         QUERYNEWQUOTATION,
         DIGINOTES,
-        SETNEWQUOTATION
+        SETNEWQUOTATION,
+        NEWORDER,
+        MANTAINORDER,
+        APPROVECHANGE,
+        SYSTEMINFO
     };
 
     public class NotificationType
