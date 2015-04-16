@@ -106,6 +106,9 @@
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\RelayCommand.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
+    <Compile Include="View\ApproveChangeDialog.xaml.cs">
+      <DependentUpon>ApproveChangeDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\ChangeQuotationDialog.xaml.cs">
       <DependentUpon>ChangeQuotationDialog.xaml</DependentUpon>
     </Compile>
@@ -128,6 +131,10 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="View\ApproveChangeDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\ChangeQuotationDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

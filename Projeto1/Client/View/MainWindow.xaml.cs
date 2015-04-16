@@ -52,6 +52,14 @@ namespace Client.View
                 if (dialog.ShowDialog() == true)
                     NotificationMessenger.sendNotification(this, new NotificationType(NotifType.SETNEWQUOTATION, null), dialog.NewQuotation.ToString());
             }
+            else if (msg.Content.Type == NotifType.MANTAINORDER)
+            {
+                    if (new ApproveChangeDialog(this, 5d).ShowDialog() == true)
+                        NotificationMessenger.sendNotification(this, new NotificationType(NotifType.APPROVECHANGE, null), "Approve");
+                    else {
+                        NotificationMessenger.sendNotification(this, new NotificationType(NotifType.APPROVECHANGE, null), "Disapprove");
+                    }
+            }
         }
     }
 }

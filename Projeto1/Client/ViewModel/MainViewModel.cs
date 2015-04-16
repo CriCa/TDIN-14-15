@@ -194,18 +194,15 @@ namespace Client.ViewModel
                     }
                 }
             }
-            else if (msg.Content.Type == NotifType.MANTAINORDER)
+            else if (msg.Content.Type == NotifType.APPROVECHANGE)
             {
-                App.Current.Dispatcher.Invoke((System.Action)(() =>
-                {
-                    if (System.Windows.MessageBox.Show(Parent, "The quotation changed! Do you want to keep your order?", "Quotation changed", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
-                        client.ChangeQuotationApproval(true);
-                    else {
-                        client.ChangeQuotationApproval(false);
-                        CanSell = CanBuy = true;
-                        CanRise = CanLower = false;
-                    }
-                }));
+                if (msg.Notification == "Approve")
+                    client.ChangeQuotationApproval(true);
+                else {
+                    client.ChangeQuotationApproval(false);
+                    CanSell = CanBuy = true;
+                    CanRise = CanLower = false;
+                }
             }
         }
 

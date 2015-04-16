@@ -256,6 +256,12 @@ namespace Client.Model
                     lastOrder.State = OrderState.Over;
                     Orders.Add(lastOrder);
                 }
+                else
+                {
+                    Orders.Remove(lastOrder);
+                    lastOrder.State = OrderState.Pending;
+                    Orders.Add(lastOrder);
+                }
             }
             catch
             {
