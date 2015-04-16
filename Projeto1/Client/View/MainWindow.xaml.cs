@@ -56,9 +56,8 @@ namespace Client.View
             {
                     if (new ApproveChangeDialog(this, 5d).ShowDialog() == true)
                         NotificationMessenger.sendNotification(this, new NotificationType(NotifType.APPROVECHANGE, null), "Approve");
-                    else {
+                    else
                         NotificationMessenger.sendNotification(this, new NotificationType(NotifType.APPROVECHANGE, null), "Disapprove");
-                    }
             }
         }
     }

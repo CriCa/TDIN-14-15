@@ -14,7 +14,7 @@ public class DiginoteTradingSystem : MarshalByRefObject, IDiginoteTradingSystem
     // when quotation changes
 
     private List<User> usersList; // users
-    private List<User> loggedUsers; // à partida não é necessário
+    private List<User> loggedUsers; // users logged in
 
     private double quotation; // current quotation of diginotes
 
@@ -42,8 +42,10 @@ public class DiginoteTradingSystem : MarshalByRefObject, IDiginoteTradingSystem
         // create order lists
         buyOrders = new List<Order>();
         sellOrders = new List<Order>();
+
         usersList = new List<User>();
         loggedUsers = new List<User>();
+
         diginoteDB = new List<Diginote>();
 
         // create logger
@@ -258,7 +260,8 @@ public class DiginoteTradingSystem : MarshalByRefObject, IDiginoteTradingSystem
 
     private bool checkLogin(string username, string password)
     {
-        return usersList.Exists(user => user.Username == username && user.Password == password);
+        return usersList.Exists(user => user.Username == username && user.Password == password) 
+            && !loggedUsers.Exists(loggedUser => loggedUser.Username == username);
     }
 
     public Pair<bool, User> Login(string username, string password) // return is equivalent to pair
@@ -272,6 +275,7 @@ public class DiginoteTradingSystem : MarshalByRefObject, IDiginoteTradingSystem
         User user = usersList.Find(tUser => tUser.Username == username);
 
         loggedUsers.Add(user);
+
         Log("User logged in: " + user.Username);
 
         return new Pair<bool, User>(true, user);
@@ -291,6 +295,22 @@ public class DiginoteTradingSystem : MarshalByRefObject, IDiginoteTradingSystem
             .ForEach(digInf => digs.Add(new DiginoteInfo(digInf.Id, digInf.Value, digInf.LastAquiredOn)));
 
         return digs;
+    }
+
+    public double GetDigtime()
+    {
+        return diginoteDB.Count * 2;
+    }
+
+    public DiginoteInfo DigDiginote(User user)
+    {
+        Diginote dig = new Diginote(user);
+
+        diginoteDB.Add(dig);
+
+        saveState();
+
+        return new DiginoteInfo(dig.Id, dig.Value, dig.LastAquiredOn);
     }
 
     // this function must be called to when something occurs
@@ -342,7 +362,6 @@ public class DiginoteTradingSystem : MarshalByRefObject, IDiginoteTradingSystem
         }
         catch (Exception e)
         {
-
             Log("Error loading state");
             Log(e.Message);
         }

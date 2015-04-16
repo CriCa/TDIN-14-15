@@ -24,4 +24,8 @@ public interface IDiginoteTradingSystem
     void Logout(User user);
 
     List<DiginoteInfo> DiginotesFromUser(User user);
+
+    double GetDigtime();
+
+    DiginoteInfo DigDiginote(User user);
 }

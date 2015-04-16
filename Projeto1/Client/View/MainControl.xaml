@@ -49,12 +49,27 @@
             </ListView.ItemTemplate>
         </ListView>
 
-        <TextBlock HorizontalAlignment="Left" Margin="10,294,0,0" TextWrapping="Wrap" Text="Diginotes in System:" VerticalAlignment="Top" Foreground="White"/>
-        <TextBlock HorizontalAlignment="Left" Margin="122,294,0,0" TextWrapping="Wrap" Text="2" VerticalAlignment="Top" Foreground="White"/>
-        <TextBlock HorizontalAlignment="Left" Margin="10,315,0,0" TextWrapping="Wrap" Text="Diginotes offer:" VerticalAlignment="Top" Foreground="White"/>
-        <TextBlock HorizontalAlignment="Left" Margin="96,315,0,0" TextWrapping="Wrap" Text="1" VerticalAlignment="Top" Foreground="White"/>
-        <TextBlock HorizontalAlignment="Left" Margin="10,336,0,0" TextWrapping="Wrap" Text="Diginotes demand:" VerticalAlignment="Top" Foreground="White"/>
-        <TextBlock HorizontalAlignment="Left" Margin="115,336,0,0" TextWrapping="Wrap" Text="1" VerticalAlignment="Top" Foreground="White"/>
+        <StackPanel Margin="10,273,608,211" Orientation="Horizontal">
+            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Users in System: " VerticalAlignment="Top" Foreground="White"/>
+            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="20" VerticalAlignment="Top" Foreground="White"/>
+            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text=" (" VerticalAlignment="Top" Foreground="White"/>
+            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="2" VerticalAlignment="Top" Foreground="White"/>
+            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text=" Online)" VerticalAlignment="Top" Foreground="White"/>
+        </StackPanel>
+        <StackPanel Margin="10,294,608,190" Orientation="Horizontal">
+            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Diginotes in System: " VerticalAlignment="Top" Foreground="White"/>
+            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="15" VerticalAlignment="Top" Foreground="White"/>
+        </StackPanel>
+        <StackPanel Margin="10,315,608,169" Orientation="Horizontal">
+            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Diginotes offer: " VerticalAlignment="Top" Foreground="White"/>
+            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="25" VerticalAlignment="Top" Foreground="White"/>
+        </StackPanel>
+        <StackPanel Margin="10,336,608,148" Orientation="Horizontal">
+            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Diginotes demand: " VerticalAlignment="Top" Foreground="White"/>
+            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="1" VerticalAlignment="Top" Foreground="White"/>
+        </StackPanel>
+
+
 
         <TextBlock HorizontalAlignment="Left" Margin="213,13,0,0" TextWrapping="Wrap" Text="New orders" VerticalAlignment="Top" Foreground="#FF1085BB" FontWeight="Bold"/>
 
@@ -123,8 +138,10 @@
             </TabItem>
         </TabControl>
 
-        <Button Content="Dig! Test!" Command="{Binding DigCommand}" HorizontalAlignment="Left" Margin="10,397,0,0" VerticalAlignment="Top" Width="75"/>
-        
+        <TextBlock HorizontalAlignment="Left" Margin="10,374,0,0" TextWrapping="Wrap" Text="Dig Diginotes" VerticalAlignment="Top" Foreground="White" FontWeight="Bold"/>
+        <Button Content="{Binding DigButtonText, UpdateSourceTrigger=PropertyChanged}" Command="{Binding DigCommand}" HorizontalAlignment="Left" Margin="10,395,0,0" VerticalAlignment="Top" Width="45" Foreground="#FF0B637E" Height="20"/>
+        <ProgressBar Value="{Binding DigStep, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="20" Margin="60,395,0,0" VerticalAlignment="Top" Width="132" Maximum="1"/>
+
 
     </Grid>
 </UserControl>

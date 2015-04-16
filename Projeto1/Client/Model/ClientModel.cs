@@ -26,6 +26,8 @@ namespace Client.Model
 
         public ObservableCollection<Order> Orders { get; set; }
 
+        public double DigTime { get; set; }
+
         // constructor
         public ClientModel()
         {
@@ -204,11 +206,27 @@ namespace Client.Model
             }
         }
 
-        public void Dig()
+        public void GetDigSeed()
         {
             try
             {
+                DigTime = diginoteSystem.GetDigtime();
+            }
+            catch
+            {
+                NotificationMessenger.sendNotification(this, new NotificationType(NotifType.NOSERVER, null), "");
+            }
+        }
 
+        public void GetDiginoteDigged()
+        {
+            try
+            {
+                Diginotes.Add(diginoteSystem.DigDiginote(user));
+
+                NotificationMessenger.sendNotification(this, new NotificationType(NotifType.DIGINOTES, null), "");
+
+                DigTime = diginoteSystem.GetDigtime();
             }
             catch
             {

@@ -88,7 +88,7 @@ namespace Client.ViewModel
             else
             {
                 if (!noserver)
-                    MessageBox.Show(Application.Current.MainWindow, "Wrong user/password information. Please try again!", "Wrong login", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show(Application.Current.MainWindow, "Wrong user/password information or already logged in.\nPlease try again!", "Wrong login", MessageBoxButton.OK, MessageBoxImage.Error);
                 else
                 {
                     MessageBox.Show(Application.Current.MainWindow, "Can't reach server! Exiting Application!", "No server", MessageBoxButton.OK, MessageBoxImage.Exclamation);

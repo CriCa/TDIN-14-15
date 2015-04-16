@@ -16,15 +16,20 @@ namespace Client.ViewModel
 {
     class MainViewModel : BaseViewModel
     {
-        private string username = "";
-        private double quotation;
-        private int diginotesNumber;
         private ObservableCollection<DiginoteInfo> diginotes;
+
         private ObservableCollection<Order> orders;
+
         private bool canSell;
         private bool canBuy;
+
         private bool canLower;
         private bool canRise;
+
+        private bool digging;
+        private double digStep;
+        private int digTime;
+        private DispatcherTimer timer;
 
         public ICommand LogoutCommand { get { return new RelayCommand(Logout); } }
 
@@ -40,96 +45,13 @@ namespace Client.ViewModel
 
         public ICommand CloseCommand { get { return new RelayCommand(Close); } }
 
-        public string Username
-        {
-            get
-            {
-                return username;
-            }
-            set
-            {
-                username = value;
-                RaisePropertyChangedEvent("Username");
-            }
-        }
+        public string Username { get { return client.user.Name; } }
 
-        public double Quotation
-        {
-            get
-            {
-                return quotation;
-            }
-            set
-            {
-                quotation = value;
-                RaisePropertyChangedEvent("Quotation");
-            }
-        }
+        public double Quotation { get { return client.Quotation; } }
 
-        public int DiginotesNumber
-        {
-            get
-            {
-                return diginotesNumber;
-            }
-            set
-            {
-                diginotesNumber = value;
-                RaisePropertyChangedEvent("DiginotesNumber");
-            }
-        }
+        public double DiginotesNumber { get { return client.Diginotes.Count; } }
 
-        public bool CanSell
-        {
-            get
-            {
-                return canSell;
-            }
-            set
-            {
-                canSell = value;
-                RaisePropertyChangedEvent("CanSell");
-            }
-        }
-
-        public bool CanBuy
-        {
-            get
-            {
-                return canBuy;
-            }
-            set
-            {
-                canBuy = value;
-                RaisePropertyChangedEvent("CanBuy");
-            }
-        }
-
-        public bool CanLower
-        {
-            get
-            {
-                return canLower;
-            }
-            set
-            {
-                canLower = value;
-                RaisePropertyChangedEvent("CanLower");
-            }
-        }
-
-        public bool CanRise
-        {
-            get
-            {
-                return canRise;
-            }
-            set
-            {
-                canRise = value;
-                RaisePropertyChangedEvent("CanRise");
-            }
-        }
+        public string DigButtonText { get { if (digging) return "Stop"; else return "Start"; } }
 
         public ObservableCollection<Order> Orders { get { return orders; } }
 
@@ -139,17 +61,48 @@ namespace Client.ViewModel
 
         public ObservableCollection<DataPoint> Transactions { get; private set; }
 
+        public bool CanSell
+        {
+            get { return canSell; }
+            set { canSell = value; RaisePropertyChangedEvent("CanSell"); }
+        }
+
+        public bool CanBuy
+        {
+            get { return canBuy; }
+            set { canBuy = value; RaisePropertyChangedEvent("CanBuy"); }
+        }
+
+        public bool CanLower
+        {
+            get { return canLower; }
+            set { canLower = value; RaisePropertyChangedEvent("CanLower"); }
+        }
+
+        public bool CanRise
+        {
+            get { return canRise; }
+            set { canRise = value; RaisePropertyChangedEvent("CanRise"); }
+        }
+
+        public double DigStep
+        {
+            get { return digStep; }
+            set { digStep = value; RaisePropertyChangedEvent("DigStep"); }
+        }
+
         public MainViewModel()
         {
-            Username = client.user.Name;
-            Quotation = client.Quotation;
             diginotes = client.Diginotes;
-            DiginotesNumber = client.DiginotesNumber;
             orders = client.Orders;
+
             CanSell = CanBuy = true;
             CanLower = CanRise = false;
+
             QuotationEvolution = new ObservableCollection<DataPoint>();
             Transactions = new ObservableCollection<DataPoint>();
+
+            digging = false;
 
             Messenger.Default.Register<NotificationMessage<NotificationType>>(this, NotificationMessageHandler);
         }
@@ -164,11 +117,11 @@ namespace Client.ViewModel
             else if (msg.Content.Type == NotifType.LOGOUT)
                 Messenger.Default.Unregister<NotificationMessage<NotificationType>>(this);
             else if (msg.Content.Type == NotifType.QUOTATION)
-                Quotation = client.Quotation;
+                RaisePropertyChangedEvent("Quotation");
             else if (msg.Content.Type == NotifType.DIGINOTES)
             {
-                DiginotesNumber = client.DiginotesNumber;
                 diginotes = client.Diginotes;
+                RaisePropertyChangedEvent("DiginotesNumber");
             }
             else if (msg.Content.Type == NotifType.SETNEWQUOTATION)
                 client.SetNewQuotation(Double.Parse((string)msg.Notification));
@@ -214,12 +167,58 @@ namespace Client.ViewModel
 
         private void Dig(object parameter)
         {
+            if (digging)
+                StopDigging();
+            else
+                StartDigging();
+            
+            RaisePropertyChangedEvent("DigButtonText");
+
+            // tests
             client.SetNewQuotation(2.3);
             client.Orders.Add(new Order(OrderType.Buy, 2, client.user));
             client.Diginotes.Add(new DiginoteInfo(6, 2.0, DateTime.Now.ToString()));
             QuotationEvolution.Add(new DataPoint(DateTimeAxis.ToDouble(DateTime.Now), 1.1));
             Transactions.Add(new DataPoint(new Random().NextDouble() * 2.0, (int)(new Random().NextDouble() * 10)));
             Console.WriteLine("Dig");
+        }
+
+        private void StartDigging()
+        {
+            if (timer == null)
+            {
+                client.GetDigSeed();
+                timer = new DispatcherTimer();
+                DigStep = 0;
+                digTime = 0;
+            }
+
+            timer.Interval = TimeSpan.FromSeconds(1d);
+            timer.Tick += DigTick;
+            timer.Start();
+
+            digging = true;
+        }
+
+        private void StopDigging()
+        {
+            timer.Tick -= DigTick;
+            timer.Stop();
+
+            digging = false;
+        }
+
+        private void DigTick(object sender, EventArgs e)
+        {
+            digTime++;
+
+            DigStep = (double)digTime / client.DigTime;
+
+            if (DigStep >= 1.0) {
+                client.GetDiginoteDigged();
+                DigStep = 0;
+                digTime = 0;
+            }
         }
 
         private void Sell(object parameter)
