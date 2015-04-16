@@ -2,7 +2,7 @@
 
 public enum OrderType { Buy, Sell }; // orders types
 
-public enum OrderState { Active, Pending, Over, WaitApproval };
+public enum OrderState { Pending, Over, WaitApproval };
 
 [Serializable]
 public class Order
@@ -10,6 +10,8 @@ public class Order
     public OrderType Type { get; set; } // order type
 
     public int Quantity { get; set; } // quantity of diginotes to trade
+
+    public int InitialQuantity { get; set; } // initial quantity saved for history
 
     public User User { get; set; } // user that created the order
 
@@ -30,7 +32,8 @@ public class Order
     {
         Type = t;
         Quantity = q;
+        InitialQuantity = q;
         User = u;
-        State = OrderState.Active;
+        State = OrderState.Pending;
     }
 }
