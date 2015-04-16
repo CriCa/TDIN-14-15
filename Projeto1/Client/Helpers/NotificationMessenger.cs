@@ -23,7 +23,8 @@ namespace Client.Helpers
         SETNEWQUOTATION,
         NEWORDER,
         MANTAINORDER,
-        APPROVECHANGE
+        APPROVECHANGE,
+        SYSTEMINFO
     };
 
     public class NotificationType

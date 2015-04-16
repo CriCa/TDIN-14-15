@@ -28,6 +28,16 @@ namespace Client.Model
 
         public double DigTime { get; set; }
 
+        public int NumUsers { get; set; }
+
+        public int NumLoggedUsers { get; set; }
+
+        public int NumSysDiginotes { get; set; }
+
+        public int DiginotesOffer { get; set; }
+
+        public int DiginotesDemand { get; set; }
+
         // constructor
         public ClientModel()
         {
@@ -85,6 +95,23 @@ namespace Client.Model
                 {
 
                 }
+                else if (args.Type == ChangeType.Login)
+                {
+                    NumUsers = args.NumUsers;
+                    NumLoggedUsers = args.NumLoggedUsers;
+                    NumSysDiginotes = args.NumSysDiginotes;
+                    NotificationMessenger.sendNotification(this, new NotificationType(NotifType.SYSTEMINFO, null), "");
+                }
+                else if (args.Type == ChangeType.Logout)
+                {
+                    NumLoggedUsers = args.NumLoggedUsers;
+                    NotificationMessenger.sendNotification(this, new NotificationType(NotifType.SYSTEMINFO, null), "");
+                }
+                else if (args.Type == ChangeType.SysDiginotes)
+                {
+                    NumSysDiginotes = args.NumSysDiginotes;
+                    NotificationMessenger.sendNotification(this, new NotificationType(NotifType.SYSTEMINFO, null), "");
+                }
             }
         }
 
@@ -107,6 +134,9 @@ namespace Client.Model
 
                     // get orders
                     GetOrders();
+
+                    // get info
+                    GetInfo();
 
                     // subscribe changes
                     evRepeater.ChangeEvent += ChangeHandler;
@@ -193,6 +223,25 @@ namespace Client.Model
             }
         }
 
+        public void GetInfo()
+        {
+            try
+            {
+                Tuple<int, int, int, int, int> info = diginoteSystem.GetSystemInfo();
+
+                NumUsers = info.Item1;
+                NumLoggedUsers = info.Item2;
+                NumSysDiginotes = info.Item3;
+                DiginotesOffer = info.Item4;
+                DiginotesDemand = info.Item5;
+
+                NotificationMessenger.sendNotification(this, new NotificationType(NotifType.SYSTEMINFO, null), "");
+            }
+            catch
+            {
+                NotificationMessenger.sendNotification(this, new NotificationType(NotifType.NOSERVER, null), "");
+            }
+        }
 
         public void SetNewQuotation(double value)
         {

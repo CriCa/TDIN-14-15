@@ -2,7 +2,7 @@
 
 public enum OrderType { Buy, Sell }; // orders types
 
-public enum OrderState { Pending, Over, WaitApproval };
+public enum OrderState { Pending, WaitApproval, Over, Removed };
 
 [Serializable]
 public class Order
@@ -33,7 +33,7 @@ public class Order
         set
         {
             state = value;
-            if (state == OrderState.Over)
+            if (state == OrderState.Over || state == OrderState.Removed)
                 FinishedOn = DateTime.Now.ToString();
         }
     }
@@ -70,8 +70,7 @@ public class Order
     public Order(OrderType t, int q, User u)
     {
         Type = t;
-        Quantity = q;
-        InitialQuantity = q;
+        Quantity = InitialQuantity = q;
         User = u;
         State = OrderState.Pending;
         CreatedOn = DateTime.Now.ToString();

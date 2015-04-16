@@ -11,6 +11,8 @@ public interface IDiginoteTradingSystem
 
     void SuggestNewQuotation(User user, double value);
 
+    Tuple<int, int, int, int, int> GetSystemInfo();
+
     void ReceiveApproval(User user, bool appr, OrderType orderType);
 
     Order AddBuyOrder(User user, int quantity, OrderType orderType); // add a buy order

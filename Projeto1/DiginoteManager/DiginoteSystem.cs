@@ -86,6 +86,27 @@ public class DiginoteTradingSystem : MarshalByRefObject, IDiginoteTradingSystem
         saveState();
     }
 
+    public Tuple<int, int, int, int, int> GetSystemInfo()
+    {
+        return new Tuple<int, int, int, int, int>(usersList.Count, loggedUsers.Count, diginoteDB.Count, CountDiginotesOffer(), CountDiginotesDemmand());
+    }
+
+    private int CountDiginotesDemmand()
+    {
+        int result = 0;
+        foreach(Order order in buyOrders)
+            result += order.Quantity;
+        return result;
+    }
+
+    private int CountDiginotesOffer()
+    {
+        int result = 0;
+        foreach(Order order in sellOrders)
+            result += order.Quantity;
+        return result;
+    }
+
     public void ReceiveApproval(User user, bool appr, OrderType orderType)
     {
         if (!appr)
@@ -278,6 +299,8 @@ public class DiginoteTradingSystem : MarshalByRefObject, IDiginoteTradingSystem
 
         Log("User logged in: " + user.Username);
 
+        SafeInvoke(new ChangeArgs(usersList.Count, loggedUsers.Count, diginoteDB.Count));
+
         return new Pair<bool, User>(true, user);
     }
 
@@ -285,6 +308,8 @@ public class DiginoteTradingSystem : MarshalByRefObject, IDiginoteTradingSystem
     {
         loggedUsers.Remove(loggedUsers.Find(user => user.Username == loguser.Username));
         Log("User logged out: " + loguser.Username);
+
+        SafeInvoke(new ChangeArgs(ChangeType.Logout, loggedUsers.Count));
     }
 
     public List<DiginoteInfo> DiginotesFromUser(User user)
@@ -310,6 +335,8 @@ public class DiginoteTradingSystem : MarshalByRefObject, IDiginoteTradingSystem
 
         saveState();
 
+        SafeInvoke(new ChangeArgs(ChangeType.SysDiginotes, diginoteDB.Count));
+        
         return new DiginoteInfo(dig.Id, dig.Value, dig.LastAquiredOn);
     }
 

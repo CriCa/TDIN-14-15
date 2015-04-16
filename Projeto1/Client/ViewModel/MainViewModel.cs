@@ -26,6 +26,8 @@ namespace Client.ViewModel
         private bool canLower;
         private bool canRise;
 
+        private bool canRemove;
+
         private bool digging;
         private double digStep;
         private int digTime;
@@ -45,6 +47,8 @@ namespace Client.ViewModel
 
         public ICommand CloseCommand { get { return new RelayCommand(Close); } }
 
+        public ICommand RemoveCommand { get { return new RelayCommand(RemoveOrder); } }
+
         public string Username { get { return client.user.Name; } }
 
         public double Quotation { get { return client.Quotation; } }
@@ -52,6 +56,16 @@ namespace Client.ViewModel
         public double DiginotesNumber { get { return client.Diginotes.Count; } }
 
         public string DigButtonText { get { if (digging) return "Stop"; else return "Start"; } }
+
+        public int NumUsers { get { return client.NumUsers; } }
+
+        public int NumLoggedUsers { get { return client.NumLoggedUsers; } }
+
+        public int NumSysDiginotes { get { return client.NumSysDiginotes; } }
+
+        public int DiginotesOffer { get { return client.DiginotesOffer; } }
+
+        public int DiginotesDemand { get { return client.DiginotesDemand; } }
 
         public ObservableCollection<Order> Orders { get { return orders; } }
 
@@ -85,6 +99,12 @@ namespace Client.ViewModel
             set { canRise = value; RaisePropertyChangedEvent("CanRise"); }
         }
 
+        public bool CanRemove
+        {
+            get { return canRemove; }
+            set { canRemove = value; RaisePropertyChangedEvent("CanRemove"); }
+        }
+
         public double DigStep
         {
             get { return digStep; }
@@ -97,7 +117,7 @@ namespace Client.ViewModel
             orders = client.Orders;
 
             CanSell = CanBuy = true;
-            CanLower = CanRise = false;
+            CanLower = CanRise = CanRemove = false;
 
             QuotationEvolution = new ObservableCollection<DataPoint>();
             Transactions = new ObservableCollection<DataPoint>();
@@ -157,6 +177,14 @@ namespace Client.ViewModel
                     CanRise = CanLower = false;
                 }
             }
+            else if (msg.Content.Type == NotifType.SYSTEMINFO)
+            {
+                RaisePropertyChangedEvent("NumUsers");
+                RaisePropertyChangedEvent("NumLoggedUsers");
+                RaisePropertyChangedEvent("NumSysDiginotes");
+                RaisePropertyChangedEvent("DiginotesOffer");
+                RaisePropertyChangedEvent("DiginotesDemand");
+            }
         }
 
         private void Logout(object parameter)
@@ -177,10 +205,8 @@ namespace Client.ViewModel
             // tests
             client.SetNewQuotation(2.3);
             client.Orders.Add(new Order(OrderType.Buy, 2, client.user));
-            client.Diginotes.Add(new DiginoteInfo(6, 2.0, DateTime.Now.ToString()));
-            QuotationEvolution.Add(new DataPoint(DateTimeAxis.ToDouble(DateTime.Now), 1.1));
-            Transactions.Add(new DataPoint(new Random().NextDouble() * 2.0, (int)(new Random().NextDouble() * 10)));
-            Console.WriteLine("Dig");
+            //QuotationEvolution.Add(new DataPoint(DateTimeAxis.ToDouble(DateTime.Now), 1.1));
+            //Transactions.Add(new DataPoint(new Random().NextDouble() * 2.0, (int)(new Random().NextDouble() * 10)));
         }
 
         private void StartDigging()
@@ -228,7 +254,7 @@ namespace Client.ViewModel
 
             if (quantity > 0)
             {
-                CanSell = CanBuy = CanLower = CanRise = false;
+                CanSell = CanBuy = CanLower = CanRise = CanRemove = false;
                 client.SellDiginotes(quantity);
             }
             else
@@ -242,7 +268,7 @@ namespace Client.ViewModel
 
             if (quantity > 0)
             {
-                CanBuy = CanSell = CanLower = CanRise = false;
+                CanBuy = CanSell = CanLower = CanRise = CanRemove = false;
                 client.BuyDiginotes(quantity);
             }
             else
@@ -266,6 +292,11 @@ namespace Client.ViewModel
         private void Close(object parameter)
         {
             client.Logout();
+        }
+
+        private void RemoveOrder(object parameter)
+        {
+            Console.WriteLine("remove order");
         }
 
         public Window Parent { get; set; }
