@@ -114,37 +114,28 @@ public class DiginoteTradingSystem : MarshalByRefObject, IDiginoteTradingSystem
         else
             if (orderType == OrderType.Buy)
             {
-                bool allPending = true;
                 foreach (Order order in buyOrders)
                 {
                     if (order.User == user)
                     {
                         order.State = OrderState.Pending;
+                        handleOrder(order, sellOrders, orderType);
                     }
-                    if (order.State != OrderState.Pending)
-                        allPending = false;
+
                 }
-                //if(allPending) handle them
-
-
             }
             else if (orderType == OrderType.Sell)
             {
-                bool allPending = true;
                 foreach (Order order in sellOrders)
                 {
                     if (order.User == user)
                     {
                         order.State = OrderState.Pending;
+                        handleOrder(order, buyOrders, orderType);
                     }
-                    if (order.State != OrderState.Pending)
-                        allPending = false;
+
                 }
-                //if(allPending) handle them
             }
-
-
-        //        else change order state to pending
 
     }
 
@@ -249,6 +240,7 @@ public class DiginoteTradingSystem : MarshalByRefObject, IDiginoteTradingSystem
 
     private List<DiginoteInfo> makeTransaction(Order from, Order to,int count)
     {
+        int count_aux = count;
         List<DiginoteInfo> diginfo = new List<DiginoteInfo>();
         Log(count+"　diginotes transacted from "+from.User.Username+" to "+to.User.Username+".");
         foreach (Diginote dig in diginoteDB)
@@ -265,7 +257,8 @@ public class DiginoteTradingSystem : MarshalByRefObject, IDiginoteTradingSystem
             if (count == 0)
                 break;
         }
-        from.Quantity -= to.Quantity;
+        from.Quantity -= count_aux;
+        to.Quantity -= count_aux;
         
         return diginfo;
     }
