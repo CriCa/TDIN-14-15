@@ -300,7 +300,7 @@ namespace Client.Model
         {
             try
             {
-                Orders.Add(diginoteSystem.AddSellOrder(user, quantity, OrderType.Buy));
+                Orders.Add(diginoteSystem.AddBuyOrder(user, quantity, OrderType.Buy));
                 NotificationMessenger.sendNotification(this, new NotificationType(NotifType.NEWORDER, null), "");
             }
             catch

@@ -176,7 +176,7 @@ public class DiginoteTradingSystem : MarshalByRefObject, IDiginoteTradingSystem
         Log("Added buy order from user " + newOrder.User.Username + " of " + newOrder.Quantity + " Diginotes");
         
         //If can't handle order put it in the list.
-        if(!handleBuyOrder(newOrder))
+        if(!handleOrder(newOrder,sellOrders,OrderType.Buy))
             buyOrders.Add(newOrder);
         
         return newOrder;
@@ -188,42 +188,57 @@ public class DiginoteTradingSystem : MarshalByRefObject, IDiginoteTradingSystem
         newOrder.State = OrderState.Pending;
         
         Log("Added sell order from user " + newOrder.User.Username + " of " + newOrder.Quantity + " Diginotes");
-        
-        sellOrders.Add(newOrder);
+
+        //If can't handle order put it in the list.
+        if (!handleOrder(newOrder, buyOrders, OrderType.Sell))
+            sellOrders.Add(newOrder);        
         
         return newOrder;
     }
 
-    private bool handleBuyOrder(Order newOrder)
+    private bool handleOrder(Order newOrder, List<Order> orderList, OrderType orderType)
     {
         int count;
-        foreach (Order order in sellOrders)
+        Order from = null, to = null;
+        if (orderType == OrderType.Buy)
+            to = newOrder;
+        else
+            from = newOrder;
+
+        foreach (Order order in orderList)
         {
-            if(order.State == OrderState.Pending)
+            if (orderType == OrderType.Buy)
+                from = order;
+            else
+                to = order;
+
+            if(order.State == OrderState.Pending && from.User.Username != to.User.Username)
                 {
-                    count = newOrder.Quantity;
-                    if (order.Quantity > newOrder.Quantity)
+                    count = to.Quantity;
+                    if (from.Quantity > to.Quantity)
                     {
-                        List<DiginoteInfo> diginfo = makeTransaction(order,newOrder,count);
-                        SafeInvoke(new ChangeArgs(order.User.Username,newOrder.User.Username, diginfo));
+                        List<DiginoteInfo> diginfo = makeTransaction(from,to,count);
+                        SafeInvoke(new ChangeArgs(from.User.Username,to.User.Username, diginfo));
+                        to.State = OrderState.Over;
                         return true;
                     }
-                    else if (order.Quantity == newOrder.Quantity)
+                    else if (from.Quantity == to.Quantity)
                     {
-                        List<DiginoteInfo> diginfo = makeTransaction(order, newOrder, count);
-                        SafeInvoke(new ChangeArgs(order.User.Username, newOrder.User.Username, diginfo));
+                        List<DiginoteInfo> diginfo = makeTransaction(from, to, count);
+                        SafeInvoke(new ChangeArgs(from.User.Username, to.User.Username, diginfo));
                         //ENVIAR ORDER QUANDO REMOVIDA?
-                        sellOrders.Remove(order);
-                        order.State = OrderState.Over;
+                        //sellOrders.Remove(from);
+                        to.State = OrderState.Over;
+                        from.State = OrderState.Over;
                         return true;
                     }
                     else
                     {
-                        count = order.Quantity;
-                        List<DiginoteInfo> diginfo = makeTransaction(order, newOrder, count);
-                        SafeInvoke(new ChangeArgs(order.User.Username, newOrder.User.Username, diginfo));
-                        sellOrders.Remove(order);
-                        order.State = OrderState.Over;
+                        count = from.Quantity;
+                        List<DiginoteInfo> diginfo = makeTransaction(from, to, count);
+                        SafeInvoke(new ChangeArgs(from.User.Username, to.User.Username, diginfo));
+                        //sellOrders.Remove(from);
+                        from.State = OrderState.Over;
                         return true;
                     }
                 }
@@ -238,7 +253,9 @@ public class DiginoteTradingSystem : MarshalByRefObject, IDiginoteTradingSystem
         Log(count+"　diginotes transacted from "+from.User.Username+" to "+to.User.Username+".");
         foreach (Diginote dig in diginoteDB)
         {
-            if (dig.Owner == from.User)
+
+            //if (dig.Owner == from.User)
+            if (dig.Owner.Username == from.User.Username)
             {
                 count--;
                 dig.LastAquiredOn = DateTime.Now.ToString();
