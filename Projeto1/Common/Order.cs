@@ -2,32 +2,28 @@
 
 public enum OrderType { Buy, Sell }; // orders types
 
-public enum OrderState { Pending, WaitApproval, Over, Removed };
+public enum OrderState { Pending, WaitApproval, Over, Removed }; // order states
 
 [Serializable]
-public class Order
+public class Order // class that describes an order
 {
-    private OrderState state;
-
     public OrderType Type { get; set; } // order type
 
-    public string TypeDesc
-    {
-        get
-        {
-            if (Type == OrderType.Buy)
-                return "Buy";
-            else return "Sell";
-        }
-    }
+    int quantity; // // quantity of diginotes to trade
 
-    public int Quantity { get; set; } // quantity of diginotes to trade
+    public int Quantity
+    { 
+        get { return quantity; }
+        set { quantity = value; if (quantity == 0) State = OrderState.Over; } // if quantity reachs 0 then close order
+    } 
 
     public int InitialQuantity { get; set; } // initial quantity saved for history
 
     public User User { get; set; } // user that created the order
 
-    public OrderState State
+    private OrderState state; // order state
+
+    public OrderState State // state of the order
     {
         get { return state; }
         set
@@ -38,11 +34,11 @@ public class Order
         }
     }
 
-    public string CreatedOn { get; set; }
+    public string CreatedOn { get; set; } // creation time
 
-    public string FinishedOn { get; set; }
+    public string FinishedOn { get; set; } // time when the order was closed
 
-    public string Icon
+    public string Icon // icon in client interface
     {
         get
         {
@@ -53,7 +49,17 @@ public class Order
         }
     }
 
-    public string StateDesc
+    public string TypeDesc // type description in client interface
+    {
+        get
+        {
+            if (Type == OrderType.Buy)
+                return "Buy";
+            else return "Sell";
+        }
+    }
+
+    public string StateDesc // state description in client interface
     {
         get
         {
@@ -63,10 +69,23 @@ public class Order
                 return "Over";
             else if (State == OrderState.WaitApproval)
                 return "Wait Approval";
-            else return "Error";
+            else return "Removed";
         }
     }
 
+    public string StateColor // color in client interface
+    {
+        get
+        {
+            if (State == OrderState.Pending || State == OrderState.WaitApproval)
+                return "#1900FF00";
+            else if (State == OrderState.Over)
+                return "#19000000";
+            else return "#19FF0000";
+        }
+    }
+
+    // constructor
     public Order(OrderType t, int q, User u)
     {
         Type = t;

@@ -30,7 +30,7 @@ namespace Client.View
 
         private void NotificationMessageHandler(NotificationMessage<NotificationType> msg)
         {
-            if (msg.Content.Type == NotifType.LOGIN)
+            if (msg.Content.Type == NotifType.Login)
             {
                 // open main window
                 new MainWindow().Show();

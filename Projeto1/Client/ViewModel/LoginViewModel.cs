@@ -55,9 +55,9 @@ namespace Client.ViewModel
 
         private void NotificationMessageHandler(NotificationMessage<NotificationType> msg)
         {
-            if (msg.Content.Type == NotifType.NOSERVER)
+            if (msg.Content.Type == NotifType.NoServer)
                 noserver = true;
-            else if(msg.Content.Type == NotifType.LOGIN)
+            else if(msg.Content.Type == NotifType.Login)
                 Messenger.Default.Unregister<NotificationMessage<NotificationType>>(this);
         }
 
@@ -84,7 +84,7 @@ namespace Client.ViewModel
             if (Username.Length == 0 || password.Length == 0)
                 MessageBox.Show(Application.Current.MainWindow, "Provide username and password in order to login!", "Missing fields", MessageBoxButton.OK, MessageBoxImage.Error);
             else if (client.Login(Username, Encrypt(password)))
-                NotificationMessenger.sendNotification(this, new NotificationType(NotifType.LOGIN, null), "DEFAULT");
+                NotificationMessenger.sendNotification(this, new NotificationType(NotifType.Login, null), "DEFAULT");
             else
             {
                 if (!noserver)
@@ -112,7 +112,7 @@ namespace Client.ViewModel
             else if (password != passwordConfirm)
                 MessageBox.Show(Application.Current.MainWindow, "Passwords don't match! Please make to confirm your password!", "Wrong passwords", MessageBoxButton.OK, MessageBoxImage.Error);
             else if (client.Register(NameRegister, UsernameRegister, Encrypt(password)))
-                NotificationMessenger.sendNotification(this, new NotificationType(NotifType.LOGIN, null), "DEFAULT");
+                NotificationMessenger.sendNotification(this, new NotificationType(NotifType.Login, null), "DEFAULT");
             else
             {
                 if (!noserver)

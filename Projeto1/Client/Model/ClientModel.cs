@@ -6,6 +6,9 @@ using System.Runtime.Remoting;
 using Client.Helpers;
 using System.Collections.ObjectModel;
 using System.Collections.Generic;
+using OxyPlot;
+using OxyPlot.Axes;
+using OxyPlot.Series;
 
 namespace Client.Model
 {
@@ -38,6 +41,10 @@ namespace Client.Model
 
         public int DiginotesDemand { get; set; }
 
+        public ObservableCollection<DataPoint> QuotationEvolution { get; set; }
+
+        public ObservableCollection<DataPoint> TransactionsPerMin { get; set; }
+
         // constructor
         public ClientModel()
         {
@@ -63,6 +70,10 @@ namespace Client.Model
             Diginotes = new ObservableCollection<DiginoteInfo>();
 
             Orders = new ObservableCollection<Order>();
+
+            QuotationEvolution = new ObservableCollection<DataPoint>();
+
+            TransactionsPerMin = new ObservableCollection<DataPoint>();
         }
 
         private void ChangeHandler(ChangeArgs args)
@@ -74,54 +85,102 @@ namespace Client.Model
                     App.Current.Dispatcher.Invoke((System.Action)(() =>
                     {
                         Quotation = args.QuotationValue;
-                        NotificationMessenger.sendNotification(this, new NotificationType(NotifType.QUOTATION, null), "");
+                        NotificationMessenger.sendNotification(this, new NotificationType(NotifType.Quotation, null), "");
 
-                        if (Orders.Count > 0 && Orders[Orders.Count - 1].State == OrderState.Pending)
+                        QuotationEvolution.Add(new DataPoint(DateTimeAxis.ToDouble(args.QuotationStat.first), args.QuotationStat.second));
+
+                        if (Orders.Count > 0 && Orders[0].State == OrderState.Pending)
                         {
                             if (args.User2 != user.Username &&
-                                ((args.Type == ChangeType.QuotationUp && Orders[Orders.Count - 1].Type == OrderType.Buy)
-                                || (args.Type == ChangeType.QuotationDown && Orders[Orders.Count - 1].Type == OrderType.Sell)))
+                                ((args.Type == ChangeType.QuotationUp && Orders[0].Type == OrderType.Buy)
+                                || (args.Type == ChangeType.QuotationDown && Orders[0].Type == OrderType.Sell)))
                             {
-                                Order lastOrder = Orders[Orders.Count - 1];
+                                Order lastOrder = Orders[0];
                                 Orders.Remove(lastOrder);
                                 lastOrder.State = OrderState.WaitApproval;
-                                Orders.Add(lastOrder);
-                                NotificationMessenger.sendNotification(this, new NotificationType(NotifType.MANTAINORDER, null), "");
+                                Orders.Insert(0, lastOrder);
+                                NotificationMessenger.sendNotification(this, new NotificationType(NotifType.AskApprove, null), "");
                             }
                         }
                     }));
                 }
                 else if (args.Type == ChangeType.Transaction)
                 {
-                    GetDiginotes();
-                    NotificationMessenger.sendNotification(this, new NotificationType(NotifType.DIGINOTES, null), "");
-                    GetOrders();
-                   // UpdateOrders();
-                   // GetOrders();
-                    NotificationMessenger.sendNotification(this, new NotificationType(NotifType.ORDERS, null), "");
+                    App.Current.Dispatcher.Invoke((System.Action)(() =>
+                    {
+                        Order lastOrder = Orders[0];
+                        Orders.Remove(lastOrder);
+
+                        if (args.User1 == user.Username)
+                        { // remove
+                            Orders.Insert(0, args.Order1);
+                            List<DiginoteInfo> toRemove = new List<DiginoteInfo>();
+                            foreach (DiginoteInfo dInfo in Diginotes)
+                                if (args.DiginotesTraded.Exists(d => d.Serial == dInfo.Serial))
+                                    toRemove.Add(dInfo);
+                            foreach (DiginoteInfo dInfo in toRemove)
+                                Diginotes.Remove(dInfo);
+                        }
+                        else
+                        { // add
+                            Orders.Insert(0, args.Order2);
+                            args.DiginotesTraded.ForEach(Diginotes.Add);
+                        }
+
+                        if (TransactionsPerMin.Count > 0)
+                        {
+                            DataPoint lastStatItem = TransactionsPerMin[TransactionsPerMin.Count - 1];
+                            if (lastStatItem.X == DateTimeAxis.ToDouble(args.TransactionStat.first))
+                            {
+                                TransactionsPerMin.Remove(lastStatItem);
+                                lastStatItem.Y++;
+                                TransactionsPerMin.Add(lastStatItem);
+                            }
+                            else
+                                TransactionsPerMin.Add(new DataPoint(DateTimeAxis.ToDouble(args.TransactionStat.first), args.TransactionStat.second));
+                        }
+                        else TransactionsPerMin.Add(new DataPoint(DateTimeAxis.ToDouble(args.TransactionStat.first), args.TransactionStat.second));
+
+                        NotificationMessenger.sendNotification(this, new NotificationType(NotifType.Transaction, null), "");
+                        NotificationMessenger.sendNotification(this, new NotificationType(NotifType.Diginotes, null), "");
+                        if (Orders[0].Quantity != 0)
+                        {
+                            if(Orders[0].Type == OrderType.Buy)
+                                NotificationMessenger.sendNotification(this, new NotificationType(NotifType.AskQuotation, null), "-" + Quotation);
+                            else
+                                NotificationMessenger.sendNotification(this, new NotificationType(NotifType.AskQuotation, null), "+" + Quotation);
+                        }
+                            
+                    }));
                 }
                 else if (args.Type == ChangeType.Login)
                 {
                     NumUsers = args.NumUsers;
                     NumLoggedUsers = args.NumLoggedUsers;
                     NumSysDiginotes = args.NumSysDiginotes;
-                    NotificationMessenger.sendNotification(this, new NotificationType(NotifType.SYSTEMINFO, null), "");
-                    
+                    NotificationMessenger.sendNotification(this, new NotificationType(NotifType.SystemInfo, null), "");
+
                 }
                 else if (args.Type == ChangeType.Logout)
                 {
                     NumLoggedUsers = args.NumLoggedUsers;
-                    NotificationMessenger.sendNotification(this, new NotificationType(NotifType.SYSTEMINFO, null), "");
+                    NotificationMessenger.sendNotification(this, new NotificationType(NotifType.SystemInfo, null), "");
                 }
                 else if (args.Type == ChangeType.SysDiginotes)
                 {
                     NumSysDiginotes = args.NumSysDiginotes;
-                    NotificationMessenger.sendNotification(this, new NotificationType(NotifType.SYSTEMINFO, null), "");
+                    NotificationMessenger.sendNotification(this, new NotificationType(NotifType.SystemInfo, null), "");
+                }
+                else if (args.Type == ChangeType.OfferDemand)
+                {
+                    DiginotesOffer = args.DiginotesOffer;
+                    DiginotesDemand = args.DiginotesDemand;
+                    NotificationMessenger.sendNotification(this, new NotificationType(NotifType.SystemInfo, null), "");
                 }
             }
         }
 
-        public bool Login(string user, string password)
+        internal bool Login(string user, string password)
         {
             try
             {
@@ -144,6 +203,9 @@ namespace Client.Model
                     // get info
                     GetInfo();
 
+                    // get statistics
+                    GetStatistics();
+
                     // subscribe changes
                     evRepeater.ChangeEvent += ChangeHandler;
                     diginoteSystem.ChangeEvent += evRepeater.Repeater;
@@ -154,13 +216,13 @@ namespace Client.Model
             }
             catch
             {
-                NotificationMessenger.sendNotification(this, new NotificationType(NotifType.NOSERVER, null), "DEFAULT");
+                NotificationMessenger.sendNotification(this, new NotificationType(NotifType.NoServer, null), "DEFAULT");
             }
 
             return false;
         }
 
-        public bool Register(string name, string user, string password)
+        internal bool Register(string name, string user, string password)
         {
             try
             {
@@ -172,13 +234,13 @@ namespace Client.Model
             }
             catch
             {
-                NotificationMessenger.sendNotification(this, new NotificationType(NotifType.NOSERVER, null), "");
+                NotificationMessenger.sendNotification(this, new NotificationType(NotifType.NoServer, null), "");
             }
 
             return false;
         }
 
-        public void Logout()
+        internal void Logout()
         {
             try
             {
@@ -193,47 +255,48 @@ namespace Client.Model
                     Quotation = 0.0;
                     Diginotes = null;
                     Orders = null;
+                    QuotationEvolution = null;
+                    TransactionsPerMin = null;
                 }
             }
             catch
             {
-                NotificationMessenger.sendNotification(this, new NotificationType(NotifType.NOSERVER, null), "");
+                NotificationMessenger.sendNotification(this, new NotificationType(NotifType.NoServer, null), "");
             }
         }
 
-        public void GetDiginotes()
+        internal void GetDiginotes()
         {
             try
             {
                 Diginotes = new ObservableCollection<DiginoteInfo>();
 
                 diginoteSystem.DiginotesFromUser(user).ForEach(Diginotes.Add);
-
-                NotificationMessenger.sendNotification(this, new NotificationType(NotifType.DIGINOTES, null), "");
             }
             catch
             {
-                NotificationMessenger.sendNotification(this, new NotificationType(NotifType.NOSERVER, null), "");
+                NotificationMessenger.sendNotification(this, new NotificationType(NotifType.NoServer, null), "");
             }
         }
-        
-        public void GetOrders()
+
+        internal void GetOrders()
         {
             try
             {
                 Orders = new ObservableCollection<Order>();
 
-                diginoteSystem.OrdersFromUser(user).ForEach(Orders.Add);
+                List<Order> reversed = diginoteSystem.OrdersFromUser(user);
+                reversed.Reverse();
 
-                NotificationMessenger.sendNotification(this, new NotificationType(NotifType.ORDERS, null), "");
+                reversed.ForEach(Orders.Add);
             }
             catch
             {
-                NotificationMessenger.sendNotification(this, new NotificationType(NotifType.NOSERVER, null), "");
+                NotificationMessenger.sendNotification(this, new NotificationType(NotifType.NoServer, null), "");
             }
         }
 
-        public void GetInfo()
+        internal void GetInfo()
         {
             try
             {
@@ -244,16 +307,33 @@ namespace Client.Model
                 NumSysDiginotes = info.Item3;
                 DiginotesOffer = info.Item4;
                 DiginotesDemand = info.Item5;
-
-                NotificationMessenger.sendNotification(this, new NotificationType(NotifType.SYSTEMINFO, null), "");
             }
             catch
             {
-                NotificationMessenger.sendNotification(this, new NotificationType(NotifType.NOSERVER, null), "");
+                NotificationMessenger.sendNotification(this, new NotificationType(NotifType.NoServer, null), "");
             }
         }
 
-        public void SetNewQuotation(double value)
+        internal void GetStatistics()
+        {
+            try
+            {
+                QuotationEvolution = new ObservableCollection<DataPoint>();
+                TransactionsPerMin = new ObservableCollection<DataPoint>();
+
+                foreach (Pair<DateTime, double> pair in diginoteSystem.GetQuotationEvolution())
+                    QuotationEvolution.Add(new DataPoint(DateTimeAxis.ToDouble(pair.first), pair.second));
+
+                foreach (Pair<DateTime, int> pair in diginoteSystem.GetTransactionsPerMin())
+                    TransactionsPerMin.Add(new DataPoint(DateTimeAxis.ToDouble(pair.first), pair.second));
+            }
+            catch
+            {
+                NotificationMessenger.sendNotification(this, new NotificationType(NotifType.NoServer, null), "");
+            }
+        }
+
+        internal void SetNewQuotation(double value)
         {
             try
             {
@@ -261,11 +341,11 @@ namespace Client.Model
             }
             catch
             {
-                NotificationMessenger.sendNotification(this, new NotificationType(NotifType.NOSERVER, null), "");
+                NotificationMessenger.sendNotification(this, new NotificationType(NotifType.NoServer, null), "");
             }
         }
 
-        public void GetDigSeed()
+        internal void GetDigSeed()
         {
             try
             {
@@ -273,78 +353,89 @@ namespace Client.Model
             }
             catch
             {
-                NotificationMessenger.sendNotification(this, new NotificationType(NotifType.NOSERVER, null), "");
+                NotificationMessenger.sendNotification(this, new NotificationType(NotifType.NoServer, null), "");
             }
         }
 
-        public void GetDiginoteDigged()
+        internal void GetDiginoteDigged()
         {
             try
             {
-                Diginotes.Add(diginoteSystem.DigDiginote(user));
-
-                NotificationMessenger.sendNotification(this, new NotificationType(NotifType.DIGINOTES, null), "");
-
-                DigTime = diginoteSystem.GetDigtime();
-            }
-            catch
-            {
-                NotificationMessenger.sendNotification(this, new NotificationType(NotifType.NOSERVER, null), "");
-            }
-        }
-
-        public void SellDiginotes(int quantity)
-        {
-            try
-            {
-                Orders.Add(diginoteSystem.AddSellOrder(user, quantity, OrderType.Sell));
-                NotificationMessenger.sendNotification(this, new NotificationType(NotifType.NEWORDER, null), "");
-            }
-            catch
-            {
-                NotificationMessenger.sendNotification(this, new NotificationType(NotifType.NOSERVER, null), "");
-            }
-        }
-
-        public void BuyDiginotes(int quantity)
-        {
-            try
-            {
-                Orders.Add(diginoteSystem.AddBuyOrder(user, quantity, OrderType.Buy));
-                NotificationMessenger.sendNotification(this, new NotificationType(NotifType.NEWORDER, null), "");
-            }
-            catch
-            {
-                NotificationMessenger.sendNotification(this, new NotificationType(NotifType.NOSERVER, null), "");
-            }
-        }
-
-        public void ChangeQuotationApproval(bool approve)
-        {
-            try
-            {
-                Order lastOrder = Orders[Orders.Count - 1];
-
-                diginoteSystem.ReceiveApproval(user, approve, lastOrder.Type);
-                GetOrders();
-                NotificationMessenger.sendNotification(this, new NotificationType(NotifType.ORDERS, null), "");
-                /*
-                if (!approve)
-                { // shoudln't be done here to have the server date
-                    Orders.Remove(lastOrder);
-                    lastOrder.State = OrderState.Over;
-                    Orders.Add(lastOrder);
-                }
-                else
+                if (user != null)
                 {
-                    Orders.Remove(lastOrder);
-                    lastOrder.State = OrderState.Pending;
-                    Orders.Add(lastOrder);
-                }*/
+                    Diginotes.Add(diginoteSystem.DigDiginote(user));
+
+                    NotificationMessenger.sendNotification(this, new NotificationType(NotifType.Diginotes, null), "");
+
+                    DigTime = diginoteSystem.GetDigtime();
+                }
             }
             catch
             {
-                NotificationMessenger.sendNotification(this, new NotificationType(NotifType.NOSERVER, null), "");
+                NotificationMessenger.sendNotification(this, new NotificationType(NotifType.NoServer, null), "");
+            }
+        }
+
+        internal void SellDiginotes(int quantity)
+        {
+            try
+            {
+                Orders.Insert(0, diginoteSystem.AddSellOrder(user, quantity, OrderType.Sell));
+                NotificationMessenger.sendNotification(this, new NotificationType(NotifType.Order, null), "");
+            }
+            catch
+            {
+                NotificationMessenger.sendNotification(this, new NotificationType(NotifType.NoServer, null), "");
+            }
+        }
+
+        internal void BuyDiginotes(int quantity)
+        {
+            try
+            {
+                Orders.Insert(0, diginoteSystem.AddBuyOrder(user, quantity, OrderType.Buy));
+                NotificationMessenger.sendNotification(this, new NotificationType(NotifType.Order, null), "");
+            }
+            catch
+            {
+                NotificationMessenger.sendNotification(this, new NotificationType(NotifType.NoServer, null), "");
+            }
+        }
+
+        internal void RemoveOrder()
+        {
+            try
+            {
+                Order lastOrder = Orders[0];
+
+                Order changedOrder = diginoteSystem.RemoveOrder(user, lastOrder);
+
+                Orders.Remove(lastOrder);
+                Orders.Insert(0, changedOrder);
+
+                NotificationMessenger.sendNotification(this, new NotificationType(NotifType.Order, null), "");
+            }
+            catch
+            {
+                NotificationMessenger.sendNotification(this, new NotificationType(NotifType.NoServer, null), "");
+            }
+        }
+
+        internal void ChangeQuotationApproval(bool approve)
+        {
+            try
+            {
+                Order lastOrder = Orders[0];
+
+                Order changedOrder = diginoteSystem.ReceiveApproval(user, lastOrder, approve);
+
+                Orders.Remove(lastOrder);
+                Orders.Insert(0, changedOrder);
+                NotificationMessenger.sendNotification(this, new NotificationType(NotifType.Order, null), "");
+            }
+            catch
+            {
+                NotificationMessenger.sendNotification(this, new NotificationType(NotifType.NoServer, null), "");
             }
         }
 

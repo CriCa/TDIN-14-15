@@ -29,15 +29,15 @@
             <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="$" VerticalAlignment="Top" FontSize="20" FontWeight="Bold" Foreground="White"/>
         </StackPanel>
 
-        <StackPanel Margin="10,87,623,393" Orientation="Horizontal">
+        <StackPanel Margin="10,76,623,404" Orientation="Horizontal">
             <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Your diginotes (" VerticalAlignment="Top" Foreground="White" FontWeight="Bold"/>
             <TextBlock Text="{Binding DiginotesNumber, UpdateSourceTrigger=PropertyChanged}" TextWrapping="Wrap" Foreground="White" Height="16" Margin="0" HorizontalAlignment="Left" VerticalAlignment="Top"/>
             <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text=")" VerticalAlignment="Top" Foreground="White" FontWeight="Bold"/>
         </StackPanel>
-        <TextBlock HorizontalAlignment="Left" Margin="10,107,0,0" TextWrapping="Wrap" Text="Id" VerticalAlignment="Top" Foreground="White"/>
-        <TextBlock HorizontalAlignment="Left" Margin="43,107,0,0" TextWrapping="Wrap" Text="Value" VerticalAlignment="Top" Foreground="White"/>
-        <TextBlock HorizontalAlignment="Left" Margin="78,107,0,0" TextWrapping="Wrap" Text="Aquired on" VerticalAlignment="Top" Foreground="White"/>
-        <ListView ItemsSource="{Binding Diginotes}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" HorizontalAlignment="Left" Height="127" Margin="10,123,0,0" VerticalAlignment="Top" Width="182" IsHitTestVisible="True">
+        <TextBlock HorizontalAlignment="Left" Margin="10,96,0,0" TextWrapping="Wrap" Text="Id" VerticalAlignment="Top" Foreground="White"/>
+        <TextBlock HorizontalAlignment="Left" Margin="43,96,0,0" TextWrapping="Wrap" Text="Value" VerticalAlignment="Top" Foreground="White"/>
+        <TextBlock HorizontalAlignment="Left" Margin="78,96,0,0" TextWrapping="Wrap" Text="Aquired on" VerticalAlignment="Top" Foreground="White"/>
+        <ListView ItemsSource="{Binding Diginotes}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" HorizontalAlignment="Left" Height="127" Margin="10,112,0,0" VerticalAlignment="Top" Width="182" IsHitTestVisible="True">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Grid>
@@ -49,22 +49,22 @@
             </ListView.ItemTemplate>
         </ListView>
 
-        <StackPanel Margin="10,273,608,211" Orientation="Horizontal">
+        <StackPanel Margin="10,276,608,208" Orientation="Horizontal">
             <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Users in System: " VerticalAlignment="Top" Foreground="White"/>
             <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding NumUsers, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Foreground="White"/>
             <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text=" (" VerticalAlignment="Top" Foreground="White"/>
             <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding NumLoggedUsers, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Foreground="White"/>
             <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text=" Online)" VerticalAlignment="Top" Foreground="White"/>
         </StackPanel>
-        <StackPanel Margin="10,294,608,190" Orientation="Horizontal">
+        <StackPanel Margin="10,297,608,187" Orientation="Horizontal">
             <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Diginotes in System: " VerticalAlignment="Top" Foreground="White"/>
             <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding NumSysDiginotes, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Foreground="White"/>
         </StackPanel>
-        <StackPanel Margin="10,315,608,169" Orientation="Horizontal">
+        <StackPanel Margin="10,318,608,166" Orientation="Horizontal">
             <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Diginotes offer: " VerticalAlignment="Top" Foreground="White"/>
             <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding DiginotesOffer, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Foreground="White"/>
         </StackPanel>
-        <StackPanel Margin="10,336,608,148" Orientation="Horizontal">
+        <StackPanel Margin="10,339,608,145" Orientation="Horizontal">
             <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Diginotes demand: " VerticalAlignment="Top" Foreground="White"/>
             <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding DiginotesDemand, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Foreground="White"/>
         </StackPanel>
@@ -100,10 +100,10 @@
         <TextBlock HorizontalAlignment="Left" Margin="424,93,0,0" TextWrapping="Wrap" Text="Unsatisfied" VerticalAlignment="Top" Foreground="#FF1085BB"/>
         <TextBlock HorizontalAlignment="Left" Margin="493,93,0,0" TextWrapping="Wrap" Text="Created on" VerticalAlignment="Top" Foreground="#FF1085BB"/>
         <TextBlock HorizontalAlignment="Left" Margin="623,93,0,0" TextWrapping="Wrap" Text="Finished on" VerticalAlignment="Top" Foreground="#FF1085BB"/>
-        <ListView ItemsSource="{Binding Orders}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Padding="5" HorizontalAlignment="Left" Height="141" Margin="213,109,0,0" VerticalAlignment="Top" Width="544" Background="#FFB6E3F7" BorderBrush="#FF1085BB" IsHitTestVisible="True">
+        <ListView ItemsSource="{Binding Orders}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Padding="5" HorizontalAlignment="Left" Height="130" Margin="213,109,0,0" VerticalAlignment="Top" Width="544" Background="#FFB6E3F7" BorderBrush="#FF1085BB" IsHitTestVisible="True">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <Grid Height="25" Background="#19000000" Width="{Binding ActualWidth, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListView}}}" Margin="0,2,0,0">
+                    <Grid Height="25" Background="{Binding StateColor}" Width="{Binding ActualWidth, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListView}}}" Margin="0,2,0,0">
                         <Image Source="{Binding Icon}" Margin="0,0,0,0" Width="15" Height="15" HorizontalAlignment="Left" VerticalAlignment="Stretch"  />
                         <TextBlock Text="{Binding TypeDesc}" Margin="20,0,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
                         <TextBlock Text="{Binding InitialQuantity}" Margin="55,0,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
@@ -116,35 +116,93 @@
             </ListView.ItemTemplate>
         </ListView>
 
-        <TextBlock HorizontalAlignment="Left" Margin="213,261,0,0" TextWrapping="Wrap" Text="Statistics" VerticalAlignment="Top" Foreground="#FF1085BB" FontWeight="Bold"/>
-        <TabControl HorizontalAlignment="Left" Height="208" Margin="213,282,0,0" VerticalAlignment="Top" Width="544" Background="#FFB6E3F7" BorderBrush="#FF1085BB">
-            <TabItem Header="Quotation Evolution" Foreground="#FF0B637E" BorderBrush="#FF1085BB">
+        <TextBlock HorizontalAlignment="Left" Margin="213,253,0,0" TextWrapping="Wrap" Text="Statistics" VerticalAlignment="Top" Foreground="#FF1085BB" FontWeight="Bold"/>
+        <TabControl HorizontalAlignment="Left" Height="216" Margin="213,274,0,0" VerticalAlignment="Top" Width="544" Background="#FFB6E3F7" BorderBrush="#FF1085BB">
+            <TabItem Header="Quotation Evolution" Foreground="#FF0B637E" BorderBrush="#FF1085BB" Width="270">
                 <Grid Background="#FFB6E3F7">
-                    <!--<oxy:Plot>
+                    <oxy:Plot>
                         <oxy:Plot.Series>
-                            <oxy:LineSeries ItemsSource="{Binding QuotationEvolution}"/>
+                            <oxy:LineSeries ItemsSource="{Binding QuotationEvolution}" 
+                                            MarkerType="Circle" 
+                                            Color="#FF1085BB" 
+                                            MarkerSize="2"
+                                            MarkerFill="White"
+                                            MarkerStrokeThickness="2"
+                                            MarkerStroke="#FF1085BB"
+                                            DataFieldX="Date"
+                                            DataFieldY="Quotation"
+                                            TrackerFormatString="Date: {2:d MMM yy H:mm:ss}&#x0a;Quotation: {4}"
+                                            />
                         </oxy:Plot.Series>
                         <oxy:Plot.Axes>
-                            <oxy:DateTimeAxis Position="Bottom" StringFormat="dd/MM/yyyy" />
-                            <oxy:LinearAxis Position="Left" />
+                            <oxy:DateTimeAxis Position="Bottom" 
+                                              StringFormat="dd MMM H:mm"
+                                              IntervalType="Hours"
+                                              TicklineColor="Transparent"
+                                              MajorGridlineColor="#20000000"
+                                              MajorGridlineStyle="Solid"
+                                              MajorGridlineThickness="1"
+                                              MaximumPadding="0.05" />
+                            <oxy:LinearAxis Position="Left"
+                                            TicklineColor="Transparent"
+                                            AbsoluteMinimum="0" 
+                                            Minimum="0" 
+                                            MaximumPadding="1"
+                                            MajorStep="1"
+                                            MajorGridlineColor="#20000000"
+                                            MajorGridlineStyle="Solid"
+                                            MajorGridlineThickness="1"
+                                            MinorStep="0.1"
+                                            MinorGridlineColor="#0A000000"
+                                            MinorGridlineThickness="1"
+                                            MinorGridlineStyle="Solid" />
                         </oxy:Plot.Axes>
-                    </oxy:Plot>-->
+                    </oxy:Plot>
                 </Grid>
             </TabItem>
-            <TabItem Header="Transactions" Foreground="#FF0B637E" BorderBrush="#FF1085BB">
+            <TabItem Header="Transactions Per Minute" Foreground="#FF0B637E" BorderBrush="#FF1085BB" Width="270">
                 <Grid Background="#FFB6E3F7">
-                    <!--<oxy:Plot>
+                    <oxy:Plot>
                         <oxy:Plot.Series>
-                            <oxy:LineSeries ItemsSource="{Binding Transactions}"/>
+                            <oxy:LineSeries ItemsSource="{Binding TransactionsPerMin}" 
+                                            MarkerType="Circle" 
+                                            Color="Transparent" 
+                                            MarkerSize="2"
+                                            MarkerFill="White"
+                                            MarkerStrokeThickness="2"
+                                            MarkerStroke="#FF1085BB"
+                                            DataFieldX="Date"
+                                            DataFieldY="Transcations"
+                                            TrackerFormatString="Date: {2:d MMM yy H:mm:ss}&#x0a;Transactions: {4}" />
                         </oxy:Plot.Series>
-                    </oxy:Plot>-->
+                        <oxy:Plot.Axes>
+                            <oxy:DateTimeAxis Position="Bottom"
+                                              StringFormat="dd MMM H:mm"
+                                              IntervalType="Minutes"
+                                              TicklineColor="Transparent"
+                                              MajorGridlineColor="#20000000"
+                                              MajorGridlineStyle="Solid"
+                                              MajorGridlineThickness="1"
+                                              MaximumPadding="0.05"
+                                              MinimumPadding="0.05"/>
+                            <oxy:LinearAxis Position="Left"
+                                            TicklineColor="Transparent"
+                                            AbsoluteMinimum="0" 
+                                            Minimum="0" 
+                                            MaximumPadding="1"
+                                            MajorStep="1"
+                                            MajorGridlineColor="#20000000"
+                                            MajorGridlineStyle="Solid"
+                                            MajorGridlineThickness="1" />
+                        </oxy:Plot.Axes>
+                    </oxy:Plot>
                 </Grid>
             </TabItem>
         </TabControl>
 
-        <TextBlock HorizontalAlignment="Left" Margin="10,374,0,0" TextWrapping="Wrap" Text="Dig Diginotes" VerticalAlignment="Top" Foreground="White" FontWeight="Bold"/>
-        <Button Content="{Binding DigButtonText, UpdateSourceTrigger=PropertyChanged}" Command="{Binding DigCommand}" HorizontalAlignment="Left" Margin="10,395,0,0" VerticalAlignment="Top" Width="45" Foreground="#FF0B637E" Height="20"/>
-        <ProgressBar Value="{Binding DigStep, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="20" Margin="60,395,0,0" VerticalAlignment="Top" Width="132" Maximum="1"/>
+        <TextBlock HorizontalAlignment="Left" Margin="10,384,0,0" TextWrapping="Wrap" Text="Dig Diginotes" VerticalAlignment="Top" Foreground="White" FontWeight="Bold"/>
+        <Button Content="{Binding DigButtonText, UpdateSourceTrigger=PropertyChanged}" Command="{Binding DigCommand}" HorizontalAlignment="Left" Margin="10,405,0,0" VerticalAlignment="Top" Width="45" Foreground="#FF0B637E" Height="20"/>
+        <ProgressBar Value="{Binding DigStep, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="20" Margin="60,405,0,0" VerticalAlignment="Top" Width="132" Maximum="1"/>
 
 
     </Grid>

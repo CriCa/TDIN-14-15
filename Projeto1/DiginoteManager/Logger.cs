@@ -12,20 +12,18 @@ public class Logger
         if (!File.Exists(LOG_FILENAME))
         {
             file = new StreamWriter(LOG_FILENAME);
-            Log("Created log file!");
-            file.Close();
-            file.Dispose();
+            Log("Created log file");
+            Console.WriteLine("[Log]: Created log file");
         }
+        else
+            file = new StreamWriter(LOG_FILENAME, true);
     }
 
     public void Log(string msg)
     {
         // write msg to file
-        file = new StreamWriter(LOG_FILENAME, true);
         file.WriteLine(DateTime.Now + ": " + msg);
         file.Flush();
-        file.Close();
-        file.Dispose();
 
         // show on console
         // Console.WriteLine("[Log]: " + msg);

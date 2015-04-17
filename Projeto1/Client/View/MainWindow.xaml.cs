@@ -24,16 +24,16 @@ namespace Client.View
     {
         public MainWindow()
         {
+            Messenger.Default.Register<NotificationMessage<NotificationType>>(this, NotificationMessageHandler);
+
             InitializeComponent();
 
             ((MainViewModel)DataContext).Parent = this;
-
-            Messenger.Default.Register<NotificationMessage<NotificationType>>(this, NotificationMessageHandler);
         }
 
         private void NotificationMessageHandler(NotificationMessage<NotificationType> msg)
         {
-            if (msg.Content.Type == NotifType.LOGOUT)
+            if (msg.Content.Type == NotifType.LogOut)
             {
                 // open login window
                 new LoginWindow().Show();
@@ -44,20 +44,20 @@ namespace Client.View
                 // close current
                 this.Close();
             }
-            else if (msg.Content.Type == NotifType.QUERYNEWQUOTATION)
+            else if (msg.Content.Type == NotifType.AskQuotation)
             {
                 double quot = Double.Parse(msg.Notification);
                 ChangeQuotationDialog dialog = new ChangeQuotationDialog(this, Math.Abs(quot), quot >= 0);
 
                 if (dialog.ShowDialog() == true)
-                    NotificationMessenger.sendNotification(this, new NotificationType(NotifType.SETNEWQUOTATION, null), dialog.NewQuotation.ToString());
+                    NotificationMessenger.sendNotification(this, new NotificationType(NotifType.SetQuotation, null), dialog.NewQuotation.ToString());
             }
-            else if (msg.Content.Type == NotifType.MANTAINORDER)
+            else if (msg.Content.Type == NotifType.AskApprove)
             {
-                    if (new ApproveChangeDialog(this, 5d).ShowDialog() == true)
-                        NotificationMessenger.sendNotification(this, new NotificationType(NotifType.APPROVECHANGE, null), "Approve");
-                    else
-                        NotificationMessenger.sendNotification(this, new NotificationType(NotifType.APPROVECHANGE, null), "Disapprove");
+                if (new ApproveChangeDialog(this, 10d).ShowDialog() == true)
+                    NotificationMessenger.sendNotification(this, new NotificationType(NotifType.ApproveQuotation, null), "Approve");
+                else
+                    NotificationMessenger.sendNotification(this, new NotificationType(NotifType.ApproveQuotation, null), "Disapprove");
             }
         }
     }

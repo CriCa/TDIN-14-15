@@ -34,31 +34,24 @@ namespace Client.View
             timer.Start();
         }
 
-        private void Approve_Click(object sender, RoutedEventArgs e)
-        {
-            timer.Stop();
-            timer.Tick -= TimerTick;
-            timer = null;
+        private void Approve_Click(object sender, RoutedEventArgs e) { StopAndResult(true); }
 
-            DialogResult = true;
+        private void Disapprove_Click(object sender, RoutedEventArgs e) { StopAndResult(false); }
+
+        private void TimerTick(object sender, EventArgs e) { StopAndResult(true); }
+
+        private void WindowClosed(object sender, System.ComponentModel.CancelEventArgs e) { StopAndResult(false); }
+
+        private void StopAndResult(bool result)
+        {
+            if (timer != null) { 
+                timer.Stop();
+                timer.Tick -= TimerTick;
+                timer = null;
+
+                DialogResult = result;
+            }
         }
 
-        private void Disapprove_Click(object sender, RoutedEventArgs e)
-        {
-            timer.Stop();
-            timer.Tick -= TimerTick;
-            timer = null;
-
-            DialogResult = false;
-        }
-
-        private void TimerTick(object sender, EventArgs e)
-        {
-            timer.Stop();
-            timer.Tick -= TimerTick;
-            timer = null;
-
-            DialogResult = true;
-        }
     }
 }

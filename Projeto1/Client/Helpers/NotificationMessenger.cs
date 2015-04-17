@@ -16,16 +16,16 @@ namespace Client.Helpers
 
     public enum NotifType
     {
-        NOSERVER, LOGIN, LOGOUT,
-        QUOTATION,
-        QUERYNEWQUOTATION,
-        DIGINOTES,
-        SETNEWQUOTATION,
-        NEWORDER,
-        MANTAINORDER,
-        APPROVECHANGE,
-        SYSTEMINFO,
-        ORDERS
+        NoServer, Login, LogOut,
+        Quotation,
+        AskQuotation,
+        Diginotes,
+        SetQuotation,
+        Order,
+        AskApprove,
+        ApproveQuotation,
+        SystemInfo,
+        Transaction
     };
 
     public class NotificationType
