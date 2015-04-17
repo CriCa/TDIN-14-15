@@ -146,7 +146,8 @@ public class DiginoteTradingSystem : MarshalByRefObject, IDiginoteTradingSystem
                 foreach (Order order in buyOrders)
                 {
                     if (order.User == user)
-                        buyOrders.Remove(order);
+                        //buyOrders.Remove(order);
+                        order.State = OrderState.Removed;
                 }
 
             }
@@ -155,7 +156,8 @@ public class DiginoteTradingSystem : MarshalByRefObject, IDiginoteTradingSystem
              foreach (Order order in sellOrders)
              {
                  if (order.User == user)
-                     sellOrders.Remove(order);
+                     //sellOrders.Remove(order);
+                     order.State = OrderState.Removed;
              }
          }
     }

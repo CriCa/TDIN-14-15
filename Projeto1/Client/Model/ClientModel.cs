@@ -326,7 +326,9 @@ namespace Client.Model
                 Order lastOrder = Orders[Orders.Count - 1];
 
                 diginoteSystem.ReceiveApproval(user, approve, lastOrder.Type);
-
+                GetOrders();
+                NotificationMessenger.sendNotification(this, new NotificationType(NotifType.ORDERS, null), "");
+                /*
                 if (!approve)
                 { // shoudln't be done here to have the server date
                     Orders.Remove(lastOrder);
@@ -338,7 +340,7 @@ namespace Client.Model
                     Orders.Remove(lastOrder);
                     lastOrder.State = OrderState.Pending;
                     Orders.Add(lastOrder);
-                }
+                }*/
             }
             catch
             {
