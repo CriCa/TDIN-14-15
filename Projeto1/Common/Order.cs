@@ -4,8 +4,11 @@ public enum OrderType { Buy, Sell }; // orders types
 
 public enum OrderState { Pending, WaitApproval, Over, Removed }; // order states
 
+/**
+ * class that represents and describes an order
+ */
 [Serializable]
-public class Order // class that describes an order
+public class Order
 {
     public OrderType Type { get; set; } // order type
 

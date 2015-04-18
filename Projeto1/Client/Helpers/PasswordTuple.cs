@@ -4,6 +4,9 @@ using System.Windows.Controls;
 
 namespace Client.Helpers
 {
+    /**
+     * Helper class that converts the two password fields in registration control in a tuple
+     */
     public class PasswordTuple : IMultiValueConverter
     {
         public object Convert(object[] values, Type targetType, object parameter, System.Globalization.CultureInfo culture)

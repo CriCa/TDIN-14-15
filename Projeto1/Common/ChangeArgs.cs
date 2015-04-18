@@ -2,89 +2,91 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public enum ChangeType { QuotationUp, QuotationDown, Transaction, Login, Logout, SysDiginotes, OfferDemand }
+public enum ChangeType { QuotationUp, QuotationDown, Transaction, Login, Logout, SysDiginotes, OfferDemand } // change type
 
-// class that explains the change that occurred in server
+/**
+ * Class that describes the changes that occurred in server so the client know how to update
+ */
 [Serializable]
 public class ChangeArgs
 {
-    public ChangeType Type { get; set; }
+    public ChangeType Type { get; set; } // change type
 
-    public double QuotationValue { get; set; }
+    public double QuotationValue { get; set; } // current quotation value
 
-    public Pair<DateTime, double> QuotationStat { get; set; }
+    public string User1 { get; set; } // User 1 involved
 
-    public Pair<DateTime, int> TransactionStat { get; set; }
+    public string User2 { get; set; } // User 2 involved
 
-    public string User1 { get; set; }
+    public Order Order1 { get; set; } // Order from user 1
 
-    public string User2 { get; set; }
+    public Order Order2 { get; set; } // Order from user 2
 
-    public Order Order1 { get; set; }
+    public List<DiginoteInfo> DiginotesTraded { get; set; } // list of diginotes traded
 
-    public Order Order2 { get; set; }
+    public int NumUsers { get; set; } // number of users in system
 
-    public List<DiginoteInfo> DiginotesTraded { get; set; }
+    public int NumLoggedUsers { get; set; } // number of logged users in system
 
-    public int NumUsers { get; set; }
+    public int NumSysDiginotes { get; set; } // number of diginotes in system
 
-    public int NumLoggedUsers { get; set; }
+    public int DiginotesOffer { get; set; } // number of diginotes selling
 
-    public int NumSysDiginotes { get; set; }
+    public int DiginotesDemand { get; set; } // number of diginotes buying
 
-    public int DiginotesOffer { get; set; }
+    public Pair<DateTime, double> QuotationStat { get; set; } // quotation stat
 
-    public int DiginotesDemand { get; set; }
+    public Pair<DateTime, int> TransactionStat { get; set; } // transaction stat
 
-    public ChangeArgs(ChangeType t)
-    {
-        Type = t;
-    }
-
-    public ChangeArgs(ChangeType t, double quotationValue, string author, Pair<DateTime, double> s)
+    // constructor for quotation change
+    public ChangeArgs(ChangeType t, double quotationValue, string author, Pair<DateTime, double> stat)
     {
         Type = t;
         QuotationValue = quotationValue;
         User1 = null;
         User2 = author;
-        QuotationStat = s;
+        QuotationStat = stat;
     }
 
-    public ChangeArgs(Order o1, Order o2, List<DiginoteInfo> digs, Pair<DateTime, int> s)
+    // constructor for transaction
+    public ChangeArgs(Order orderFrom, Order orderTo, List<DiginoteInfo> digs, Pair<DateTime, int> stat)
     {
         Type = ChangeType.Transaction;
-        User1 = o1.User.Username;
-        User2 = o2.User.Username;
-        Order1 = o1;
-        Order2 = o2;
+        User1 = orderFrom.User.Username;
+        User2 = orderTo.User.Username;
+        Order1 = orderFrom;
+        Order2 = orderTo;
         DiginotesTraded = digs;
-        TransactionStat = s;
+        TransactionStat = stat;
     }
 
-    public ChangeArgs(int nu, int nl, int nd)
+    // constructor for login
+    public ChangeArgs(int numUsers, int numLogged, int numDiginotes)
     {
         Type = ChangeType.Login;
         User1 = User2 = null;
-        NumUsers = nu;
-        NumLoggedUsers = nl;
-        NumSysDiginotes = nd;
+        NumUsers = numUsers;
+        NumLoggedUsers = numLogged;
+        NumSysDiginotes = numDiginotes;
     }
 
-    public ChangeArgs(ChangeType t, int n)
+    // constructor for logout
+    public ChangeArgs(ChangeType t, int numLogged)
     {
         Type = t;
         User1 = User2 = null;
         if (t == ChangeType.Logout)
-            NumLoggedUsers = n;
+            NumLoggedUsers = numLogged;
         else if (t == ChangeType.SysDiginotes)
-            NumSysDiginotes = n;
+            NumSysDiginotes = numLogged;
     }
 
-    public ChangeArgs(int offer, int demand)
+    // constructor for removal
+    public ChangeArgs(int numOffer, int numDemand)
     {
         Type = ChangeType.OfferDemand;
         User1 = User2 = null;
-        DiginotesOffer = offer;
-        DiginotesDemand = demand;
+        DiginotesOffer = numOffer;
+        DiginotesDemand = numDemand;
     }
 }

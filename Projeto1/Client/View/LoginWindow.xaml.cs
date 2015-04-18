@@ -25,12 +25,14 @@ namespace Client.View
         {
             InitializeComponent();
 
+            // subscribe messenger
             Messenger.Default.Register<NotificationMessage<NotificationType>>(this, NotificationMessageHandler);
         }
 
+        // handler for incoming messenger notifications
         private void NotificationMessageHandler(NotificationMessage<NotificationType> msg)
         {
-            if (msg.Content.Type == NotifType.Login)
+            if (msg.Content.Type == NotifType.Login) // login was successful
             {
                 // open main window
                 new MainWindow().Show();

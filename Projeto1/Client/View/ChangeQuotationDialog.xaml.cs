@@ -26,6 +26,7 @@ namespace Client.View
             // set parent
             Owner = own;
 
+            // set the limits on the control
             if (rise)
             {
                 NewQuotation = MinQuotation = quotation + 0.01;
@@ -39,32 +40,28 @@ namespace Client.View
 
         }
 
-        public double NewQuotation
+        public double NewQuotation // new quotation value
         {
             get { return (double)NewQuotationBox.Value; }
             set { NewQuotationBox.Value = value; }
         }
 
-        public double MinQuotation
+        public double MinQuotation // min quotation accepted
         {
             get { return (double)NewQuotationBox.Minimum; }
             set { NewQuotationBox.Minimum = value; }
         }
 
-        public double MaxQuotation
+        public double MaxQuotation // max quotation accepted
         {
             get { return (double)NewQuotationBox.Maximum; }
             set { NewQuotationBox.Maximum = value; }
         }
 
-        private void Ok_Click(object sender, RoutedEventArgs e)
-        {
-            DialogResult = true;
-        }
+        // set dialog result to true
+        private void Ok_Click(object sender, RoutedEventArgs e) { DialogResult = true; }
 
-        private void Cancel_Click(object sender, RoutedEventArgs e)
-        {
-            DialogResult = false;
-        }
+        // set dialog result to false
+        private void Cancel_Click(object sender, RoutedEventArgs e) { DialogResult = false; }
     }
 }

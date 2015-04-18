@@ -20,28 +20,36 @@ namespace Client.View
     /// </summary>
     public partial class ApproveChangeDialog : Window
     {
-        DispatcherTimer timer;
+        DispatcherTimer timer; // timer to close window after timeout
 
+        // constructor
         public ApproveChangeDialog(Window own, double timeout)
         {
             InitializeComponent();
 
+            // set owner
             Owner = own;
 
+            // initialize timer and start
             timer = new DispatcherTimer();
             timer.Interval = TimeSpan.FromSeconds(timeout);
             timer.Tick += TimerTick;
             timer.Start();
         }
 
+        // stop timer and set dialog result to true
         private void Approve_Click(object sender, RoutedEventArgs e) { StopAndResult(true); }
 
+        // stop timer and set dialog result to false
         private void Disapprove_Click(object sender, RoutedEventArgs e) { StopAndResult(false); }
 
+        // stop timer and set dialog result to true
         private void TimerTick(object sender, EventArgs e) { StopAndResult(true); }
 
+        // stop timer and set dialog result to false
         private void WindowClosed(object sender, System.ComponentModel.CancelEventArgs e) { StopAndResult(false); }
 
+        // function that stops the timer and set the dialog result
         private void StopAndResult(bool result)
         {
             if (timer != null) { 

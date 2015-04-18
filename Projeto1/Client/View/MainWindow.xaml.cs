@@ -24,16 +24,19 @@ namespace Client.View
     {
         public MainWindow()
         {
+            // subscribe messenger
             Messenger.Default.Register<NotificationMessage<NotificationType>>(this, NotificationMessageHandler);
 
             InitializeComponent();
 
+            // set parent in viewmodel
             ((MainViewModel)DataContext).Parent = this;
         }
 
+        // handler for incoming messenger notifications
         private void NotificationMessageHandler(NotificationMessage<NotificationType> msg)
         {
-            if (msg.Content.Type == NotifType.LogOut)
+            if (msg.Content.Type == NotifType.LogOut) // logout
             {
                 // open login window
                 new LoginWindow().Show();
@@ -44,17 +47,18 @@ namespace Client.View
                 // close current
                 this.Close();
             }
-            else if (msg.Content.Type == NotifType.AskQuotation)
+            else if (msg.Content.Type == NotifType.AskQuotation) // ask user for new quotation
             {
-                double quot = Double.Parse(msg.Notification);
+                double quot = Double.Parse(msg.Notification); // get value
+                // create new dialog
                 ChangeQuotationDialog dialog = new ChangeQuotationDialog(this, Math.Abs(quot), quot >= 0);
 
-                if (dialog.ShowDialog() == true)
+                if (dialog.ShowDialog() == true) // show dialog, if user clicks ok then suggest new quotation
                     NotificationMessenger.sendNotification(this, new NotificationType(NotifType.SetQuotation, null), dialog.NewQuotation.ToString());
             }
-            else if (msg.Content.Type == NotifType.AskApprove)
+            else if (msg.Content.Type == NotifType.AskApprove) // ask user to approve keeping the offer and send to server the result
             {
-                if (new ApproveChangeDialog(this, 10d).ShowDialog() == true)
+                if (new ApproveChangeDialog(this, 60d).ShowDialog() == true)
                     NotificationMessenger.sendNotification(this, new NotificationType(NotifType.ApproveQuotation, null), "Approve");
                 else
                     NotificationMessenger.sendNotification(this, new NotificationType(NotifType.ApproveQuotation, null), "Disapprove");

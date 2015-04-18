@@ -4,6 +4,9 @@ using Client.Model;
 
 namespace Client.ViewModel
 {
+    /**
+     * Base class for view model that implements the notification of properties changed
+     */
     public class BaseViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;

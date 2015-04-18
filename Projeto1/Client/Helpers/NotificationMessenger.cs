@@ -6,6 +6,9 @@ using GalaSoft.MvvmLight.Messaging;
 
 namespace Client.Helpers
 {
+    /**
+     * Helper class to send Notifications between model, view and modelview instances
+     */
     public abstract class NotificationMessenger
     {
         public static void sendNotification(object sender, NotificationType type, string message)
@@ -14,20 +17,15 @@ namespace Client.Helpers
         }
     }
 
-    public enum NotifType
+    public enum NotifType // notification type
     {
-        NoServer, Login, LogOut,
-        Quotation,
-        AskQuotation,
-        Diginotes,
-        SetQuotation,
-        Order,
-        AskApprove,
-        ApproveQuotation,
-        SystemInfo,
-        Transaction
+        NoServer, Login, LogOut, Quotation, AskQuotation, Diginotes, SetQuotation,
+        Order, AskApprove, ApproveQuotation, SystemInfo, Transaction
     };
 
+    /**
+     * Class that represents the notitification type
+     */
     public class NotificationType
     {
         NotifType type;

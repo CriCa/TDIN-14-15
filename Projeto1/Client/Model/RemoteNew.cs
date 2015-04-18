@@ -4,7 +4,9 @@ using System.Runtime.Remoting;
 
 namespace Client.Model
 {
-    // Mechanism for instanciating a remote object through its interface, using the config file
+    /**
+     * Mechanism for instanciating a remote object through its interface, using the config file
+     */
     class RemoteNew
     {
         private static Hashtable types = null;

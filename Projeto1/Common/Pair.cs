@@ -1,5 +1,8 @@
 ﻿using System;
 
+/**
+ * Helper class that represents a pair structure
+ */
 [Serializable]
 public class Pair<T, U>
 {

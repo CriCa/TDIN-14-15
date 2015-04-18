@@ -3,6 +3,9 @@ using System.Windows.Input;
 
 namespace Client.ViewModel
 {
+    /**
+     * Wrapper class to execute functions when commands are called by views
+     */
     public class RelayCommand : ICommand
     {
         private readonly Predicate<object> _canExecute;
