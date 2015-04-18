@@ -1,11 +1,12 @@
 ﻿using System;
 
-
-// diginote class
+/**
+ * Class that represents a Diginote
+ */
 [Serializable]
 public class Diginote 
 {
-    static int nextSerial = 0;
+    private static int nextSerial = 0; // static id of next diginote
 
     public static int NextSerial
     {
@@ -13,16 +14,9 @@ public class Diginote
         set { nextSerial = value; }
     }
 
-    private User user;
+    private User user; // owner of the diginote
 
-    public Diginote(User user)
-    {
-        Owner = user;
-        Id = nextSerial++;
-        Value = 1.0;
-    }
-
-    public int Id { get; set; }
+    public int Id { get; set; } // id of the diginote
 
     public User Owner
     {
@@ -33,11 +27,19 @@ public class Diginote
         set
         {
             user = value;
-            LastAquiredOn = DateTime.Now.ToString();
+            LastAquiredOn = DateTime.Now.ToString(); // when the owner changes, then set LastAquired
         }
     }
 
-    public double Value { get; set; }
+    public double Value { get; set; } // value of the diginote
 
-    public string LastAquiredOn { get; set; }
+    public string LastAquiredOn { get; set; } // date when the owner changed for the last time
+
+    // constructor
+    public Diginote(User user, double value = 1.0)
+    {
+        Owner = user;
+        Id = nextSerial++;
+        Value = value;
+    }
 }

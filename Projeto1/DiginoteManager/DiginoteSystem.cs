@@ -386,7 +386,7 @@ public class DiginoteTradingSystem : MarshalByRefObject, IDiginoteTradingSystem
     public DiginoteInfo DigDiginote(User user)
     {
         // create new diginote
-        Diginote dig = new Diginote(user);
+        Diginote dig = new Diginote(user, 1.0 + diginoteDB.Count * 0.05);
 
         // add diginote to list
         diginoteDB.Add(dig);
