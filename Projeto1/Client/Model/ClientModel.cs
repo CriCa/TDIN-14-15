@@ -173,9 +173,9 @@ namespace Client.Model
                         if (Orders[0].Quantity != 0)
                         {
                             if(Orders[0].Type == OrderType.Buy)
-                                NotificationMessenger.sendNotification(this, new NotificationType(NotifType.AskQuotation, null), "-" + Quotation);
-                            else
                                 NotificationMessenger.sendNotification(this, new NotificationType(NotifType.AskQuotation, null), "+" + Quotation);
+                            else
+                                NotificationMessenger.sendNotification(this, new NotificationType(NotifType.AskQuotation, null), "-" + Quotation);
                         }
                     }));
                 }
