@@ -24,7 +24,8 @@ namespace StoreApp
         {
             InitializeComponent();
 
-            new Printer.MainWindow().Show();
+            // test on printer
+            new Printer.MainWindow("cenas", 2, 12.2, 3.2, "cli", "cle").Show();
         }
     }
 }
