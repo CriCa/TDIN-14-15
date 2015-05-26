@@ -16,8 +16,8 @@ namespace BookEditor
         protected override void fillTables()
         {
             this.tables.Add(UserTable.Instance);
-            //this.tables.Add(BookTable.Instance);
-            //this.tables.Add(OrderTable.Instance);
+            this.tables.Add(BookTable.Instance);
+            this.tables.Add(OrderTable.Instance);
 
             foreach (DatabaseTable table in tables) { table.connect(this); }
         }

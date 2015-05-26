@@ -17,7 +17,6 @@ namespace BookEditor
                 MessageQueue.Create(QUEUE_NAME, true);
 
             ServiceHost host = new ServiceHost(typeof(Service));
-
             LocalDatabase.Instance.open();
             host.Open();
 
@@ -42,7 +41,23 @@ namespace BookEditor
                 UserTable.Instance.insert(values);
             }
 
+            if (BookTable.Instance.all.Count == 0)
+            {
+                values.clear();
+                values.add(BookTable.KEY_TITLE, "Era uma vez");
+                values.add(BookTable.KEY_QUANTITY, "1");
+                values.add(BookTable.KEY_PRICE, "25.0");
+                BookTable.Instance.insert(values);
+
+                values.clear();
+                values.add(BookTable.KEY_TITLE, "Randomness");
+                values.add(BookTable.KEY_QUANTITY, "3");
+                values.add(BookTable.KEY_PRICE, "22.2");
+                BookTable.Instance.insert(values);
+            }
+
             UserTable.Instance.printTable();
+            BookTable.Instance.printTable();
 
             Console.WriteLine("Press ENTER to terminate the service host");
             Console.ReadLine();

@@ -28,8 +28,8 @@ namespace BookEditor
         override protected string getTableName() { return "orders"; }
 
         override protected string getCreationScript()
-        { // TODO correct this
-            return "";//String.Format("create table {0} ({1} INTEGER PRIMARY KEY AUTOINCREMENT, {2} TEXT, {3} TEXT NOT NULL, {4} INTEGER NOT NULL DEFAULT 0, {5} TEXT NOT NULL, {6} INTEGER NOT NULL DEFAULT 0, {7} TEXT);", getTableName(), KEY_ID, KEY_NAME, KEY_EMAIL, KEY_TYPE, KEY_PASSWORD, KEY_STATE, KEY_TOKEN);
+        {
+            return String.Format("create table {0} ({1} INTEGER PRIMARY KEY AUTOINCREMENT, FOREIGN KEY({2}) REFERENCES users(i), FOREIGN KEY({3}) REFERENCES books(i), {4} INTEGER NOT NULL DEFAULT 0, {5} INTEGER NOT NULL DEFAULT 0, {6} TEXT, {7} TEXT NOT NULL, {8} REAL NOT NULL DEFAULT 0);", getTableName(), KEY_ID, KEY_CLIENT_ID, KEY_BOOK_ID, KEY_QUANTITY, KEY_STATE, KEY_DATE, KEY_STATE_DATE, KEY_PRICE);
         }
     }
 }

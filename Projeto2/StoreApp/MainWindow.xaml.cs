@@ -23,6 +23,8 @@ namespace StoreApp
         public MainWindow()
         {
             InitializeComponent();
+
+            new Printer.MainWindow().Show();
         }
     }
 }

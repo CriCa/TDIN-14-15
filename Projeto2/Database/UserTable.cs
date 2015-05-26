@@ -22,7 +22,7 @@ namespace BookEditor
 
         override protected string getCreationScript()
         {
-            return String.Format("create table {0} ({1} INTEGER PRIMARY KEY AUTOINCREMENT, {2} TEXT, {3} TEXT NOT NULL, {4} TEXT NOT NULL, {5} INTEGER NOT NULL DEFAULT 0, {6} TEXT NOT NULL);", getTableName(), KEY_ID, KEY_NAME, KEY_EMAIL, KEY_ADDRESS, KEY_TYPE, KEY_PASSWORD);
+            return String.Format("create table {0} ({1} INTEGER PRIMARY KEY AUTOINCREMENT, {2} TEXT NOT NULL, {3} TEXT NOT NULL, {4} TEXT NOT NULL, {5} INTEGER NOT NULL DEFAULT 0, {6} TEXT NOT NULL);", getTableName(), KEY_ID, KEY_NAME, KEY_EMAIL, KEY_ADDRESS, KEY_TYPE, KEY_PASSWORD);
         }
     }
 }

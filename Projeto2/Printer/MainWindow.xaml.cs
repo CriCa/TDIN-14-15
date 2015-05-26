@@ -23,6 +23,8 @@ namespace Printer
         public MainWindow()
         {
             InitializeComponent();
+
+            Console.WriteLine(Environment.GetCommandLineArgs().Length);
         }
     }
 }

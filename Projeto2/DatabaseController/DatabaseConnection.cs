@@ -17,18 +17,15 @@ namespace DatabaseController
         public DatabaseConnection()
         {
             bool exists = File.Exists(databaseName() + DB_SUFFIX);
+
             if (!exists)
-            {
                 SQLiteConnection.CreateFile(databaseName() + DB_SUFFIX);
-            }
 
             startConnection();
             fillTables();
 
             if (!exists)
-            {
                 createTables();
-            }
         }
 
         private void startConnection()

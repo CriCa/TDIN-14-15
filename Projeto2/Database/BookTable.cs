@@ -19,8 +19,8 @@ namespace BookEditor
         override protected string getTableName() { return "books"; }
 
         override protected string getCreationScript()
-        { // TODO correct this
-            return "";// String.Format("create table {0} ({1} INTEGER PRIMARY KEY AUTOINCREMENT, {2} TEXT, {3} TEXT NOT NULL, {4} INTEGER NOT NULL DEFAULT 0, {5} TEXT NOT NULL, {6} INTEGER NOT NULL DEFAULT 0, {7} TEXT);", getTableName(), KEY_ID, KEY_NAME, KEY_EMAIL, KEY_TYPE, KEY_PASSWORD, KEY_STATE, KEY_TOKEN);
+        {
+            return String.Format("create table {0} ({1} INTEGER PRIMARY KEY AUTOINCREMENT, {2} TEXT NOT NULL, {3} INTEGER NOT NULL DEFAULT 0, {4} REAL NOT NULL DEFAULT 0);", getTableName(), KEY_ID, KEY_TITLE, KEY_QUANTITY, KEY_PRICE);
         }
     }
 }
