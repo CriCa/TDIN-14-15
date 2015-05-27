@@ -43,9 +43,9 @@ namespace BookEditor
         {
             Books list = new Books();
 
-            List<Values> users = BookTable.Instance.all;
+            List<Values> books = BookTable.Instance.all;
 
-            foreach (Values v in users)
+            foreach (Values v in books)
                 list.Add(new BookData(
                     (long)v.getValue(BookTable.KEY_ID),
                     (string)v.getValue(BookTable.KEY_TITLE),
@@ -88,6 +88,8 @@ namespace BookEditor
         public Response sellBook(long id, int quantity)
         {
             /*Values values = new Values();
+
+            Values values = new Values();
 
             values.add(BookTable.KEY_ID, book.id);
             values.add(BookTable.KEY_TITLE, book.title);

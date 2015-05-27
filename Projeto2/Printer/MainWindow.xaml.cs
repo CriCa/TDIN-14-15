@@ -20,7 +20,7 @@ namespace Printer
     /// </summary>
     public partial class MainWindow : Window
     {
-        public MainWindow(string bookTitle, int qtd, double pric, double ttl, string cli)
+        public MainWindow(string bookTitle, long qtd, double pric, double ttl, string cli)
         {
             InitializeComponent();
 

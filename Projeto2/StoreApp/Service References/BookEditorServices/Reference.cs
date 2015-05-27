@@ -36,7 +36,7 @@ namespace StoreApp.BookEditorServices {
         private double priceField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int quantityField;
+        private long quantityField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string titleField;
@@ -78,7 +78,7 @@ namespace StoreApp.BookEditorServices {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public int quantity {
+        public long quantity {
             get {
                 return this.quantityField;
             }

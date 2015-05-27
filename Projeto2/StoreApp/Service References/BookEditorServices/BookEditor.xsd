@@ -51,7 +51,7 @@
     <xs:sequence>
       <xs:element minOccurs="0" name="id" type="xs:long" />
       <xs:element minOccurs="0" name="price" type="xs:double" />
-      <xs:element minOccurs="0" name="quantity" type="xs:int" />
+      <xs:element minOccurs="0" name="quantity" type="xs:long" />
       <xs:element minOccurs="0" name="title" nillable="true" type="xs:string" />
     </xs:sequence>
   </xs:complexType>

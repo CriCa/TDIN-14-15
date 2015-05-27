@@ -77,8 +77,6 @@ namespace DatabaseController
 
             builder.Append(");");
 
-            Console.WriteLine(builder.ToString());
-
             new SQLiteCommand(builder.ToString(), connection).ExecuteNonQuery();
         }
 
