@@ -48,7 +48,10 @@ namespace Utilities
         {
             if (values.ContainsKey(key))
             {
-                return values[key].second;
+                if (values[key].first == typeof(double))
+                    return ((double)values[key].second).ToString("0.00", System.Globalization.CultureInfo.InvariantCulture);
+                else
+                    return values[key].second;
             }
 
             return null;

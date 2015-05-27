@@ -11,7 +11,7 @@ using System.ComponentModel;
 namespace BookEditor
 {
     [ServiceContract]
-    public interface IServiceUser
+    public interface IServiceAuth
     {
         [WebInvoke(UriTemplate = "/login", Method = "POST", RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json)]
         [Description("Login in the system")]

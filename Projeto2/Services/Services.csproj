@@ -45,9 +45,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataContracts.cs" />
-    <Compile Include="IServiceUser.cs" />
+    <Compile Include="IServiceAuth.cs" />
+    <Compile Include="IServiceStore.cs" />
+    <Compile Include="IServiceUsers.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ServiceUser.cs" />
+    <Compile Include="ServiceStore.cs" />
+    <Compile Include="ServiceAuth.cs" />
+    <Compile Include="ServiceUsers.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DatabaseController\DatabaseController.csproj">

@@ -68,4 +68,31 @@ namespace BookEditor
         public string name;
     }
 
+    [DataContract]
+    public class BookData
+    {
+        [DataMember]
+        public long id;
+
+        [DataMember]
+        public string title;
+
+        [DataMember]
+        public long quantity;
+
+        [DataMember]
+        public double price;
+
+        public BookData(long id, string title, long quantity, double price)
+        {
+            this.id = id;
+            this.title = title;
+            this.quantity = quantity;
+            this.price = price;
+        }
+    }
+
+    [CollectionDataContract]
+    public class Books : List<BookData> { }
+
 }

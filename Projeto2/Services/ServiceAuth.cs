@@ -7,7 +7,7 @@ using Utilities;
 
 namespace BookEditor
 {
-    public partial class Service : IServiceUser
+    public partial class Service : IServiceAuth
     {
         public LoginResponse login(LoginData data)
         {

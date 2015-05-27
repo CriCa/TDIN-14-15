@@ -56,9 +56,7 @@ namespace DatabaseController
                 builder.Append(keys[i]);
 
                 if (i < size - 1)
-                {
                     builder.Append(", ");
-                }
             }
 
             builder.Append(") values (");
@@ -66,24 +64,20 @@ namespace DatabaseController
             for (i = 0; i < size; ++i)
             {
                 if (values.getType(keys[i]) == typeof(string))
-                {
                     builder.Append("'");
-                }
 
                 builder.Append(values.getValue(keys[i]));
 
                 if (values.getType(keys[i]) == typeof(string))
-                {
                     builder.Append("'");
-                }
 
                 if (i < size - 1)
-                {
                     builder.Append(", ");
-                }
             }
 
             builder.Append(");");
+
+            Console.WriteLine(builder.ToString());
 
             new SQLiteCommand(builder.ToString(), connection).ExecuteNonQuery();
         }
@@ -99,21 +93,15 @@ namespace DatabaseController
                 builder.Append(String.Format("{0}=", keys[i]));
 
                 if (values.getType(keys[i]) == typeof(string))
-                {
                     builder.Append("'");
-                }
 
                 builder.Append(values.getValue(keys[i]));
 
                 if (values.getType(keys[i]) == typeof(string))
-                {
                     builder.Append("'");
-                }
 
                 if (i < size - 1)
-                {
                     builder.Append(", ");
-                }
             }
 
             builder.Append(" WHERE ");
@@ -123,21 +111,15 @@ namespace DatabaseController
                 builder.Append(String.Format("{0}=", where_keys[i]));
 
                 if (where_values.getType(where_keys[i]) == typeof(string))
-                {
                     builder.Append("'");
-                }
 
                 builder.Append(where_values.getValue(where_keys[i]));
 
                 if (where_values.getType(where_keys[i]) == typeof(string))
-                {
                     builder.Append("'");
-                }
 
                 if (i < where_size - 1)
-                {
                     builder.Append(" and ");
-                }
             }
 
             builder.Append(";");
@@ -153,10 +135,10 @@ namespace DatabaseController
             while (result.Read())
             {
                 Values v = new Values();
+                
                 foreach (string k in result.GetValues().AllKeys)
-                {
                     v.add(k, result[k]);
-                }
+                
                 rows.Add(v);
             }
 
@@ -171,9 +153,7 @@ namespace DatabaseController
             StringBuilder builder = new StringBuilder("select ");
 
             if (values == null || values.Count == 0)
-            {
                 builder.Append("*");
-            }
             else
             {
                 size = values.Count;
@@ -183,9 +163,7 @@ namespace DatabaseController
                     builder.Append(values[i]);
 
                     if (i < size - 1)
-                    {
                         builder.Append(", ");
-                    }
                 }
             }
 
@@ -203,21 +181,15 @@ namespace DatabaseController
                     builder.Append(k + "=");
 
                     if (where_values.getType(k) == typeof(string))
-                    {
                         builder.Append("'");
-                    }
 
                     builder.Append(where_values.getValue(k));
 
                     if (where_values.getType(k) == typeof(string))
-                    {
                         builder.Append("'");
-                    }
 
                     if (i < size - 1)
-                    {
                         builder.Append(" and ");
-                    }
                 }
             }
 
@@ -227,10 +199,10 @@ namespace DatabaseController
             while (result.Read())
             {
                 Values v = new Values();
+                
                 foreach (string k in result.GetValues().AllKeys)
-                {
                     v.add(k, result[k]);
-                }
+                
                 rows.Add(v);
             }
 
@@ -255,21 +227,15 @@ namespace DatabaseController
                     builder.Append(k + "=");
 
                     if (where_values.getType(k) == typeof(string))
-                    {
                         builder.Append("'");
-                    }
 
                     builder.Append(where_values.getValue(k));
 
                     if (where_values.getType(k) == typeof(string))
-                    {
                         builder.Append("'");
-                    }
 
                     if (i < size - 1)
-                    {
                         builder.Append(" and ");
-                    }
                 }
             }
 

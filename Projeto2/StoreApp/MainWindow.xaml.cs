@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.ServiceModel;
 
 namespace StoreApp
 {
@@ -20,12 +21,26 @@ namespace StoreApp
     /// </summary>
     public partial class MainWindow : Window
     {
+        App app = Application.Current as App;
+
         public MainWindow()
         {
+            init();
+            try { 
             InitializeComponent();
+            }
+            catch (Exception e) { Console.WriteLine(e.InnerException); }
+        }
 
-            // test on printer
-            new Printer.MainWindow("cenas", 2, 12.2, 3.2, "cli", "cle").Show();
+        private void init()
+        {
+            app.callback = new ServiceStoreCallback();
+            app.dupFactory =
+                new DuplexChannelFactory<BookEditorServices.IServiceStore>(
+                app.callback, new NetTcpBinding(), new EndpointAddress("net.tcp://localhost:9002/BookEditorServices/store"));
+
+            app.dupFactory.Open();
+            app.clientProxy = app.dupFactory.CreateChannel();
         }
     }
 }
