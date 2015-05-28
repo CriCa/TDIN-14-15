@@ -442,10 +442,10 @@ namespace StoreApp.BookEditorServices {
         System.Threading.Tasks.Task<StoreApp.BookEditorServices.Response> updateBookAsync(StoreApp.BookEditorServices.BookData book);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceStore/sellBook", ReplyAction="http://tempuri.org/IServiceStore/sellBookResponse")]
-        StoreApp.BookEditorServices.Response sellBook(long id, int quantity);
+        StoreApp.BookEditorServices.Response sellBook(StoreApp.BookEditorServices.BookData book, int quantity);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceStore/sellBook", ReplyAction="http://tempuri.org/IServiceStore/sellBookResponse")]
-        System.Threading.Tasks.Task<StoreApp.BookEditorServices.Response> sellBookAsync(long id, int quantity);
+        System.Threading.Tasks.Task<StoreApp.BookEditorServices.Response> sellBookAsync(StoreApp.BookEditorServices.BookData book, int quantity);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -507,12 +507,12 @@ namespace StoreApp.BookEditorServices {
             return base.Channel.updateBookAsync(book);
         }
         
-        public StoreApp.BookEditorServices.Response sellBook(long id, int quantity) {
-            return base.Channel.sellBook(id, quantity);
+        public StoreApp.BookEditorServices.Response sellBook(StoreApp.BookEditorServices.BookData book, int quantity) {
+            return base.Channel.sellBook(book, quantity);
         }
         
-        public System.Threading.Tasks.Task<StoreApp.BookEditorServices.Response> sellBookAsync(long id, int quantity) {
-            return base.Channel.sellBookAsync(id, quantity);
+        public System.Threading.Tasks.Task<StoreApp.BookEditorServices.Response> sellBookAsync(StoreApp.BookEditorServices.BookData book, int quantity) {
+            return base.Channel.sellBookAsync(book, quantity);
         }
     }
 }

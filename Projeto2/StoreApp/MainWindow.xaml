@@ -2,9 +2,11 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:local="clr-namespace:StoreApp"
-        Title="Book Editor - Store Application" Height="396.402" Width="600.568" Icon="Resources/favicon.ico" ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen" ToolTip="Store Application of Book Editor">
+        Title="Book Editor - Store Application" Height="500" Width="700" Icon="Resources/favicon.ico" ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen" ToolTip="Store Application of Book Editor">
     <Grid>
-        <local:BooksUserControl x:Name="BooksUC" Margin="0,0,272,-114" />
-        <local:OrdersUserControl x:Name="OrdersUC" Margin="323,0,-51,-114" />
+        <StackPanel Orientation="Horizontal">
+            <local:BooksUserControl x:Name="BooksUC" />
+            <local:OrdersUserControl x:Name="OrdersUC" />
+        </StackPanel>
     </Grid>
 </Window>

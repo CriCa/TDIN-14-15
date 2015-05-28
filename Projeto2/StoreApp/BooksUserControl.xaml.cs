@@ -114,7 +114,7 @@ namespace StoreApp
 
                         ClientName.Text = "";
 
-                        Console.WriteLine("contact server to do the sell");
+                        app.clientProxy.sellBook(SelectedBook, (int) qtd);
 
                         new Printer.MainWindow(SelectedBook.title, qtd, price, (double)qtd * price, clientName).Show();
 
@@ -124,8 +124,14 @@ namespace StoreApp
                 }
                 else
                 {
-                    // TODO
-                    Console.WriteLine("creating order");
+                    CreateOrderDialog dialog = new CreateOrderDialog(Window.GetWindow(this));
+
+                    if (dialog.ShowDialog() == true)
+                    {
+                        string mail = dialog.ClientEmail;
+
+                        Console.WriteLine("create order with mail " + mail);
+                    }
                 }
             }
             else System.Windows.MessageBox.Show(Window.GetWindow(this), "Select a book first!", "No book selected", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -137,7 +143,12 @@ namespace StoreApp
             {
                 UpdateButton.IsEnabled = true;
 
-                if (SelectedBook.quantity == 0)
+                SellButton.IsEnabled = true;
+                sellQuantity.IsEnabled = true;
+                ClientName.IsEnabled = true;
+                sellQuantity.Value = 1;
+
+                /*if (SelectedBook.quantity == 0)
                 {
                     SellButton.IsEnabled = false;
                     sellQuantity.IsEnabled = false;
@@ -149,7 +160,7 @@ namespace StoreApp
                     sellQuantity.IsEnabled = true;
                     ClientName.IsEnabled = true;
                     sellQuantity.Value = 1;
-                }
+                }*/
             }
             else
             {

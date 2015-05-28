@@ -1,0 +1,13 @@
+﻿<Window x:Class="StoreApp.CreateOrderDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Create Order" Height="150" Width="400" ResizeMode="NoResize" Icon="Resources/favicon.ico" WindowStartupLocation="CenterOwner" ShowInTaskbar="False">
+    <Grid>
+        <TextBlock HorizontalAlignment="Left" Margin="10,12,0,0" TextWrapping="Wrap" Text="Client Email" VerticalAlignment="Top" FontWeight="Bold" Foreground="#FF4DBCE9"/>
+        <TextBox Name="email" HorizontalAlignment="Left" Height="23" Margin="10,33,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="361" Background="#FFD7F4FF" TextChanged="CheckEmail"/>
+        
+        <Button Name="SubmitButton" Content="Submit" HorizontalAlignment="Left" Margin="295,72,0,0" VerticalAlignment="Top" Width="76" Foreground="#FF19536A" Click="Submit" IsEnabled="False"/>
+        <Button Content="Cancel" HorizontalAlignment="Left" Margin="214,72,0,0" VerticalAlignment="Top" Width="76" Foreground="#FF19536A" Click="Cancel"/>
+
+    </Grid>
+</Window>

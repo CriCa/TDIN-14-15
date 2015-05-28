@@ -8,10 +8,10 @@
         <TextBox Name="TitleBox" HorizontalAlignment="Left" Height="23" Margin="10,31,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="261" Background="#FFD7F4FF"/>
 
         <TextBlock HorizontalAlignment="Left" Margin="10,71,0,0" TextWrapping="Wrap" Text="Quantity" VerticalAlignment="Top" Foreground="#FF4DBCE9" FontWeight="Bold"/>
-        <tl:DoubleUpDown Name="QuantityBox" Margin="10,92,188,62" Value="0" Maximum="999" Minimum="0" />
+        <tl:DoubleUpDown Name="QuantityBox" Margin="10,92,188,62" Value="0" Maximum="999" Minimum="0" Background="#FFD7F4FF" />
 
         <TextBlock HorizontalAlignment="Left" Margin="163,71,0,0" TextWrapping="Wrap" Text="Price $" VerticalAlignment="Top" Foreground="#FF4DBCE9" FontWeight="Bold"/>
-        <tl:DoubleUpDown x:Name="PriceBox" Margin="163,92,23,62" Value="1.0" Maximum="999" Minimum="0.1" Increment="0.1" />
+        <tl:DoubleUpDown x:Name="PriceBox" Margin="163,92,23,62" Value="1.0" Maximum="999" Minimum="0.1" Increment="0.1" Background="#FFD7F4FF" />
 
         <Button Name="SubmitButton" Content="Add" HorizontalAlignment="Left" Margin="196,145,0,0" VerticalAlignment="Top" Width="75" Foreground="#FF19536A" Click="Submit"/>
         <Button Content="Cancel" HorizontalAlignment="Left" Margin="116,145,0,0" VerticalAlignment="Top" Width="75" Foreground="#FF19536A" Click="Cancel"/>

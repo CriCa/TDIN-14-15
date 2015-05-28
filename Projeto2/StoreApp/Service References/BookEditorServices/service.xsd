@@ -86,7 +86,7 @@
   <xs:element name="sellBook">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="id" type="xs:long" />
+        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/BookEditor" minOccurs="0" name="book" nillable="true" type="q12:BookData" />
         <xs:element minOccurs="0" name="quantity" type="xs:int" />
       </xs:sequence>
     </xs:complexType>
@@ -94,7 +94,7 @@
   <xs:element name="sellBookResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/BookEditor" minOccurs="0" name="sellBookResult" nillable="true" type="q12:Response" />
+        <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/BookEditor" minOccurs="0" name="sellBookResult" nillable="true" type="q13:Response" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

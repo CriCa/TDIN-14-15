@@ -58,6 +58,14 @@ namespace BookEditor
         public Response addBook(BookData book)
         {
             Values values = new Values();
+            values.add(BookTable.KEY_TITLE, book.title);
+
+            List<Values> books = BookTable.Instance.get(null, values);
+
+            if (books.Count > 0)
+                return new Response("error", "That book is already registered!");
+
+            values.clear();
 
             values.add(BookTable.KEY_TITLE, book.title);
             values.add(BookTable.KEY_QUANTITY, book.quantity);
@@ -65,7 +73,7 @@ namespace BookEditor
 
             BookTable.Instance.insert(values);
 
-            return new Response("success", "book added");
+            return new Response("success", "Book added!");
         }
 
         public Response updateBook(BookData book)
@@ -85,21 +93,24 @@ namespace BookEditor
             return new Response("success", "book updated");
         }
 
-        public Response sellBook(long id, int quantity)
+        public Response sellBook(BookData book, int quantity)
         {
-            /*Values values = new Values();
-
             Values values = new Values();
-
             values.add(BookTable.KEY_ID, book.id);
-            values.add(BookTable.KEY_TITLE, book.title);
-            values.add(BookTable.KEY_QUANTITY, book.quantity);
-            values.add(BookTable.KEY_PRICE, book.price);
+
+            List<Values> books = BookTable.Instance.get(null, values);
+
+            if (books.Count == 0 || (long) books[0].getValue(BookTable.KEY_QUANTITY) - quantity < 0)
+                return new Response("error", "Book doesn't exists or quantity isn't enough");
+
+            values.clear();
+
+            values.add(BookTable.KEY_QUANTITY, (long) books[0].getValue(BookTable.KEY_QUANTITY) - quantity);
 
             Values values_where = new Values();
             values_where.add(BookTable.KEY_ID, book.id);
 
-            BookTable.Instance.update(values, values_where);*/
+            BookTable.Instance.update(values, values_where);
 
             return new Response("success", "book sold");
         }

@@ -78,6 +78,9 @@
     <Compile Include="BookDialog.xaml.cs">
       <DependentUpon>BookDialog.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CreateOrderDialog.xaml.cs">
+      <DependentUpon>CreateOrderDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="OrdersUserControl.xaml.cs">
       <DependentUpon>OrdersUserControl.xaml</DependentUpon>
     </Compile>
@@ -92,6 +95,10 @@
     </Compile>
     <Compile Include="UserControlNotifiable.cs" />
     <Page Include="BookDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CreateOrderDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

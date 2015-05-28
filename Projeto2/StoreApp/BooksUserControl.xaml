@@ -5,11 +5,15 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:StoreApp"
              xmlns:tl="http://schemas.xceed.com/wpf/xaml/toolkit"
-             mc:Ignorable="d" Height="481.818" Width="322.727" Background="#FF4DBCE9">
+             mc:Ignorable="d" Height="500" Width="325" Background="#FF4DBCE9">
     <Grid>
         <Label Content="Books" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Foreground="White" FontWeight="Bold" FontSize="14"/>
 
-        <ListBox SelectedItem="{Binding SelectedBook}" Name="booksList" ItemsSource="{Binding BooksList, Mode=OneWay}" SelectionChanged="BookSelectedChanged" HorizontalAlignment="Left" Height="200" Margin="10,44,0,0" VerticalAlignment="Top" Width="303">
+        <TextBlock HorizontalAlignment="Left" Margin="18,43,0,0" TextWrapping="Wrap" Text="Title" VerticalAlignment="Top" Foreground="White"/>
+        <TextBlock HorizontalAlignment="Left" Margin="220,43,0,0" TextWrapping="Wrap" Text="Qtd" VerticalAlignment="Top" Foreground="White"/>
+        <TextBlock HorizontalAlignment="Left" Margin="253,43,0,0" TextWrapping="Wrap" Text="Price" VerticalAlignment="Top" Foreground="White"/>
+
+        <ListBox SelectedItem="{Binding SelectedBook}" Name="booksList" ItemsSource="{Binding BooksList, Mode=OneWay}" SelectionChanged="BookSelectedChanged" HorizontalAlignment="Left" Height="185" Margin="10,59,0,0" VerticalAlignment="Top" Width="303">
             <ListBox.ItemContainerStyle>
                 <Style TargetType="ListBoxItem">
                     <Setter Property="Background" Value="#FFF"/>
@@ -27,20 +31,23 @@
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <DockPanel>
-                        <TextBlock HorizontalAlignment="Left" Padding="5,0,5,0" Text="{Binding title}" />
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                            <TextBlock Padding="5,0,5,0" Text="{Binding quantity}" />
-                            <TextBlock Padding="5,0,5,0" Text="{Binding price}" />
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                            <TextBlock HorizontalAlignment="Left" Width="200" Padding="5,0,5,0" Text="{Binding title}" />
+                            <TextBlock Padding="5,0,5,0" Width="30" Text="{Binding quantity}" />
+                            <TextBlock Padding="5,0,0,0" Text="$ " />
+                            <TextBlock Padding="0,0,5,0" Text="{Binding price}" />
                         </StackPanel>
                     </DockPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
 
+
+
         <Button Name="AddButton"  Content="Add" HorizontalAlignment="Left" Margin="10,249,0,0" VerticalAlignment="Top" Width="75" Foreground="#FF19536A" Click="AddBook"/>
         <Button Name="UpdateButton" Content="Update" HorizontalAlignment="Left" Margin="90,249,0,0" VerticalAlignment="Top" Width="75" Foreground="#FF19536A"  Click="UpdateBook" IsEnabled="False"/>
 
-        <tl:IntegerUpDown Name="sellQuantity" Margin="170,302,94,158" Value="1" Maximum="999" Minimum="1" IsEnabled="False" />
+        <tl:IntegerUpDown Name="sellQuantity" Margin="170,302,94,176" Value="1" Maximum="999" Minimum="1" IsEnabled="False" />
         <Button Name="SellButton" Content="Sell" HorizontalAlignment="Left" Margin="234,302,0,0" VerticalAlignment="Top" Width="75" Foreground="#FF19536A"  Click="SellBook" IsEnabled="False"/>
         <TextBox Name="ClientName" HorizontalAlignment="Left" Height="22" Margin="10,302,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="155" IsEnabled="False"/>
 

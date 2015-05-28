@@ -27,7 +27,7 @@ namespace BookEditor
 
         [Description("Sell book")]
         [OperationContract]
-        Response sellBook(long id, int quantity);
+        Response sellBook(BookData book, int quantity);
     }
 
     public interface IServiceStoreCallback
