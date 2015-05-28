@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="33cec8bb-92a0-47c4-bc98-44fc1d80f5f8" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:9001/WarehouseRequestService/" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="ServiceRequest.wsdl" MetadataType="Wsdl" ID="604cb8d8-e7ab-4ff8-a9fd-b20d9adf3d97" SourceId="1" SourceUrl="http://localhost:9001/WarehouseRequestService/?wsdl" />
+    <MetadataFile FileName="item.disco" MetadataType="Disco" ID="aa2e37cf-35fa-4182-832e-3bc21216c4e3" SourceId="1" SourceUrl="http://localhost:9001/WarehouseRequestService/?disco" />
+    <MetadataFile FileName="item.xsd" MetadataType="Schema" ID="ed8259aa-866f-4d63-80b3-4c022486380e" SourceId="1" SourceUrl="http://localhost:9001/WarehouseRequestService/?xsd=xsd2" />
+    <MetadataFile FileName="item1.xsd" MetadataType="Schema" ID="6f3ba9d4-c185-426c-bca1-a250c049cf22" SourceId="1" SourceUrl="http://localhost:9001/WarehouseRequestService/?xsd=xsd1" />
+    <MetadataFile FileName="item2.xsd" MetadataType="Schema" ID="df6d8a9c-87fa-420a-8a4e-b675e2bed778" SourceId="1" SourceUrl="http://localhost:9001/WarehouseRequestService/?xsd=xsd0" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

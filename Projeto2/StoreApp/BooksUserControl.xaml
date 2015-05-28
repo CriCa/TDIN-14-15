@@ -42,14 +42,15 @@
             </ListBox.ItemTemplate>
         </ListBox>
 
-
-
         <Button Name="AddButton"  Content="Add" HorizontalAlignment="Left" Margin="10,249,0,0" VerticalAlignment="Top" Width="75" Foreground="#FF19536A" Click="AddBook"/>
         <Button Name="UpdateButton" Content="Update" HorizontalAlignment="Left" Margin="90,249,0,0" VerticalAlignment="Top" Width="75" Foreground="#FF19536A"  Click="UpdateBook" IsEnabled="False"/>
 
-        <tl:IntegerUpDown Name="sellQuantity" Margin="170,302,94,176" Value="1" Maximum="999" Minimum="1" IsEnabled="False" />
-        <Button Name="SellButton" Content="Sell" HorizontalAlignment="Left" Margin="234,302,0,0" VerticalAlignment="Top" Width="75" Foreground="#FF19536A"  Click="SellBook" IsEnabled="False"/>
+        <TextBlock Name="ClientPlaceholder" HorizontalAlignment="Left" Margin="10,286,0,0" TextWrapping="Wrap" Text="Client Name" VerticalAlignment="Top" Foreground="White"/>
+        <TextBlock HorizontalAlignment="Left" Margin="170,286,0,0" TextWrapping="Wrap" Text="Qtd" VerticalAlignment="Top" Foreground="White"/>
+
         <TextBox Name="ClientName" HorizontalAlignment="Left" Height="22" Margin="10,302,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="155" IsEnabled="False"/>
+        <tl:IntegerUpDown Name="sellQuantity" Margin="170,302,94,176" Value="1" Maximum="999" Minimum="1" IsEnabled="False" ValueChanged="QuantityChanged" />
+        <Button Name="SellButton" Content="Sell" HorizontalAlignment="Left" Margin="234,302,0,0" VerticalAlignment="Top" Width="75" Foreground="#FF19536A"  Click="SellBook" IsEnabled="False"/>
 
     </Grid>
 </local:UserControlNotifiable>

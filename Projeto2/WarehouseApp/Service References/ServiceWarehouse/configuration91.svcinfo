@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="Acos9QmNZ9aAW6jheb6WkpHCfn4=">
+<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="e/5EkELw8BPBHxEgZ3CTvpbsdUY=">
   <bindingConfigurations>
     <bindingConfiguration bindingType="netTcpBinding" name="NetTcpBinding_IServiceStore">
       <properties>
@@ -233,7 +233,7 @@
     </bindingConfiguration>
   </bindingConfigurations>
   <endpoints>
-    <endpoint name="NetTcpBinding_IServiceStore" contract="BookEditorServices.IServiceStore" bindingType="netTcpBinding" address="net.tcp://localhost:9002/BookEditorServices/store" bindingConfiguration="NetTcpBinding_IServiceStore">
+    <endpoint name="NetTcpBinding_IServiceStore" contract="ServiceWarehouse.IServiceStore" bindingType="netTcpBinding" address="net.tcp://localhost:9002/BookEditorServices/store" bindingConfiguration="NetTcpBinding_IServiceStore">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue>net.tcp://localhost:9002/BookEditorServices/store</serializedValue>
@@ -248,7 +248,7 @@
           <serializedValue>NetTcpBinding_IServiceStore</serializedValue>
         </property>
         <property path="/contract" isComplexType="false" isExplicitlyDefined="true" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>BookEditorServices.IServiceStore</serializedValue>
+          <serializedValue>ServiceWarehouse.IServiceStore</serializedValue>
         </property>
         <property path="/headers" isComplexType="true" isExplicitlyDefined="false" clrType="System.ServiceModel.Configuration.AddressHeaderCollectionElement, System.ServiceModel, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue>System.ServiceModel.Configuration.AddressHeaderCollectionElement</serializedValue>
@@ -318,7 +318,7 @@
         </property>
       </properties>
     </endpoint>
-    <endpoint name="NetTcpBinding_IServiceWarehouse" contract="BookEditorServices.IServiceWarehouse" bindingType="netTcpBinding" address="net.tcp://localhost:9002/BookEditorServices/warehouse" bindingConfiguration="NetTcpBinding_IServiceWarehouse">
+    <endpoint name="NetTcpBinding_IServiceWarehouse" contract="ServiceWarehouse.IServiceWarehouse" bindingType="netTcpBinding" address="net.tcp://localhost:9002/BookEditorServices/warehouse" bindingConfiguration="NetTcpBinding_IServiceWarehouse">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue>net.tcp://localhost:9002/BookEditorServices/warehouse</serializedValue>
@@ -333,7 +333,7 @@
           <serializedValue>NetTcpBinding_IServiceWarehouse</serializedValue>
         </property>
         <property path="/contract" isComplexType="false" isExplicitlyDefined="true" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>BookEditorServices.IServiceWarehouse</serializedValue>
+          <serializedValue>ServiceWarehouse.IServiceWarehouse</serializedValue>
         </property>
         <property path="/headers" isComplexType="true" isExplicitlyDefined="false" clrType="System.ServiceModel.Configuration.AddressHeaderCollectionElement, System.ServiceModel, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue>System.ServiceModel.Configuration.AddressHeaderCollectionElement</serializedValue>

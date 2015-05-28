@@ -7,12 +7,12 @@ using System.ComponentModel;
 using System.Runtime.Serialization;
 using System.ServiceModel;
 using Utilities;
+using Services.ServiceRequest;
 
 namespace BookEditor
 {
     public partial class Service : IServiceStore
     {
-        public static Dictionary<long, IServiceStoreCallback> callbacks = new Dictionary<long, IServiceStoreCallback>();
         public static IServiceStoreCallback callback;
 
         /*public long connect(string email, string password)
@@ -41,6 +41,9 @@ namespace BookEditor
 
         public Books getBooks()
         {
+            if(callback == null)
+                callback = OperationContext.Current.GetCallbackChannel<IServiceStoreCallback>();
+
             Books list = new Books();
 
             List<Values> books = BookTable.Instance.all;
@@ -111,6 +114,19 @@ namespace BookEditor
             values_where.add(BookTable.KEY_ID, book.id);
 
             BookTable.Instance.update(values, values_where);
+
+            NetMsmqBinding binding = new NetMsmqBinding();
+            binding.Security.Transport.MsmqAuthenticationMode = MsmqAuthenticationMode.None;
+            binding.Security.Transport.MsmqProtectionLevel = System.Net.Security.ProtectionLevel.None;
+
+            ServiceRequestClient proxy = new ServiceRequestClient(binding, new EndpointAddress("net.msmq://localhost/private/OrderQueue"));
+            Request req = new Request();
+            req.id = 0;
+            req.title = "cenas";
+            req.state = 0;
+            req.date = "merda";
+            req.state_date = "merda2";
+            proxy.requestBook(req);
 
             return new Response("success", "book sold");
         }

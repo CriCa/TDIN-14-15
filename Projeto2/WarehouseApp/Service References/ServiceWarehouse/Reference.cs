@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace StoreApp.BookEditorServices {
+namespace WarehouseApp.ServiceWarehouse {
     using System.Runtime.Serialization;
     using System;
     
@@ -17,7 +17,7 @@ namespace StoreApp.BookEditorServices {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.CollectionDataContractAttribute(Name="Books", Namespace="http://schemas.datacontract.org/2004/07/BookEditor", ItemName="BookData")]
     [System.SerializableAttribute()]
-    public class Books : System.Collections.Generic.List<StoreApp.BookEditorServices.BookData> {
+    public class Books : System.Collections.Generic.List<WarehouseApp.ServiceWarehouse.BookData> {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -117,7 +117,7 @@ namespace StoreApp.BookEditorServices {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="Response", Namespace="http://schemas.datacontract.org/2004/07/BookEditor")]
     [System.SerializableAttribute()]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(StoreApp.BookEditorServices.LoginResponse))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(WarehouseApp.ServiceWarehouse.LoginResponse))]
     public partial class Response : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
@@ -179,7 +179,7 @@ namespace StoreApp.BookEditorServices {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="LoginResponse", Namespace="http://schemas.datacontract.org/2004/07/BookEditor")]
     [System.SerializableAttribute()]
-    public partial class LoginResponse : StoreApp.BookEditorServices.Response {
+    public partial class LoginResponse : WarehouseApp.ServiceWarehouse.Response {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private long IdField;
@@ -218,7 +218,7 @@ namespace StoreApp.BookEditorServices {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="LoginData", Namespace="http://schemas.datacontract.org/2004/07/BookEditor")]
     [System.SerializableAttribute()]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(StoreApp.BookEditorServices.RegisterData))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(WarehouseApp.ServiceWarehouse.RegisterData))]
     public partial class LoginData : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
@@ -280,7 +280,7 @@ namespace StoreApp.BookEditorServices {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="RegisterData", Namespace="http://schemas.datacontract.org/2004/07/BookEditor")]
     [System.SerializableAttribute()]
-    public partial class RegisterData : StoreApp.BookEditorServices.LoginData {
+    public partial class RegisterData : WarehouseApp.ServiceWarehouse.LoginData {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string nameField;
@@ -345,35 +345,35 @@ namespace StoreApp.BookEditorServices {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="BookEditorServices.IServiceAuth")]
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ServiceWarehouse.IServiceAuth")]
     public interface IServiceAuth {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceAuth/login", ReplyAction="http://tempuri.org/IServiceAuth/loginResponse")]
-        StoreApp.BookEditorServices.LoginResponse login(StoreApp.BookEditorServices.LoginData data);
+        WarehouseApp.ServiceWarehouse.LoginResponse login(WarehouseApp.ServiceWarehouse.LoginData data);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceAuth/login", ReplyAction="http://tempuri.org/IServiceAuth/loginResponse")]
-        System.Threading.Tasks.Task<StoreApp.BookEditorServices.LoginResponse> loginAsync(StoreApp.BookEditorServices.LoginData data);
+        System.Threading.Tasks.Task<WarehouseApp.ServiceWarehouse.LoginResponse> loginAsync(WarehouseApp.ServiceWarehouse.LoginData data);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceAuth/logout", ReplyAction="http://tempuri.org/IServiceAuth/logoutResponse")]
-        StoreApp.BookEditorServices.Response logout(StoreApp.BookEditorServices.LogoutData data);
+        WarehouseApp.ServiceWarehouse.Response logout(WarehouseApp.ServiceWarehouse.LogoutData data);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceAuth/logout", ReplyAction="http://tempuri.org/IServiceAuth/logoutResponse")]
-        System.Threading.Tasks.Task<StoreApp.BookEditorServices.Response> logoutAsync(StoreApp.BookEditorServices.LogoutData data);
+        System.Threading.Tasks.Task<WarehouseApp.ServiceWarehouse.Response> logoutAsync(WarehouseApp.ServiceWarehouse.LogoutData data);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceAuth/register", ReplyAction="http://tempuri.org/IServiceAuth/registerResponse")]
-        StoreApp.BookEditorServices.Response register(StoreApp.BookEditorServices.RegisterData data);
+        WarehouseApp.ServiceWarehouse.Response register(WarehouseApp.ServiceWarehouse.RegisterData data);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceAuth/register", ReplyAction="http://tempuri.org/IServiceAuth/registerResponse")]
-        System.Threading.Tasks.Task<StoreApp.BookEditorServices.Response> registerAsync(StoreApp.BookEditorServices.RegisterData data);
+        System.Threading.Tasks.Task<WarehouseApp.ServiceWarehouse.Response> registerAsync(WarehouseApp.ServiceWarehouse.RegisterData data);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface IServiceAuthChannel : StoreApp.BookEditorServices.IServiceAuth, System.ServiceModel.IClientChannel {
+    public interface IServiceAuthChannel : WarehouseApp.ServiceWarehouse.IServiceAuth, System.ServiceModel.IClientChannel {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class ServiceAuthClient : System.ServiceModel.ClientBase<StoreApp.BookEditorServices.IServiceAuth>, StoreApp.BookEditorServices.IServiceAuth {
+    public partial class ServiceAuthClient : System.ServiceModel.ClientBase<WarehouseApp.ServiceWarehouse.IServiceAuth>, WarehouseApp.ServiceWarehouse.IServiceAuth {
         
         public ServiceAuthClient() {
         }
@@ -394,58 +394,58 @@ namespace StoreApp.BookEditorServices {
                 base(binding, remoteAddress) {
         }
         
-        public StoreApp.BookEditorServices.LoginResponse login(StoreApp.BookEditorServices.LoginData data) {
+        public WarehouseApp.ServiceWarehouse.LoginResponse login(WarehouseApp.ServiceWarehouse.LoginData data) {
             return base.Channel.login(data);
         }
         
-        public System.Threading.Tasks.Task<StoreApp.BookEditorServices.LoginResponse> loginAsync(StoreApp.BookEditorServices.LoginData data) {
+        public System.Threading.Tasks.Task<WarehouseApp.ServiceWarehouse.LoginResponse> loginAsync(WarehouseApp.ServiceWarehouse.LoginData data) {
             return base.Channel.loginAsync(data);
         }
         
-        public StoreApp.BookEditorServices.Response logout(StoreApp.BookEditorServices.LogoutData data) {
+        public WarehouseApp.ServiceWarehouse.Response logout(WarehouseApp.ServiceWarehouse.LogoutData data) {
             return base.Channel.logout(data);
         }
         
-        public System.Threading.Tasks.Task<StoreApp.BookEditorServices.Response> logoutAsync(StoreApp.BookEditorServices.LogoutData data) {
+        public System.Threading.Tasks.Task<WarehouseApp.ServiceWarehouse.Response> logoutAsync(WarehouseApp.ServiceWarehouse.LogoutData data) {
             return base.Channel.logoutAsync(data);
         }
         
-        public StoreApp.BookEditorServices.Response register(StoreApp.BookEditorServices.RegisterData data) {
+        public WarehouseApp.ServiceWarehouse.Response register(WarehouseApp.ServiceWarehouse.RegisterData data) {
             return base.Channel.register(data);
         }
         
-        public System.Threading.Tasks.Task<StoreApp.BookEditorServices.Response> registerAsync(StoreApp.BookEditorServices.RegisterData data) {
+        public System.Threading.Tasks.Task<WarehouseApp.ServiceWarehouse.Response> registerAsync(WarehouseApp.ServiceWarehouse.RegisterData data) {
             return base.Channel.registerAsync(data);
         }
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="BookEditorServices.IServiceStore", CallbackContract=typeof(StoreApp.BookEditorServices.IServiceStoreCallback), SessionMode=System.ServiceModel.SessionMode.Required)]
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ServiceWarehouse.IServiceStore", CallbackContract=typeof(WarehouseApp.ServiceWarehouse.IServiceStoreCallback), SessionMode=System.ServiceModel.SessionMode.Required)]
     public interface IServiceStore {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceStore/getBooks", ReplyAction="http://tempuri.org/IServiceStore/getBooksResponse")]
-        StoreApp.BookEditorServices.Books getBooks();
+        WarehouseApp.ServiceWarehouse.Books getBooks();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceStore/getBooks", ReplyAction="http://tempuri.org/IServiceStore/getBooksResponse")]
-        System.Threading.Tasks.Task<StoreApp.BookEditorServices.Books> getBooksAsync();
+        System.Threading.Tasks.Task<WarehouseApp.ServiceWarehouse.Books> getBooksAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceStore/addBook", ReplyAction="http://tempuri.org/IServiceStore/addBookResponse")]
-        StoreApp.BookEditorServices.Response addBook(StoreApp.BookEditorServices.BookData book);
+        WarehouseApp.ServiceWarehouse.Response addBook(WarehouseApp.ServiceWarehouse.BookData book);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceStore/addBook", ReplyAction="http://tempuri.org/IServiceStore/addBookResponse")]
-        System.Threading.Tasks.Task<StoreApp.BookEditorServices.Response> addBookAsync(StoreApp.BookEditorServices.BookData book);
+        System.Threading.Tasks.Task<WarehouseApp.ServiceWarehouse.Response> addBookAsync(WarehouseApp.ServiceWarehouse.BookData book);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceStore/updateBook", ReplyAction="http://tempuri.org/IServiceStore/updateBookResponse")]
-        StoreApp.BookEditorServices.Response updateBook(StoreApp.BookEditorServices.BookData book);
+        WarehouseApp.ServiceWarehouse.Response updateBook(WarehouseApp.ServiceWarehouse.BookData book);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceStore/updateBook", ReplyAction="http://tempuri.org/IServiceStore/updateBookResponse")]
-        System.Threading.Tasks.Task<StoreApp.BookEditorServices.Response> updateBookAsync(StoreApp.BookEditorServices.BookData book);
+        System.Threading.Tasks.Task<WarehouseApp.ServiceWarehouse.Response> updateBookAsync(WarehouseApp.ServiceWarehouse.BookData book);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceStore/sellBook", ReplyAction="http://tempuri.org/IServiceStore/sellBookResponse")]
-        StoreApp.BookEditorServices.Response sellBook(StoreApp.BookEditorServices.BookData book, int quantity);
+        WarehouseApp.ServiceWarehouse.Response sellBook(WarehouseApp.ServiceWarehouse.BookData book, int quantity);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceStore/sellBook", ReplyAction="http://tempuri.org/IServiceStore/sellBookResponse")]
-        System.Threading.Tasks.Task<StoreApp.BookEditorServices.Response> sellBookAsync(StoreApp.BookEditorServices.BookData book, int quantity);
+        System.Threading.Tasks.Task<WarehouseApp.ServiceWarehouse.Response> sellBookAsync(WarehouseApp.ServiceWarehouse.BookData book, int quantity);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -456,12 +456,12 @@ namespace StoreApp.BookEditorServices {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface IServiceStoreChannel : StoreApp.BookEditorServices.IServiceStore, System.ServiceModel.IClientChannel {
+    public interface IServiceStoreChannel : WarehouseApp.ServiceWarehouse.IServiceStore, System.ServiceModel.IClientChannel {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class ServiceStoreClient : System.ServiceModel.DuplexClientBase<StoreApp.BookEditorServices.IServiceStore>, StoreApp.BookEditorServices.IServiceStore {
+    public partial class ServiceStoreClient : System.ServiceModel.DuplexClientBase<WarehouseApp.ServiceWarehouse.IServiceStore>, WarehouseApp.ServiceWarehouse.IServiceStore {
         
         public ServiceStoreClient(System.ServiceModel.InstanceContext callbackInstance) : 
                 base(callbackInstance) {
@@ -483,57 +483,57 @@ namespace StoreApp.BookEditorServices {
                 base(callbackInstance, binding, remoteAddress) {
         }
         
-        public StoreApp.BookEditorServices.Books getBooks() {
+        public WarehouseApp.ServiceWarehouse.Books getBooks() {
             return base.Channel.getBooks();
         }
         
-        public System.Threading.Tasks.Task<StoreApp.BookEditorServices.Books> getBooksAsync() {
+        public System.Threading.Tasks.Task<WarehouseApp.ServiceWarehouse.Books> getBooksAsync() {
             return base.Channel.getBooksAsync();
         }
         
-        public StoreApp.BookEditorServices.Response addBook(StoreApp.BookEditorServices.BookData book) {
+        public WarehouseApp.ServiceWarehouse.Response addBook(WarehouseApp.ServiceWarehouse.BookData book) {
             return base.Channel.addBook(book);
         }
         
-        public System.Threading.Tasks.Task<StoreApp.BookEditorServices.Response> addBookAsync(StoreApp.BookEditorServices.BookData book) {
+        public System.Threading.Tasks.Task<WarehouseApp.ServiceWarehouse.Response> addBookAsync(WarehouseApp.ServiceWarehouse.BookData book) {
             return base.Channel.addBookAsync(book);
         }
         
-        public StoreApp.BookEditorServices.Response updateBook(StoreApp.BookEditorServices.BookData book) {
+        public WarehouseApp.ServiceWarehouse.Response updateBook(WarehouseApp.ServiceWarehouse.BookData book) {
             return base.Channel.updateBook(book);
         }
         
-        public System.Threading.Tasks.Task<StoreApp.BookEditorServices.Response> updateBookAsync(StoreApp.BookEditorServices.BookData book) {
+        public System.Threading.Tasks.Task<WarehouseApp.ServiceWarehouse.Response> updateBookAsync(WarehouseApp.ServiceWarehouse.BookData book) {
             return base.Channel.updateBookAsync(book);
         }
         
-        public StoreApp.BookEditorServices.Response sellBook(StoreApp.BookEditorServices.BookData book, int quantity) {
+        public WarehouseApp.ServiceWarehouse.Response sellBook(WarehouseApp.ServiceWarehouse.BookData book, int quantity) {
             return base.Channel.sellBook(book, quantity);
         }
         
-        public System.Threading.Tasks.Task<StoreApp.BookEditorServices.Response> sellBookAsync(StoreApp.BookEditorServices.BookData book, int quantity) {
+        public System.Threading.Tasks.Task<WarehouseApp.ServiceWarehouse.Response> sellBookAsync(WarehouseApp.ServiceWarehouse.BookData book, int quantity) {
             return base.Channel.sellBookAsync(book, quantity);
         }
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="BookEditorServices.IServiceWarehouse", SessionMode=System.ServiceModel.SessionMode.Required)]
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ServiceWarehouse.IServiceWarehouse", SessionMode=System.ServiceModel.SessionMode.Required)]
     public interface IServiceWarehouse {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceWarehouse/ship", ReplyAction="http://tempuri.org/IServiceWarehouse/shipResponse")]
-        StoreApp.BookEditorServices.Response ship(StoreApp.BookEditorServices.BookData book, long quantity);
+        WarehouseApp.ServiceWarehouse.Response ship(WarehouseApp.ServiceWarehouse.BookData book, long quantity);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceWarehouse/ship", ReplyAction="http://tempuri.org/IServiceWarehouse/shipResponse")]
-        System.Threading.Tasks.Task<StoreApp.BookEditorServices.Response> shipAsync(StoreApp.BookEditorServices.BookData book, long quantity);
+        System.Threading.Tasks.Task<WarehouseApp.ServiceWarehouse.Response> shipAsync(WarehouseApp.ServiceWarehouse.BookData book, long quantity);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface IServiceWarehouseChannel : StoreApp.BookEditorServices.IServiceWarehouse, System.ServiceModel.IClientChannel {
+    public interface IServiceWarehouseChannel : WarehouseApp.ServiceWarehouse.IServiceWarehouse, System.ServiceModel.IClientChannel {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class ServiceWarehouseClient : System.ServiceModel.ClientBase<StoreApp.BookEditorServices.IServiceWarehouse>, StoreApp.BookEditorServices.IServiceWarehouse {
+    public partial class ServiceWarehouseClient : System.ServiceModel.ClientBase<WarehouseApp.ServiceWarehouse.IServiceWarehouse>, WarehouseApp.ServiceWarehouse.IServiceWarehouse {
         
         public ServiceWarehouseClient() {
         }
@@ -554,11 +554,11 @@ namespace StoreApp.BookEditorServices {
                 base(binding, remoteAddress) {
         }
         
-        public StoreApp.BookEditorServices.Response ship(StoreApp.BookEditorServices.BookData book, long quantity) {
+        public WarehouseApp.ServiceWarehouse.Response ship(WarehouseApp.ServiceWarehouse.BookData book, long quantity) {
             return base.Channel.ship(book, quantity);
         }
         
-        public System.Threading.Tasks.Task<StoreApp.BookEditorServices.Response> shipAsync(StoreApp.BookEditorServices.BookData book, long quantity) {
+        public System.Threading.Tasks.Task<WarehouseApp.ServiceWarehouse.Response> shipAsync(WarehouseApp.ServiceWarehouse.BookData book, long quantity) {
             return base.Channel.shipAsync(book, quantity);
         }
     }

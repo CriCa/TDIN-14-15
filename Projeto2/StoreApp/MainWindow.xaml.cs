@@ -26,10 +26,7 @@ namespace StoreApp
         public MainWindow()
         {
             init();
-            try { 
             InitializeComponent();
-            }
-            catch (Exception e) { Console.WriteLine(e.InnerException); }
         }
 
         private void init()
@@ -38,7 +35,7 @@ namespace StoreApp
             app.dupFactory =
                 new DuplexChannelFactory<BookEditorServices.IServiceStore>(
                 app.callback, new NetTcpBinding(), new EndpointAddress("net.tcp://localhost:9002/BookEditorServices/store"));
-
+            
             app.dupFactory.Open();
             app.clientProxy = app.dupFactory.CreateChannel();
         }

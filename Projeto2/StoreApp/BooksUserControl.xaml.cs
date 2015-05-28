@@ -15,6 +15,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using StoreApp.BookEditorServices;
 using Xceed.Wpf.Toolkit;
+using System.Text.RegularExpressions;
 
 namespace StoreApp
 {
@@ -60,7 +61,7 @@ namespace StoreApp
         {
             Books bs = app.clientProxy.getBooks();
             books.Clear();
-            
+
             foreach (BookData b in bs)
                 books.Add(b);
         }
@@ -78,7 +79,7 @@ namespace StoreApp
 
                 Response rep = app.clientProxy.addBook(b);
 
-                if(rep.State != "success")
+                if (rep.State != "success")
                     System.Windows.MessageBox.Show(Window.GetWindow(this), "The book is already registered!", "Repeated book", MessageBoxButton.OK, MessageBoxImage.Error);
 
                 refreshBookList();
@@ -103,7 +104,8 @@ namespace StoreApp
 
         private void SellBook(object sender, RoutedEventArgs e)
         {
-            if (SelectedBook != null) {
+            if (SelectedBook != null)
+            {
                 if (SelectedBook.quantity >= sellQuantity.Value)
                 {
                     if (ClientName.Text != "")
@@ -114,9 +116,9 @@ namespace StoreApp
 
                         ClientName.Text = "";
 
-                        app.clientProxy.sellBook(SelectedBook, (int) qtd);
+                        app.clientProxy.sellBook(SelectedBook, (int)qtd);
 
-                        new Printer.MainWindow(SelectedBook.title, qtd, price, (double)qtd * price, clientName).Show();
+                        new Printer.MainWindow(Window.GetWindow(this), SelectedBook.title, qtd, price, (double)qtd * price, clientName).Show();
 
                         refreshBookList();
                     }
@@ -124,14 +126,20 @@ namespace StoreApp
                 }
                 else
                 {
-                    CreateOrderDialog dialog = new CreateOrderDialog(Window.GetWindow(this));
-
-                    if (dialog.ShowDialog() == true)
+                    if (ClientName.Text != "" && Regex.IsMatch(ClientName.Text,
+                @"^(?("")("".+?(?<!\\)""@)|(([0-9a-z]((\.(?!\.))|[-!#\$%&'\*\+/=\?\^`\{\}\|~\w])*)(?<=[0-9a-z])@))" +
+                @"(?(\[)(\[(\d{1,3}\.){3}\d{1,3}\])|(([0-9a-z][-\w]*[0-9a-z]*\.)+[a-z0-9][\-a-z0-9]{0,22}[a-z0-9]))$",
+                RegexOptions.IgnoreCase))
                     {
-                        string mail = dialog.ClientEmail;
+                        long qtd = (long)sellQuantity.Value;
+                        double price = SelectedBook.price;
+                        string clientEmail = ClientName.Text;
 
-                        Console.WriteLine("create order with mail " + mail);
+                        ClientName.Text = "";
+
+                        refreshBookList();
                     }
+                    else System.Windows.MessageBox.Show(Window.GetWindow(this), "Enter a valid client email!", "Client email error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
             else System.Windows.MessageBox.Show(Window.GetWindow(this), "Select a book first!", "No book selected", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -148,25 +156,43 @@ namespace StoreApp
                 ClientName.IsEnabled = true;
                 sellQuantity.Value = 1;
 
-                /*if (SelectedBook.quantity == 0)
+                if (SelectedBook.quantity >= sellQuantity.Value)
                 {
-                    SellButton.IsEnabled = false;
-                    sellQuantity.IsEnabled = false;
-                    ClientName.IsEnabled = false;
+                    SellButton.Content = "Sell";
+                    ClientPlaceholder.Text = "Client Name";
                 }
                 else
                 {
-                    SellButton.IsEnabled = true;
-                    sellQuantity.IsEnabled = true;
-                    ClientName.IsEnabled = true;
-                    sellQuantity.Value = 1;
-                }*/
+                    SellButton.Content = "Order";
+                    ClientPlaceholder.Text = "Client Email";
+                }
             }
             else
             {
                 UpdateButton.IsEnabled = false;
                 sellQuantity.IsEnabled = false;
                 ClientName.IsEnabled = false;
+
+                SellButton.Content = "Sell";
+                ClientPlaceholder.Text = "Client Name";
+                sellQuantity.Value = 1;
+            }
+        }
+
+        private void QuantityChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
+        {
+            if (SelectedBook != null)
+            {
+                if (SelectedBook.quantity >= sellQuantity.Value)
+                {
+                    SellButton.Content = "Sell";
+                    ClientPlaceholder.Text = "Client Name";
+                }
+                else
+                {
+                    SellButton.Content = "Order";
+                    ClientPlaceholder.Text = "Client Email";
+                }
             }
         }
     }

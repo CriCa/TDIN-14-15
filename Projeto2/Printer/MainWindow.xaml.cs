@@ -20,9 +20,11 @@ namespace Printer
     /// </summary>
     public partial class MainWindow : Window
     {
-        public MainWindow(string bookTitle, long qtd, double pric, double ttl, string cli)
+        public MainWindow(Window own, string bookTitle, long qtd, double pric, double ttl, string cli)
         {
             InitializeComponent();
+
+            this.Owner = own;
 
             BookTitle.Content = bookTitle;
             Quantity.Content = qtd;
