@@ -45,12 +45,25 @@
         <Button Name="AddButton"  Content="Add" HorizontalAlignment="Left" Margin="10,249,0,0" VerticalAlignment="Top" Width="75" Foreground="#FF19536A" Click="AddBook"/>
         <Button Name="UpdateButton" Content="Update" HorizontalAlignment="Left" Margin="90,249,0,0" VerticalAlignment="Top" Width="75" Foreground="#FF19536A"  Click="UpdateBook" IsEnabled="False"/>
 
-        <TextBlock Name="ClientPlaceholder" HorizontalAlignment="Left" Margin="10,286,0,0" TextWrapping="Wrap" Text="Client Name" VerticalAlignment="Top" Foreground="White"/>
+        <TextBlock HorizontalAlignment="Left" Margin="10,286,0,0" TextWrapping="Wrap" Text="Client Name" VerticalAlignment="Top" Foreground="White"/>
         <TextBlock HorizontalAlignment="Left" Margin="170,286,0,0" TextWrapping="Wrap" Text="Qtd" VerticalAlignment="Top" Foreground="White"/>
 
         <TextBox Name="ClientName" HorizontalAlignment="Left" Height="22" Margin="10,302,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="155" IsEnabled="False"/>
         <tl:IntegerUpDown Name="sellQuantity" Margin="170,302,94,176" Value="1" Maximum="999" Minimum="1" IsEnabled="False" ValueChanged="QuantityChanged" />
         <Button Name="SellButton" Content="Sell" HorizontalAlignment="Left" Margin="234,302,0,0" VerticalAlignment="Top" Width="75" Foreground="#FF19536A"  Click="SellBook" IsEnabled="False"/>
+
+        <Grid Name="OrderFields" Margin="10,329,16,40" Visibility="Hidden">
+            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Client Email" VerticalAlignment="Top" Foreground="White"/>
+            <TextBox x:Name="ClientEmail" HorizontalAlignment="Left" Height="22" Margin="0,21,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="155"/>
+            <TextBlock HorizontalAlignment="Left" Margin="160,0,0,0" TextWrapping="Wrap" Text="Password" VerticalAlignment="Top" Foreground="White"/>
+            <PasswordBox Name="ClientPassword" HorizontalAlignment="Left" Margin="160,21,0,0" VerticalAlignment="Top" Width="139" Height="22"/>
+            <TextBlock HorizontalAlignment="Left" Margin="0,48,0,0" TextWrapping="Wrap" Text="Order Address" VerticalAlignment="Top" Foreground="White"/>
+            <TextBox Name="OrderAddress"  HorizontalAlignment="Left" Height="62" Margin="0,69,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="299"/>
+        </Grid>
+
+
+
+
 
     </Grid>
 </local:UserControlNotifiable>

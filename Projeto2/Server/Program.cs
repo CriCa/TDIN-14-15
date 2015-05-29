@@ -26,16 +26,14 @@ namespace BookEditor
             {
                 values.clear();
                 values.add(UserTable.KEY_NAME, "Cristiano Carvalheiro");
-                values.add(UserTable.KEY_EMAIL, "cristiano@gmail.com");
+                values.add(UserTable.KEY_EMAIL, "pintaspower@gmail.com");
                 values.add(UserTable.KEY_PASSWORD, "123");
-                values.add(UserTable.KEY_ADDRESS, "Rua Silva Porto n 473"); // TODO ver address na order
                 UserTable.Instance.insert(values);
 
                 values.clear();
                 values.add(UserTable.KEY_NAME, "Diogo");
-                values.add(UserTable.KEY_EMAIL, "diogo@gmail.com");
+                values.add(UserTable.KEY_EMAIL, "cristiano.carvalheiro@gmail.com");
                 values.add(UserTable.KEY_PASSWORD, "123");
-                values.add(UserTable.KEY_ADDRESS, "somewhere xD");
                 UserTable.Instance.insert(values);
             }
 

@@ -119,11 +119,17 @@
   <wsdl:message name="IServiceStore_getOrders_OutputMessage">
     <wsdl:part name="parameters" element="tns:getOrdersResponse" />
   </wsdl:message>
-  <wsdl:message name="IServiceStore_dispatchOrder_InputMessage">
-    <wsdl:part name="parameters" element="tns:dispatchOrder" />
+  <wsdl:message name="IServiceStore_getRequests_InputMessage">
+    <wsdl:part name="parameters" element="tns:getRequests" />
   </wsdl:message>
-  <wsdl:message name="IServiceStore_dispatchOrder_OutputMessage">
-    <wsdl:part name="parameters" element="tns:dispatchOrderResponse" />
+  <wsdl:message name="IServiceStore_getRequests_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getRequestsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceStore_ReceivedRequest_InputMessage">
+    <wsdl:part name="parameters" element="tns:ReceivedRequest" />
+  </wsdl:message>
+  <wsdl:message name="IServiceStore_ReceivedRequest_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ReceivedRequestResponse" />
   </wsdl:message>
   <wsdl:message name="IServiceStore_UpdateOrders_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:UpdateOrders" />
@@ -173,9 +179,13 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IServiceStore/getOrders" message="tns:IServiceStore_getOrders_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IServiceStore/getOrdersResponse" message="tns:IServiceStore_getOrders_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="dispatchOrder">
-      <wsdl:input wsaw:Action="http://tempuri.org/IServiceStore/dispatchOrder" message="tns:IServiceStore_dispatchOrder_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IServiceStore/dispatchOrderResponse" message="tns:IServiceStore_dispatchOrder_OutputMessage" />
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="getRequests">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceStore/getRequests" message="tns:IServiceStore_getRequests_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceStore/getRequestsResponse" message="tns:IServiceStore_getRequests_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="ReceivedRequest">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceStore/ReceivedRequest" message="tns:IServiceStore_ReceivedRequest_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceStore/ReceivedRequestResponse" message="tns:IServiceStore_ReceivedRequest_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="UpdateOrders">
       <wsdl:output wsaw:Action="http://tempuri.org/IServiceStore/UpdateOrders" message="tns:IServiceStore_UpdateOrders_OutputCallbackMessage" />
@@ -244,8 +254,17 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="dispatchOrder">
-      <soap12:operation soapAction="http://tempuri.org/IServiceStore/dispatchOrder" style="document" />
+    <wsdl:operation name="getRequests">
+      <soap12:operation soapAction="http://tempuri.org/IServiceStore/getRequests" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReceivedRequest">
+      <soap12:operation soapAction="http://tempuri.org/IServiceStore/ReceivedRequest" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

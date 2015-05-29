@@ -128,7 +128,10 @@ namespace BookEditor
         [DataMember]
         public double price;
 
-        public OrderData(long id, long book_id, string book_title, long client_id, string client_email, long quantity, int state, string date, string state_date, double price)
+        [DataMember]
+        public string address;
+
+        public OrderData(long id, long book_id, string book_title, long client_id, string client_email, long quantity, int state, string date, string state_date, double price, string address)
         {
             this.id = id;
             this.book_id = book_id;
@@ -140,6 +143,7 @@ namespace BookEditor
             this.date = date;
             this.state_date = state_date;
             this.price = price;
+            this.address = address;
         }
     }
 

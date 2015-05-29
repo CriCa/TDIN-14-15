@@ -31,19 +31,19 @@ namespace BookEditor
 
         [Description("Order a book")]
         [OperationContract]
-        Response orderBook(BookData book, string clientEmail, int quantity);
+        Response orderBook(BookData book, long quantity, string clientName, string clientEmail, string clientPassowrd, string address);
 
         [Description("Get orders")]
         [OperationContract]
         Orders getOrders();
 
+        [Description("Get requests")]
+        [OperationContract]
+        Requests getRequests();
+
         [Description("Received request from the warehouse")]
         [OperationContract]
-        Response ReceivedRequest(OrderData order);
-
-        [Description("Dispatch order")]
-        [OperationContract]
-        Response dispatchOrder(OrderData order);
+        Response ReceivedRequest(RequestData request);
     }
 
     public interface IServiceStoreCallback

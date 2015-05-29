@@ -231,6 +231,9 @@ namespace StoreApp.BookEditorServices {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string addressField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private long book_idField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -267,6 +270,19 @@ namespace StoreApp.BookEditorServices {
             }
             set {
                 this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string address {
+            get {
+                return this.addressField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.addressField, value) != true)) {
+                    this.addressField = value;
+                    this.RaisePropertyChanged("address");
+                }
             }
         }
         
@@ -408,6 +424,13 @@ namespace StoreApp.BookEditorServices {
                 propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
             }
         }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.CollectionDataContractAttribute(Name="Requests", Namespace="http://schemas.datacontract.org/2004/07/BookEditor", ItemName="RequestData")]
+    [System.SerializableAttribute()]
+    public class Requests : System.Collections.Generic.List<StoreApp.BookEditorServices.RequestData> {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -801,10 +824,10 @@ namespace StoreApp.BookEditorServices {
         System.Threading.Tasks.Task<StoreApp.BookEditorServices.Response> sellBookAsync(StoreApp.BookEditorServices.BookData book, int quantity);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceStore/orderBook", ReplyAction="http://tempuri.org/IServiceStore/orderBookResponse")]
-        StoreApp.BookEditorServices.Response orderBook(StoreApp.BookEditorServices.BookData book, string clientEmail, int quantity);
+        StoreApp.BookEditorServices.Response orderBook(StoreApp.BookEditorServices.BookData book, long quantity, string clientName, string clientEmail, string clientPassowrd, string address);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceStore/orderBook", ReplyAction="http://tempuri.org/IServiceStore/orderBookResponse")]
-        System.Threading.Tasks.Task<StoreApp.BookEditorServices.Response> orderBookAsync(StoreApp.BookEditorServices.BookData book, string clientEmail, int quantity);
+        System.Threading.Tasks.Task<StoreApp.BookEditorServices.Response> orderBookAsync(StoreApp.BookEditorServices.BookData book, long quantity, string clientName, string clientEmail, string clientPassowrd, string address);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceStore/getOrders", ReplyAction="http://tempuri.org/IServiceStore/getOrdersResponse")]
         StoreApp.BookEditorServices.Orders getOrders();
@@ -812,11 +835,17 @@ namespace StoreApp.BookEditorServices {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceStore/getOrders", ReplyAction="http://tempuri.org/IServiceStore/getOrdersResponse")]
         System.Threading.Tasks.Task<StoreApp.BookEditorServices.Orders> getOrdersAsync();
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceStore/dispatchOrder", ReplyAction="http://tempuri.org/IServiceStore/dispatchOrderResponse")]
-        StoreApp.BookEditorServices.Response dispatchOrder(StoreApp.BookEditorServices.OrderData order);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceStore/getRequests", ReplyAction="http://tempuri.org/IServiceStore/getRequestsResponse")]
+        StoreApp.BookEditorServices.Requests getRequests();
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceStore/dispatchOrder", ReplyAction="http://tempuri.org/IServiceStore/dispatchOrderResponse")]
-        System.Threading.Tasks.Task<StoreApp.BookEditorServices.Response> dispatchOrderAsync(StoreApp.BookEditorServices.OrderData order);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceStore/getRequests", ReplyAction="http://tempuri.org/IServiceStore/getRequestsResponse")]
+        System.Threading.Tasks.Task<StoreApp.BookEditorServices.Requests> getRequestsAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceStore/ReceivedRequest", ReplyAction="http://tempuri.org/IServiceStore/ReceivedRequestResponse")]
+        StoreApp.BookEditorServices.Response ReceivedRequest(StoreApp.BookEditorServices.RequestData request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceStore/ReceivedRequest", ReplyAction="http://tempuri.org/IServiceStore/ReceivedRequestResponse")]
+        System.Threading.Tasks.Task<StoreApp.BookEditorServices.Response> ReceivedRequestAsync(StoreApp.BookEditorServices.RequestData request);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -886,12 +915,12 @@ namespace StoreApp.BookEditorServices {
             return base.Channel.sellBookAsync(book, quantity);
         }
         
-        public StoreApp.BookEditorServices.Response orderBook(StoreApp.BookEditorServices.BookData book, string clientEmail, int quantity) {
-            return base.Channel.orderBook(book, clientEmail, quantity);
+        public StoreApp.BookEditorServices.Response orderBook(StoreApp.BookEditorServices.BookData book, long quantity, string clientName, string clientEmail, string clientPassowrd, string address) {
+            return base.Channel.orderBook(book, quantity, clientName, clientEmail, clientPassowrd, address);
         }
         
-        public System.Threading.Tasks.Task<StoreApp.BookEditorServices.Response> orderBookAsync(StoreApp.BookEditorServices.BookData book, string clientEmail, int quantity) {
-            return base.Channel.orderBookAsync(book, clientEmail, quantity);
+        public System.Threading.Tasks.Task<StoreApp.BookEditorServices.Response> orderBookAsync(StoreApp.BookEditorServices.BookData book, long quantity, string clientName, string clientEmail, string clientPassowrd, string address) {
+            return base.Channel.orderBookAsync(book, quantity, clientName, clientEmail, clientPassowrd, address);
         }
         
         public StoreApp.BookEditorServices.Orders getOrders() {
@@ -902,12 +931,20 @@ namespace StoreApp.BookEditorServices {
             return base.Channel.getOrdersAsync();
         }
         
-        public StoreApp.BookEditorServices.Response dispatchOrder(StoreApp.BookEditorServices.OrderData order) {
-            return base.Channel.dispatchOrder(order);
+        public StoreApp.BookEditorServices.Requests getRequests() {
+            return base.Channel.getRequests();
         }
         
-        public System.Threading.Tasks.Task<StoreApp.BookEditorServices.Response> dispatchOrderAsync(StoreApp.BookEditorServices.OrderData order) {
-            return base.Channel.dispatchOrderAsync(order);
+        public System.Threading.Tasks.Task<StoreApp.BookEditorServices.Requests> getRequestsAsync() {
+            return base.Channel.getRequestsAsync();
+        }
+        
+        public StoreApp.BookEditorServices.Response ReceivedRequest(StoreApp.BookEditorServices.RequestData request) {
+            return base.Channel.ReceivedRequest(request);
+        }
+        
+        public System.Threading.Tasks.Task<StoreApp.BookEditorServices.Response> ReceivedRequestAsync(StoreApp.BookEditorServices.RequestData request) {
+            return base.Channel.ReceivedRequestAsync(request);
         }
     }
     

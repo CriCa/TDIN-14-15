@@ -128,23 +128,32 @@ namespace StoreApp
                 }
                 else
                 {
-                    if (ClientName.Text != "" && Regex.IsMatch(ClientName.Text,
+                    if (ClientEmail.Text != "" && Regex.IsMatch(ClientEmail.Text,
                 @"^(?("")("".+?(?<!\\)""@)|(([0-9a-z]((\.(?!\.))|[-!#\$%&'\*\+/=\?\^`\{\}\|~\w])*)(?<=[0-9a-z])@))" +
                 @"(?(\[)(\[(\d{1,3}\.){3}\d{1,3}\])|(([0-9a-z][-\w]*[0-9a-z]*\.)+[a-z0-9][\-a-z0-9]{0,22}[a-z0-9]))$",
-                RegexOptions.IgnoreCase))
+                RegexOptions.IgnoreCase) && OrderAddress.Text != "")
                     {
                         long qtd = (long)sellQuantity.Value;
                         double price = SelectedBook.price;
-                        string clientEmail = ClientName.Text;
+                                          
+                        Response rep = app.clientProxy.orderBook(SelectedBook, qtd, ClientName.Text, ClientEmail.Text, ClientPassword.Password, OrderAddress.Text);
 
-                        ClientName.Text = "";
+                        if (rep.State == "success")
+                        {
+                            refreshBookList(null, null);
+                            app.RefreshOrders();
 
-                        app.clientProxy.orderBook(SelectedBook, clientEmail, (int) qtd);
-
-                        refreshBookList(null, null);
-                        app.RefreshOrders();
+                            ClientName.Text = "";
+                            ClientEmail.Text = "";
+                            ClientPassword.Password = "";
+                            OrderAddress.Text = "";
+                        }
+                        else
+                        {
+                            System.Windows.MessageBox.Show(Window.GetWindow(this), "Create a new account for the client!", "No client account", MessageBoxButton.OK, MessageBoxImage.Error);
+                        }
                     }
-                    else System.Windows.MessageBox.Show(Window.GetWindow(this), "Enter a valid client email!", "Client email error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    else System.Windows.MessageBox.Show(Window.GetWindow(this), "Enter a valid client email and an address for the order!", "Bad info error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
             else System.Windows.MessageBox.Show(Window.GetWindow(this), "Select a book first!", "No book selected", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -164,12 +173,12 @@ namespace StoreApp
                 if (SelectedBook.quantity >= sellQuantity.Value)
                 {
                     SellButton.Content = "Sell";
-                    ClientPlaceholder.Text = "Client Name";
+                    OrderFields.Visibility = Visibility.Hidden;
                 }
                 else
                 {
                     SellButton.Content = "Order";
-                    ClientPlaceholder.Text = "Client Email";
+                    OrderFields.Visibility = Visibility.Visible;
                 }
             }
             else
@@ -177,10 +186,11 @@ namespace StoreApp
                 UpdateButton.IsEnabled = false;
                 sellQuantity.IsEnabled = false;
                 ClientName.IsEnabled = false;
+                SellButton.IsEnabled = false;
 
                 SellButton.Content = "Sell";
-                ClientPlaceholder.Text = "Client Name";
                 sellQuantity.Value = 1;
+                OrderFields.Visibility = Visibility.Hidden;
             }
         }
 
@@ -191,12 +201,12 @@ namespace StoreApp
                 if (SelectedBook.quantity >= sellQuantity.Value)
                 {
                     SellButton.Content = "Sell";
-                    ClientPlaceholder.Text = "Client Name";
+                    OrderFields.Visibility = Visibility.Hidden;
                 }
                 else
                 {
                     SellButton.Content = "Order";
-                    ClientPlaceholder.Text = "Client Email";
+                    OrderFields.Visibility = Visibility.Visible;
                 }
             }
         }

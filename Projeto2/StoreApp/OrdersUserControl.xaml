@@ -5,11 +5,11 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:StoreApp"
              mc:Ignorable="d"
-             d:DesignHeight="500" d:DesignWidth="400">
+             d:DesignHeight="500" d:DesignWidth="800">
     <Grid>
         <Label Content="Orders" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Foreground="#FF4DBCE9" FontWeight="Bold" FontSize="14"/>
 
-        <ListBox SelectedItem="{Binding SelectedOrder}" ItemsSource="{Binding Orders, Mode=OneWay}" HorizontalAlignment="Left" Height="305" Margin="10,44,0,0" VerticalAlignment="Top" Width="380" Background="#FFD7F4FF" SelectionChanged="OrderSelectionChanged">
+        <ListBox ItemsSource="{Binding Orders, Mode=OneWay}" HorizontalAlignment="Left" Height="159" Margin="10,65,0,0" VerticalAlignment="Top" Width="780" Background="#FFD7F4FF">
             <ListBox.ItemContainerStyle>
                 <Style TargetType="ListBoxItem">
                     <Setter Property="Background" Value="Transparent"/>
@@ -30,15 +30,54 @@
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
                             <TextBlock HorizontalAlignment="Left" Width="200" Padding="5,0,5,0" Text="{Binding book_title}" />
                             <TextBlock Padding="5,0,5,0" Width="30" Text="{Binding quantity}" />
-                            <TextBlock Padding="5,0,5,0" Width="50"  Text="{Binding client_email}" />
-                            <TextBlock Padding="5,0,5,0" Width="50" Text="{Binding date}" />
+                            <TextBlock Padding="5,0,5,0" Width="150"  Text="{Binding client_email}" />
+                            <TextBlock Padding="5,0,5,0" Width="110" Text="{Binding date}" />
+                            <TextBlock Padding="5,0,5,0" Width="250" Text="{Binding state_date}" />
                         </StackPanel>
                     </DockPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
 
-        <Button Content="Dispatch" HorizontalAlignment="Left" Margin="315,354,0,0" VerticalAlignment="Top" Width="75" Foreground="#FF19536A" Click="ButtonClick"/>
+        <Label Content="Book Requests" HorizontalAlignment="Left" Margin="10,229,0,0" VerticalAlignment="Top" Foreground="#FF4DBCE9" FontWeight="Bold" FontSize="14"/>
 
+
+        <ListBox SelectedItem="{Binding SelectedRequest}" ItemsSource="{Binding Requests, Mode=OneWay}" HorizontalAlignment="Left" Height="144" Margin="10,284,0,0" VerticalAlignment="Top" Width="780" Background="#FFD7F4FF" SelectionChanged="OrderSelectionChanged">
+            <ListBox.ItemContainerStyle>
+                <Style TargetType="{x:Type ListBoxItem}">
+                    <Setter Property="Background" Value="Transparent"/>
+                    <Setter Property="Padding" Value="5"/>
+                    <Setter Property="Cursor" Value="Hand"/>
+                    <Style.Triggers>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter Property="Background" Value="White" />
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </ListBox.ItemContainerStyle>
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <DockPanel>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                            <TextBlock HorizontalAlignment="Left" Width="200" Padding="5,0,5,0" Text="{Binding title}" />
+                            <TextBlock Padding="5,0,5,0" Width="30" Text="{Binding quantity}" />
+                            <TextBlock Padding="5,0,5,0" Width="150"  Text="{Binding date}" />
+                            <TextBlock Padding="5,0,5,0" Width="100" Text="{Binding state_date}" />
+                        </StackPanel>
+                    </DockPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
+        <Button Name="ReceiveButton" Content="Received" HorizontalAlignment="Left" Margin="715,433,0,0" VerticalAlignment="Top" Width="75" Foreground="#FF19536A" Click="ButtonClick" IsEnabled="False"/>
+        <TextBlock HorizontalAlignment="Left" Margin="14,44,0,0" TextWrapping="Wrap" Text="Title" VerticalAlignment="Top" Foreground="#FF4DBCE9"/>
+        <TextBlock HorizontalAlignment="Left" Margin="219,44,0,0" TextWrapping="Wrap" Text="Qtd" VerticalAlignment="Top" Foreground="#FF4DBCE9"/>
+        <TextBlock HorizontalAlignment="Left" Margin="254,44,0,0" TextWrapping="Wrap" Text="Client" VerticalAlignment="Top" Foreground="#FF4DBCE9"/>
+        <TextBlock HorizontalAlignment="Left" Margin="403,44,0,0" TextWrapping="Wrap" Text="Created On" VerticalAlignment="Top" Foreground="#FF4DBCE9"/>
+        <TextBlock HorizontalAlignment="Left" Margin="510,44,0,0" TextWrapping="Wrap" Text="State" VerticalAlignment="Top" Foreground="#FF4DBCE9"/>
+        <TextBlock HorizontalAlignment="Left" Margin="14,263,0,0" TextWrapping="Wrap" Text="Title" VerticalAlignment="Top" Foreground="#FF4DBCE9"/>
+        <TextBlock HorizontalAlignment="Left" Margin="219,263,0,0" TextWrapping="Wrap" Text="Qtd" VerticalAlignment="Top" Foreground="#FF4DBCE9"/>
+        <TextBlock HorizontalAlignment="Left" Margin="252,263,0,0" TextWrapping="Wrap" Text="Requested On" VerticalAlignment="Top" Foreground="#FF4DBCE9"/>
+        <TextBlock HorizontalAlignment="Left" Margin="403,263,0,0" TextWrapping="Wrap" Text="State" VerticalAlignment="Top" Foreground="#FF4DBCE9"/>
     </Grid>
 </local:UserControlNotifiable>

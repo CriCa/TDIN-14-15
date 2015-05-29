@@ -64,6 +64,7 @@
   <xs:element name="Orders" nillable="true" type="tns:Orders" />
   <xs:complexType name="OrderData">
     <xs:sequence>
+      <xs:element minOccurs="0" name="address" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="book_id" type="xs:long" />
       <xs:element minOccurs="0" name="book_title" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="client_email" nillable="true" type="xs:string" />
@@ -77,6 +78,12 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="OrderData" nillable="true" type="tns:OrderData" />
+  <xs:complexType name="Requests">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="RequestData" nillable="true" type="tns:RequestData" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Requests" nillable="true" type="tns:Requests" />
   <xs:complexType name="RequestData">
     <xs:sequence>
       <xs:element minOccurs="0" name="book_id" type="xs:long" />

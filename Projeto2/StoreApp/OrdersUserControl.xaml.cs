@@ -32,12 +32,20 @@ namespace StoreApp
             set { SetField(ref orders, value, "Orders"); }
         }
 
-        private OrderData selectedOrder;
+        private ObservableCollection<RequestData> requests;
 
-        public OrderData SelectedOrder
+        public ObservableCollection<RequestData> Requests
         {
-            get { return selectedOrder; }
-            set { SetField(ref selectedOrder, value, "SelectedOrder"); }
+            get { return requests; }
+            set { SetField(ref requests, value, "Requests"); }
+        }
+
+        private RequestData selectedRequest;
+
+        public RequestData SelectedRequest
+        {
+            get { return selectedRequest; }
+            set { SetField(ref selectedRequest, value, "SelectedRequest"); }
         }
 
         public OrdersUserControl()
@@ -51,6 +59,7 @@ namespace StoreApp
         private void init()
         {
             orders = new ObservableCollection<OrderData>();
+            requests = new ObservableCollection<RequestData>();
 
             app.OrdersEvent += new EventHandler(refreshOrderList);
 
@@ -60,20 +69,38 @@ namespace StoreApp
         private void refreshOrderList(object sender, EventArgs e)
         {
             Orders bs = app.clientProxy.getOrders();
+            bs.Reverse();
+
             orders.Clear();
 
             foreach (OrderData b in bs)
                 orders.Add(b);
+
+            Requests rs = app.clientProxy.getRequests();
+            rs.Reverse();
+
+            requests.Clear();
+
+            foreach (RequestData b in rs)
+                requests.Add(b);
         }
 
         private void ButtonClick(object sender, RoutedEventArgs e)
         {
-            Console.WriteLine("do action!");
+            if (SelectedRequest != null)
+            {
+                app.clientProxy.ReceivedRequest(SelectedRequest);
+
+                refreshOrderList(null, null);
+                app.RefreshBooks();
+            }
         }
 
         private void OrderSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            Console.WriteLine("sel changed!");
+            if (SelectedRequest != null && SelectedRequest.state == 1)
+                ReceiveButton.IsEnabled = true;
+            else ReceiveButton.IsEnabled = false;
         }
     }
 }

@@ -102,8 +102,11 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/BookEditor" minOccurs="0" name="book" nillable="true" type="q14:BookData" />
+        <xs:element minOccurs="0" name="quantity" type="xs:long" />
+        <xs:element minOccurs="0" name="clientName" nillable="true" type="xs:string" />
         <xs:element minOccurs="0" name="clientEmail" nillable="true" type="xs:string" />
-        <xs:element minOccurs="0" name="quantity" type="xs:int" />
+        <xs:element minOccurs="0" name="clientPassowrd" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="address" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -126,17 +129,29 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="dispatchOrder">
+  <xs:element name="getRequests">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getRequestsResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q17="http://schemas.datacontract.org/2004/07/BookEditor" minOccurs="0" name="order" nillable="true" type="q17:OrderData" />
+        <xs:element xmlns:q17="http://schemas.datacontract.org/2004/07/BookEditor" minOccurs="0" name="getRequestsResult" nillable="true" type="q17:Requests" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="dispatchOrderResponse">
+  <xs:element name="ReceivedRequest">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q18="http://schemas.datacontract.org/2004/07/BookEditor" minOccurs="0" name="dispatchOrderResult" nillable="true" type="q18:Response" />
+        <xs:element xmlns:q18="http://schemas.datacontract.org/2004/07/BookEditor" minOccurs="0" name="request" nillable="true" type="q18:RequestData" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ReceivedRequestResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q19="http://schemas.datacontract.org/2004/07/BookEditor" minOccurs="0" name="ReceivedRequestResult" nillable="true" type="q19:Response" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -148,14 +163,14 @@
   <xs:element name="ship">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q19="http://schemas.datacontract.org/2004/07/BookEditor" minOccurs="0" name="request" nillable="true" type="q19:RequestData" />
+        <xs:element xmlns:q20="http://schemas.datacontract.org/2004/07/BookEditor" minOccurs="0" name="request" nillable="true" type="q20:RequestData" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="shipResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q20="http://schemas.datacontract.org/2004/07/BookEditor" minOccurs="0" name="shipResult" nillable="true" type="q20:Response" />
+        <xs:element xmlns:q21="http://schemas.datacontract.org/2004/07/BookEditor" minOccurs="0" name="shipResult" nillable="true" type="q21:Response" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

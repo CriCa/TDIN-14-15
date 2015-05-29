@@ -43,6 +43,7 @@
     <Compile Include="LocalDatabase.cs" />
     <Compile Include="OrderTable.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RequestTable.cs" />
     <Compile Include="UserTable.cs" />
   </ItemGroup>
   <ItemGroup>

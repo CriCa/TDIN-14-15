@@ -17,7 +17,6 @@ namespace WarehouseService
         [OperationBehavior(TransactionScopeRequired = true, TransactionAutoComplete = true)]
         public void requestBook(Request request)
         {
-            Console.WriteLine("Received request for book " + request.title);
             addRequest(request);
 
             refreshRequests();
@@ -35,8 +34,6 @@ namespace WarehouseService
             values.add(RequestTable.KEY_STATE_DATE, "-");
 
             RequestTable.Instance.insert(values);
-
-            Console.WriteLine(RequestTable.Instance.all.Count);
         }
 
         public void refreshRequests()

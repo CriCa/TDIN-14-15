@@ -14,13 +14,23 @@ namespace BookEditor
             Values values = new Values();
             Values where_values = new Values();
 
-            // update
             values.add(OrderTable.KEY_STATE, OrderTable.TO_DISPATCH);
-            values.add(OrderTable.KEY_STATE_DATE, Functions.getStringFromDate(DateTime.Now.AddDays(2.0)));
+            values.add(OrderTable.KEY_STATE_DATE, "Should be dispatched on " + Functions.getStringFromDate(DateTime.Now.AddDays(2.0)));
 
-            where_values.add(OrderTable.KEY_ID, request.order_id);
+            where_values.add(OrderTable.KEY_BOOK_ID, request.book_id);
+            where_values.add(OrderTable.KEY_STATE, OrderTable.WAITING);
 
             OrderTable.Instance.update(values, where_values);
+
+            values.clear();
+            where_values.clear();
+
+            values.add(RequestTable.KEY_STATE, RequestTable.SHIPPED);
+            values.add(RequestTable.KEY_STATE_DESC, "In transit");
+
+            where_values.add(RequestTable.KEY_ID, request.order_id);
+
+            RequestTable.Instance.update(values, where_values);
 
             callback.UpdateOrders();
 

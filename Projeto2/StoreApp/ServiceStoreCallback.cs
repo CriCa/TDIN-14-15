@@ -17,7 +17,7 @@ namespace StoreApp
         {
             App.Current.Dispatcher.BeginInvoke(new Action(() =>
             {
-                Console.WriteLine("Update Orders in store!!!");
+                app.RefreshOrders();
             }));
         }
     }
