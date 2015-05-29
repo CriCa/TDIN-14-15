@@ -216,6 +216,359 @@ namespace WarehouseApp.ServiceWarehouse {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.CollectionDataContractAttribute(Name="Orders", Namespace="http://schemas.datacontract.org/2004/07/BookEditor", ItemName="OrderData")]
+    [System.SerializableAttribute()]
+    public class Orders : System.Collections.Generic.List<WarehouseApp.ServiceWarehouse.OrderData> {
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="OrderData", Namespace="http://schemas.datacontract.org/2004/07/BookEditor")]
+    [System.SerializableAttribute()]
+    public partial class OrderData : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private long book_idField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string book_titleField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string client_emailField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private long client_idField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string dateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private long idField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private double priceField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private long quantityField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int stateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string state_dateField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public long book_id {
+            get {
+                return this.book_idField;
+            }
+            set {
+                if ((this.book_idField.Equals(value) != true)) {
+                    this.book_idField = value;
+                    this.RaisePropertyChanged("book_id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string book_title {
+            get {
+                return this.book_titleField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.book_titleField, value) != true)) {
+                    this.book_titleField = value;
+                    this.RaisePropertyChanged("book_title");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string client_email {
+            get {
+                return this.client_emailField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.client_emailField, value) != true)) {
+                    this.client_emailField = value;
+                    this.RaisePropertyChanged("client_email");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public long client_id {
+            get {
+                return this.client_idField;
+            }
+            set {
+                if ((this.client_idField.Equals(value) != true)) {
+                    this.client_idField = value;
+                    this.RaisePropertyChanged("client_id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string date {
+            get {
+                return this.dateField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.dateField, value) != true)) {
+                    this.dateField = value;
+                    this.RaisePropertyChanged("date");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public long id {
+            get {
+                return this.idField;
+            }
+            set {
+                if ((this.idField.Equals(value) != true)) {
+                    this.idField = value;
+                    this.RaisePropertyChanged("id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public double price {
+            get {
+                return this.priceField;
+            }
+            set {
+                if ((this.priceField.Equals(value) != true)) {
+                    this.priceField = value;
+                    this.RaisePropertyChanged("price");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public long quantity {
+            get {
+                return this.quantityField;
+            }
+            set {
+                if ((this.quantityField.Equals(value) != true)) {
+                    this.quantityField = value;
+                    this.RaisePropertyChanged("quantity");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int state {
+            get {
+                return this.stateField;
+            }
+            set {
+                if ((this.stateField.Equals(value) != true)) {
+                    this.stateField = value;
+                    this.RaisePropertyChanged("state");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string state_date {
+            get {
+                return this.state_dateField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.state_dateField, value) != true)) {
+                    this.state_dateField = value;
+                    this.RaisePropertyChanged("state_date");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="RequestData", Namespace="http://schemas.datacontract.org/2004/07/BookEditor")]
+    [System.SerializableAttribute()]
+    public partial class RequestData : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private long book_idField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string dateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private long idField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private long order_idField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private long quantityField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int stateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string state_dateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string titleField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public long book_id {
+            get {
+                return this.book_idField;
+            }
+            set {
+                if ((this.book_idField.Equals(value) != true)) {
+                    this.book_idField = value;
+                    this.RaisePropertyChanged("book_id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string date {
+            get {
+                return this.dateField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.dateField, value) != true)) {
+                    this.dateField = value;
+                    this.RaisePropertyChanged("date");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public long id {
+            get {
+                return this.idField;
+            }
+            set {
+                if ((this.idField.Equals(value) != true)) {
+                    this.idField = value;
+                    this.RaisePropertyChanged("id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public long order_id {
+            get {
+                return this.order_idField;
+            }
+            set {
+                if ((this.order_idField.Equals(value) != true)) {
+                    this.order_idField = value;
+                    this.RaisePropertyChanged("order_id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public long quantity {
+            get {
+                return this.quantityField;
+            }
+            set {
+                if ((this.quantityField.Equals(value) != true)) {
+                    this.quantityField = value;
+                    this.RaisePropertyChanged("quantity");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int state {
+            get {
+                return this.stateField;
+            }
+            set {
+                if ((this.stateField.Equals(value) != true)) {
+                    this.stateField = value;
+                    this.RaisePropertyChanged("state");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string state_date {
+            get {
+                return this.state_dateField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.state_dateField, value) != true)) {
+                    this.state_dateField = value;
+                    this.RaisePropertyChanged("state_date");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string title {
+            get {
+                return this.titleField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.titleField, value) != true)) {
+                    this.titleField = value;
+                    this.RaisePropertyChanged("title");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="LoginData", Namespace="http://schemas.datacontract.org/2004/07/BookEditor")]
     [System.SerializableAttribute()]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(WarehouseApp.ServiceWarehouse.RegisterData))]
@@ -446,13 +799,31 @@ namespace WarehouseApp.ServiceWarehouse {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceStore/sellBook", ReplyAction="http://tempuri.org/IServiceStore/sellBookResponse")]
         System.Threading.Tasks.Task<WarehouseApp.ServiceWarehouse.Response> sellBookAsync(WarehouseApp.ServiceWarehouse.BookData book, int quantity);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceStore/orderBook", ReplyAction="http://tempuri.org/IServiceStore/orderBookResponse")]
+        WarehouseApp.ServiceWarehouse.Response orderBook(WarehouseApp.ServiceWarehouse.BookData book, string clientEmail, int quantity);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceStore/orderBook", ReplyAction="http://tempuri.org/IServiceStore/orderBookResponse")]
+        System.Threading.Tasks.Task<WarehouseApp.ServiceWarehouse.Response> orderBookAsync(WarehouseApp.ServiceWarehouse.BookData book, string clientEmail, int quantity);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceStore/getOrders", ReplyAction="http://tempuri.org/IServiceStore/getOrdersResponse")]
+        WarehouseApp.ServiceWarehouse.Orders getOrders();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceStore/getOrders", ReplyAction="http://tempuri.org/IServiceStore/getOrdersResponse")]
+        System.Threading.Tasks.Task<WarehouseApp.ServiceWarehouse.Orders> getOrdersAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceStore/dispatchOrder", ReplyAction="http://tempuri.org/IServiceStore/dispatchOrderResponse")]
+        WarehouseApp.ServiceWarehouse.Response dispatchOrder(WarehouseApp.ServiceWarehouse.OrderData order);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceStore/dispatchOrder", ReplyAction="http://tempuri.org/IServiceStore/dispatchOrderResponse")]
+        System.Threading.Tasks.Task<WarehouseApp.ServiceWarehouse.Response> dispatchOrderAsync(WarehouseApp.ServiceWarehouse.OrderData order);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public interface IServiceStoreCallback {
         
-        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IServiceStore/test")]
-        void test(int t);
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IServiceStore/UpdateOrders")]
+        void UpdateOrders();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -514,6 +885,30 @@ namespace WarehouseApp.ServiceWarehouse {
         public System.Threading.Tasks.Task<WarehouseApp.ServiceWarehouse.Response> sellBookAsync(WarehouseApp.ServiceWarehouse.BookData book, int quantity) {
             return base.Channel.sellBookAsync(book, quantity);
         }
+        
+        public WarehouseApp.ServiceWarehouse.Response orderBook(WarehouseApp.ServiceWarehouse.BookData book, string clientEmail, int quantity) {
+            return base.Channel.orderBook(book, clientEmail, quantity);
+        }
+        
+        public System.Threading.Tasks.Task<WarehouseApp.ServiceWarehouse.Response> orderBookAsync(WarehouseApp.ServiceWarehouse.BookData book, string clientEmail, int quantity) {
+            return base.Channel.orderBookAsync(book, clientEmail, quantity);
+        }
+        
+        public WarehouseApp.ServiceWarehouse.Orders getOrders() {
+            return base.Channel.getOrders();
+        }
+        
+        public System.Threading.Tasks.Task<WarehouseApp.ServiceWarehouse.Orders> getOrdersAsync() {
+            return base.Channel.getOrdersAsync();
+        }
+        
+        public WarehouseApp.ServiceWarehouse.Response dispatchOrder(WarehouseApp.ServiceWarehouse.OrderData order) {
+            return base.Channel.dispatchOrder(order);
+        }
+        
+        public System.Threading.Tasks.Task<WarehouseApp.ServiceWarehouse.Response> dispatchOrderAsync(WarehouseApp.ServiceWarehouse.OrderData order) {
+            return base.Channel.dispatchOrderAsync(order);
+        }
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -521,10 +916,10 @@ namespace WarehouseApp.ServiceWarehouse {
     public interface IServiceWarehouse {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceWarehouse/ship", ReplyAction="http://tempuri.org/IServiceWarehouse/shipResponse")]
-        WarehouseApp.ServiceWarehouse.Response ship(WarehouseApp.ServiceWarehouse.BookData book, long quantity);
+        WarehouseApp.ServiceWarehouse.Response ship(WarehouseApp.ServiceWarehouse.RequestData request);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceWarehouse/ship", ReplyAction="http://tempuri.org/IServiceWarehouse/shipResponse")]
-        System.Threading.Tasks.Task<WarehouseApp.ServiceWarehouse.Response> shipAsync(WarehouseApp.ServiceWarehouse.BookData book, long quantity);
+        System.Threading.Tasks.Task<WarehouseApp.ServiceWarehouse.Response> shipAsync(WarehouseApp.ServiceWarehouse.RequestData request);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -554,12 +949,12 @@ namespace WarehouseApp.ServiceWarehouse {
                 base(binding, remoteAddress) {
         }
         
-        public WarehouseApp.ServiceWarehouse.Response ship(WarehouseApp.ServiceWarehouse.BookData book, long quantity) {
-            return base.Channel.ship(book, quantity);
+        public WarehouseApp.ServiceWarehouse.Response ship(WarehouseApp.ServiceWarehouse.RequestData request) {
+            return base.Channel.ship(request);
         }
         
-        public System.Threading.Tasks.Task<WarehouseApp.ServiceWarehouse.Response> shipAsync(WarehouseApp.ServiceWarehouse.BookData book, long quantity) {
-            return base.Channel.shipAsync(book, quantity);
+        public System.Threading.Tasks.Task<WarehouseApp.ServiceWarehouse.Response> shipAsync(WarehouseApp.ServiceWarehouse.RequestData request) {
+            return base.Channel.shipAsync(request);
         }
     }
 }

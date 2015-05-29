@@ -28,12 +28,28 @@ namespace BookEditor
         [Description("Sell book")]
         [OperationContract]
         Response sellBook(BookData book, int quantity);
+
+        [Description("Order a book")]
+        [OperationContract]
+        Response orderBook(BookData book, string clientEmail, int quantity);
+
+        [Description("Get orders")]
+        [OperationContract]
+        Orders getOrders();
+
+        [Description("Received request from the warehouse")]
+        [OperationContract]
+        Response ReceivedRequest(OrderData order);
+
+        [Description("Dispatch order")]
+        [OperationContract]
+        Response dispatchOrder(OrderData order);
     }
 
     public interface IServiceStoreCallback
     {
         [Description("")]
         [OperationContract(IsOneWay = true)]
-        void test(int t);
+        void UpdateOrders();
     }
 }

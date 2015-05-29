@@ -20,6 +20,7 @@ using System.Messaging;
 using DatabaseController;
 using WarehouseService;
 using WarehouseApp.ServiceWarehouse;
+using Utilities;
 
 namespace WarehouseApp
 {
@@ -30,26 +31,32 @@ namespace WarehouseApp
     {
         App app = Application.Current as App;
 
-        private ObservableCollection<Request> requests;
+        private ObservableCollection<RequestData> requests;
 
-        public ObservableCollection<Request> Requests
+        public ObservableCollection<RequestData> Requests
         {
             get { return requests; }
             set { SetField(ref requests, value, "Requests"); }
         }
 
+        private RequestData selectedRequest;
+
+        public RequestData SelectedRequest
+        {
+            get { return selectedRequest; }
+            set { SetField(ref selectedRequest, value, "SelectedRequest"); }
+        }
+
         public MainWindow()
         {
-            InitializeComponent();
             this.DataContext = this;
-
             init();
+
+            InitializeComponent();
         }
 
         private void init()
         {
-            requests = new ObservableCollection<Request>();
-
             string address = "net.msmq://localhost/private/OrderQueue";
             string queueName = ".\\private$\\OrderQueue";
 
@@ -67,8 +74,6 @@ namespace WarehouseApp
             ServiceHost host = new ServiceHost(typeof(ServiceRequest), new Uri("http://localhost:9001/WarehouseRequestService/"));
             host.AddServiceEndpoint(typeof(IServiceRequest), binding, address);
             
-            ServiceRequest.RequestEvent += new EventHandler(refreshQuestions);
-            
             host.Open();
 
             app.chanFactory =
@@ -77,32 +82,64 @@ namespace WarehouseApp
             app.chanFactory.Open();
             app.clientProxy = app.chanFactory.CreateChannel();
 
-            /*Request req = new Request(1, "a", 2, 0, "adsad", "asdasd");
-            req.id = 1;
-            req.title = "cenas";
-            req.quantity = 2;
-            req.state = 0;
-            req.date = "cead";
-            req.state_date = "dasda";
+            requests = new ObservableCollection<RequestData>();
+            ServiceRequest.RequestEvent += new EventHandler(refreshRequests);
 
-            Console.WriteLine(req.GetHashCode());
-            requests.Add(req);
-            requests.Add(new Request(1, "a", 2, 0, "adsad", "asdasd"));
-            requests.Add(new Request(1, "Asdss", 2, 0, "adsad", "asdasd"));
-
-            Console.WriteLine(req.title);*/
+            refreshRequests(null, null);
         }
 
-        private void refreshQuestions(object sender, EventArgs e)
+        private void refreshRequests(object sender, EventArgs e)
         {
-            Console.WriteLine("refresh questions");
+            List<Values> reqs = RequestTable.Instance.all;
+
+            reqs.Reverse();
+
+            requests.Clear();
+
+            foreach (Values v in reqs)
+            {
+                RequestData request = new RequestData();
+                request.id = (long)v.getValue(RequestTable.KEY_ID);
+                request.order_id = (long)v.getValue(RequestTable.KEY_ORDER_ID);
+                request.book_id = (long)v.getValue(RequestTable.KEY_BOOK_ID);
+                request.title = (string)v.getValue(RequestTable.KEY_TITLE);
+                request.quantity = (long)v.getValue(RequestTable.KEY_QUANTITY);
+                request.state = (int)((long)v.getValue(RequestTable.KEY_STATE));
+                request.date = (string)v.getValue(RequestTable.KEY_DATE);
+                request.state_date = (string)v.getValue(RequestTable.KEY_STATE_DATE);
+
+                requests.Add(request);
+            }
         }
 
         private void ShipRequest(object sender, RoutedEventArgs e)
         {
-            BookData b = new BookData();
+            if (SelectedRequest != null) { 
+                app.clientProxy.ship(SelectedRequest);
 
-            app.clientProxy.ship(b, 2);
+                Values values = new Values();
+                Values where_values = new Values();
+
+                values.add(RequestTable.KEY_STATE_DATE, Functions.getCurrentDate());
+                values.add(RequestTable.KEY_STATE, RequestTable.SHIPPED);
+
+                where_values.add(RequestTable.KEY_ID, SelectedRequest.id);
+
+                RequestTable.Instance.update(values, where_values);
+
+                refreshRequests(null, null);
+            }
+        }
+
+        private void RequestSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (SelectedRequest != null)
+            {
+                if (SelectedRequest.state == RequestTable.WAITING)
+                    ActionButton.IsEnabled = true;
+                else
+                    ActionButton.IsEnabled = false;
+            }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

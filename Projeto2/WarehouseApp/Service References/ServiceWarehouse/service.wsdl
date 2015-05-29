@@ -107,8 +107,26 @@
   <wsdl:message name="IServiceStore_sellBook_OutputMessage">
     <wsdl:part name="parameters" element="tns:sellBookResponse" />
   </wsdl:message>
-  <wsdl:message name="IServiceStore_test_OutputCallbackMessage">
-    <wsdl:part name="parameters" element="tns:test" />
+  <wsdl:message name="IServiceStore_orderBook_InputMessage">
+    <wsdl:part name="parameters" element="tns:orderBook" />
+  </wsdl:message>
+  <wsdl:message name="IServiceStore_orderBook_OutputMessage">
+    <wsdl:part name="parameters" element="tns:orderBookResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceStore_getOrders_InputMessage">
+    <wsdl:part name="parameters" element="tns:getOrders" />
+  </wsdl:message>
+  <wsdl:message name="IServiceStore_getOrders_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getOrdersResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceStore_dispatchOrder_InputMessage">
+    <wsdl:part name="parameters" element="tns:dispatchOrder" />
+  </wsdl:message>
+  <wsdl:message name="IServiceStore_dispatchOrder_OutputMessage">
+    <wsdl:part name="parameters" element="tns:dispatchOrderResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceStore_UpdateOrders_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:UpdateOrders" />
   </wsdl:message>
   <wsdl:message name="IServiceWarehouse_ship_InputMessage">
     <wsdl:part name="parameters" element="tns:ship" />
@@ -147,8 +165,20 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IServiceStore/sellBook" message="tns:IServiceStore_sellBook_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IServiceStore/sellBookResponse" message="tns:IServiceStore_sellBook_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="test">
-      <wsdl:output wsaw:Action="http://tempuri.org/IServiceStore/test" message="tns:IServiceStore_test_OutputCallbackMessage" />
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="orderBook">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceStore/orderBook" message="tns:IServiceStore_orderBook_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceStore/orderBookResponse" message="tns:IServiceStore_orderBook_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="getOrders">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceStore/getOrders" message="tns:IServiceStore_getOrders_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceStore/getOrdersResponse" message="tns:IServiceStore_getOrders_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="dispatchOrder">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceStore/dispatchOrder" message="tns:IServiceStore_dispatchOrder_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceStore/dispatchOrderResponse" message="tns:IServiceStore_dispatchOrder_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="UpdateOrders">
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceStore/UpdateOrders" message="tns:IServiceStore_UpdateOrders_OutputCallbackMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType msc:usingSession="true" name="IServiceWarehouse">
@@ -196,8 +226,35 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="test">
-      <soap12:operation soapAction="http://tempuri.org/IServiceStore/test" style="document" />
+    <wsdl:operation name="orderBook">
+      <soap12:operation soapAction="http://tempuri.org/IServiceStore/orderBook" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getOrders">
+      <soap12:operation soapAction="http://tempuri.org/IServiceStore/getOrders" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="dispatchOrder">
+      <soap12:operation soapAction="http://tempuri.org/IServiceStore/dispatchOrder" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateOrders">
+      <soap12:operation soapAction="http://tempuri.org/IServiceStore/UpdateOrders" style="document" />
       <wsdl:output>
         <soap12:body use="literal" />
       </wsdl:output>

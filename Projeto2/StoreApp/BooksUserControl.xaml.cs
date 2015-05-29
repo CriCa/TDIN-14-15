@@ -54,10 +54,12 @@ namespace StoreApp
         {
             books = new ObservableCollection<BookData>();
 
-            refreshBookList();
+            app.BooksEvent += new EventHandler(refreshBookList);
+
+            refreshBookList(null, null);
         }
 
-        private void refreshBookList()
+        private void refreshBookList(object sender, EventArgs e)
         {
             Books bs = app.clientProxy.getBooks();
             books.Clear();
@@ -82,7 +84,7 @@ namespace StoreApp
                 if (rep.State != "success")
                     System.Windows.MessageBox.Show(Window.GetWindow(this), "The book is already registered!", "Repeated book", MessageBoxButton.OK, MessageBoxImage.Error);
 
-                refreshBookList();
+                refreshBookList(null, null);
             }
         }
 
@@ -98,7 +100,7 @@ namespace StoreApp
 
                 app.clientProxy.updateBook(SelectedBook);
 
-                refreshBookList();
+                refreshBookList(null, null);
             }
         }
 
@@ -120,7 +122,7 @@ namespace StoreApp
 
                         new Printer.MainWindow(Window.GetWindow(this), SelectedBook.title, qtd, price, (double)qtd * price, clientName).Show();
 
-                        refreshBookList();
+                        refreshBookList(null, null);
                     }
                     else System.Windows.MessageBox.Show(Window.GetWindow(this), "Specify the name of the client!", "No client name", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
@@ -137,7 +139,10 @@ namespace StoreApp
 
                         ClientName.Text = "";
 
-                        refreshBookList();
+                        app.clientProxy.orderBook(SelectedBook, clientEmail, (int) qtd);
+
+                        refreshBookList(null, null);
+                        app.RefreshOrders();
                     }
                     else System.Windows.MessageBox.Show(Window.GetWindow(this), "Enter a valid client email!", "Client email error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }

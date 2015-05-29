@@ -5,9 +5,40 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:StoreApp"
              mc:Ignorable="d"
-             d:DesignHeight="300" d:DesignWidth="300">
+             d:DesignHeight="500" d:DesignWidth="400">
     <Grid>
         <Label Content="Orders" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Foreground="#FF4DBCE9" FontWeight="Bold" FontSize="14"/>
+
+        <ListBox SelectedItem="{Binding SelectedOrder}" ItemsSource="{Binding Orders, Mode=OneWay}" HorizontalAlignment="Left" Height="305" Margin="10,44,0,0" VerticalAlignment="Top" Width="380" Background="#FFD7F4FF" SelectionChanged="OrderSelectionChanged">
+            <ListBox.ItemContainerStyle>
+                <Style TargetType="ListBoxItem">
+                    <Setter Property="Background" Value="Transparent"/>
+                    <Setter Property="Padding" Value="5"/>
+                    <Setter Property="Cursor" Value="Hand"/>
+                    <Style.Triggers>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Trigger.Setters>
+                                <Setter Property="Background" Value="White" />
+                            </Trigger.Setters>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </ListBox.ItemContainerStyle>
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <DockPanel>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                            <TextBlock HorizontalAlignment="Left" Width="200" Padding="5,0,5,0" Text="{Binding book_title}" />
+                            <TextBlock Padding="5,0,5,0" Width="30" Text="{Binding quantity}" />
+                            <TextBlock Padding="5,0,5,0" Width="50"  Text="{Binding client_email}" />
+                            <TextBlock Padding="5,0,5,0" Width="50" Text="{Binding date}" />
+                        </StackPanel>
+                    </DockPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
+        <Button Content="Dispatch" HorizontalAlignment="Left" Margin="315,354,0,0" VerticalAlignment="Top" Width="75" Foreground="#FF19536A" Click="ButtonClick"/>
 
     </Grid>
 </local:UserControlNotifiable>

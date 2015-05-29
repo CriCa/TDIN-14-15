@@ -15,6 +15,6 @@ namespace BookEditor
     {
         [Description("Ship book from warehouse to store")]
         [OperationContract]
-        Response ship(BookData book, long quantity);
+        Response ship(RequestData request);
     }
 }

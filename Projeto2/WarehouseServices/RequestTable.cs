@@ -10,6 +10,8 @@ namespace WarehouseService
     public class RequestTable : DatabaseTable
     {
         public const string KEY_ID = "id";
+        public const string KEY_ORDER_ID = "order_id";
+        public const string KEY_BOOK_ID = "book_id";
         public const string KEY_TITLE = "title";
         public const string KEY_QUANTITY = "quantity";
         public const string KEY_STATE = "state";
@@ -17,9 +19,7 @@ namespace WarehouseService
         public const string KEY_STATE_DATE = "state_date";
 
         public const int WAITING = 0;
-        public const int DISPATCHED = 1;
-        public const int TO_DISPATCH = 2;
-        public const int SOLD = 3;
+        public const int SHIPPED = 1;
 
         private static RequestTable instance = new RequestTable();
 
@@ -31,7 +31,7 @@ namespace WarehouseService
 
         override protected string getCreationScript()
         {
-            return String.Format("create table {0} ({1} INTEGER PRIMARY KEY AUTOINCREMENT, {2} TEXT NOT NULL, {3} INTEGER NOT NULL DEFAULT 0, {4} INTEGER NOT NULL DEFAULT 0, {5} TEXT, {6} TEXT NOT NULL);", getTableName(), KEY_ID, KEY_TITLE, KEY_QUANTITY, KEY_STATE, KEY_DATE, KEY_STATE_DATE);
+            return String.Format("create table {0} ({1} INTEGER PRIMARY KEY AUTOINCREMENT, {2} INTEGER NOT NULL, {3} INTEGER NOT NULL, {4} TEXT NOT NULL, {5} INTEGER NOT NULL DEFAULT 0, {6} INTEGER NOT NULL DEFAULT 0, {7} TEXT, {8} TEXT);", getTableName(), KEY_ID, KEY_ORDER_ID, KEY_BOOK_ID, KEY_TITLE, KEY_QUANTITY, KEY_STATE, KEY_DATE, KEY_STATE_DATE);
         }
     }
 }

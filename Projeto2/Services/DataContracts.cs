@@ -95,4 +95,99 @@ namespace BookEditor
     [CollectionDataContract]
     public class Books : List<BookData> { }
 
+    [DataContract]
+    public class OrderData
+    {
+        [DataMember]
+        public long id;
+
+        [DataMember]
+        public long book_id;
+
+        [DataMember]
+        public string book_title;
+
+        [DataMember]
+        public long client_id;
+
+        [DataMember]
+        public string client_email;
+
+        [DataMember]
+        public long quantity;
+
+        [DataMember]
+        public int state;
+
+        [DataMember]
+        public string date;
+
+        [DataMember]
+        public string state_date;
+
+        [DataMember]
+        public double price;
+
+        public OrderData(long id, long book_id, string book_title, long client_id, string client_email, long quantity, int state, string date, string state_date, double price)
+        {
+            this.id = id;
+            this.book_id = book_id;
+            this.book_title = book_title;
+            this.client_id = client_id;
+            this.client_email = client_email;
+            this.quantity = quantity;
+            this.state = state;
+            this.date = date;
+            this.state_date = state_date;
+            this.price = price;
+        }
+    }
+
+    [CollectionDataContract]
+    public class Orders : List<OrderData> { }
+
+    [DataContract]
+    public class RequestData
+    {
+
+        [DataMember]
+        public long id;
+
+        [DataMember]
+        public long order_id;
+
+        [DataMember]
+        public long book_id;
+
+        [DataMember]
+        public string title;
+
+        [DataMember]
+        public long quantity;
+
+        [DataMember]
+        public int state;
+
+        [DataMember]
+        public string date;
+
+        [DataMember]
+        public string state_date;
+
+        public RequestData(long id, long order_id, long book_id, string title, long quantity, int state, string date, string state_date)
+        {
+            this.id = id;
+            this.order_id = order_id;
+            this.book_id = book_id;
+            this.title = title;
+            this.quantity = quantity;
+            this.state = state;
+            this.date = date;
+            this.state_date = state_date;
+        }
+    }
+
+    [CollectionDataContract]
+    public class Requests : List<RequestData> { }
+
 }

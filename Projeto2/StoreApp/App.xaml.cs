@@ -20,6 +20,21 @@ namespace StoreApp
         public DuplexChannelFactory<IServiceStore> dupFactory;
         public IServiceStore clientProxy;
 
+        public event EventHandler BooksEvent;
+        public event EventHandler OrdersEvent;
+
         public App() { }
+
+        public void RefreshBooks()
+        {
+            if (BooksEvent != null)
+                BooksEvent(null, null);
+        }
+
+        public void RefreshOrders()
+        {
+            if (OrdersEvent != null)
+                OrdersEvent(null, null);
+        }
     }
 }

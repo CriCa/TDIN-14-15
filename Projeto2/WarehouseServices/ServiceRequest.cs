@@ -26,12 +26,17 @@ namespace WarehouseService
         private void addRequest(Request request)
         {
             Values values = new Values();
+            
+            values.add(RequestTable.KEY_ORDER_ID, request.order_id);
+            values.add(RequestTable.KEY_BOOK_ID, request.book_id);
             values.add(RequestTable.KEY_TITLE, request.title);
             values.add(RequestTable.KEY_QUANTITY, request.quantity);
-            values.add(RequestTable.KEY_STATE, request.state);
             values.add(RequestTable.KEY_DATE, request.date);
-            values.add(RequestTable.KEY_STATE_DATE, request.state_date);
+            values.add(RequestTable.KEY_STATE_DATE, "-");
+
             RequestTable.Instance.insert(values);
+
+            Console.WriteLine(RequestTable.Instance.all.Count);
         }
 
         public void refreshRequests()

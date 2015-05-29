@@ -13,13 +13,12 @@ namespace StoreApp
     public class ServiceStoreCallback : IServiceStoreCallback
     {
         App app = Application.Current as App;
-        public void test(int t)
+        public void UpdateOrders()
         {
             App.Current.Dispatcher.BeginInvoke(new Action(() =>
             {
-                Console.WriteLine("Callback!!!");
+                Console.WriteLine("Update Orders in store!!!");
             }));
-
         }
     }
 }

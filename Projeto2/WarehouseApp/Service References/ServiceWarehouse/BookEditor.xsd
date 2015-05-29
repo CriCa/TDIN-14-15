@@ -56,4 +56,38 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="BookData" nillable="true" type="tns:BookData" />
+  <xs:complexType name="Orders">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="OrderData" nillable="true" type="tns:OrderData" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Orders" nillable="true" type="tns:Orders" />
+  <xs:complexType name="OrderData">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="book_id" type="xs:long" />
+      <xs:element minOccurs="0" name="book_title" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="client_email" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="client_id" type="xs:long" />
+      <xs:element minOccurs="0" name="date" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="id" type="xs:long" />
+      <xs:element minOccurs="0" name="price" type="xs:double" />
+      <xs:element minOccurs="0" name="quantity" type="xs:long" />
+      <xs:element minOccurs="0" name="state" type="xs:int" />
+      <xs:element minOccurs="0" name="state_date" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="OrderData" nillable="true" type="tns:OrderData" />
+  <xs:complexType name="RequestData">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="book_id" type="xs:long" />
+      <xs:element minOccurs="0" name="date" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="id" type="xs:long" />
+      <xs:element minOccurs="0" name="order_id" type="xs:long" />
+      <xs:element minOccurs="0" name="quantity" type="xs:long" />
+      <xs:element minOccurs="0" name="state" type="xs:int" />
+      <xs:element minOccurs="0" name="state_date" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="title" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="RequestData" nillable="true" type="tns:RequestData" />
 </xs:schema>

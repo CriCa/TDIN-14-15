@@ -28,8 +28,7 @@ namespace BookEditor
                 values.add(UserTable.KEY_NAME, "Cristiano Carvalheiro");
                 values.add(UserTable.KEY_EMAIL, "cristiano@gmail.com");
                 values.add(UserTable.KEY_PASSWORD, "123");
-                values.add(UserTable.KEY_ADDRESS, "Rua Silva Porto n 473");
-                values.add(UserTable.KEY_TYPE, 0);
+                values.add(UserTable.KEY_ADDRESS, "Rua Silva Porto n 473"); // TODO ver address na order
                 UserTable.Instance.insert(values);
 
                 values.clear();
@@ -37,7 +36,6 @@ namespace BookEditor
                 values.add(UserTable.KEY_EMAIL, "diogo@gmail.com");
                 values.add(UserTable.KEY_PASSWORD, "123");
                 values.add(UserTable.KEY_ADDRESS, "somewhere xD");
-                values.add(UserTable.KEY_TYPE, 0);
                 UserTable.Instance.insert(values);
             }
 

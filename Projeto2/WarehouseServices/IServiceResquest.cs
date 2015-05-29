@@ -19,6 +19,12 @@ namespace WarehouseService
         public long id;
 
         [DataMember]
+        public long order_id;
+
+        [DataMember]
+        public long book_id;
+
+        [DataMember]
         public string title;
 
         [DataMember]
@@ -33,10 +39,11 @@ namespace WarehouseService
         [DataMember]
         public string state_date;
 
-
-        public Request(long id, string title, long quantity, int state, string date, string state_date)
+        public Request(long id, long order_id, long book_id, string title, long quantity, int state, string date, string state_date)
         {
             this.id = id;
+            this.order_id = order_id;
+            this.book_id = book_id;
             this.title = title;
             this.quantity = quantity;
             this.state = state;

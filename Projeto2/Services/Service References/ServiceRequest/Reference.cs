@@ -15,7 +15,7 @@ namespace Services.ServiceRequest {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Request", Namespace="http://schemas.datacontract.org/2004/07/WarehouseApp")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Request", Namespace="http://schemas.datacontract.org/2004/07/WarehouseService")]
     [System.SerializableAttribute()]
     public partial class Request : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -23,10 +23,16 @@ namespace Services.ServiceRequest {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private long book_idField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string dateField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private long idField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private long order_idField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private long quantityField;
@@ -47,6 +53,19 @@ namespace Services.ServiceRequest {
             }
             set {
                 this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public long book_id {
+            get {
+                return this.book_idField;
+            }
+            set {
+                if ((this.book_idField.Equals(value) != true)) {
+                    this.book_idField = value;
+                    this.RaisePropertyChanged("book_id");
+                }
             }
         }
         
@@ -72,6 +91,19 @@ namespace Services.ServiceRequest {
                 if ((this.idField.Equals(value) != true)) {
                     this.idField = value;
                     this.RaisePropertyChanged("id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public long order_id {
+            get {
+                return this.order_idField;
+            }
+            set {
+                if ((this.order_idField.Equals(value) != true)) {
+                    this.order_idField = value;
+                    this.RaisePropertyChanged("order_id");
                 }
             }
         }
