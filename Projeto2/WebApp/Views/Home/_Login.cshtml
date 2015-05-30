@@ -1,0 +1,28 @@
+﻿@model  WebApp.Models.LoginModel
+
+<div id="tab-title">
+    <h3>LOGIN</h3>
+    <hr class="title-sep" />
+</div>
+
+@using (Ajax.BeginForm("LoginAction", null, new AjaxOptions { UpdateTargetId = "content-wrapper" }, new { @id = "login-form", @class = "clearfix" }))
+{
+    <div class="input-group">
+        @Html.Label("EMAIL")
+        <span>@Html.EditorFor(x => x.email)</span>
+        @Html.ValidationMessageFor(x => x.email)
+    </div>
+    <div class="input-group">
+        @Html.Label("PASSWORD")
+        <span>@Html.PasswordFor(x => x.password)</span>
+        @Html.ValidationMessageFor(x => x.password)
+    </div>
+
+    @Ajax.ActionLink("Register", "Register", new AjaxOptions
+{
+    UpdateTargetId = "content-wrapper",
+    InsertionMode = InsertionMode.Replace
+})
+
+    <input type="submit" value="Login" />
+}

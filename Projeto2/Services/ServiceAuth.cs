@@ -22,11 +22,10 @@ namespace BookEditor
 
             LoginResponse resp = new LoginResponse();
 
-            if (users.Count == 0/* || (long)users.ElementAt(0).getValue(UserTable.KEY_STATE) == 0*/)
+            if (users.Count == 0)
             {
                 resp.State = "invalid";
                 resp.Message = "invalid email-password combination";
-
             }
             else
             {

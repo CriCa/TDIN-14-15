@@ -331,8 +331,6 @@ namespace BookEditor
 
             BookTable.Instance.update(values, where_values);
 
-            
-
             keys.Clear();
             values.clear();
             where_values.clear();
@@ -353,7 +351,7 @@ namespace BookEditor
                 keys.Add(BookTable.KEY_QUANTITY);
                 where_values.add(BookTable.KEY_ID, v.getValue(OrderTable.KEY_BOOK_ID));
 
-                result = BookTable.Instance.get(keys, where_values);
+                List<Values> res = BookTable.Instance.get(keys, where_values);
                 if((long)result[0].getValue(BookTable.KEY_QUANTITY) >= (long)v.getValue(OrderTable.KEY_QUANTITY)) {
                     values.clear();
                     where_values.clear();
@@ -368,7 +366,7 @@ namespace BookEditor
                     values.clear();
                     where_values.clear();
 
-                    values.add(BookTable.KEY_QUANTITY, (long)result[0].getValue(BookTable.KEY_QUANTITY) - (long)v.getValue(OrderTable.KEY_QUANTITY));
+                    values.add(BookTable.KEY_QUANTITY, (long)res[0].getValue(BookTable.KEY_QUANTITY) - (long)v.getValue(OrderTable.KEY_QUANTITY));
 
                     where_values.add(BookTable.KEY_ID, v.getValue(OrderTable.KEY_BOOK_ID));
 

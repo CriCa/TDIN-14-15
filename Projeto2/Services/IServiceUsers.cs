@@ -13,6 +13,11 @@ namespace BookEditor
     [ServiceContract]
     public interface IServiceUsers
     {
-        
+
+        [WebGet(UriTemplate = "/{id}/orders", ResponseFormat = WebMessageFormat.Json)]
+        [Description("Get all the tickets from user with {id}")]
+        [OperationContract]
+        Orders getOrdersFrom(string id);
+
     }
 }
