@@ -18,7 +18,6 @@ namespace BookEditor
         public const int WAITING = 0;
         public const int DISPATCHED = 1;
         public const int TO_DISPATCH = 2;
-        public const int SOLD = 3;
 
         private static OrderTable instance = new OrderTable();
 

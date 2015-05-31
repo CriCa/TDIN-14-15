@@ -58,7 +58,7 @@
             <TextBlock HorizontalAlignment="Left" Margin="160,0,0,0" TextWrapping="Wrap" Text="Password" VerticalAlignment="Top" Foreground="White"/>
             <PasswordBox Name="ClientPassword" HorizontalAlignment="Left" Margin="160,21,0,0" VerticalAlignment="Top" Width="139" Height="22"/>
             <TextBlock HorizontalAlignment="Left" Margin="0,48,0,0" TextWrapping="Wrap" Text="Order Address" VerticalAlignment="Top" Foreground="White"/>
-            <TextBox Name="OrderAddress"  HorizontalAlignment="Left" Height="62" Margin="0,69,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="299"/>
+            <TextBox TextWrapping="Wrap" AcceptsReturn="True" Name="OrderAddress"  HorizontalAlignment="Left" Height="62" Margin="0,69,0,0" VerticalAlignment="Top" Width="299"/>
         </Grid>
 
 

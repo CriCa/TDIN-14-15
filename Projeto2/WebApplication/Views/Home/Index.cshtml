@@ -1,0 +1,21 @@
+﻿@{
+    ViewBag.Title = "Book Editor - Web Application";
+}
+
+@model IEnumerable<WebApplication.Models.OrderModel>
+
+<div id="notification-wrapper">
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-offset-2 col-md-8">
+            <div id="content-wrapper">
+                @if (Session["email"] == null) { 
+                    @Html.Partial("_Login")   
+                } else {
+                    @Html.Partial("_Track")   
+                }
+            </div>
+        </div>
+    </div>
+</div>

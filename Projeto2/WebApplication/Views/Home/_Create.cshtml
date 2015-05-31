@@ -1,0 +1,63 @@
+﻿@model WebApplication.Models.CreateModel
+
+@if (ViewBag.CreationError == "true") {
+    <div class="creation-error">An address is needed to complete the order!</div>
+}
+
+<ul id="menu">
+    <li>
+        @Ajax.ActionLink("T", "Track", new AjaxOptions {
+       UpdateTargetId = "content-wrapper",
+       InsertionMode = InsertionMode.Replace
+   })
+    </li>
+    <li>
+        @Ajax.ActionLink("L", "LogoutAction", new AjaxOptions {
+       UpdateTargetId = "content-wrapper",
+       InsertionMode = InsertionMode.Replace
+   })
+    </li>
+</ul>
+
+<div id="tab-title">
+    <h3>CREATE ORDER</h3>
+    <hr class="title-sep" />
+</div>
+@using (Ajax.BeginForm("CreateAction", null, new AjaxOptions { UpdateTargetId = "content-wrapper" }, new { @id = "create-form", @class = "clearfix" }))
+{
+    <div id="details-wrapper" class="clearfix">
+        <input type="text" class="details" value="@Session["name"]" disabled />
+        <input type="text" class="details last" value="@Session["email"]" disabled />
+    </div>
+    <hr />
+    <div class="input-group">
+        <div class="input-left">
+            @Html.Label("BOOK")
+            <span>
+                <select id="books" name="books">
+                    @foreach (var book in Model.books)
+                    {
+                        <option value="@book.id">@book.title - $@book.price</option>
+                    }
+                </select>
+            </span>
+        </div>
+        <div class="input-right">
+            @Html.Label("QUANTITY")
+            <span>
+                @Html.TextBoxFor(x => x.quantity, new { type = "number", min = "1", max = "999", value = "1", step = "1" })
+            </span>
+        </div>
+    </div>
+    <div class="input-group">
+        @Html.Label("ADDRESS")
+        @Html.TextAreaFor(x => x.address)
+    </div>
+
+    <input type="submit" value="ORDER" />
+    
+   <span id="book-id-hidden" style="display: none">
+       <input id="book_id" name="book_id" type="text" value="1">
+   </span>
+}
+<input type="hidden" value="@Session["id"]" id="id-hidden" /> 

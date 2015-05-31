@@ -52,6 +52,8 @@
   <ItemGroup>
     <Compile Include="DataContracts.cs" />
     <Compile Include="IServiceAuth.cs" />
+    <Compile Include="IServiceBooks.cs" />
+    <Compile Include="IServiceOrders.cs" />
     <Compile Include="IServiceStore.cs" />
     <Compile Include="IServiceUsers.cs" />
     <Compile Include="IServiceWarehouse.cs" />
@@ -61,6 +63,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="ServiceBooks.cs" />
+    <Compile Include="ServiceOrders.cs" />
     <Compile Include="ServiceStore.cs" />
     <Compile Include="ServiceAuth.cs" />
     <Compile Include="ServiceUsers.cs" />

@@ -100,6 +100,7 @@ namespace BookEditor
             Values values = new Values();
             List<String> keys = new List<string>();
             Values where_values = new Values();
+            string cName;
 
             keys.Add(UserTable.KEY_ID);
             keys.Add(UserTable.KEY_NAME);
@@ -123,6 +124,8 @@ namespace BookEditor
 
             result = UserTable.Instance.get(keys, where_values);
 
+            cName = (string)result[0].getValue(UserTable.KEY_NAME);
+
             values.clear();
 
             values.add(OrderTable.KEY_BOOK_ID, book.id);
@@ -136,31 +139,6 @@ namespace BookEditor
 
             OrderTable.Instance.insert(values);
 
-            /*MailMessage msg = new MailMessage();
-            msg.From = new MailAddress("bookeditor.tdin1415@gmail.com", "Book Editor");
-
-            msg.To.Add(new MailAddress(clientEmail, (string)result[0].getValue(UserTable.KEY_NAME)));
-
-            msg.Priority = MailPriority.High;
-            msg.Subject = "[Book Editor] New Order";
-
-            msg.Body = "Your order as been created!";
-
-            msg.Body = getHtmlBody((string)result[0].getValue(UserTable.KEY_NAME), msg.Body);
-
-            msg.IsBodyHtml = true;
-
-            SmtpClient client = new SmtpClient();
-            client.Host = "smtp.gmail.com";
-            client.Port = 587;
-            client.EnableSsl = true;
-            client.UseDefaultCredentials = false;
-
-            client.Credentials = new System.Net.NetworkCredential("bookeditor.tdin1415@gmail.com", "tdin1415");
-            client.DeliveryMethod = SmtpDeliveryMethod.Network;
-
-            client.SendAsync(msg, UserTable.Instance.all.Count);*/
-
             where_values.clear();
             where_values.add(OrderTable.KEY_BOOK_ID, book.id);
             keys.Clear();
@@ -170,7 +148,7 @@ namespace BookEditor
             long bookDemand = 0;
 
             foreach (Values v in result)
-                bookDemand += (long) v.getValue(OrderTable.KEY_QUANTITY);
+                bookDemand += (long)v.getValue(OrderTable.KEY_QUANTITY);
 
             keys.Clear();
             where_values.clear();
@@ -204,8 +182,8 @@ namespace BookEditor
             foreach (Values v in result)
                 requestQuantity += (long)v.getValue(RequestTable.KEY_QUANTITY);
 
-
-            if (requestQuantity < bookDemand) { 
+            if (requestQuantity < bookDemand)
+            {
                 values.clear();
                 values.add(RequestTable.KEY_ORDER_ID, OrderTable.Instance.all.Count);
                 values.add(RequestTable.KEY_BOOK_ID, book.id);
@@ -237,17 +215,45 @@ namespace BookEditor
             return new Response("success", "book ordered");
         }
 
+        private void sendMail(string clientEmail, string clientName, string subject, string body)
+        {
+            MailMessage msg = new MailMessage();
+            msg.From = new MailAddress("bookeditor.tdin1415@gmail.com", "Book Editor");
+
+            msg.To.Add(new MailAddress(clientEmail, clientName));
+
+            msg.Priority = MailPriority.High;
+            msg.Subject = subject;
+
+            msg.Body = body;
+
+            msg.Body = getHtmlBody(clientName, msg.Body);
+
+            msg.IsBodyHtml = true;
+
+            SmtpClient client = new SmtpClient();
+            client.Host = "smtp.gmail.com";
+            client.Port = 587;
+            client.EnableSsl = true;
+            client.UseDefaultCredentials = false;
+
+            client.Credentials = new System.Net.NetworkCredential("bookeditor.tdin1415@gmail.com", "tdin1415");
+            client.DeliveryMethod = SmtpDeliveryMethod.Network;
+
+            client.SendAsync(msg, UserTable.Instance.all.Count);
+        }
+
         private string getHtmlBody(string name, string msg)
         {
 
-            string htmlSource = @"<div style=""font-weight:700""> Welcome " + name + @"</div>";
+            string htmlSource = @"<div style=""font-weight:700""> Dear " + name + @",</div>";
             htmlSource += @"</p>
                       <div align=""left"" class=""article-content"">
                         <multiline label=""Description"">";
             htmlSource += msg;
             htmlSource += @"<br/>
                                         Your sincerely,
-                                        The Book Editor Administrators, Cristiano Carvalheiro and Diogo Almeida";
+                                        Book Editor Adminitrators";
 
             string ret = PreMailer.Net.PreMailer.MoveCssInline(htmlSource).Html;
 
@@ -337,6 +343,9 @@ namespace BookEditor
             keys.Add(OrderTable.KEY_ID);
             keys.Add(OrderTable.KEY_BOOK_ID);
             keys.Add(OrderTable.KEY_QUANTITY);
+            keys.Add(OrderTable.KEY_PRICE);
+            keys.Add(OrderTable.KEY_CLIENT_ID);
+            keys.Add(OrderTable.KEY_ADDRESS);
             where_values.add(OrderTable.KEY_STATE, OrderTable.TO_DISPATCH);
             where_values.add(OrderTable.KEY_BOOK_ID, request.book_id);
 
@@ -352,7 +361,8 @@ namespace BookEditor
                 where_values.add(BookTable.KEY_ID, v.getValue(OrderTable.KEY_BOOK_ID));
 
                 List<Values> res = BookTable.Instance.get(keys, where_values);
-                if((long)result[0].getValue(BookTable.KEY_QUANTITY) >= (long)v.getValue(OrderTable.KEY_QUANTITY)) {
+                if ((long)result[0].getValue(BookTable.KEY_QUANTITY) >= (long)v.getValue(OrderTable.KEY_QUANTITY))
+                {
                     values.clear();
                     where_values.clear();
 
@@ -371,6 +381,30 @@ namespace BookEditor
                     where_values.add(BookTable.KEY_ID, v.getValue(OrderTable.KEY_BOOK_ID));
 
                     BookTable.Instance.update(values, where_values);
+
+                    keys.Clear();
+                    where_values.clear();
+
+                    keys.Add(UserTable.KEY_EMAIL);
+                    keys.Add(UserTable.KEY_NAME);
+                    where_values.add(UserTable.KEY_ID, (long)v.getValue(OrderTable.KEY_CLIENT_ID));
+
+                    List<Values> user = UserTable.Instance.get(keys, where_values);
+
+                    keys.Clear();
+                    where_values.clear();
+
+                    keys.Add(BookTable.KEY_TITLE);
+                    where_values.add(BookTable.KEY_ID, (long)v.getValue(OrderTable.KEY_BOOK_ID));
+
+                    List<Values> book = BookTable.Instance.get(keys, where_values);
+
+                    string mail = "Your order has been dispatched to your address.<br/><br/><span style=\"font-weight:bold\">Order details:</span><br/>Book Title: "
+                + (string)book[0].getValue(BookTable.KEY_TITLE) + "<br/>Quantity: " + (long)v.getValue(OrderTable.KEY_QUANTITY) + "<br/>Price: $" + (double)v.getValue(OrderTable.KEY_PRICE) + "<br/>State: "
+                + "Dispatched at " + Functions.getCurrentDate() + "<br/>Address:<br/>" + (string)v.getValue(OrderTable.KEY_ADDRESS);
+
+
+                    sendMail((string)user[0].getValue(UserTable.KEY_EMAIL), (string)user[0].getValue(UserTable.KEY_NAME), "[Book Editor] Order Dispatched", mail);
                 }
             }
 

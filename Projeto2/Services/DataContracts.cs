@@ -194,4 +194,19 @@ namespace BookEditor
     [CollectionDataContract]
     public class Requests : List<RequestData> { }
 
+    [DataContract]
+    public class CreateData
+    {
+        [DataMember]
+        public long client_id { get; set; }
+
+        [DataMember]
+        public long book_id { get; set; }
+
+        [DataMember]
+        public int quantity { get; set; }
+
+        [DataMember]
+        public string address { get; set; }
+    }
 }

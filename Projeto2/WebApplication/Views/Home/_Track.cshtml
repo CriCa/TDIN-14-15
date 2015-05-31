@@ -1,0 +1,52 @@
+﻿@model IEnumerable<WebApplication.Models.OrderModel>
+
+<ul id="menu">
+    <li>
+        @Ajax.ActionLink("C", "Create", new AjaxOptions
+   {
+       UpdateTargetId = "content-wrapper",
+       InsertionMode = InsertionMode.Replace
+   })
+    </li>
+    <li>
+        @Ajax.ActionLink("L", "LogoutAction", new AjaxOptions
+   {
+       UpdateTargetId = "content-wrapper",
+       InsertionMode = InsertionMode.Replace
+   })
+    </li>
+</ul>
+<div id="tab-title">
+    <h3>TRACK ORDERS</h3>
+    <hr class="title-sep" />
+</div>
+<div id="tracking-wrapper">
+    <ul id="labels-list">
+        <li class="title label">TITLE</li>
+        <li class="id label">QTD</li>
+        <li class="date label">DATE</li>
+        <li class="state label">STATE</li>
+    </ul>
+    <ul id="books-list">
+        @if (Model.Count() == 0)
+        {
+            <li id="" class="clearfix" style="margin-top:0">
+                <span style="padding-left:10px;">You don't have any orders!</span>
+            </li>
+        }
+        else
+        {
+            foreach (var order in Model)
+            {
+                <li id="@order.id" class="clearfix">
+                    <span class="title">@order.book_title</span>
+                    <span class="id">@order.quantity</span>
+                    <span class="date">@order.date</span>
+                    <span class="state">@order.state_date</span>
+                </li>
+            }
+        }
+
+    </ul>
+</div>
+<input type="hidden" value="@Session["id"]" id="id-hidden" />

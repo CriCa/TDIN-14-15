@@ -15,7 +15,7 @@ namespace BookEditor
     {
 
         [WebGet(UriTemplate = "/{id}/orders", ResponseFormat = WebMessageFormat.Json)]
-        [Description("Get all the tickets from user with {id}")]
+        [Description("Get all the orders from user with {id}")]
         [OperationContract]
         Orders getOrdersFrom(string id);
 

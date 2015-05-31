@@ -1,0 +1,38 @@
+﻿@model  WebApplication.Models.RegisterModel
+
+@if (ViewBag.RegisterError == "true") {
+    <div class="register-error">Invalid register information</div>
+}
+
+<ul id="menu">
+    <li>
+        @Ajax.ActionLink("L", "Login", new AjaxOptions {
+       UpdateTargetId = "content-wrapper",
+       InsertionMode = InsertionMode.Replace
+   })
+    </li>
+</ul>
+<div id="tab-title">
+    <h3>REGISTER</h3>
+    <hr class="title-sep" />
+</div>
+
+@using (Ajax.BeginForm("RegisterAction", null, new AjaxOptions { UpdateTargetId = "content-wrapper" }, new { @id = "login-form", @class = "clearfix" })) {
+    <div class="input-group">
+        @Html.Label("NAME")
+        <span>@Html.EditorFor(x => x.name)</span>
+        @Html.ValidationMessageFor(x => x.password)
+    </div>
+    <div class="input-group">
+        @Html.Label("EMAIL")
+        <span>@Html.EditorFor(x => x.email)</span>
+        @Html.ValidationMessageFor(x => x.password)
+    </div>
+    <div class="input-group">
+        @Html.Label("PASSWORD")
+        <span>@Html.PasswordFor(x => x.password)</span>
+        @Html.ValidationMessageFor(x => x.password)
+    </div>
+    
+    <input type="submit" value="SIGN UP" />
+}

@@ -32,7 +32,8 @@ namespace BookEditor
 
             RequestTable.Instance.update(values, where_values);
 
-            callback.UpdateOrders();
+            if(callback != null)
+                callback.UpdateOrders();
 
             return new Response("success", "book successfully shipped");
         }

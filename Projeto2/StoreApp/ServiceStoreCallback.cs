@@ -18,6 +18,7 @@ namespace StoreApp
             App.Current.Dispatcher.BeginInvoke(new Action(() =>
             {
                 app.RefreshOrders();
+                app.RefreshBooks();
             }));
         }
     }

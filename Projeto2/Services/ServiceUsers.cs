@@ -41,6 +41,8 @@ namespace BookEditor
                     (string)v.getValue(OrderTable.KEY_ADDRESS)));
             }
 
+            list.Reverse();
+
             return list;
         }
     }
