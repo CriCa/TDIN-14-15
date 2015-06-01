@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<logicalClassDesignerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" dslVersion="1.0.0.0" Id="98af2084-3356-4eee-85dc-e1f2dcbee5f1" name="sols" linkedPackageId="b00c601f-2494-4751-bd8f-41bd528b4942" xmlns="http://schemas.microsoft.com/dsltools/LogicalClassDesigner">
+  <profileInstances>
+    <packageHasProfileInstances Id="76364a97-a15c-4c91-987e-36f8ba8e60c5">
+      <profileInstance Id="1f41c765-dca7-49d9-956d-3d3c8640eb20" name="StandardProfileL2">
+        <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
+      </profileInstance>
+      <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
+    </packageHasProfileInstances>
+    <packageHasProfileInstances Id="8277197a-58e1-47ca-aa79-15472aec3388">
+      <profileInstance Id="5f61a993-d028-4493-af14-7261c8dd4283" name="StandardProfileL3">
+        <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
+      </profileInstance>
+      <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
+    </packageHasProfileInstances>
+    <packageHasProfileInstances Id="e4ecfbe7-86ad-4ec4-a73a-2908ac4334c3">
+      <profileInstance Id="eb03e2c5-497c-45ee-8030-1b4627c99917" name="CSharpProfile">
+        <elementDefinition Id="22e0c54d-41cb-4421-bbfc-2b3c1e34a763" />
+      </profileInstance>
+      <elementDefinition Id="455add22-87fa-4764-be3d-b6b54248ee02" />
+    </packageHasProfileInstances>
+  </profileInstances>
+  <package Id="b00c601f-2494-4751-bd8f-41bd528b4942" name="sols">
+    <elementDefinition Id="dbeaec0d-dd8f-4835-9f81-150e3a0c9d89" />
+  </package>
+</logicalClassDesignerModel>

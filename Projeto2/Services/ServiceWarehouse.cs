@@ -22,6 +22,13 @@ namespace BookEditor
 
             OrderTable.Instance.update(values, where_values);
 
+            where_values.clear();
+
+            where_values.add(OrderTable.KEY_BOOK_ID, request.book_id);
+            where_values.add(OrderTable.KEY_STATE, OrderTable.TO_DISPATCH);
+
+            OrderTable.Instance.update(values, where_values);
+
             values.clear();
             where_values.clear();
 

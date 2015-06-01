@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/LogicalClassDesigner" xmlns:dm9="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ComponentDesigner"
+  dslVersion="1.0.0.0"
+  Id="45758024-1bad-4b2b-92be-46c52d1827b6"
+  name="SQLite"
+  visibility="Private" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
+  <referencesInternal>
+    <reference
+      Id="7952ec8c-b7fa-43f4-afbd-3cc0879cb891"
+      handle="viewcode://./CodeSchema_Namespace?Namespace%3DSystem.Data.SQLite"
+      tag="ViewCode" />
+  </referencesInternal>
+  <packagedElements>
+    <packageHasNamedElement>
+      <class
+        Id="2bf7f86b-f70c-439b-bc89-50ed8b967168"
+        name="SQLiteConnection"
+        isAbstract="false"
+        isLeaf="true"
+        isActiveClass="false">
+        <referencesInternal>
+          <reference
+            Id="dbf39bba-25a2-49ec-ae0c-dfcf3f6e489e"
+            handle="viewcode://./CodeSchema_Class?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FP1ntas%2FDesktop%2FTDIN-14-15%2FProjeto2%2Fpackages%2FSystem.Data.SQLite.Core.1.0.97.0%2Flib%2Fnet45%2FSystem.Data.SQLite.dll Namespace%3DSystem.Data.SQLite Type%3DSQLiteConnection"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="31a9a7c1-93be-4695-bba4-d9762e7713cd"
+            name="class"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="84bbc95e-5e9a-4131-9972-9b77b4501c52">
+                <propertyInstance
+                  Id="f6ba6766-845b-4b8c-a42a-abd7b7893dfd"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="110ac907-ad86-4c45-8572-12b91614e607">
+                <propertyInstance
+                  Id="b2e67a3b-ada0-49fb-ab66-cb50147cd486"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="4fffc9af-cb19-4ea0-bfb9-7e1d36ccf791">
+                <propertyInstance
+                  Id="8fb7d8b4-7523-4d49-a948-9a33d14970bd"
+                  name="IsStatic"
+                  value="False" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="78ad9ec4-346e-49c2-ac6c-74980d10ba22">
+                <propertyInstance
+                  Id="f2a5d10c-33c7-4c7d-945b-a328f2b90ef4"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="5c3dc855-264e-45db-8072-63b96ecd440b">
+                <propertyInstance
+                  Id="495176ef-281e-419a-85ea-18ba2e0d9116"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+      </class>
+    </packageHasNamedElement>
+  </packagedElements>
+</package>

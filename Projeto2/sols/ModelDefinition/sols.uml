@@ -1,0 +1,120 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<modelStoreModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/LogicalClassDesigner" xmlns:dm9="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ComponentDesigner"
+  dslVersion="1.0.0.0"
+  Id="dbeaec0d-dd8f-4835-9f81-150e3a0c9d89"
+  name="sols" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
+  <profileInstances>
+    <packageHasProfileInstances
+      Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b">
+      <profileInstance
+        Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791"
+        name="StandardProfileL2" />
+    </packageHasProfileInstances>
+    <packageHasProfileInstances
+      Id="29349502-908c-4fda-9054-c48619c59ed0">
+      <profileInstance
+        Id="532ea607-fb19-44b8-8502-3351b05452be"
+        name="StandardProfileL3" />
+    </packageHasProfileInstances>
+    <packageHasProfileInstances
+      Id="455add22-87fa-4764-be3d-b6b54248ee02">
+      <profileInstance
+        Id="22e0c54d-41cb-4421-bbfc-2b3c1e34a763"
+        name="CSharpProfile" />
+    </packageHasProfileInstances>
+  </profileInstances>
+  <packagedElements>
+    <packageHasNamedElement>
+      <packageMoniker
+        Id="32101f29-ced7-412c-b88f-735141f5db23"
+        LastKnownName="BookEditor"
+        LastKnownLocation="Package_2202.uml" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <packageMoniker
+        Id="28c159e5-bbed-4c3e-ad4f-70dc1282dfdc"
+        LastKnownName="System"
+        LastKnownLocation="Package1_2202.uml" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <packageMoniker
+        Id="62395cee-f06e-4132-acdb-baf33ce7201c"
+        LastKnownName="DatabaseController"
+        LastKnownLocation="Package4_2202.uml" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <packageMoniker
+        Id="3946a5ea-300b-4aa4-9e94-0ad3748e6d00"
+        LastKnownName="Printer"
+        LastKnownLocation="Package_2243.uml" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <packageMoniker
+        Id="6d198e0f-cc65-43a9-9a8c-49705b33a3f8"
+        LastKnownName="Utilities"
+        LastKnownLocation="Package_0059.uml" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <packageMoniker
+        Id="02f21213-3c08-4ba3-8d6b-7ca44fd9b58c"
+        LastKnownName="Services"
+        LastKnownLocation="Package4_0100.uml" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <packageMoniker
+        Id="53d80401-db19-4c57-a61e-bc6291288e88"
+        LastKnownName="StoreApp"
+        LastKnownLocation="Package13_0100.uml" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <packageMoniker
+        Id="6e72dab9-be53-434d-9236-3697fecc5633"
+        LastKnownName="Xceed"
+        LastKnownLocation="Package16_0100.uml" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <packageMoniker
+        Id="df37d607-98b4-4079-9ebd-5e17b75324a2"
+        LastKnownName="WarehouseApp"
+        LastKnownLocation="Package19_0100.uml" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <packageMoniker
+        Id="d3552d92-248b-4d32-bb5e-16459f00358a"
+        LastKnownName="WarehouseService"
+        LastKnownLocation="Package_0101.uml" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <packageMoniker
+        Id="c9dacff5-ceea-4a0a-90bf-344304171447"
+        LastKnownName="WebApplication"
+        LastKnownLocation="Package1_0101.uml" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <packageMoniker
+        Id="a91fe4ad-192c-42c6-9b24-a40e43a8a248"
+        LastKnownName="Owin"
+        LastKnownLocation="Package6_0101.uml" />
+    </packageHasNamedElement>
+  </packagedElements>
+  <primitiveType
+    Id="220a3521-e091-4221-bae9-3ef9018e845c"
+    name="Integer"
+    isAbstract="false"
+    isLeaf="false" />
+  <primitiveType
+    Id="8943dc84-709e-4f62-b15a-a3273aa6f165"
+    name="Boolean"
+    isAbstract="false"
+    isLeaf="false" />
+  <primitiveType
+    Id="59259974-6d55-42c6-b7bd-763d77ac8ef9"
+    name="String"
+    isAbstract="false"
+    isLeaf="false" />
+  <primitiveType
+    Id="3ab42e7d-4969-445a-b209-471f5cb8209c"
+    name="UnlimitedNatural"
+    isAbstract="false"
+    isLeaf="false" />
+</modelStoreModel>

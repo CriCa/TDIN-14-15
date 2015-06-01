@@ -1,0 +1,793 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/LogicalClassDesigner" xmlns:dm9="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ComponentDesigner"
+  dslVersion="1.0.0.0"
+  Id="95fc2191-8532-4a47-82fd-a9f1c40a1a82"
+  name="Properties"
+  visibility="Private" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
+  <referencesInternal>
+    <reference
+      Id="4bceb8c6-d331-41e9-a6b8-33b208a04bfc"
+      handle="viewcode://./CodeSchema_Namespace?Namespace%3DPrinter.Properties"
+      tag="ViewCode" />
+  </referencesInternal>
+  <packagedElements>
+    <packageHasNamedElement>
+      <class
+        Id="ed607078-e620-4a84-ab7e-e859b454a54d"
+        name="Settings"
+        visibility="Package"
+        isAbstract="false"
+        isLeaf="true"
+        isActiveClass="false">
+        <referencesInternal>
+          <reference
+            Id="3ca2a34a-82b2-4736-ac48-8762fc77513b"
+            handle="viewcode://./CodeSchema_Class?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FP1ntas%2FDesktop%2FTDIN-14-15%2FProjeto2%2FPrinter%2Fbin%2FDebug%2FPrinter.exe Namespace%3DPrinter.Properties Type%3DSettings"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="cfd160d5-a7df-471e-99a6-f80ed069051c"
+            name="class"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="1d443ebe-4781-42b9-88a8-b4dd4a461aa8">
+                <propertyInstance
+                  Id="c14f0b81-2c42-4963-baec-fc946538fe20"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="43789bac-db8d-42bb-abcd-08b1557ff68f">
+                <propertyInstance
+                  Id="6c28af60-94b5-490a-8a14-1ce27ea9c4a9"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="4607d238-6ee9-43fd-b06d-1373abfbb951">
+                <propertyInstance
+                  Id="e6b6de89-38df-4561-a6bf-1abc6c532983"
+                  name="IsStatic"
+                  value="False" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="2e525ca3-c475-4388-9ce5-9386f3186a50">
+                <propertyInstance
+                  Id="cc645232-3dd1-48da-bfe0-9af0ab734990"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="50e377ae-d69a-4801-9546-6f2207f84b76">
+                <propertyInstance
+                  Id="e56aaca0-af40-4778-a9d8-8d0f8fe4c4a7"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+        <generalsInternal>
+          <generalization
+            Id="741e74c2-c9cf-44d3-b203-fed802067bb1"
+            isSubstitutable="false">
+            <classMoniker
+              Id="90fef599-5b98-4547-9740-8693108b0844"
+              LastKnownName="ApplicationSettingsBase"
+              LastKnownLocation="Package1_0100.uml" />
+          </generalization>
+        </generalsInternal>
+        <targetEnds>
+          <association
+            Id="4fb1b580-96e6-4d59-96a2-664926d0d47f"
+            isDerived="false"
+            sourceEndRoleName="Settings"
+            targetEndRoleName="Default"
+            isLeaf="false"
+            isAbstract="false">
+            <classMoniker
+              Id="ed607078-e620-4a84-ab7e-e859b454a54d"
+              LastKnownName="Settings"
+              LastKnownLocation="Package_0100.uml" />
+            <description>Property Default references type Settings.</description>
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="f159a092-79a1-49b6-8be0-61835e08f556"
+                  name="Settings"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false">
+                  <lowerValueInternal>
+                    <literalString
+                      Id="827b8345-72c4-4fca-8410-ceb27a12559b"
+                      name="Lower"
+                      value="*" />
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString
+                      Id="d18c1f21-ab07-4b97-b41c-ac9204bd5282"
+                      name="Upper"
+                      value="*" />
+                  </upperValueInternal>
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="e66c1dfd-a41a-43d6-be75-a45de062a063"
+                  name="Default"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false">
+                  <lowerValueInternal>
+                    <literalString
+                      Id="03fc2c19-b9f8-438e-babb-2532fb408956"
+                      name="Lower"
+                      value="1" />
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString
+                      Id="7ba4f758-35a4-4ec8-8eab-435176c71f74"
+                      name="Upper"
+                      value="1" />
+                  </upperValueInternal>
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+        </targetEnds>
+        <ownedAttributesInternal>
+          <property
+            Id="8e9779f8-5554-46b2-b52c-433f5ff7abbc"
+            name="Default"
+            isLeaf="false"
+            isStatic="true"
+            isReadOnly="true"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <referencesInternal>
+              <reference
+                Id="a3c8c314-5813-4dbe-9245-c3ba4c7ad096"
+                handle="viewcode://./CodeSchema_Property?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FP1ntas%2FDesktop%2FTDIN-14-15%2FProjeto2%2FPrinter%2Fbin%2FDebug%2FPrinter.exe Namespace%3DPrinter.Properties Type%3DSettings Member%3DDefault"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="6c9290a5-9049-4384-aa31-bf4f8c8ab6be"
+                name="property"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="2434e978-f64f-4a4d-ab66-733f2d5f25b5">
+                    <propertyInstance
+                      Id="a9d1fd52-daf4-4cbb-8c1a-83587ed89a30"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="a7008bb8-b333-4881-abc4-1b67b503e0b6">
+                    <propertyInstance
+                      Id="16421e46-28a1-4564-801f-d5defac0af78"
+                      name="Get"
+                      value="public" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="6610f512-7570-446f-83ff-71c6e76213bc">
+                    <propertyInstance
+                      Id="d63300f4-0b6e-4775-98d0-305bdf586c77"
+                      name="HasBody"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="cb44547f-6ff4-44be-9bd2-93fe3f2ce0d7">
+                    <propertyInstance
+                      Id="f3fcb8b2-03a5-46e0-acd5-d651c2a9729f"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="3ad65834-a07e-434b-bf62-2deb3b0895b3">
+                    <propertyInstance
+                      Id="a691b4c9-5583-4507-9510-fb442a38667a"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="bb1dec90-9a75-4b32-8112-6d2005b87571">
+                    <propertyInstance
+                      Id="51d38600-57f5-4c5b-a945-fcd8ec857186"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="769fee83-9b32-438e-86c2-e709d6319bd3">
+                    <propertyInstance
+                      Id="d371be8c-cb88-434a-8e8c-c720524d9186"
+                      name="Set"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <type_NamedElement>
+              <classMoniker
+                Id="ed607078-e620-4a84-ab7e-e859b454a54d"
+                LastKnownName="Settings"
+                LastKnownLocation="Package_0100.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="beb1d517-7086-4a62-9d6e-1641495bc839"
+            name="defaultInstance"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="true"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <referencesInternal>
+              <reference
+                Id="2fad224b-69e0-4b66-9e4d-4fbd000806cb"
+                handle="viewcode://./CodeSchema_Field?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FP1ntas%2FDesktop%2FTDIN-14-15%2FProjeto2%2FPrinter%2Fbin%2FDebug%2FPrinter.exe Namespace%3DPrinter.Properties Type%3DSettings Member%3DdefaultInstance"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="e7aaf204-faba-471b-9c9b-1bcda2c1902d"
+                name="field"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="4206e3ff-5e9b-4f49-98c8-f5e933243f3b">
+                    <propertyInstance
+                      Id="cc21e3af-c8be-4c2e-a367-1cf4f6022b92"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="75c11c4b-762a-4537-b374-d5deab070a56">
+                    <propertyInstance
+                      Id="feaa59f6-16d1-4cc4-8637-8114b691b1d4"
+                      name="IsConst"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="ae6d4e07-23cf-4464-ac8f-3049086a8a15">
+                    <propertyInstance
+                      Id="a80e8472-9af5-42bd-bc7d-9ee8f18112fe"
+                      name="IsNullable"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="333007cf-39ce-46d8-bdbb-35111ecad538">
+                    <propertyInstance
+                      Id="40185259-703f-4ff6-a6c9-70e289f5147c"
+                      name="IsVolatile"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="1db4522d-90e1-445e-821e-54935dccc3e1">
+                    <propertyInstance
+                      Id="ed699eda-c7b6-43bb-b7b3-c892430142db"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <type_NamedElement>
+              <classMoniker
+                Id="ed607078-e620-4a84-ab7e-e859b454a54d"
+                LastKnownName="Settings"
+                LastKnownLocation="Package_0100.uml" />
+            </type_NamedElement>
+          </property>
+        </ownedAttributesInternal>
+        <ownedOperationsInternal>
+          <operation
+            Id="4cb39820-a388-4d5c-84bf-ee5202be7087"
+            name="Settings"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="45e6d397-ea83-4003-9ab8-e36535aa0935"
+                handle="viewcode://./CodeSchema_Method?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FP1ntas%2FDesktop%2FTDIN-14-15%2FProjeto2%2FPrinter%2Fbin%2FDebug%2FPrinter.exe Namespace%3DPrinter.Properties Type%3DSettings Member%3D.ctor"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="51910895-0a1a-4d60-ba15-ca0aac005a00"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="02e48fdf-6766-48a7-95dc-11ae13a73777">
+                    <propertyInstance
+                      Id="8bb8fb43-1c12-4194-8246-2bc397495828"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="85200e9c-fdb1-4eba-b754-ebb4a796ca0f">
+                    <propertyInstance
+                      Id="be887d5e-8d73-4571-a432-a375512edb2c"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="90f92abf-c268-4e47-8e43-62e3088da0b8">
+                    <propertyInstance
+                      Id="eb76c68c-1669-41d6-b3f3-fbbb4daf468f"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="446b3bc4-cc73-4be5-b808-c4aef4d75c6e">
+                    <propertyInstance
+                      Id="ecf90457-acd6-44b3-b81b-45cd50421e91"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="ca328439-a1b9-4569-93f5-e855e6729c42">
+                    <propertyInstance
+                      Id="9f483227-1554-42fb-a7eb-60fb5a8a3162"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="f6e5fb6c-ae0b-4672-bb45-604be34b3c46">
+                    <propertyInstance
+                      Id="9714dee4-a84e-4423-924f-8426ca80be94"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+          </operation>
+        </ownedOperationsInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="2223dc28-b0ef-4708-bba7-597b927b62d7"
+        name="Resources"
+        visibility="Package"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <referencesInternal>
+          <reference
+            Id="9a7cb055-8983-44ba-900c-89bcc2d00fb4"
+            handle="viewcode://./CodeSchema_Class?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FP1ntas%2FDesktop%2FTDIN-14-15%2FProjeto2%2FPrinter%2Fbin%2FDebug%2FPrinter.exe Namespace%3DPrinter.Properties Type%3DResources"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="77cd120f-fc01-41b3-bf70-29e063274a4a"
+            name="class"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="a21fb4be-5a42-48ec-9ab9-5f2654a487eb">
+                <propertyInstance
+                  Id="6f4549e0-0fed-4e0d-82e0-281d7d0abc05"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="0a73e408-b55e-44a9-84a5-dae5401cc7ae">
+                <propertyInstance
+                  Id="818d1c90-87bb-499e-a144-57eea2cc3749"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="03eeb596-e282-4093-9720-d5d3385e55a9">
+                <propertyInstance
+                  Id="98e39de6-953b-4a3b-8da5-72d60ac94114"
+                  name="IsStatic"
+                  value="False" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="d1ed171f-ffe8-484d-935f-f7466bb230fb">
+                <propertyInstance
+                  Id="7edede06-0687-444f-adfa-d1d755497d52"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="0c27603a-61d7-4ac2-86a1-c43e06fe5e2d">
+                <propertyInstance
+                  Id="8771bfe6-c4d2-4500-8412-086e2536fe45"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+        <ownedAttributesInternal>
+          <property
+            Id="0e6fe197-7460-4fd2-84e6-43aa6a7e18b5"
+            name="ResourceManager"
+            visibility="Package"
+            isLeaf="false"
+            isStatic="true"
+            isReadOnly="true"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <referencesInternal>
+              <reference
+                Id="f268700c-425b-434e-9d8c-4bcd14661082"
+                handle="viewcode://./CodeSchema_Property?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FP1ntas%2FDesktop%2FTDIN-14-15%2FProjeto2%2FPrinter%2Fbin%2FDebug%2FPrinter.exe Namespace%3DPrinter.Properties Type%3DResources Member%3DResourceManager"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="5d78f920-cc49-4e2d-8b0e-53fbc498a926"
+                name="property"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="2d11da6f-01da-43b2-8386-b94c57e928a2">
+                    <propertyInstance
+                      Id="55785123-124c-46ce-9f6f-ddd96d7c0de5"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="398c370f-7b6e-4dbb-b24d-05a703d223dc">
+                    <propertyInstance
+                      Id="c0173aab-abc9-4457-a53e-de170b635fcf"
+                      name="Get"
+                      value="package" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="da437d4d-6a30-4e85-a1b8-aae14b42529c">
+                    <propertyInstance
+                      Id="a3e30e4b-dd15-48dd-ad9f-002f90d5abd9"
+                      name="HasBody"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="7feaa021-3096-4016-8e85-1fa092a8011d">
+                    <propertyInstance
+                      Id="c3a97c0a-e095-4062-94ac-979c7d5089fc"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="0e5bd66b-9415-44f6-b439-5d300ae60bdb">
+                    <propertyInstance
+                      Id="99740e26-d9ed-4b19-94b0-6ce76a971255"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="311768a6-253f-4f64-af7e-dddb1da09e2f">
+                    <propertyInstance
+                      Id="189ecf94-f92b-4a18-b63a-08fe0f92fa13"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="eab0b7d8-5949-4c17-80fa-b2b66b290c20">
+                    <propertyInstance
+                      Id="031b9b51-12e6-4bed-92f8-ee3cb8208771"
+                      name="Set"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <type_NamedElement>
+              <classMoniker
+                Id="ca91bc4f-b2ed-4887-b69a-4166b1769fc3"
+                LastKnownName="ResourceManager"
+                LastKnownLocation="Package2_0100.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="b34ffa2e-f419-44a7-b025-5249df2a841b"
+            name="Culture"
+            visibility="Package"
+            isLeaf="false"
+            isStatic="true"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <referencesInternal>
+              <reference
+                Id="5a1c5910-16c7-4fe0-a97d-921083a64e60"
+                handle="viewcode://./CodeSchema_Property?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FP1ntas%2FDesktop%2FTDIN-14-15%2FProjeto2%2FPrinter%2Fbin%2FDebug%2FPrinter.exe Namespace%3DPrinter.Properties Type%3DResources Member%3DCulture"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="2147de92-e67f-4181-b619-0d420fe7803c"
+                name="property"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="c7f0c00d-3540-44fc-a5e5-15dfc7729d6e">
+                    <propertyInstance
+                      Id="d312df1f-c0f9-420b-bf9a-35fcda62299e"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="5c216538-cc80-425d-825c-b19cdd4bd8e8">
+                    <propertyInstance
+                      Id="ca9baf7a-96b7-49d1-b260-a29463ecfeb1"
+                      name="Get"
+                      value="package" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="9093bb5d-f652-4e06-b06f-ce9375e1e819">
+                    <propertyInstance
+                      Id="2017d8d1-3982-4681-9a56-21755a79153b"
+                      name="HasBody"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="8ca184e3-4fc0-4470-8306-eb65c443fbf3">
+                    <propertyInstance
+                      Id="6d391340-e2eb-4119-afc7-68dfd20ba6ed"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="d0c438c6-5d5b-44a6-a6ba-2ac5a51d742a">
+                    <propertyInstance
+                      Id="0802b1db-7968-4d2f-8dab-f725eb2fc302"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="1a589d34-7a55-48e2-b3aa-715774a2f8d7">
+                    <propertyInstance
+                      Id="c8ec54b0-61c6-414f-8020-472117ed6161"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="a3cbf4bb-d558-48b9-8d83-394a3a53d845">
+                    <propertyInstance
+                      Id="51109780-ab90-491a-96b0-5a880c5db843"
+                      name="Set"
+                      value="package" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <type_NamedElement>
+              <classMoniker
+                Id="3028fc8f-1504-4ebd-9206-ab1517350ce9"
+                LastKnownName="CultureInfo"
+                LastKnownLocation="Package3_0100.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="fae83685-204b-4279-9187-d3ceed276999"
+            name="resourceMan"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="true"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <referencesInternal>
+              <reference
+                Id="8224a7c5-c113-41fc-b1f1-282d77ef6e5b"
+                handle="viewcode://./CodeSchema_Field?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FP1ntas%2FDesktop%2FTDIN-14-15%2FProjeto2%2FPrinter%2Fbin%2FDebug%2FPrinter.exe Namespace%3DPrinter.Properties Type%3DResources Member%3DresourceMan"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="47f190c3-3d24-4bc8-8d12-be864492da85"
+                name="field"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="caf267e2-5a0b-4a37-8bc6-194bab1a4115">
+                    <propertyInstance
+                      Id="ba92a149-74ff-4aca-afda-0a06bf7685f0"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="7eeb87a8-4a22-4f5e-9b35-db09e057c4da">
+                    <propertyInstance
+                      Id="244a9b4e-345a-4a71-a31d-91e235608528"
+                      name="IsConst"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="a68344bf-0c2f-4b3d-bc43-194f65bea5d9">
+                    <propertyInstance
+                      Id="49359e51-00a5-4216-b84b-b6a9b6b87262"
+                      name="IsNullable"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="bd244905-af83-40cc-aeba-85716243f806">
+                    <propertyInstance
+                      Id="f1de2c26-6779-4bfe-97ff-0af6ca1f1d63"
+                      name="IsVolatile"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="1bb9c916-79cf-40ed-99e5-ba39a8fc0534">
+                    <propertyInstance
+                      Id="c02f1fcf-9a74-41e0-a56d-935006eca915"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <type_NamedElement>
+              <classMoniker
+                Id="ca91bc4f-b2ed-4887-b69a-4166b1769fc3"
+                LastKnownName="ResourceManager"
+                LastKnownLocation="Package2_0100.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="ee340c08-3200-4b1d-b47a-94ab80123842"
+            name="resourceCulture"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="true"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <referencesInternal>
+              <reference
+                Id="98463031-313e-49d4-808e-714cdc86d1f1"
+                handle="viewcode://./CodeSchema_Field?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FP1ntas%2FDesktop%2FTDIN-14-15%2FProjeto2%2FPrinter%2Fbin%2FDebug%2FPrinter.exe Namespace%3DPrinter.Properties Type%3DResources Member%3DresourceCulture"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="cdb1a245-1da9-4918-ad89-303f29c64fc1"
+                name="field"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="22dd2e31-4fb8-4b2a-91c4-9fde3935a887">
+                    <propertyInstance
+                      Id="8f6508fb-c70e-49bf-9fd1-43d5bfbbb78f"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="2faf9779-e758-4a01-9d1a-bbe48921b75e">
+                    <propertyInstance
+                      Id="26685706-e0d2-4e51-b3a1-d5b2565b0ab9"
+                      name="IsConst"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="28a7b1a1-74ea-4609-884e-8f3fb92656f9">
+                    <propertyInstance
+                      Id="f3009e1d-e356-4fd4-9b7a-53eb89f6001e"
+                      name="IsNullable"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="a9137243-12d6-4116-8cf5-82e1116395fb">
+                    <propertyInstance
+                      Id="8522fcfb-286a-4b01-8cba-964c19fbb461"
+                      name="IsVolatile"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="5d2ebcfe-7f62-4430-b9ac-a28d3b31c02f">
+                    <propertyInstance
+                      Id="c07a8fb9-b5dd-4299-84b9-48b06b069c40"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <type_NamedElement>
+              <classMoniker
+                Id="3028fc8f-1504-4ebd-9206-ab1517350ce9"
+                LastKnownName="CultureInfo"
+                LastKnownLocation="Package3_0100.uml" />
+            </type_NamedElement>
+          </property>
+        </ownedAttributesInternal>
+        <ownedOperationsInternal>
+          <operation
+            Id="3f5014b3-da89-4dff-a586-5054a020dc19"
+            name="Resources"
+            visibility="Package"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="b0674989-6ca3-4bd2-933c-1eedbe7bbf0d"
+                handle="viewcode://./CodeSchema_Method?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FP1ntas%2FDesktop%2FTDIN-14-15%2FProjeto2%2FPrinter%2Fbin%2FDebug%2FPrinter.exe Namespace%3DPrinter.Properties Type%3DResources Member%3D.ctor"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="4f66d6a7-2ab1-430d-a353-7cd7671894ca"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="8273b5a3-0ca7-4a19-bc42-f8cae58fe384">
+                    <propertyInstance
+                      Id="7ceeae9f-8861-4efc-a948-8adc611a48c3"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="f4d41422-ae35-420d-bdd0-c8220d06f57d">
+                    <propertyInstance
+                      Id="a325ec24-90cf-4a1e-b339-f07cb09e0ae8"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="45c81d66-19ea-4056-aba1-a922abce7432">
+                    <propertyInstance
+                      Id="6b2f8e9c-f4da-43c3-bd8e-7ef070151d63"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="a3a07d15-49dd-442d-bf2c-126f354b14e3">
+                    <propertyInstance
+                      Id="1b0425ac-2f6e-47e6-8d5d-a0a162509535"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="7aaaa41e-d16d-48e0-b271-04967ae68229">
+                    <propertyInstance
+                      Id="c42ff55e-cf15-4d25-b5ea-7b1af0b6ac11"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="625c2838-0a1e-451e-ac93-a1a3ff14a063">
+                    <propertyInstance
+                      Id="a272af70-14fa-40b4-b454-c76976f6f5a1"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+          </operation>
+        </ownedOperationsInternal>
+      </class>
+    </packageHasNamedElement>
+  </packagedElements>
+</package>

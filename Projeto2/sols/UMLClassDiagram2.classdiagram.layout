@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<logicalClassDesignerDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="UMLClassDiagram2">
+  <logicalClassDesignerModelMoniker Id="12514ef7-6274-40cd-9d7e-1d50f5cb361c" />
+  <nestedChildShapes>
+    <packageShape Id="98b6ebd4-e109-44ef-af05-91c7631b1c05" absoluteBounds="0.5, 2, 1.5, 1" customColor="255, 249, 230" hideQualifiedName="false">
+      <packageMoniker Id="c97ee119-9004-4a20-b381-c2420c2aa8ee" LastKnownName="BookEditor" />
+    </packageShape>
+    <packageShape Id="99d4f3e6-a0ae-4a8a-b631-25358b3e2c89" absoluteBounds="2.5, 0.5, 1.5, 1" customColor="255, 249, 230" hideQualifiedName="false">
+      <packageMoniker Id="6ab78b7c-1fca-4512-8785-2e80cf148f91" LastKnownName="DatabaseController" />
+    </packageShape>
+    <packageShape Id="b1f1a784-0733-437e-b1fe-b218c0127344" absoluteBounds="2.5, 2, 1.5, 1" customColor="255, 249, 230" hideQualifiedName="false">
+      <packageMoniker Id="5548301c-301b-4b42-a560-8d6eab57017e" LastKnownName="Printer" />
+    </packageShape>
+    <packageShape Id="5a0c0d98-8fd2-4781-99b5-0400a1f62844" absoluteBounds="0.5, 3.5, 1.5, 1" customColor="255, 249, 230" hideQualifiedName="false">
+      <packageMoniker Id="504ce326-e963-4847-a697-ba217464d3e1" LastKnownName="Properties" />
+    </packageShape>
+    <packageShape Id="6c8dff17-998b-4174-b311-de3ed36662db" absoluteBounds="2.5, 3.5, 1.5, 1" customColor="255, 249, 230" hideQualifiedName="false">
+      <packageMoniker Id="64ab41a8-ab40-44ea-8702-57269a4e0cc8" LastKnownName="ServiceRequest" />
+    </packageShape>
+    <packageShape Id="656f2e61-c8c6-4ab2-bd35-b2c6487aa2ac" absoluteBounds="4.5, 0.5, 1.5, 1" customColor="255, 249, 230" hideQualifiedName="false">
+      <packageMoniker Id="8889d498-a318-49f7-b71e-b4e92c702ed6" LastKnownName="StoreApp" />
+    </packageShape>
+    <packageShape Id="7f7f1c08-e801-4832-9b8b-efc2711cbe13" absoluteBounds="4.5, 2, 1.5, 1" customColor="255, 249, 230" hideQualifiedName="false">
+      <packageMoniker Id="bd0eaf81-f599-4688-a908-8d28461ae601" LastKnownName="BookEditorServices" />
+    </packageShape>
+    <packageShape Id="b673fcb8-a8c2-421a-8a02-243dfa1e5a21" absoluteBounds="4.5, 3.5, 1.5, 1" customColor="255, 249, 230" hideQualifiedName="false">
+      <packageMoniker Id="7c329543-30da-4f0e-8b27-11bce8beb078" LastKnownName="Utilities" />
+    </packageShape>
+    <packageShape Id="8ad95ddc-ae90-4076-a298-1c865de336e2" absoluteBounds="0.5, 5, 1.5, 1" customColor="255, 249, 230" hideQualifiedName="false">
+      <packageMoniker Id="af47173a-8796-4451-8756-dc93e8f0e025" LastKnownName="WarehouseApp" />
+    </packageShape>
+    <packageShape Id="2064e11c-4d61-440f-98ea-ca865969f7fc" absoluteBounds="2.5, 5, 1.5, 1" customColor="255, 249, 230" hideQualifiedName="false">
+      <packageMoniker Id="28ff3ff8-33e4-47c1-9af4-fe16d7ddc7c6" LastKnownName="ServiceWarehouse" />
+    </packageShape>
+    <packageShape Id="f76a1333-31ca-48fc-a61a-c149390ddb9d" absoluteBounds="0.5, 6.5, 1.5, 1" customColor="255, 249, 230" hideQualifiedName="false">
+      <packageMoniker Id="cc38267f-c01e-48d5-ae5e-d7d0b78e5267" LastKnownName="WarehouseService" />
+    </packageShape>
+    <packageShape Id="c129bc1f-43c7-4190-9dbc-bae04d58f878" absoluteBounds="2.5, 6.5, 1.5, 1" customColor="255, 249, 230" hideQualifiedName="false">
+      <packageMoniker Id="40f1f41b-b1ce-4500-b546-365b4e498fd9" LastKnownName="WebApplication" />
+    </packageShape>
+    <packageShape Id="0e01d11e-0046-44e1-b2fa-edd70f39c032" absoluteBounds="4.5, 5, 1.5, 1" customColor="255, 249, 230" hideQualifiedName="false">
+      <packageMoniker Id="042b35e2-41de-4a5c-bca8-e8967f556761" LastKnownName="Controllers" />
+    </packageShape>
+    <packageShape Id="25909f7f-0f9a-4b60-b7c2-818c6da76f8e" absoluteBounds="4.5, 6.5, 1.5, 1" customColor="255, 249, 230" hideQualifiedName="false">
+      <packageMoniker Id="a9c76bfe-3d2d-4c98-b257-d3bc62b723b1" LastKnownName="Models" />
+    </packageShape>
+  </nestedChildShapes>
+</logicalClassDesignerDiagram>

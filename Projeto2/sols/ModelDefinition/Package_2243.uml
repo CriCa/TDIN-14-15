@@ -1,0 +1,1121 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/LogicalClassDesigner" xmlns:dm9="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ComponentDesigner"
+  dslVersion="1.0.0.0"
+  Id="3946a5ea-300b-4aa4-9e94-0ad3748e6d00"
+  name="Printer"
+  visibility="Private" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
+  <referencesInternal>
+    <reference
+      Id="527c91bf-0001-4436-a947-ca63293bba5f"
+      handle="viewcode://./CodeSchema_Namespace?Namespace%3DPrinter"
+      tag="ViewCode" />
+  </referencesInternal>
+  <packagedElements>
+    <packageHasNamedElement>
+      <class
+        Id="ac236062-5ebc-4f84-a082-0f934655283d"
+        name="App"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <referencesInternal>
+          <reference
+            Id="31a50960-b091-4f48-8c39-e02fab83edd5"
+            handle="viewcode://./CodeSchema_Class?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FP1ntas%2FDesktop%2FTDIN-14-15%2FProjeto2%2FPrinter%2Fbin%2FDebug%2FPrinter.exe Namespace%3DPrinter Type%3DApp"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="c0501ea9-d432-4f56-beab-a5d6c968a83f"
+            name="class"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="7e5ec60b-f9f3-4bf8-b3ee-a9f5ca71ef4f">
+                <propertyInstance
+                  Id="f45db239-a91e-4d80-b867-ec0fea971a1d"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="f44c5ea6-c945-44ca-bbaf-b9929e492931">
+                <propertyInstance
+                  Id="ffeb1389-fbee-4603-987c-4c75c404b7ad"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="6abc1e8d-6c82-4c4c-a0df-40698133df22">
+                <propertyInstance
+                  Id="869a3eaa-2368-4ac7-bec9-dbe7b37a32d4"
+                  name="IsStatic"
+                  value="False" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="5d1292a5-c2ca-4677-b259-83e73740f966">
+                <propertyInstance
+                  Id="dd6dc9cf-6ae5-4185-a79f-ddd38d8c9286"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="e39a7d57-8050-4c55-a0ea-94be992f10b8">
+                <propertyInstance
+                  Id="4a126ec4-764d-4f5c-bb18-274405ea444b"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+        <generalsInternal>
+          <generalization
+            Id="78e78584-28a0-496b-8bdf-3b9932cd68d3"
+            isSubstitutable="false">
+            <classMoniker
+              Id="ededd54e-9973-489c-8aa7-4569ae1f9c76"
+              LastKnownName="Application"
+              LastKnownLocation="Package1_2243.uml" />
+          </generalization>
+        </generalsInternal>
+        <ownedOperationsInternal>
+          <operation
+            Id="e962d376-198b-4cda-9771-e78fac9cbcdd"
+            name="InitializeComponent"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="965e9209-65f9-4fe7-8535-1e6ef390ee33"
+                handle="viewcode://./CodeSchema_Method?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FP1ntas%2FDesktop%2FTDIN-14-15%2FProjeto2%2FPrinter%2Fbin%2FDebug%2FPrinter.exe Namespace%3DPrinter Type%3DApp Member%3DInitializeComponent"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="78d14b8e-ebc5-4553-a29b-13f7d8f2e316"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="dabf79d0-c1a7-413d-baf0-299d098f9e54">
+                    <propertyInstance
+                      Id="a937591c-07fa-4fc8-8188-ab2b111d8bcd"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="a2854f0b-5f7e-4b4b-88fd-f8fd6bdd7c59">
+                    <propertyInstance
+                      Id="27561b0a-5dba-4ddf-9eaa-81409f261324"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="12ad6d04-3f95-46fc-bdeb-a6051c74c753">
+                    <propertyInstance
+                      Id="b5607a62-f0b3-4aea-8ebb-888065b669bf"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="ce5a95d6-9b7e-4383-a67a-2531545b24f6">
+                    <propertyInstance
+                      Id="5c092a42-4a4b-44c1-a022-3ec467184521"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="a2553019-7467-4721-95e2-e37d5dbd2039">
+                    <propertyInstance
+                      Id="fa48832d-41d4-4dff-b101-5567c1770a8a"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="5e6facc3-8bab-42c2-b1f7-01a6ee5c3aee">
+                    <propertyInstance
+                      Id="05f51177-da49-4967-94df-cb25809a95f7"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+          </operation>
+          <operation
+            Id="ec8b25c9-c7c1-44f0-82cd-a0e20dbc58a1"
+            name="Main"
+            isLeaf="false"
+            isStatic="true"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="659edff8-5071-489a-a431-c3a674dc5d2f"
+                handle="viewcode://./CodeSchema_Method?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FP1ntas%2FDesktop%2FTDIN-14-15%2FProjeto2%2FPrinter%2Fbin%2FDebug%2FPrinter.exe Namespace%3DPrinter Type%3DApp Member%3DMain"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="36d6c964-3af1-4cbf-91e3-f1e06ed3f7ce"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="387b0516-8f11-41e2-987a-c4d46a7b020e">
+                    <propertyInstance
+                      Id="bfbaabd6-8d7a-4a77-afda-32ce4cc8bd22"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="387610f9-8969-44f6-9dac-3c3d3d0caae5">
+                    <propertyInstance
+                      Id="50a2d607-38d9-4802-9ec8-2908a33bb60e"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="96411e07-4499-4116-bb92-4b06064a7a9f">
+                    <propertyInstance
+                      Id="dfd1b186-08e3-4552-98c0-fe1ab06fe320"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="85107552-5ea5-41e6-892d-2d1b5cb084d7">
+                    <propertyInstance
+                      Id="d49b766e-b29e-4446-ad6e-dce3f40428ff"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="dac70b91-35ca-476a-a293-2bebef84a377">
+                    <propertyInstance
+                      Id="93df039a-a9c9-4914-bb83-afabc252d925"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="26cbec5a-6de9-4390-8dfe-b5741d67be76">
+                    <propertyInstance
+                      Id="cf8b851f-b9ae-4265-9c30-af8f6f241dd3"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+          </operation>
+          <operation
+            Id="08e4bd34-575f-4688-bea0-fd4712ae9427"
+            name="App"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="8062eb00-d585-4ede-9806-91c3901b1c91"
+                handle="viewcode://./CodeSchema_Method?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FP1ntas%2FDesktop%2FTDIN-14-15%2FProjeto2%2FPrinter%2Fbin%2FDebug%2FPrinter.exe Namespace%3DPrinter Type%3DApp Member%3D.ctor"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="ca37d4cc-0d5c-4cbf-9db3-1bea8769cc73"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="5d7fe339-9e68-4bbb-9bc1-71f649d9f766">
+                    <propertyInstance
+                      Id="62e3ad1a-96a8-42d1-be3e-374f56862565"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="12374e37-f9d1-4d47-b9aa-629f5621c509">
+                    <propertyInstance
+                      Id="d1d59f3a-dde1-4497-84ce-594d4be1feb9"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="2e15e174-7472-4ab3-a126-6ab8ef81b046">
+                    <propertyInstance
+                      Id="bbb45604-0a09-41f1-a89a-887a893cc46f"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="71ffbdab-d0b8-43d2-a4b9-d97a22ce0135">
+                    <propertyInstance
+                      Id="88e8634f-e307-40b0-826c-5b8d35d094a5"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="9bff9f2f-94b5-424b-acd0-d358c83f6d3b">
+                    <propertyInstance
+                      Id="7cbc29fd-f992-4b4e-b0fc-2c7a4b76e3ee"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="53de5f50-c1f5-49bc-93fb-6cb7a1512cf6">
+                    <propertyInstance
+                      Id="cf196cb9-f04e-45b7-8e71-62ae5245657b"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+          </operation>
+        </ownedOperationsInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="6665cc48-c8c4-4b7a-b66a-5d532f2b9152"
+        name="MainWindow"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <referencesInternal>
+          <reference
+            Id="bc882ce2-e65b-4465-832e-af5438d6c822"
+            handle="viewcode://./CodeSchema_Class?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FP1ntas%2FDesktop%2FTDIN-14-15%2FProjeto2%2FPrinter%2Fbin%2FDebug%2FPrinter.exe Namespace%3DPrinter Type%3DMainWindow"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="8f6453bd-dbae-4ff7-8ae9-bc4c8f139131"
+            name="class"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="597dfe1c-9147-40be-aec3-1de497f0cc1f">
+                <propertyInstance
+                  Id="6e39fb82-f08f-4d10-80e0-7b80267b9141"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="eb544d89-ea88-466c-bd92-3f3b57d2438e">
+                <propertyInstance
+                  Id="c116aa32-0b1c-4d25-9775-eb6bf103e55b"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="73eda26e-700f-47a4-9bc7-270f307bcd6b">
+                <propertyInstance
+                  Id="cb406216-3617-4113-b240-6c8245c6f137"
+                  name="IsStatic"
+                  value="False" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="7f6b007b-8036-4765-a6f5-70b516b0bc45">
+                <propertyInstance
+                  Id="16836147-0595-4830-ac92-445c8067c558"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="620a21b9-a728-47b0-9b4c-24389cb840ee">
+                <propertyInstance
+                  Id="5622a4c9-d533-4b45-aa86-bb3dcdc5386f"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+        <suppliersInternal>
+          <interfaceRealization
+            Id="a5b50b34-1f4a-47ca-8bad-a9380ad0cc68">
+            <interfaceMoniker
+              Id="49bdc16d-b1be-4ef0-88f4-4964f7e8277f"
+              LastKnownName="IComponentConnector"
+              LastKnownLocation="Package3_2243.uml" />
+          </interfaceRealization>
+        </suppliersInternal>
+        <generalsInternal>
+          <generalization
+            Id="f523e661-ea72-49d3-b21f-ed40d3981786"
+            isSubstitutable="false">
+            <classMoniker
+              Id="6b63ae26-4761-4908-8daa-6dd21c930ed0"
+              LastKnownName="Window"
+              LastKnownLocation="Package1_2243.uml" />
+          </generalization>
+        </generalsInternal>
+        <ownedAttributesInternal>
+          <property
+            Id="6529b1f1-13e0-44ac-9483-e3aa5de83b62"
+            name="BookTitle"
+            visibility="Package"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <referencesInternal>
+              <reference
+                Id="b333a557-f193-4550-bacd-fe0eb05b056b"
+                handle="viewcode://./CodeSchema_Field?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FP1ntas%2FDesktop%2FTDIN-14-15%2FProjeto2%2FPrinter%2Fbin%2FDebug%2FPrinter.exe Namespace%3DPrinter Type%3DMainWindow Member%3DBookTitle"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="59e9311b-5c0c-4d74-940c-b8ac7d6d1965"
+                name="field"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="1a118c1b-4566-464b-92e6-d2eca4de5882">
+                    <propertyInstance
+                      Id="2d62a451-71a1-4d03-8718-c23fffc14048"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="3008912e-fece-4e96-9f4b-594a9b4adaa8">
+                    <propertyInstance
+                      Id="7208a65d-4a89-4f2f-9d5f-4701ed035df3"
+                      name="IsConst"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="e73d2060-ac70-458f-9daf-912243b0b126">
+                    <propertyInstance
+                      Id="92f6881a-5b36-415b-bf88-22a6ea8cd48a"
+                      name="IsNullable"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="4571c239-da75-49ae-b8a9-41d7d047b0ee">
+                    <propertyInstance
+                      Id="d4ba21a9-40d4-42ea-94b2-66f7a5203eff"
+                      name="IsVolatile"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="585a18fa-3385-48ed-b63f-553da5d542a1">
+                    <propertyInstance
+                      Id="fd15b306-94b1-42a0-8674-c2fb3b1da5da"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <type_NamedElement>
+              <classMoniker
+                Id="f1e6f6a6-aa99-43de-9207-c0322141a7ec"
+                LastKnownName="Label"
+                LastKnownLocation="Package2_2243.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="8951b5df-1d1d-4936-8596-80db2a11fd36"
+            name="Client"
+            visibility="Package"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <referencesInternal>
+              <reference
+                Id="2dffdd82-3891-44a5-823a-75ec4f030a55"
+                handle="viewcode://./CodeSchema_Field?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FP1ntas%2FDesktop%2FTDIN-14-15%2FProjeto2%2FPrinter%2Fbin%2FDebug%2FPrinter.exe Namespace%3DPrinter Type%3DMainWindow Member%3DClient"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="c9e7ce7f-1a05-43e4-8659-d434f732a926"
+                name="field"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="6771543c-f2e9-4d87-ac9b-5124703cb27e">
+                    <propertyInstance
+                      Id="75df7a81-37cf-4239-864c-f23a51ffac53"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="2c10656f-5d93-407b-b916-9042158fa009">
+                    <propertyInstance
+                      Id="516f2033-4172-4d96-8060-715f2ee43c56"
+                      name="IsConst"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="2a4dcb88-18fb-4a53-986b-25256b39affa">
+                    <propertyInstance
+                      Id="a3e8e705-b419-4f5f-9966-ad96129c428d"
+                      name="IsNullable"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="cca9ddc3-57ee-4161-bdc4-978f7e9acac1">
+                    <propertyInstance
+                      Id="bf0971c2-f821-450b-8ae2-eb7ed7e3ad3f"
+                      name="IsVolatile"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="1bc42df9-88f1-44be-a99c-7458f1c7c678">
+                    <propertyInstance
+                      Id="54e7bf50-d381-4b21-8771-1f22e5931022"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <type_NamedElement>
+              <classMoniker
+                Id="f1e6f6a6-aa99-43de-9207-c0322141a7ec"
+                LastKnownName="Label"
+                LastKnownLocation="Package2_2243.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="fa6dadc3-fcda-496d-8f2b-f62c708fe977"
+            name="Price"
+            visibility="Package"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <referencesInternal>
+              <reference
+                Id="85483ee3-e961-4624-8ffb-c2776bb324fe"
+                handle="viewcode://./CodeSchema_Field?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FP1ntas%2FDesktop%2FTDIN-14-15%2FProjeto2%2FPrinter%2Fbin%2FDebug%2FPrinter.exe Namespace%3DPrinter Type%3DMainWindow Member%3DPrice"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="30b8ad30-1b13-43a9-9242-fa577a1de3bd"
+                name="field"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="fe50718e-8144-48cb-ba5d-b2831c33b7c8">
+                    <propertyInstance
+                      Id="5f540903-1a25-4e46-9496-c1c4a26e02f0"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="ce4646c1-b962-47ac-8fbc-431ed7ccdf29">
+                    <propertyInstance
+                      Id="52e05b73-5139-4469-8fe6-1269a38b825d"
+                      name="IsConst"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="76fb8b59-0611-4177-ba2d-a4214c715717">
+                    <propertyInstance
+                      Id="b662e16f-ff64-4ede-93d3-1027f694951e"
+                      name="IsNullable"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="b9b761f3-19e4-4473-8763-6f7e46fd0bd0">
+                    <propertyInstance
+                      Id="0f2654ed-fa9b-4a98-9bcf-c238b7a02643"
+                      name="IsVolatile"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="30564c96-deb2-4e57-85e1-ca870761461a">
+                    <propertyInstance
+                      Id="f76256ac-f415-48d7-93f7-3ebe5c983e07"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <type_NamedElement>
+              <classMoniker
+                Id="f1e6f6a6-aa99-43de-9207-c0322141a7ec"
+                LastKnownName="Label"
+                LastKnownLocation="Package2_2243.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="03dc52a4-ec0b-4da2-90c8-112cf6928af6"
+            name="Quantity"
+            visibility="Package"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <referencesInternal>
+              <reference
+                Id="73b7a8b8-b59c-4be6-8f22-c282758317e4"
+                handle="viewcode://./CodeSchema_Field?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FP1ntas%2FDesktop%2FTDIN-14-15%2FProjeto2%2FPrinter%2Fbin%2FDebug%2FPrinter.exe Namespace%3DPrinter Type%3DMainWindow Member%3DQuantity"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="ed30a583-cb2e-4abd-a55c-bb3a6a0973f2"
+                name="field"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="9047a5d6-afc3-475d-9d96-ffa8ecc4f141">
+                    <propertyInstance
+                      Id="28d4aa34-d2df-4d06-9415-122aec43078b"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="63e084e3-68f4-422d-98c5-ca35cc7c4ce9">
+                    <propertyInstance
+                      Id="8346cedf-7286-4f0a-838b-b81cb25b5a93"
+                      name="IsConst"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="9d8c6588-1cab-4b64-a951-f1cd8faa2591">
+                    <propertyInstance
+                      Id="1435dac8-9aaf-41c7-9c81-46a01b15c479"
+                      name="IsNullable"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="60d466ec-1bae-4eb2-97ab-e4b0ac0974c9">
+                    <propertyInstance
+                      Id="e2b5d406-4452-4bc7-8811-e48085ba25cc"
+                      name="IsVolatile"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="2ad93836-011e-4a8e-bd58-edd7da6d8ed0">
+                    <propertyInstance
+                      Id="16b95dcd-7d4b-494f-a2ca-0b6c60b4ff89"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <type_NamedElement>
+              <classMoniker
+                Id="f1e6f6a6-aa99-43de-9207-c0322141a7ec"
+                LastKnownName="Label"
+                LastKnownLocation="Package2_2243.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="7b2df019-724a-4479-9bca-61d108f63a57"
+            name="Total"
+            visibility="Package"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <referencesInternal>
+              <reference
+                Id="f4bdee2d-7466-4c9f-a36a-343d849a9f46"
+                handle="viewcode://./CodeSchema_Field?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FP1ntas%2FDesktop%2FTDIN-14-15%2FProjeto2%2FPrinter%2Fbin%2FDebug%2FPrinter.exe Namespace%3DPrinter Type%3DMainWindow Member%3DTotal"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="fbbed633-4565-41ee-a807-4e571aa92dc3"
+                name="field"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="84650e9e-07ab-4cb3-9d7b-2b383247521f">
+                    <propertyInstance
+                      Id="5f45de2f-9078-464f-84fb-e825014b66d6"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="39d1697a-84e3-41b3-9d7a-311a165d64bc">
+                    <propertyInstance
+                      Id="e99448a5-bb14-47e7-9fd0-4411ca009466"
+                      name="IsConst"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="a6eaa24a-0ec4-4c8f-a95f-2c986bdc8dfa">
+                    <propertyInstance
+                      Id="31f868f1-758d-41b1-98ac-4993e0471e3a"
+                      name="IsNullable"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="4ae09881-e4c7-4ae1-aacf-de8181022aa8">
+                    <propertyInstance
+                      Id="d9fb4dd2-b967-475e-8705-0fd648657d4b"
+                      name="IsVolatile"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="54ccdfd5-c657-4da2-867e-1cc40d7b1355">
+                    <propertyInstance
+                      Id="d08ac0da-ff10-4f08-928e-e11f4d8cd17e"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <type_NamedElement>
+              <classMoniker
+                Id="f1e6f6a6-aa99-43de-9207-c0322141a7ec"
+                LastKnownName="Label"
+                LastKnownLocation="Package2_2243.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="725f0eb0-f42c-43b2-8a99-5fcd2dd759d4"
+            name="_contentLoaded"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <referencesInternal>
+              <reference
+                Id="35b6df55-a167-474c-870c-2403811d1ed7"
+                handle="viewcode://./CodeSchema_Field?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FP1ntas%2FDesktop%2FTDIN-14-15%2FProjeto2%2FPrinter%2Fbin%2FDebug%2FPrinter.exe Namespace%3DPrinter Type%3DMainWindow Member%3D_contentLoaded"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="88f7b2ed-1a57-4732-8353-d3c9c883f644"
+                name="field"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="66842d9c-51e7-4e9f-bf50-121000c1d41e">
+                    <propertyInstance
+                      Id="f11c8cc0-b838-46a6-b8e1-c6607ca6a4fa"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="331b5721-f3d2-443c-b96d-7fb8ef7f9cea">
+                    <propertyInstance
+                      Id="e3fc4d54-e4c3-414c-a4b6-af489b0d8dec"
+                      name="IsConst"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="74d68556-64fb-45c5-9eb8-ac7374bf5a4c">
+                    <propertyInstance
+                      Id="4bd1ece8-2f6c-4bce-88e9-97e40819ee8e"
+                      name="IsNullable"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="67c133a0-4cd7-44cf-a323-703aec7d712f">
+                    <propertyInstance
+                      Id="7d62e240-3ee3-456c-9a95-d1bab0e5cca0"
+                      name="IsVolatile"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="4b576819-e6c3-4ff4-9ad6-e9d4d22ce4e9">
+                    <propertyInstance
+                      Id="0e452b6e-2829-4f7b-ba9d-9e3ca1de46b7"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <type_NamedElement>
+              <primitiveTypeMoniker
+                Id="8943dc84-709e-4f62-b15a-a3273aa6f165"
+                LastKnownName="Boolean"
+                LastKnownLocation="sols.uml" />
+            </type_NamedElement>
+          </property>
+        </ownedAttributesInternal>
+        <ownedOperationsInternal>
+          <operation
+            Id="d18f2be3-8df9-4a7f-8534-9777f2e9fdde"
+            name="MainWindow"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="390429dd-f014-496c-bf4f-65ed7a26eb54"
+                handle="viewcode://./CodeSchema_Method?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FP1ntas%2FDesktop%2FTDIN-14-15%2FProjeto2%2FPrinter%2Fbin%2FDebug%2FPrinter.exe Namespace%3DPrinter Type%3DMainWindow Member%3D(Name%3D.ctor OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2FPresentationFramework.dll&quot; Namespace%3DSystem.Windows Type%3DWindow)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DString)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DInt64)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DDouble)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DDouble)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DString)])"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="307ad0dd-80d5-44c0-badd-637e2504e45e"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="5dc97477-1aae-48d6-9126-6acc714d68b7">
+                    <propertyInstance
+                      Id="3ab15609-73f1-4b44-9904-29a782ba767e"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="4f375e72-7861-4ea5-9eb0-eb087d12b7a1">
+                    <propertyInstance
+                      Id="81e7688d-8a02-4d4a-a774-96ae6973f496"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="9c66f141-f54a-41d0-b9bb-a0cdd668d2a4">
+                    <propertyInstance
+                      Id="529c9111-298b-4d9e-8ff4-68ed53027960"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="0e008458-4594-44d8-86e9-19cdb4496471">
+                    <propertyInstance
+                      Id="13fc111e-0da5-4663-a47c-8c882623dc43"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="5c994d00-0b57-4f77-9b66-db8f8c6c12f1">
+                    <propertyInstance
+                      Id="e4407bb5-418f-48a2-9825-ecc736c3d37d"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="ae3affbd-09d6-4ced-899e-492c302313b6">
+                    <propertyInstance
+                      Id="3a487690-4ba1-40cb-bddd-955fde1dd146"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="65fd0093-f5c7-4393-8318-e9981a5eaf2b"
+                  name="own"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="dac01826-4d4a-4ea5-807a-33a680ea496e"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FP1ntas%2FDesktop%2FTDIN-14-15%2FProjeto2%2FPrinter%2Fbin%2FDebug%2FPrinter.exe Namespace%3DPrinter Type%3DMainWindow Member%3D(Name%3D.ctor OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2FPresentationFramework.dll&quot; Namespace%3DSystem.Windows Type%3DWindow)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DString)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DInt64)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DDouble)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DDouble)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DString)]) ParameterIdentifier%3Down"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <classMoniker
+                      Id="6b63ae26-4761-4908-8daa-6dd21c930ed0"
+                      LastKnownName="Window"
+                      LastKnownLocation="Package1_2243.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="a0f49214-dd19-4844-b08c-24dbb67efd52"
+                  name="bookTitle"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="80310d1a-7b0c-4692-9e18-37fdc38fda7a"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FP1ntas%2FDesktop%2FTDIN-14-15%2FProjeto2%2FPrinter%2Fbin%2FDebug%2FPrinter.exe Namespace%3DPrinter Type%3DMainWindow Member%3D(Name%3D.ctor OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2FPresentationFramework.dll&quot; Namespace%3DSystem.Windows Type%3DWindow)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DString)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DInt64)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DDouble)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DDouble)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DString)]) ParameterIdentifier%3DbookTitle"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <primitiveTypeMoniker
+                      Id="59259974-6d55-42c6-b7bd-763d77ac8ef9"
+                      LastKnownName="String"
+                      LastKnownLocation="sols.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="ae2aab32-d7e9-4531-8c66-6a2c12bd3970"
+                  name="qtd"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="046a3086-8736-4811-90f7-0cec859fc950"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FP1ntas%2FDesktop%2FTDIN-14-15%2FProjeto2%2FPrinter%2Fbin%2FDebug%2FPrinter.exe Namespace%3DPrinter Type%3DMainWindow Member%3D(Name%3D.ctor OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2FPresentationFramework.dll&quot; Namespace%3DSystem.Windows Type%3DWindow)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DString)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DInt64)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DDouble)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DDouble)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DString)]) ParameterIdentifier%3Dqtd"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <classMoniker
+                      Id="80fce551-1af3-4ca8-8ce2-1b308d9bc289"
+                      LastKnownName="Int64"
+                      LastKnownLocation="Package1_2202.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="9e78ae9a-00f9-44d3-a2ef-68a71969a301"
+                  name="pric"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="836f4261-8fe1-420f-872d-aafbb049d851"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FP1ntas%2FDesktop%2FTDIN-14-15%2FProjeto2%2FPrinter%2Fbin%2FDebug%2FPrinter.exe Namespace%3DPrinter Type%3DMainWindow Member%3D(Name%3D.ctor OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2FPresentationFramework.dll&quot; Namespace%3DSystem.Windows Type%3DWindow)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DString)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DInt64)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DDouble)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DDouble)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DString)]) ParameterIdentifier%3Dpric"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <classMoniker
+                      Id="8be19af0-8421-40bd-bf4c-6af5875431bc"
+                      LastKnownName="Double"
+                      LastKnownLocation="Package1_2202.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="a4bff7ed-c5dc-49eb-ba26-e021d5777f55"
+                  name="ttl"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="dee1a198-f762-44d2-b2f0-717af7584a14"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FP1ntas%2FDesktop%2FTDIN-14-15%2FProjeto2%2FPrinter%2Fbin%2FDebug%2FPrinter.exe Namespace%3DPrinter Type%3DMainWindow Member%3D(Name%3D.ctor OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2FPresentationFramework.dll&quot; Namespace%3DSystem.Windows Type%3DWindow)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DString)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DInt64)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DDouble)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DDouble)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DString)]) ParameterIdentifier%3Dttl"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <classMoniker
+                      Id="8be19af0-8421-40bd-bf4c-6af5875431bc"
+                      LastKnownName="Double"
+                      LastKnownLocation="Package1_2202.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="038654f3-de33-45b4-9354-922d24609d63"
+                  name="cli"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="fb3ecba5-8d80-4c88-9117-ea56da25e87f"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FP1ntas%2FDesktop%2FTDIN-14-15%2FProjeto2%2FPrinter%2Fbin%2FDebug%2FPrinter.exe Namespace%3DPrinter Type%3DMainWindow Member%3D(Name%3D.ctor OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2FPresentationFramework.dll&quot; Namespace%3DSystem.Windows Type%3DWindow)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DString)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DInt64)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DDouble)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DDouble)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DString)]) ParameterIdentifier%3Dcli"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <primitiveTypeMoniker
+                      Id="59259974-6d55-42c6-b7bd-763d77ac8ef9"
+                      LastKnownName="String"
+                      LastKnownLocation="sols.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="2874562c-1a08-47a4-a614-178327a4db56"
+            name="System‎.Windows‎.Markup‎.IComponentConnector‎.Connect"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="47322a5e-a53c-4997-9d3c-390bea667063"
+                handle="viewcode://./CodeSchema_Method?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FP1ntas%2FDesktop%2FTDIN-14-15%2FProjeto2%2FPrinter%2Fbin%2FDebug%2FPrinter.exe Namespace%3DPrinter Type%3DMainWindow Member%3D(Name%3DSystem.Windows.Markup.IComponentConnector.Connect OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DInt32)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DObject)])"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="c1e5df32-489a-41af-b66d-5f8913cf028f"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="e6003708-fc41-4d8f-b07f-2dfd327447fa">
+                    <propertyInstance
+                      Id="770c6932-e891-4b0d-8901-2bbf24642177"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="11cc56fb-158b-44f0-9807-0a5b75ef083f">
+                    <propertyInstance
+                      Id="44b9fe1e-fedc-4272-b167-7fa671a29a63"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="7ffe19e5-be1d-4122-b9c8-aef7b7f54b70">
+                    <propertyInstance
+                      Id="575a7107-22fc-469c-80e7-54aef7d9cabe"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="a68cc26e-865e-40a7-9bd6-dbbc829b549b">
+                    <propertyInstance
+                      Id="64bb9b88-fc8f-498b-9f34-56c58c8e82cc"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="2b5311cd-98b7-4cc0-97b4-71012ad08ad4">
+                    <propertyInstance
+                      Id="892cd506-e818-4bef-9cd4-ca7b43494d69"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="98504eb3-df8b-4fe1-8a2b-f4d0ac1d85d2">
+                    <propertyInstance
+                      Id="8fdad241-c245-4dab-aa5e-8abc207bd969"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="6f914b08-387b-4dee-b4d1-d9a506db72da"
+                  name="connectionId"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="941c7e37-1b13-40ca-ab1e-fb15c843f349"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FP1ntas%2FDesktop%2FTDIN-14-15%2FProjeto2%2FPrinter%2Fbin%2FDebug%2FPrinter.exe Namespace%3DPrinter Type%3DMainWindow Member%3D(Name%3DSystem.Windows.Markup.IComponentConnector.Connect OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DInt32)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DObject)]) ParameterIdentifier%3DconnectionId"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <primitiveTypeMoniker
+                      Id="220a3521-e091-4221-bae9-3ef9018e845c"
+                      LastKnownName="Integer"
+                      LastKnownLocation="sols.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="6ff5757f-d067-4738-80b2-fc041b273ccc"
+                  name="target"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="e0c56251-46e0-4021-9295-645e8e0be472"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FP1ntas%2FDesktop%2FTDIN-14-15%2FProjeto2%2FPrinter%2Fbin%2FDebug%2FPrinter.exe Namespace%3DPrinter Type%3DMainWindow Member%3D(Name%3DSystem.Windows.Markup.IComponentConnector.Connect OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DInt32)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DObject)]) ParameterIdentifier%3Dtarget"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <classMoniker
+                      Id="396bbcfe-029e-4c30-aebd-5de80254268d"
+                      LastKnownName="Object"
+                      LastKnownLocation="Package1_2202.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="fe2628ba-a824-468a-89d4-95dee1d87760"
+            name="InitializeComponent"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="9531c152-40b1-4ff2-9857-75ee08e1b872"
+                handle="viewcode://./CodeSchema_Method?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FP1ntas%2FDesktop%2FTDIN-14-15%2FProjeto2%2FPrinter%2Fbin%2FDebug%2FPrinter.exe Namespace%3DPrinter Type%3DMainWindow Member%3DInitializeComponent"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="8645fd22-cd13-4a86-b256-2c1862d4be4c"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="1b331e5b-c3e3-488e-bb19-82c4b6132ff9">
+                    <propertyInstance
+                      Id="95c5d3ce-3c18-4d29-a639-c85dd2b1d5e1"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="2ccdfc71-f65d-4ffe-b788-1bab1a72dc35">
+                    <propertyInstance
+                      Id="bf1d65e3-e187-4fdc-9e77-05df36320222"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="c878c313-e8cf-47c5-8981-d39c8385bd02">
+                    <propertyInstance
+                      Id="b70966f1-81a2-4b66-a13c-e83b4b9bb9e2"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="30a9d899-8e33-4c68-85f6-e9ed4c371a73">
+                    <propertyInstance
+                      Id="0635b7f6-4d30-448e-9584-461d0a9e4a74"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="23dd6cae-696b-4bb9-bb67-39902afeb1da">
+                    <propertyInstance
+                      Id="6cebb365-dcca-4342-a652-e0049d1f83e6"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="05a1f9bd-5ee7-44e0-9f22-48274b0f0676">
+                    <propertyInstance
+                      Id="ab286578-b3fd-4b2d-bc5c-80b5bb4069df"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+          </operation>
+        </ownedOperationsInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <packageMoniker
+        Id="95fc2191-8532-4a47-82fd-a9f1c40a1a82"
+        LastKnownName="Properties"
+        LastKnownLocation="Package_0100.uml" />
+    </packageHasNamedElement>
+  </packagedElements>
+</package>
